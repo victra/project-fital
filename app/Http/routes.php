@@ -23,12 +23,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 
     //siswa
-    Route::get('insert', 'SiswaController@index');
+    //Route::get('insert', 'SiswaController@index');
     Route::post('store', 'SiswaController@store');
-    Route::get('show', 'SiswaController@show');    
-    Route::get('delete&{nis}', 'SiswaController@destroy');
-    Route::get('/delete&{nis}', 'SiswaController@delete');
-    Route::get('/edit&{nis}', 'SiswaController@edita');
-    Route::post('/update&{nis}', 'SiswaController@updatea');
+    Route::get('show', 'SiswaController@show');
+    Route::get('/delete&{nis}', 'SiswaController@deletesiswa');
+    Route::get('/edit&{nis}', 'SiswaController@editsiswa');
+    Route::post('/update&{nis}', 'SiswaController@updatesiswa');
 
 });

@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\View;
 
 class SiswaController extends Controller
 {
-    public function index()
-    {
-    	return view('siswa.insert');
-    }
+    //public function index()
+    //{
+    	//return view('siswa.insert');
+    //}
 
     public function store(Request $request)
     {
@@ -32,13 +32,13 @@ class SiswaController extends Controller
     	$siswa = siswa::paginate(10);
     	return view('siswa.show', ['siswax' => $siswa]);
     }    
-    public function delete($nis)
+    public function deletesiswa($nis)
     {
     	DB::table('siswa')->where('nis',$nis)->delete();
     	return back ();
     }
 
-    public function edita($nis)
+    public function editsiswa($nis)
     {
     	$siswa = DB::table('siswa')->where('nis',$nis)->first();
 
@@ -83,7 +83,7 @@ class SiswaController extends Controller
                     ->with('content', $content);
     }
 
-    public function updatea(Request $request, $nis)
+    public function updatesiswa(Request $request, $nis)
     {
     	
     	$siswa = ['nis' => $request->nis

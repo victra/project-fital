@@ -16,7 +16,7 @@
 						 		<div class="form-group">
 						 			<label class="control-label col-sm-3">NIS</label>
 						 			<div class="col-sm-7">
-						 				<input type="integer" name="nis" class="form-control" value="{{$content['siswa']->nis}}">
+						 				<input type="integer" name="nis" class="form-control" disabled="disabled" value="{{$content['siswa']->nis}}">
 						 			</div>	
 						 		</div>
 						 		<div class="form-group">
