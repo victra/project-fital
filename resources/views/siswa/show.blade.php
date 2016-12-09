@@ -5,6 +5,7 @@
 @endsection
 
 
+
 @section('main-content')
 	<section class="content">
 		<div class="row">
@@ -13,9 +14,94 @@
 					<div class="box-header">
                   	<h3 class="box-title">Data Siswa</h3><br>
                   	<!--<a class="pull-right btn btn-success btn-sm">Print Siswa</a>-->
-                  	<a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" href="insert"> <i class="fa fa-plus"></i> Tambah Siswa</a>
-                  	
+                  	<a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus"></i> Tambah Siswa</a>
                 </div><!-- /.box-header -->
+
+                <!-- Modal -->
+				 <div class="modal fade" id="myModal" role="dialog">
+				 <div class="modal-dialog">
+				    
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Tambah Data Siswa</h4>
+				    </div>
+				    <form class="form-horizontal" method="post" action="store">          
+			        <div class="modal-body">
+			        	       
+			          		<div class="form-group">
+						 	<label class="control-label col-sm-3">NIS</label>
+						 		<div class="col-sm-8">
+						 			<input type="text" name="nis" class="form-control" placeholder="Isikan NIS">
+						 		</div>	
+						 	</div>
+						 	<div class="form-group">
+						 	<label class="control-label col-sm-3">Nama</label>
+						 		<div class="col-sm-8">
+						 			<input type="text" name="nama" class="form-control" placeholder="Isikan Nama">
+						 		</div>	
+						 	</div>
+                            <div class="form-group">
+						 	<label class="control-label col-sm-3">Jenis Kelamin</label>
+						 		<div class="col-sm-8">
+						 			<select class="form-control" name="jkl">
+						 				<option value="">-Pilih Jenis Kelamin-</option>
+						 				<option value="Laki-Laki">Laki-Laki</option>
+						 				<option value="Perempuan">Perempuan</option>
+						 			</select>
+						 		</div>
+						 	</div>
+						 	<div class="form-group">
+						 	<label class="control-label col-sm-3">Agama</label>
+						 		<div class="col-sm-8">
+						 			<select class="form-control" name="agama">
+						 				<option value="">-Pilih Agama-</option>
+						 				<option value="Islam">Islam</option>
+						 				<option value="Katolik">Katolik</option>
+						 				<option value="Kristen">Kristen</option>
+						 				<option value="Hindu">Hindu</option>
+						 				<option value="Budha">Budha</option>
+						 			</select>
+						 		</div>
+						 	</div>
+						 	<div class="form-group">
+						 	<label class="control-label col-sm-3">Kelas</label>
+						 		<div class="col-sm-8">
+						 		<select class="form-control" name="kelas">
+						 				<option value="">-Pilih Kelas-</option>
+						 				<option value="">-Pilih Kelas-</option>
+						 				<option value="X AK 1">X AK 1</option>
+						 				<option value="X AK 2">X AK 2</option>
+						 				<option value="X AK 3">X AK 3</option>
+						 				<option value="X FARMASI">X FARMASI</option>
+						 				<option value="X RPL 1">X RPL 1</option>
+						 				<option value="X RPL 2">X RPL 2</option>
+						 				<option value="XI AK 1">XI AK 1</option>
+						 				<option value="XI AK 2">XI AK 2</option>
+						 				<option value="XI FARMASI">XI FARMASI</option>
+						 				<option value="XI RPL 1">XI RPL 1</option>
+						 				<option value="XI RPL 2">XI RPL 2</option>
+						 				<option value="XII AK 1">XII AK 1</option>
+						 				<option value="XII AK 2">XII AK 2</option>
+						 				<option value="XII FARMASI">XII FARMASI</option>
+						 				<option value="XII RPL 1">XII RPL 1</option>
+						 				<option value="XII RPL 2">XII RPL 2</option>
+						 			</select>
+						 		</div>
+						 	</div>
+                        
+        			</div>
+
+        <div class="modal-footer">
+        	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+        	<button type="submit" style="margin-right:50px" class="btn btn-default">Simpan</button>
+        	<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        </div></form>
+
+      </div>      
+    </div>
+  </div>
 
                 <div class="box-body" style="overflow-x:auto">
                 <form>
