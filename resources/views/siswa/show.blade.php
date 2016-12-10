@@ -16,13 +16,17 @@
 	                  	<!--<a class="pull-right btn btn-success btn-sm">Print Siswa</a>-->
 	                  	<div class="row">
 	                  		<div class="col-md-2">
-              					<select class="form-control" onchange="location = this.value;">
-					 				<option value="">-Pilih Jumlah Data Ditampilkan-</option>
-					 				@foreach($content['show'] as $value)
-					 					<?php $selected = $content['input_show']==$value ? 'selected' : '' ?>
-										<option {{$selected}} value="?show={{$value}}">{{$value}}</option>
-					 				@endforeach
-					 			</select>
+							    <div class="form-group">
+							    	<div class="input-group">
+							    		<div class="input-group-addon">Show :</div>
+		              					<select class="form-control" onchange="location = this.value;">
+							 				@foreach($content['show'] as $value)
+							 					<?php $selected = $content['input_show']==$value ? 'selected' : '' ?>
+												<option {{$selected}} value="?show={{$value}}">{{$value}}</option>
+							 				@endforeach
+							 			</select>
+							    	</div>
+						 		</div>
 	                  		</div>
 	                  		<div class="col-md-10">
 			                  	<a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus"></i> Tambah Siswa</a>
