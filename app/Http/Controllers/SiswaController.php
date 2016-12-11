@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
+
 class SiswaController extends Controller
 {
     //public function index()
@@ -31,7 +32,6 @@ class SiswaController extends Controller
         if(Input::has('show')){
             $input_show = Input::get('show');
         }
-        
         $siswa = siswa::paginate($input_show);
         $jenis_kelamin = array(
             'Laki-Laki' => 'Laki-Laki',
@@ -75,7 +75,7 @@ class SiswaController extends Controller
         $content['kelas'] = $kelas;
         $content['show'] = $show;
         $content['input_show'] = $input_show;
-        return View::make('siswa.show')
+    	return View::make('siswa.show')
                     ->with('content', $content);
     }    
     public function deletesiswa($nis)
