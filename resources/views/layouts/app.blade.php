@@ -45,6 +45,10 @@ desired effect
         <section class="content">
             <!-- Your Page Content Here -->
             @yield('main-content')
+            
+            <!-- Modals Placement -->
+            @section('modals')
+            @show
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
