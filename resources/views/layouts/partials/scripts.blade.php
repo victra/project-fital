@@ -15,19 +15,24 @@
 <script src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/extensions/TableTools/dataTables.tableTools.js') }}" type="text/javascript"></script>
 
+
 <script>
   $(function () {
-    $("#example2").DataTable();
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
+    $("#example1").DataTable({
+      "paging": false,
+      "lengthChange": true,
       "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
-      "dom": 'T<"clear">lfrtip',
-        "tableTools": {
-            "sSwfPath": "/plugins/datatables/extensions/TableTools/swf/copy_csv_xls.swf"}
+      "autoWidth": false
+    });
+    $('#example2').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
     });
   });
 </script>
