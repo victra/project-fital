@@ -11,28 +11,6 @@
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
       fixed layout. -->
-<script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/plugins/datatables/extensions/TableTools/dataTables.tableTools.js') }}" type="text/javascript"></script>
 
-
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "paging": false,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-    $('#example2').DataTable({
-      "paging": false,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
+=======
+<script type="text/javascript" src="js/siswa.js"></script>

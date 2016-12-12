@@ -4,8 +4,6 @@
 	Home
 @endsection
 
-
-
 @section('main-content')
 	<section class="content">
 		<div class="row">
@@ -59,7 +57,8 @@
 							 				<td><center>{{$item->kelas}}</center></td>	
 							 				<td>
 							 					<center>					 				
-								                    <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a>
+								                    {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
+								                    <a class="btn btn-success btn-xs" title="Ubah" onclick="showModal(this)" data-nis="{{$item->nis}}" data-jenis-kelamin="{{$item->jkl}}"><span class="fa fa-edit"></span> Ubah</a>
 								                    <a class="btn btn-danger btn-xs" title="Hapus" href="delete&{{$item->nis}}"><span class="fa fa-trash"></span> Hapus</a>
 							                    </center>
 						                    </td>
@@ -150,4 +149,4 @@
 	</div>
 </div>
 <!-- Modal Form Tambah Data Siswa -->
-@stop
+@endsection
