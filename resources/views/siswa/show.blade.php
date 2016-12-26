@@ -4,6 +4,14 @@
 	Home
 @endsection
 
+@section('contentheader_title')
+    Data Siswa
+@endsection
+
+@section('contentheader_description')
+    Olah Data Siswa
+@endsection
+
 @section('main-content')
 	<section class="content">
 		<div class="row">
@@ -27,13 +35,13 @@
 						 		</div>
 	                  		</div>
 	                  		<div class="col-md-10">
-			                  	<a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus"></i> Tambah Siswa</a>
+			                  	<a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-plus"></i> Tambah Siswa</a>
 	                  		</div>
 	                  	</div>
                 	</div><!-- /.box-header -->
 	                <div class="box-body" style="overflow-x:auto">
 		                <form>	               
-			                <table class="table table-bordered table-striped">
+			                <table class="table table-hover table-bordered table-striped">
 		                    	<thead>
 							 		<tr>
 							 			<th><center>No</center></th>
@@ -58,7 +66,13 @@
 							 				<td>
 							 					<center>					 				
 								                    {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
-								                    <a class="btn btn-success btn-xs" title="Ubah" onclick="showModal(this)" data-nis="{{$item->nis}}" data-jenis-kelamin="{{$item->jkl}}"><span class="fa fa-edit"></span> Ubah</a>
+								                    <a class="btn btn-success btn-xs" title="Ubah" onclick="showModal(this)" 
+								                    data-nis="{{$item->nis}}"
+								                    data-nama="{{$item->nama}}"
+								                    data-jenis-kelamin="{{$item->jkl}}"
+								                    data-agama="{{$item->agama}}"
+								                    data-kelas="{{$item->kelas}}">
+								                    <span class="fa fa-edit"></span> Ubah</a>
 								                    <a class="btn btn-danger btn-xs" title="Hapus" href="delete&{{$item->nis}}"><span class="fa fa-trash"></span> Hapus</a>
 							                    </center>
 						                    </td>
@@ -79,7 +93,7 @@
 {{-- disini tempat naro modal --}}
 @section('modals')
 <!-- Modal Form Tambah Data Siswa-->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal1" role="dialog">
 	<div class="modal-dialog">
 	<!-- Modal content-->
 		<div class="modal-content">
@@ -105,7 +119,7 @@
 				 	<label class="control-label col-sm-3">Jenis Kelamin</label>
 				 		<div class="col-sm-4">
 				 			<select class="form-control" name="jkl">
-				 				<option value="">-Pilih Jenis Kelamin-</option>
+				 				<option value="" disabled selected>-Pilih Jenis Kelamin-</option>
 				 				@foreach($content['jenis_kelamin'] as $key => $value)
 									<option value="{{$key}}">{{$value}}</option>
 				 				@endforeach
@@ -116,7 +130,7 @@
 				 	<label class="control-label col-sm-3">Agama</label>
 				 		<div class="col-sm-4">
 				 			<select class="form-control" name="agama">
-				 				<option value="">-Pilih Agama-</option>
+				 				<option value="" disabled selected>-Pilih Agama-</option>
 				 				@foreach($content['agama'] as $key => $value)
 									<option value="{{$key}}">{{$value}}</option>
 				 				@endforeach
@@ -127,7 +141,7 @@
 				 	<label class="control-label col-sm-3">Kelas</label>
 				 		<div class="col-sm-3">
 				 		<select class="form-control" name="kelas">
-				 				<option value="">-Pilih Kelas-</option>
+				 				<option value="" disabled selected>-Pilih Kelas-</option>
 				 				@foreach($content['kelas'] as $key => $value)
 									<option value="{{$key}}">{{$value}}</option>
 				 				@endforeach
@@ -149,4 +163,76 @@
 	</div>
 </div>
 <!-- Modal Form Tambah Data Siswa -->
+
+<!-- Modal Form Ubah Data Siswa-->
+<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal-dialog">
+	<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Ubah Data Siswa</h4>
+		    </div>
+		    <form class="form-horizontal" method="post" action="store">          
+		        <div class="modal-body">
+	          		<div class="form-group">
+				 	<label class="control-label col-sm-3">NIS</label>
+				 		<div class="col-sm-2">
+				 			<input type="text" name="nis" class="form-control" placeholder="NIS" disabled="disabled">
+				 		</div>	
+				 	</div>
+				 	<div class="form-group">
+				 	<label class="control-label col-sm-3">Nama</label>
+				 		<div class="col-sm-6">
+				 			<input type="text" name="nama" class="form-control" placeholder="Nama">
+				 		</div>	
+				 	</div>
+                    <div class="form-group">
+				 	<label class="control-label col-sm-3">Jenis Kelamin</label>
+				 		<div class="col-sm-4">
+				 			<select class="form-control" name="jkl">
+				 				<option value="" disabled selected>-Pilih Jenis Kelamin-</option>
+				 				@foreach($content['jenis_kelamin'] as $key => $value)
+									<option value="{{$key}}">{{$value}}</option>
+				 				@endforeach
+				 			</select>
+				 		</div>
+				 	</div>
+				 	<div class="form-group">
+				 	<label class="control-label col-sm-3">Agama</label>
+				 		<div class="col-sm-4">
+				 			<select class="form-control" name="agama">
+				 				<option value="" disabled selected>-Pilih Agama-</option>
+				 				@foreach($content['agama'] as $key => $value)
+									<option value="{{$key}}">{{$value}}</option>
+				 				@endforeach
+				 			</select>
+				 		</div>
+				 	</div>
+				 	<div class="form-group">
+				 	<label class="control-label col-sm-3">Kelas</label>
+				 		<div class="col-sm-3">
+				 		<select class="form-control" name="kelas">
+				 				<option value="" disabled selected>-Pilih Kelas-</option>
+				 				@foreach($content['kelas'] as $key => $value)
+									<option value="{{$key}}">{{$value}}</option>
+				 				@endforeach
+				 			</select>
+				 		</div>
+				 	</div>                  
+    			</div>
+		        <div class="modal-footer">
+			        <div class="form-group">
+				        <div class="col-xs-5 col-xs-offset-3">
+				        	<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+				        	<button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
+				        	<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				        </div>
+			    	</div>
+    			</div>
+			</form>
+		</div>      
+	</div>
+</div>
+<!-- Modal Form Ubah Data Siswa -->
 @endsection

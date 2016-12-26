@@ -30,4 +30,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/edit&{nis}', 'SiswaController@editsiswa');
     Route::post('/update&{nis}', 'SiswaController@updatesiswa');
 
+    //coba
+    Route::get('coba', 'SiswaController@coba');
+
 });

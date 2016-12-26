@@ -14,17 +14,20 @@ class SiswaController extends Controller
     //{
         //return view('siswa.insert');
     //}
-    public function showa()
+    public function store(Request $request)
     {
-        //$siswa = siswa::paginate(10);
-        //return view('siswa.coba');
-        //return view('siswa.coba');
-        //default yang ditampilkan 10 data perpage
-        $input_show = 10;
-        if(Input::has('show')){
-            $input_show = Input::get('show');
-        }
-        $siswa = siswa::paginate($input_show);
+        $siswa = new siswa;
+        $siswa->nis = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->jkl = $request->jkl;
+        $siswa->agama = $request->agama;
+        $siswa->kelas = $request->kelas;
+        $siswa->save();
+        return redirect('show');
+    }
+    public function coba()
+    {
+        $siswa = siswa::all();
         $jenis_kelamin = array(
             'Laki-Laki' => 'Laki-Laki',
             'Perempuan' => 'Perempuan',
@@ -54,32 +57,13 @@ class SiswaController extends Controller
             'XII RPL 1' => 'XII RPL 1',
             'XII RPL 2' => 'XII RPL 2',
         );
-        $show = array(
-            10 => 10,
-            20 => 20,
-            30 => 30,
-            40 => 40,
-            50 => 50,
-        );
+       
         $content['siswas'] = $siswa;
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;
-        $content['show'] = $show;
-        $content['input_show'] = $input_show;
         return View::make('siswa.coba')
                     ->with('content', $content);
-    }    
-    public function store(Request $request)
-    {
-        $siswa = new siswa;
-        $siswa->nis = $request->nis;
-        $siswa->nama = $request->nama;
-        $siswa->jkl = $request->jkl;
-        $siswa->agama = $request->agama;
-        $siswa->kelas = $request->kelas;
-        $siswa->save();
-        return redirect('show');
     }
     public function show()
     {
