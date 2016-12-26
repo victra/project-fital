@@ -106,13 +106,13 @@
 	          		<div class="form-group">
 				 	<label class="control-label col-sm-3">NIS</label>
 				 		<div class="col-sm-2">
-				 			<input type="text" name="nis" class="form-control" placeholder="NIS">
+				 			<input type="text" name="nis" class="form-control" placeholder="NIS" required>
 				 		</div>	
 				 	</div>
 				 	<div class="form-group">
 				 	<label class="control-label col-sm-3">Nama</label>
 				 		<div class="col-sm-6">
-				 			<input type="text" name="nama" class="form-control" placeholder="Nama">
+				 			<input type="text" name="nama" class="form-control" placeholder="Nama" required>
 				 		</div>	
 				 	</div>
                     <div class="form-group">

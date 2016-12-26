@@ -17,6 +17,13 @@
 <div class="box">
                                 <div class="box-header">
                                     <h3 class="box-title">Coba Datatable</h3>  
+                                    <select class="form-control" onchange="location = this.value;">
+                                        <option value="?search_kelas=">-Pilih Kelas-</option>
+                                        @foreach($content['kelas'] as $value)
+                                            <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
+                                            <option {{$selected}} value="?search_kelas={{$value}}">{{$value}}</option>
+                                        @endforeach
+                                    </select>
                                     
                                 <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-plus"></i> Tambah Siswa</a>
                                                               

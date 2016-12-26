@@ -27,7 +27,14 @@ class SiswaController extends Controller
     }
     public function coba()
     {
-        $siswa = siswa::all();
+        $siswa = siswa::orderby('created_at', 'DESC');
+
+        $input_kelas = '';
+        if(Input::has('search_kelas')){
+            $siswa = $siswa->where('kelas', Input::get('search_kelas'));
+            $input_kelas = Input::get('search_kelas');
+        }
+
         $jenis_kelamin = array(
             'Laki-Laki' => 'Laki-Laki',
             'Perempuan' => 'Perempuan',
@@ -58,10 +65,11 @@ class SiswaController extends Controller
             'XII RPL 2' => 'XII RPL 2',
         );
        
-        $content['siswas'] = $siswa;
+        $content['siswas'] = $siswa->get();
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;
+        $content['input_kelas'] = $input_kelas;
         return View::make('siswa.coba')
                     ->with('content', $content);
     }
