@@ -5,85 +5,88 @@
 @endsection
 
 @section('contentheader_title')
-    Coba-Coba Datatable
+    Data Siswa
 @endsection
 
 @section('contentheader_description')
-    Coba-Coba Datatable
+    Olah Data Siswa
 @endsection
 
 @section('main-content')
 
 <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Coba Datatable</h3>  
-                                    <select class="form-control" onchange="location = this.value;">
-                                        <option value="?search_kelas=">-Pilih Kelas-</option>
-                                        @foreach($content['kelas'] as $value)
-                                            <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
-                                            <option {{$selected}} value="?search_kelas={{$value}}">{{$value}}</option>
-                                        @endforeach
-                                    </select>
-                                    
-                                <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-plus"></i> Tambah Siswa</a>
-                                                              
-                                </div><!-- /.box-header -->
+    <div class="box-header">
+        <h3 class="box-title">Data Siswa</h3>
+        <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-plus"></i> Tambah Siswa</a>
+            <form style="margin-right:130px; margin-top:0px" class="pull-right">
+                <select class="form-control" onchange="location = this.value;">
+                    <option value="?search_kelas=">Semua Kelas</option>
+                        @foreach($content['kelas'] as $value)
+                        <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
+                    <option {{$selected}} value="?search_kelas={{$value}}">{{$value}}</option>
+                        @endforeach
+                </select>
+            </form>
+        <label style="margin-right:10px; margin-top:5px" class="control-label pull-right">Kelas :</label>
+    </div><!-- /.box-header -->
 
-                                <div class="box-body table-responsive">
-<table id="example2" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info">
-                                <thead>
-                                    <tr>
-                                        <th><center>No</center></th>
-                                        <th><center>NIS</center></th>
-                                        <th><center>Nama Siswa</center></th>
-                                        <th><center>Jenis Kelamin</center></th>
-                                        <th><center>Agama</center></th>
-                                        <th><center>Kelas</center></th>
-                                        <th><center>Action</center></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no=1; ?>
-                                    @foreach($content['siswas'] as $item)
-                                        <tr>
-                                            <td><center>{{$no++}}</center></td>
-                                            <td><center>{{$item->nis}}</center></td>
-                                            <td>{{$item->nama}}</td>
-                                            <td><center>{{$item->jkl}}</center></td>
-                                            <td><center>{{$item->agama}}</center></td>
-                                            <td><center>{{$item->kelas}}</center></td>  
-                                            <td>
-                                                <center>                                    
-                                                    {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
-                                                    <a class="btn btn-success btn-xs" title="Ubah" onclick="showModal(this)" 
-                                                    data-nis="{{$item->nis}}"
-                                                    data-nama="{{$item->nama}}"
-                                                    data-jenis-kelamin="{{$item->jkl}}"
-                                                    data-agama="{{$item->agama}}"
-                                                    data-kelas="{{$item->kelas}}">
-                                                    <span class="fa fa-edit"></span> Ubah</a>
-                                                    <a class="btn btn-danger btn-xs" title="Hapus" href="delete&{{$item->nis}}"><span class="fa fa-trash"></span> Hapus</a>
-                                                </center>
-                                            </td>
-                                        </tr>                                    
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                    <th><center>No</center></th>
-                                        <th><center>NIS</center></th>
-                                        <th><center>Nama Siswa</center></th>
-                                        <th><center>Jenis Kelamin</center></th>
-                                        <th><center>Agama</center></th>
-                                        <th><center>Kelas</center></th>
-                                        <th><center>Action</center></th></tr>
-                                </tfoot>                        
-                            </table> 
+    <div class="box-body table-responsive">
+        <table id="example2" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info">
 
-                                           
-                                            
-                                </div><!-- /.box-body -->
-                            </div>
+            <thead>
+                <tr>
+                    <th><center>No</center></th>
+                    <th><center>NIS</center></th>
+                    <th><center>Nama Siswa</center></th>
+                    <th><center>Jenis Kelamin</center></th>
+                    <th><center>Agama</center></th>
+                    <th><center>Kelas</center></th>
+                    <th><center>Action</center></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php $no=1; ?>
+                @foreach($content['siswas'] as $item)
+                <tr>
+                    <td><center>{{$no++}}</center></td>
+                    <td><center>{{$item->nis}}</center></td>
+                    <td>{{$item->nama}}</td>
+                    <td><center>{{$item->jkl}}</center></td>
+                    <td><center>{{$item->agama}}</center></td>
+                    <td><center>{{$item->kelas}}</center></td>  
+                    <td>
+                        <center>                                    
+                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
+                            <a class="btn btn-success btn-xs" title="Ubah" onclick="showModal(this)" 
+                            data-nis="{{$item->nis}}"
+                            data-nama="{{$item->nama}}"
+                            data-jenis-kelamin="{{$item->jkl}}"
+                            data-agama="{{$item->agama}}"
+                            data-kelas="{{$item->kelas}}">
+                            <span class="fa fa-edit"></span> Ubah</a>
+                            <a class="btn btn-danger btn-xs" title="Hapus" href="delete&{{$item->nis}}"><span class="fa fa-trash"></span> Hapus</a>
+                        </center>
+                    </td>
+                </tr>                                    
+                @endforeach
+            </tbody>
+
+            <!--<tfoot>
+                <tr>
+                    <th><center>No</center></th>
+                    <th><center>NIS</center></th>
+                    <th><center>Nama Siswa</center></th>
+                    <th><center>Jenis Kelamin</center></th>
+                    <th><center>Agama</center></th>
+                    <th><center>Kelas</center></th>
+                    <th><center>Action</center></th>
+                </tr>
+            </tfoot>-->                        
+        </table>                
+                
+    </div><!-- /.box-body -->
+</div>
 @endsection
 
 @section('modals')

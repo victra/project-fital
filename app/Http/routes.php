@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::group(['middleware' => 'web'], function () {
@@ -31,6 +31,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/update&{nis}', 'SiswaController@updatesiswa');
 
     //coba
-    Route::get('coba', 'SiswaController@coba');
+    Route::get('siswa', 'SiswaController@showsiswa');
+
+    //guru piket
+    Route::get('guru_piket', 'GuruController@showguru');
 
 });

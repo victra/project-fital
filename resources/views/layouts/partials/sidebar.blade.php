@@ -34,8 +34,9 @@
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="{{ (Request::is('*home*')) ? 'active':'' }}"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li class="{{ (Request::is('*show*')) ? 'active':'' }}"><a href="{{ url('show') }}"><i class='fa fa-user'></i> <span> Data Siswa</span></a></li>
-            <li class="{{ (Request::is('*coba*')) ? 'active':'' }}"><a href="{{ url('coba') }}"><i class='fa fa-table'></i> <span> Data Guru Piket </span></a></li>
+            <li class="{{ (Request::is('*show*')) ? 'active':'' }}"><a href="{{ url('show') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li>
+            <li class="{{ (Request::is('*siswa*')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li>
+            <li class="{{ (Request::is('*guru_piket*')) ? 'active':'' }}"><a href="{{ url('guru_piket') }}"><i class='fa fa-user'></i> <span> Data Guru Piket </span></a></li>
             <li class="{{ (Request::is('*#*')) ? 'active':'' }}"><a href="{{ url('coba') }}"><i class='fa fa-table'></i> <span> Absensi Siswa </span></a></li>
             <li class="{{ (Request::is('*#*')) ? 'active':'' }}"><a href="{{ url('coba') }}"><i class='fa fa-table'></i> <span> Rekap Absensi </span></a></li>
 
