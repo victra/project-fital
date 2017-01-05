@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableSiswa extends Migration
+class CreateTableGuru extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,16 @@ class TableSiswa extends Migration
      */
     public function up()
     {
-        Schema::create('siswa', function(Blueprint $table)
-        {
-            $table->integer ('nis') -> primary();
+        Schema::create('guru', function (Blueprint $table) {
+            $table->integer ('nip') -> primary();
             $table->string('nama');
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->string('role');
             $table->string('jkl');
             $table->string('agama');
-            $table->string('kelas');
+            $table->string('tlp');
+            $table->string('id_user');
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class TableSiswa extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('guru');
     }
 }
