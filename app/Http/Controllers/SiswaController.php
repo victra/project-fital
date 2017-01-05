@@ -1,6 +1,6 @@
 <?php 
 namespace App\Http\Controllers;
-use App\siswa;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -16,7 +16,7 @@ class SiswaController extends Controller
     //}
     public function store(Request $request)
     {
-        $siswa = new siswa;
+        $siswa = new Siswa;
         $siswa->nis = $request->nis;
         $siswa->nama = $request->nama;
         $siswa->jkl = $request->jkl;
@@ -27,7 +27,7 @@ class SiswaController extends Controller
     }
     public function showsiswa()
     {
-        $siswa = siswa::orderby('created_at', 'DESC');
+        $siswa = Siswa::orderby('created_at', 'DESC');
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
@@ -80,7 +80,7 @@ class SiswaController extends Controller
         if(Input::has('show')){
             $input_show = Input::get('show');
         }
-        $siswa = siswa::paginate($input_show);
+        $siswa = Siswa::paginate($input_show);
         $jenis_kelamin = array(
             'Laki-Laki' => 'Laki-Laki',
             'Perempuan' => 'Perempuan',
@@ -125,12 +125,14 @@ class SiswaController extends Controller
         $content['input_show'] = $input_show;
     	return View::make('siswa.show')
                     ->with('content', $content);
-    }    
+    }   
+     
     public function deletesiswa($nis)
     {
         DB::table('siswa')->where('nis',$nis)->delete();
         return back ();
     }
+
     public function editsiswa($nis)
     {
         $siswa = DB::table('siswa')->where('nis',$nis)->first();

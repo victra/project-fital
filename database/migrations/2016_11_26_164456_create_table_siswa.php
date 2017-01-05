@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableGuruPiket extends Migration
+class CreateTableSiswa extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class TableGuruPiket extends Migration
      */
     public function up()
     {
-        Schema::create('guru_piket', function (Blueprint $table) {
-            $table->integer ('nip') -> primary();
+        Schema::create('siswa', function(Blueprint $table)
+        {
+            $table->integer ('nis') -> primary();
             $table->string('nama');
             $table->string('jkl');
             $table->string('agama');
-            $table->string('tlp');
-            $table->string('id_user');
+            $table->string('kelas');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class TableGuruPiket extends Migration
      */
     public function down()
     {
-        Schema::drop('guru_piket');
+        Schema::drop('siswa');
     }
 }

@@ -1,7 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
-use App\siswa;
-use App\guru;
+use App\Models\Siswa;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -17,7 +17,7 @@ class GuruController extends Controller
     //}
     public function store(Request $request)
     {
-        $siswa = new siswa;
+        $siswa = new Siswa;
         $siswa->nis = $request->nis;
         $siswa->nama = $request->nama;
         $siswa->jkl = $request->jkl;
@@ -28,7 +28,7 @@ class GuruController extends Controller
     }
     public function showguru()
     {
-        $guru = guru::orderby('created_at', 'DESC');
+        $guru = Guru::orderby('created_at', 'DESC');
 
         //$input_kelas = '';
         //if(Input::has('search_kelas')){
