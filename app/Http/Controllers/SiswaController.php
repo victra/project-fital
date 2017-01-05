@@ -23,7 +23,8 @@ class SiswaController extends Controller
         $siswa->agama = $request->agama;
         $siswa->kelas = $request->kelas;
         $siswa->save();
-        return redirect('show');
+        //return redirect('show');
+        return back ();
     }
     public function showsiswa()
     {
@@ -179,6 +180,7 @@ class SiswaController extends Controller
                 ,'agama' => $request->agama
                 ,'kelas'=> $request->kelas];
         DB::table('siswa')->where('nis',$request->nis)->update($siswa);
-        return redirect('show');        
+        //return redirect('show');
+        return back ();        
     }
 }

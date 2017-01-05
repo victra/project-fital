@@ -118,7 +118,7 @@
                     <div class="form-group">
 				 	<label class="control-label col-sm-3">Jenis Kelamin</label>
 				 		<div class="col-sm-4">
-				 			<select class="form-control" name="jkl">
+				 			<select class="form-control" name="jkl" required>
 				 				<option value="" disabled selected>-Pilih Jenis Kelamin-</option>
 				 				@foreach($content['jenis_kelamin'] as $key => $value)
 									<option value="{{$key}}">{{$value}}</option>

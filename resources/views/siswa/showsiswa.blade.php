@@ -18,7 +18,7 @@
     <div class="box-header">
         <h3 class="box-title">Data Siswa</h3>
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-plus"></i> Tambah Siswa</a>
-            <form style="margin-right:130px; margin-top:0px" class="pull-right">
+            <form id="formku" style="margin-right:130px; margin-top:0px" class="pull-right">
                 <select class="form-control" onchange="location = this.value;">
                     <option value="?search_kelas=">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
@@ -65,7 +65,8 @@
                             data-agama="{{$item->agama}}"
                             data-kelas="{{$item->kelas}}">
                             <span class="fa fa-edit"></span> Ubah</a>
-                            <a class="btn btn-danger btn-xs" title="Hapus" href="delete&{{$item->nis}}"><span class="fa fa-trash"></span> Hapus</a>
+                            <a id="coi" onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
+                            <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
                         </center>
                     </td>
                 </tr>                                    
@@ -104,7 +105,7 @@
                     <div class="form-group">
                     <label class="control-label col-sm-3">NIS</label>
                         <div class="col-sm-2">
-                            <input type="text" name="nis" class="form-control" placeholder="NIS">
+                            <input type="text" name="nis" class="form-control" placeholder="NIS" required="" oninvalid="this.setCustomValidity('NIS cannot be blank')">
                         </div>  
                     </div>
                     <div class="form-group">
@@ -152,7 +153,8 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
-                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                            <!-- <button type="button" class="btn btn-default col-sm-5">Close</button> -->
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -224,7 +226,7 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
-                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
