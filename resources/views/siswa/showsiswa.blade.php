@@ -19,7 +19,7 @@
         <h3 class="box-title">Data Siswa</h3>
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahSiswa"> <i class="fa fa-plus"></i> Tambah Siswa</a>
             <form style="margin-right:130px; margin-top:0px" class="pull-right">
-                <select class="form-control" onchange="location = this.value;">
+                <select class="form-control input-sm" onchange="location = this.value;">
                     <option value="?search_kelas=">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
                         <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>

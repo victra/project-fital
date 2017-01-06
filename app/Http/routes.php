@@ -36,4 +36,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/deleteguru&{nip}', 'GuruController@deleteguru');
     Route::post('/updateguru&{nip}', 'GuruController@updateguru');
 
+    //absensi siswa
+    Route::get('absensisiswa', 'AbsensiController@showabsensi');    
+
 });
