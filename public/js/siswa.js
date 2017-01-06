@@ -1,5 +1,5 @@
-function showModal(button){
-	var modal  = $('#myModal');
+function showModalSiswa(button){
+	var modal  = $('#ModalUbahSiswa');
 	var nis = $(button).data('nis');
 	var nama = $(button).data('nama');
 	var jenis_kelamin = $(button).data('jenis-kelamin');

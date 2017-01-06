@@ -6,13 +6,13 @@
 <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/js/sweetalert2.js') }}" type="text/javascript"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
       fixed layout. -->
 
+<script type="text/javascript" src="js/guru.js"></script>
 <script type="text/javascript" src="js/siswa.js"></script>
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
@@ -30,54 +30,6 @@
             });
             
         </script>
-<script type="text/javascript">
-    $('a#i').on('click', function(){
-  swal({   
-    title: "Are you sure?",
-    text: "You will not be able to recover this lorem ipsum!",         type: "warning",   
-    showCancelButton: true,   
-    confirmButtonColor: "#DD6B55",
-    confirmButtonText: "Yes, delete it!", 
-    closeOnConfirm: false 
-  }, 
-       function(){   
-    $("#formku").submit();
-  });
-})
-</script>
-
-<script type="text/javascript">
-    $('a#co').on('click', function(){
-  swal({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  confirmButtonClass: 'btn btn-success',
-  cancelButtonClass: 'btn btn-danger',
-  buttonsStyling: false
-}).then(function () {
-  swal(
-    'Deleted!',
-    'Your file has been deleted.',
-    'success'
-  )
-}, function (dismiss) {
-  // dismiss can be 'cancel', 'overlay',
-  // 'close', and 'timer'
-  if (dismiss === 'cancel') {
-    swal(
-      'Cancelled',
-      'Your imaginary file is safe :)',
-      'error'
-    )
-  }
-})})
-</script>
 
 <!-- reset form modal tambah siswa -->
 <!-- <script type="text/javascript">

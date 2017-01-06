@@ -19,18 +19,21 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home', 'HomeController@index');
 
-    //siswa
+    
     //Route::get('insert', 'SiswaController@index');
-    Route::post('store', 'SiswaController@store');
-    Route::get('show', 'SiswaController@show');
-    Route::get('/delete&{nis}', 'SiswaController@deletesiswa');
-    Route::get('/edit&{nis}', 'SiswaController@editsiswa');
-    Route::post('/update&{nis}', 'SiswaController@updatesiswa');
+    // Route::get('/edit&{nis}', 'SiswaController@editsiswa');
+    // Route::get('show', 'SiswaController@show');
 
-    //coba
+    // siswa
+    Route::post('storesiswa', 'SiswaController@storesiswa');    
     Route::get('siswa', 'SiswaController@showsiswa');
-
+    Route::get('/delete&{nis}', 'SiswaController@deletesiswa');    
+    Route::post('/update&{nis}', 'SiswaController@updatesiswa');
+    
     //guru piket
+    Route::post('storeguru', 'GuruController@storeguru');
     Route::get('guru_piket', 'GuruController@showguru');
+    Route::get('/deleteguru&{nip}', 'GuruController@deleteguru');
+    Route::post('/updateguru&{nip}', 'GuruController@updateguru');
 
 });

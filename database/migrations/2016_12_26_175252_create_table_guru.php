@@ -13,7 +13,7 @@ class CreateTableGuru extends Migration
     public function up()
     {
         Schema::create('guru', function (Blueprint $table) {
-            $table->integer ('nip') -> primary();
+            $table->string('nip') -> primary();
             $table->string('nama');
             $table->string('username')->unique();
             $table->string('password');

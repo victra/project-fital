@@ -17,8 +17,8 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Data Siswa</h3>
-        <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-plus"></i> Tambah Siswa</a>
-            <form id="formku" style="margin-right:130px; margin-top:0px" class="pull-right">
+        <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahSiswa"> <i class="fa fa-plus"></i> Tambah Siswa</a>
+            <form style="margin-right:130px; margin-top:0px" class="pull-right">
                 <select class="form-control" onchange="location = this.value;">
                     <option value="?search_kelas=">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
@@ -58,32 +58,20 @@
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
-                            <a class="btn btn-success btn-xs" title="Ubah" onclick="showModal(this)" 
+                            <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalSiswa(this)" 
                             data-nis="{{$item->nis}}"
                             data-nama="{{$item->nama}}"
                             data-jenis-kelamin="{{$item->jkl}}"
                             data-agama="{{$item->agama}}"
                             data-kelas="{{$item->kelas}}">
                             <span class="fa fa-edit"></span> Ubah</a>
-                            <a id="coi" onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
+                            <a onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
                         </center>
                     </td>
                 </tr>                                    
                 @endforeach
-            </tbody>
-
-            <!--<tfoot>
-                <tr>
-                    <th><center>No</center></th>
-                    <th><center>NIS</center></th>
-                    <th><center>Nama Siswa</center></th>
-                    <th><center>Jenis Kelamin</center></th>
-                    <th><center>Agama</center></th>
-                    <th><center>Kelas</center></th>
-                    <th><center>Action</center></th>
-                </tr>
-            </tfoot>-->                        
+            </tbody>                       
         </table>                
                 
     </div><!-- /.box-body -->
@@ -92,7 +80,7 @@
 
 @section('modals')
 <!-- Modal Form Tambah Data Siswa-->
-<div class="modal fade" id="myModal1" role="dialog">
+<div class="modal fade" id="ModalTambahSiswa" role="dialog">
     <div class="modal-dialog">
     <!-- Modal content-->
         <div class="modal-content">
@@ -100,12 +88,12 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Tambah Data Siswa</h4>
             </div>
-            <form class="form-horizontal" method="post" action="store">          
+            <form class="form-horizontal" method="post" action="storesiswa">          
                 <div class="modal-body">
                     <div class="form-group">
                     <label class="control-label col-sm-3">NIS</label>
                         <div class="col-sm-2">
-                            <input type="text" name="nis" class="form-control" placeholder="NIS" required="" oninvalid="this.setCustomValidity('NIS cannot be blank')">
+                            <input type="text" name="nis" class="form-control" placeholder="NIS" required="">
                         </div>  
                     </div>
                     <div class="form-group">
@@ -153,7 +141,6 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
-                            <!-- <button type="button" class="btn btn-default col-sm-5">Close</button> -->
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -165,7 +152,7 @@
 <!-- Modal Form Tambah Data Siswa -->
 
 <!-- Modal Form Ubah Data Siswa-->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="ModalUbahSiswa" role="dialog">
     <div class="modal-dialog">
     <!-- Modal content-->
         <div class="modal-content">
@@ -173,7 +160,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Ubah Data Siswa</h4>
             </div>
-            <form class="form-horizontal" method="post" action="store">          
+            <form class="form-horizontal" method="post" action="storesiswa">          
                 <div class="modal-body">
                     <div class="form-group">
                     <label class="control-label col-sm-3">NIS</label>
