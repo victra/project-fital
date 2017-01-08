@@ -58,11 +58,11 @@
                             data-nip="{{$item->nip}}"
                             data-nama="{{$item->name}}"
                             data-username="{{$item->email}}"
-                            data-password="{{$item->passsword}}"
+                            data-password="{{$item->password}}"
                             data-role="{{$item->role}}"
                             data-jenis-kelamin="{{$item->jkl}}"
                             data-agama="{{$item->agama}}"
-                            data-kelas="{{$item->tlp}}">
+                            data-tlp="{{$item->tlp}}">
                             <span class="fa fa-edit"></span> Ubah</a>
                             <a href="deleteguru&{{$item->nip}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</a>
                         </center>
@@ -247,7 +247,7 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
-                            <<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

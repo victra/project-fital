@@ -7,18 +7,18 @@ function showModalGuru(button){
 	var role = $(button).data('role');
 	var jenis_kelamin = $(button).data('jenis-kelamin');
 	var agama = $(button).data('agama');
-	var kelas = $(button).data('telepon');
+	var tlp = $(button).data('tlp');
 	
 	// Show Modal
 	modal.find('h4').html('Ubaha Data Guru');
-	modal.find('input[name=nis]').val(nis);
+	modal.find('input[name=nip]').val(nip);
 	modal.find('input[name=nama]').val(nama);
 	modal.find('input[name=username]').val(username);
-	modal.find('input[name=password]').val(passsword);
+	modal.find('input[name=password]').val(password);
 	modal.find('select[name=role]').val(role);
 	modal.find('select[name=jkl]').val(jenis_kelamin);
 	modal.find('select[name=agama]').val(agama);
-	modal.find('select[name=tlp]').val(telepon);
+	modal.find('select[name=tlp]').val(tlp);
 		
 	modal.find('form.form-horizontal').prop('action', 'update&'+nip);
 	modal.modal({backdrop: 'static', keyboard: false});

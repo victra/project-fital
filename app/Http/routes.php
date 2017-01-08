@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
 
-    // Route::auth();
+    //Route::auth();
 
     Route::get('/home', 'HomeController@index');
 
