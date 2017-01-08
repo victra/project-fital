@@ -24,6 +24,7 @@ class GuruController extends Controller
             $guru = new User;
             $guru->nip = $request->nip;
             $guru->name = $request->nama;
+            //email pada table user bisa diisi username
             $guru->email = $request->username;
             $guru->password = Hash::make($request->password);
             $guru->role = $request->role;
