@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder {
+class GuruTableSeeder extends Seeder {
 
 	/**
 	 * Auto generated seed file
