@@ -44,8 +44,8 @@
                 <tr>
                     <td><center>{{$no++}}</center></td>
                     <td><center>{{$item->nip}}</center></td>
-                    <td>{{$item->nama}}</td>
-                    <td><center>{{$item->username}}</center></td>
+                    <td>{{$item->name}}</td>
+                    <td><center>{{$item->email}}</center></td>
                     {{-- <td><center>{{$item->password}}</center></td> --}}
                     <td><center>{{$item->role}}</center></td>
                     <td><center>{{$item->jkl}}</center></td>
@@ -56,8 +56,8 @@
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nip}}"><span class="fa fa-edit"></span> Ubah</a> --}}
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalGuru(this)" 
                             data-nip="{{$item->nip}}"
-                            data-nama="{{$item->nama}}"
-                            data-username="{{$item->username}}"
+                            data-nama="{{$item->name}}"
+                            data-username="{{$item->email}}"
                             data-password="{{$item->passsword}}"
                             data-role="{{$item->role}}"
                             data-jenis-kelamin="{{$item->jkl}}"

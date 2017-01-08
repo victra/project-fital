@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class GuruTableSeeder extends Seeder {
+class UsersTableSeeder extends Seeder {
 
 	/**
 	 * Auto generated seed file
@@ -11,14 +11,14 @@ class GuruTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		\DB::table('guru')->delete();
+		\DB::table('users')->delete();
         
-		\DB::table('guru')->insert(array ( 
+		\DB::table('users')->insert(array ( 
 			array (
 				'id' => 1,
 				'nip' => '00001',
-				'nama' => 'Dark King',
-				'username' => 'dk',
+				'name' => 'Dark King',
+				'email' => 'dk',
 				'password' => Hash::make('password'),
 				'role' => 'administrator',
 				'jkl' => 'Laki-Laki',

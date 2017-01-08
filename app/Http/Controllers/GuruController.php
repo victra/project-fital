@@ -1,12 +1,14 @@
 <?php namespace App\Http\Controllers;
 
-use App\Models\Guru;
+use App\User;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class GuruController extends Controller
 {
@@ -14,24 +16,29 @@ class GuruController extends Controller
     //{
         //return view('siswa.insert');
     //}
-    
+
+//guru disini berarti user
     public function storeguru(Request $request)
     {
-        $guru = new Guru;
-        $guru->nip = $request->nip;
-        $guru->nama = $request->nama;
-        $guru->username = $request->username;
-        $guru->password = Hash::make($request->password);
-        $guru->role = $request->role;
-        $guru->jkl = $request->jkl;
-        $guru->agama = $request->agama;
-        $guru->tlp = $request->tlp;
-        $guru->save();
-        return redirect('guru_piket');
+        if (Auth::user()->role = 'administrator') {
+            $guru = new User;
+            $guru->nip = $request->nip;
+            $guru->name = $request->nama;
+            $guru->email = $request->username;
+            $guru->password = Hash::make($request->password);
+            $guru->role = $request->role;
+            $guru->jkl = $request->jkl;
+            $guru->agama = $request->agama;
+            $guru->tlp = $request->tlp;
+            $guru->save();
+
+            return redirect('guru_piket');
+        }
+        return redirect('home');
     }
     public function showguru()
     {
-        $guru = Guru::orderby('created_at', 'DESC');
+        $guru = User::orderby('created_at', 'DESC');
 
         //$input_kelas = '';
         //if(Input::has('search_kelas')){
@@ -39,8 +46,8 @@ class GuruController extends Controller
            // $input_kelas = Input::get('search_kelas');
         //}
         $role = array(
-            'Admin' => 'Admin',
-            'Guru Piket' => 'Guru Piket',
+            'administrator' => 'Admin',
+            'guru piket' => 'Guru Piket',
         );
         $jenis_kelamin = array(
             'Laki-Laki' => 'Laki-Laki',
@@ -65,7 +72,7 @@ class GuruController extends Controller
     
     public function deleteguru($nip)
     {
-        DB::table('guru')->where('nip',$nip)->delete();
+        DB::table('users')->where('nip',$nip)->delete();
         return back ();
     }
 
@@ -74,14 +81,14 @@ class GuruController extends Controller
     {
         
         $guru = ['nip' => $request->nip
-                ,'nama' => $request->nama
-                ,'username' => $request->username
+                ,'name' => $request->nama
+                ,'email' => $request->username
                 ,'password' => $request->password
                 ,'role' => $request->role
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
                 ,'tlp'=> $request->tlp];
-        DB::table('guru')->where('nip',$request->nip)->update($guru);
+        DB::table('users')->where('nip',$request->nip)->update($guru);
         return redirect('guru_piket');        
     }
 }
