@@ -18,8 +18,8 @@ function showModalGuru(button){
 	modal.find('select[name=role]').val(role);
 	modal.find('select[name=jkl]').val(jenis_kelamin);
 	modal.find('select[name=agama]').val(agama);
-	modal.find('select[name=tlp]').val(tlp);
+	modal.find('input[name=tlp]').val(tlp);
 		
-	modal.find('form.form-horizontal').prop('action', 'update&'+nip);
+	modal.find('form.form-horizontal').prop('action', 'updateguru&'+nip);
 	modal.modal({backdrop: 'static', keyboard: false});
 }

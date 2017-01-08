@@ -240,7 +240,7 @@
                         <div class="col-sm-4">
                             <input type="text" name="tlp" class="form-control" placeholder="Telepon">
                         </div>  
-                    </div>                  
+                    </div>                 
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">
