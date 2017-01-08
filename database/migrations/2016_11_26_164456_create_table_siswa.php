@@ -14,12 +14,14 @@ class CreateTableSiswa extends Migration
     {
         Schema::create('siswa', function(Blueprint $table)
         {
-            $table->string('nis') -> primary();
+            $table->integer('id', true);
+            $table->string('nip')->unique();
             $table->string('nama');
             $table->string('jkl');
             $table->string('agama');
             $table->string('kelas');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Guru extends Model
+class Session extends Model
 {
 	/*
 	 |--------------------------------------------------------------------------
@@ -12,7 +12,7 @@ class Guru extends Model
 	 |--------------------------------------------------------------------------
 	 */
 
-	protected $table = 'guru';
+	protected $table = 'sessions';
 	protected $fillable = [''];
 	protected $hidden = [
 		'updated_at',
@@ -33,7 +33,7 @@ class Guru extends Model
 	public static $rules;
 	public static $customMessages;
 	public static $relationsData = array(
-
+		'guru'              => array(self::BELONGS_TO, 'Models\Guru'),
 	);
 
 	/*
@@ -65,7 +65,6 @@ class Guru extends Model
 
 	public function beforeSave()
 	{
-
 	}
 
 	public function afterCreate()
@@ -83,6 +82,16 @@ class Guru extends Model
 	 | Admin
 	 |--------------------------------------------------------------------------
 	 */
+
+	 public function updateSession($userAgent, $active = false)
+	 {
+	 	$this->user_agent = $userAgent; 
+        $this->active = $active;
+
+        $this->update();
+        
+        return $session;
+	 }
 
 	/*
 	 |--------------------------------------------------------------------------

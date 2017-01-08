@@ -1,5 +1,5 @@
-<?php 
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
+
 use App\Models\Guru;
 use Illuminate\Http\Request;
 use DB;
@@ -14,13 +14,14 @@ class GuruController extends Controller
     //{
         //return view('siswa.insert');
     //}
+    
     public function storeguru(Request $request)
     {
         $guru = new Guru;
         $guru->nip = $request->nip;
         $guru->nama = $request->nama;
         $guru->username = $request->username;
-        $guru->password = $request->password;
+        $guru->password = Hash::make($request->password);
         $guru->role = $request->role;
         $guru->jkl = $request->jkl;
         $guru->agama = $request->agama;

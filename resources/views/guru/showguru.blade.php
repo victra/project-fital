@@ -29,7 +29,7 @@
                     <th><center>NIP</center></th>
                     <th><center>Nama Guru</center></th>
                     <th><center>Username</center></th>
-                    <th><center>Password</center></th>
+                    {{-- <th><center>Password</center></th> --}}
                     <th><center>Role</center></th>
                     <th><center>Jenis Kelamin</center></th>
                     <th><center>Agama</center></th>
@@ -46,7 +46,7 @@
                     <td><center>{{$item->nip}}</center></td>
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->username}}</center></td>
-                    <td><center>{{$item->password}}</center></td>
+                    {{-- <td><center>{{$item->password}}</center></td> --}}
                     <td><center>{{$item->role}}</center></td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->agama}}</center></td>
