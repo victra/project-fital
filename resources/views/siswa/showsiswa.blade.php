@@ -18,7 +18,7 @@
     <div class="box-header">
         <h3 class="box-title">Data Siswa</h3>
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahSiswa"> <i class="fa fa-plus"></i> Tambah Siswa</a>
-            <form style="margin-right:130px; margin-top:0px" class="pull-right">
+            <form style="margin-right:125px; margin-top:0px" class="pull-right">
                 <select class="form-control input-sm" onchange="location = this.value;">
                     <option value="?search_kelas=">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
@@ -88,12 +88,12 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Tambah Data Siswa</h4>
             </div>
-            <form class="form-horizontal" method="post" action="storesiswa">          
+            <form class="form-horizontal" method="post" action="storesiswa" id="TambahSiswa">          
                 <div class="modal-body">
                     <div class="form-group">
                     <label class="control-label col-sm-3">NIS</label>
-                        <div class="col-sm-2">
-                            <input type="text" name="nis" class="form-control" placeholder="NIS" required="">
+                        <div class="col-sm-3">
+                            <input type="text" name="nis" class="form-control" placeholder="NIS">
                         </div>  
                     </div>
                     <div class="form-group">
@@ -106,7 +106,7 @@
                     <label class="control-label col-sm-3">Jenis Kelamin</label>
                         <div class="col-sm-4">
                             <select class="form-control" name="jkl">
-                                <option value="">-Pilih Jenis Kelamin-</option>
+                                <option value="">-- Jenis Kelamin --</option>
                                 @foreach($content['jenis_kelamin'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
@@ -115,9 +115,9 @@
                     </div>
                     <div class="form-group">
                     <label class="control-label col-sm-3">Agama</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="form-control" name="agama">
-                                <option value="">-Pilih Agama-</option>
+                                <option value="">-- Agama --</option>
                                 @foreach($content['agama'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
@@ -126,9 +126,9 @@
                     </div>
                     <div class="form-group">
                     <label class="control-label col-sm-3">Kelas</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                         <select class="form-control" name="kelas">
-                                <option value="">-Pilih Kelas-</option>
+                                <option value="">-- Kelas --</option>
                                 @foreach($content['kelas'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
@@ -140,7 +140,7 @@
                     <div class="form-group">
                         <div class="col-xs-5 col-xs-offset-3">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                            <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
+                            <button type="submit" value="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -160,11 +160,11 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Ubah Data Siswa</h4>
             </div>
-            <form class="form-horizontal" method="post" action="storesiswa">          
+            <form class="form-horizontal" method="post" action="storesiswa" id="UbahSiswa">          
                 <div class="modal-body">
                     <div class="form-group">
                     <label class="control-label col-sm-3">NIS</label>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <input type="text" name="nis" class="form-control" placeholder="NIS" disabled="disabled">
                         </div>  
                     </div>
@@ -178,7 +178,7 @@
                     <label class="control-label col-sm-3">Jenis Kelamin</label>
                         <div class="col-sm-4">
                             <select class="form-control" name="jkl">
-                                <option value="">-Pilih Jenis Kelamin-</option>
+                                <option value="">-- Jenis Kelamin --</option>
                                 @foreach($content['jenis_kelamin'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
@@ -187,9 +187,9 @@
                     </div>
                     <div class="form-group">
                     <label class="control-label col-sm-3">Agama</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select class="form-control" name="agama">
-                                <option value="">-Pilih Agama-</option>
+                                <option value="">-- Agama --</option>
                                 @foreach($content['agama'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
@@ -198,9 +198,9 @@
                     </div>
                     <div class="form-group">
                     <label class="control-label col-sm-3">Kelas</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                         <select class="form-control" name="kelas">
-                                <option value="">-Pilih Kelas-</option>
+                                <option value="">-- Kelas --</option>
                                 @foreach($content['kelas'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach

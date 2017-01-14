@@ -16,21 +16,26 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Absensi</h3>
-            <form style="margin-right:0px; margin-top:0px" class="pull-right">
-                <input type="text" name="tanggal" class="form-control tanggal input-sm" />
-            </form>
-            <label style="margin-right:10px; margin-top:5px" class="control-label pull-right">Tanggal :</label>        
-            <form style="margin-right:30px; margin-top:0px" class="pull-right">
-                <select class="form-control input-sm" onchange="location = this.value;">
-                    <option value="?search_kelas=">Semua Kelas</option>
-                        @foreach($content['kelas'] as $value)
-                        <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
-                    <option {{$selected}} value="?search_kelas={{$value}}">{{$value}}</option>
-                        @endforeach
-                </select>
-            </form>
-            <label style="margin-right:10px; margin-top:5px" class="control-label pull-right">Kelas :</label>
+        <h3 class="box-title">Data Absensi</h3>            
+            <div style="margin-right:-15px; margin-top:-20px" class="form-group">
+                <div class="col-lg-2 pull-right">
+                    <div class="input-group date" id="datetimePicker">
+                        <input type="text" name="tanggal" class="form-control tanggal input-sm" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Tanggal :</label>
+                <form style="margin-right:30px; margin-top:0px" class="pull-right">
+                    <select class="form-control input-sm" onchange="location = this.value;">
+                        <option value="?search_kelas=">Semua Kelas</option>
+                            @foreach($content['kelas'] as $value)
+                            <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
+                        <option {{$selected}} value="?search_kelas={{$value}}">{{$value}}</option>
+                            @endforeach
+                    </select>
+                </form>
+                <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Kelas :</label>
+                </div>
     </div><!-- /.box-header -->
 
     <div class="box-body table-responsive">
