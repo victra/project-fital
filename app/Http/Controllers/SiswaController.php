@@ -14,6 +14,21 @@ class SiswaController extends Controller
     //{
         //return view('siswa.insert');
     //}
+    public function checkNISAvailability() {
+
+    $nis = DB::table('siswa')->where('nis', Input::get('nis'))->count();
+        if($nis > 0) {
+            $isAvailable = FALSE;
+        } else {
+            $isAvailable = TRUE;
+        }
+
+        echo json_encode(
+            array(
+                'valid' => $isAvailable
+        ));
+    }
+
     public function storesiswa(Request $request)
     {
         $siswa = new Siswa;

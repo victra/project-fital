@@ -114,7 +114,7 @@
                     </div>
                     <div class="form-group">
                     <label class="control-label col-sm-3">Role</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="form-control" name="role">
                                 <option value="">-- Role --</option>
                                 @foreach($content['role'] as $key => $value)
@@ -136,7 +136,7 @@
                     </div>
                     <div class="form-group">
                     <label class="control-label col-sm-3">Agama</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="form-control" name="agama">
                                 <option value="">-- Agama --</option>
                                 @foreach($content['agama'] as $key => $value)
@@ -204,7 +204,7 @@
                     </div>
                     <div class="form-group">
                     <label class="control-label col-sm-3">Role</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="form-control" name="role">
                                 <option value="">-- Role --</option>
                                 @foreach($content['role'] as $key => $value)
@@ -226,7 +226,7 @@
                     </div>
                     <div class="form-group">
                     <label class="control-label col-sm-3">Agama</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="form-control" name="agama">
                                 <option value="">-- Agama --</option>
                                 @foreach($content['agama'] as $key => $value)

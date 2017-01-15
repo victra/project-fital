@@ -133,13 +133,13 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
             message: "NIS must be 4 characters long"
           },
           remote: {
-            url: '/siswa',
-             data: function(validator) {
-              return {
-               name: validator.getFieldElements('name').val()
+            url: "{{ URL::to('/checkNIS') }}",
+              data: function(validator) {
+                return {
+                    nis: validator.getFieldElements('nis').val()
                 };
-              },
-                 message: 'The NIS is not available'
+            },
+            message: 'NIS sudah ada'
           }
         }
       },
@@ -153,16 +153,7 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
             min: 3,
             max: 25,
             message: "Nama must be between 3 and 25 characters long"
-          },
-          remote: {
-            url: '/siswa',
-             data: function(validator) {
-              return {
-               nis: validator.getFieldElements('nis').val()
-                };
-              },
-                 message: 'The NIS is not available'
-          }
+          },       
         }
       },
 
@@ -215,6 +206,15 @@ $('#ModalTambahGuru, #ModalUbahGuru').modal('hide');
           stringLength: {
             min: 4,
             message: "NIP must be 4 characters long"
+          },
+          remote: {
+            url: "{{ URL::to('/checkNIP') }}",
+              data: function(validator) {
+                return {
+                    nis: validator.getFieldElements('nip').val()
+                };
+            },
+            message: 'NIP sudah ada'
           }
         }
       },
@@ -244,6 +244,15 @@ $('#ModalTambahGuru, #ModalUbahGuru').modal('hide');
           regexp: {
                     regexp: /^[a-zA-Z0-9_\.]+$/,
                     message: 'The username can only consist of alphabetical, number, dot and underscore'
+          },
+          remote: {
+            url: "{{ URL::to('/checkUsername') }}",
+              data: function(validator) {
+                return {
+                    username: validator.getFieldElements('username').val()
+                };
+            },
+            message: 'The username is not available'
           }
         }
       },

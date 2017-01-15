@@ -18,6 +18,39 @@ class GuruController extends Controller
     //}
 
 //guru disini berarti user
+
+    public function checkNIPAvailability() {
+
+    $user = DB::table('users')->where('nip', Input::get('nip'))->count();
+
+    if($user > 0) {
+        $isAvailable = FALSE;
+    } else {
+        $isAvailable = TRUE;
+    }
+
+    echo json_encode(
+            array(
+                'valid' => $isAvailable
+            ));
+    }
+
+    public function checkUsernameAvailability() {
+
+    $user = DB::table('users')->where('email', Input::get('username'))->count();
+
+    if($user > 0) {
+        $isAvailable = FALSE;
+    } else {
+        $isAvailable = TRUE;
+    }
+
+    echo json_encode(
+            array(
+                'valid' => $isAvailable
+            ));
+    }
+
     public function storeguru(Request $request)
     {
         if (Auth::user()->role = 'administrator') {
@@ -47,7 +80,7 @@ class GuruController extends Controller
            // $input_kelas = Input::get('search_kelas');
         //}
         $role = array(
-            'administrator' => 'Admin',
+            'administrator' => 'Administrator',
             'guru piket' => 'Guru Piket',
         );
         $jenis_kelamin = array(
@@ -84,7 +117,7 @@ class GuruController extends Controller
         $guru = ['nip' => $request->nip
                 ,'name' => $request->nama
                 ,'email' => $request->username
-                ,'password' => $request->password
+                ,'password' => bcrypt($request['password'])
                 ,'role' => $request->role
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
