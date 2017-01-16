@@ -88,32 +88,32 @@
             </div>
             <form class="form-horizontal" method="post" action="storeguru" id="TambahGuru">          
                 <div class="modal-body">
-                    <div class="form-group">
                     <label class="control-label col-sm-3">NIP</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="nip" class="form-control" placeholder="NIP">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Nama</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="nama" class="form-control" placeholder="Nama">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Username</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="username" class="form-control" placeholder="Username">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Password</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="password" class="form-control" placeholder="Password">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Role</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="role">
                                 <option value="">-- Role --</option>
@@ -123,8 +123,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Jenis Kelamin</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="jkl">
                                 <option value="">-- Jenis Kelamin --</option>
@@ -134,8 +134,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Agama</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="agama">
                                 <option value="">-- Agama --</option>
@@ -145,8 +145,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Telepon</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <input type="text" name="tlp" class="form-control" placeholder="Telepon">
                         </div>  
@@ -178,32 +178,32 @@
             </div>
             <form class="form-horizontal" method="post" action="storeguru" id="TambahGuru">          
                 <div class="modal-body">
-                    <div class="form-group">
                     <label class="control-label col-sm-3">NIP</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="nip" class="form-control" placeholder="NIP" disabled="disabled">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Nama</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="nama" class="form-control" placeholder="Nama">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Username</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="username" class="form-control" placeholder="Username">
+                            <input type="text" name="username" class="form-control" placeholder="Username" disabled="disabled">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Password</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="password" class="form-control" placeholder="Password">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Role</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="role">
                                 <option value="">-- Role --</option>
@@ -213,8 +213,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Jenis Kelamin</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="jkl">
                                 <option value="">-- Jenis Kelamin --</option>
@@ -224,8 +224,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Agama</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="agama">
                                 <option value="">-- Agama --</option>
@@ -235,8 +235,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Telepon</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <input type="text" name="tlp" class="form-control" placeholder="Telepon">
                         </div>  

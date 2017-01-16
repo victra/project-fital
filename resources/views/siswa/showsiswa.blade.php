@@ -20,7 +20,8 @@
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahSiswa"> <i class="fa fa-plus"></i> Tambah Siswa</a>
             <form style="margin-right:125px; margin-top:0px" class="pull-right">
                 <select class="form-control input-sm" onchange="location = this.value;">
-                    <option value="?search_kelas=">Semua Kelas</option>
+                    <option value="?search_kelas=">Pilih Kelas</option>
+                    <option value="?search_kelas=semua_kelas">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
                         <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
                     <option {{$selected}} value="?search_kelas={{$value}}">{{$value}}</option>
@@ -90,20 +91,20 @@
             </div>
             <form class="form-horizontal" method="post" action="storesiswa" id="TambahSiswa">          
                 <div class="modal-body">
-                    <div class="form-group">
                     <label class="control-label col-sm-3">NIS</label>
+                    <div class="form-group">
                         <div class="col-sm-3">
                             <input type="text" name="nis" class="form-control" placeholder="NIS">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Nama</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="nama" class="form-control" placeholder="Nama">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Jenis Kelamin</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="jkl">
                                 <option value="">-- Jenis Kelamin --</option>
@@ -113,8 +114,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Agama</label>
+                    <div class="form-group">
                         <div class="col-sm-3">
                             <select class="form-control" name="agama">
                                 <option value="">-- Agama --</option>
@@ -124,8 +125,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Kelas</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                         <select class="form-control" name="kelas">
                                 <option value="">-- Kelas --</option>
@@ -162,20 +163,20 @@
             </div>
             <form class="form-horizontal" method="post" action="storesiswa" id="UbahSiswa">          
                 <div class="modal-body">
-                    <div class="form-group">
                     <label class="control-label col-sm-3">NIS</label>
+                    <div class="form-group">
                         <div class="col-sm-3">
                             <input type="text" name="nis" class="form-control" placeholder="NIS" disabled="disabled">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Nama</label>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="nama" class="form-control" placeholder="Nama">
                         </div>  
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Jenis Kelamin</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="jkl">
                                 <option value="">-- Jenis Kelamin --</option>
@@ -185,8 +186,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Agama</label>
+                    <div class="form-group">
                         <div class="col-sm-3">
                             <select class="form-control" name="agama">
                                 <option value="">-- Agama --</option>
@@ -196,8 +197,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
                     <label class="control-label col-sm-3">Kelas</label>
+                    <div class="form-group">
                         <div class="col-sm-4">
                         <select class="form-control" name="kelas">
                                 <option value="">-- Kelas --</option>
