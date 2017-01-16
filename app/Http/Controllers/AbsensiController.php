@@ -16,7 +16,11 @@ class AbsensiController extends Controller
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $siswa = $siswa->where('kelas', Input::get('search_kelas'));
+            $siswa = $siswa->where('kelas', Input::get('search_kelas'))->get();
+            $input_kelas = Input::get('search_kelas');
+        }
+        elseif (Input::has('search_kelas=semua_kelas')) {
+            $siswa = $siswa->get();
             $input_kelas = Input::get('search_kelas');
         }
 
@@ -50,7 +54,7 @@ class AbsensiController extends Controller
             'XII RPL 2' => 'XII RPL 2',
         );
        
-        $content['siswas'] = $siswa->get();
+        $content['siswas'] = $siswa;
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;

@@ -27,7 +27,8 @@
                 <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Tanggal :</label>
                 <form style="margin-right:30px; margin-top:0px" class="pull-right">
                     <select class="form-control input-sm" onchange="location = this.value;">
-                        <option value="?search_kelas=">Semua Kelas</option>
+                        <option value="?search_kelas=">Pilih Kelas</option>
+                        <option value="?search_kelas=semua_kelas">Semua Kelas</option>
                             @foreach($content['kelas'] as $value)
                             <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
                         <option {{$selected}} value="?search_kelas={{$value}}">{{$value}}</option>
