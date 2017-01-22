@@ -14,13 +14,13 @@ class AbsensiController extends Controller
     {
         $siswa = Siswa::orderby('nis', 'ASC');
 
-        $input_kelas = '';
+        $input_kelas = 'a';
         if(Input::has('search_kelas')){
             $siswa = $siswa->where('kelas', Input::get('search_kelas'))->get();
             $input_kelas = Input::get('search_kelas');
         }
-        elseif (Input::has('search_kelas=semua_kelas')) {
-            $siswa = $siswa->get();
+        elseif (Input::has('value','search_kelas=semua_kelas')) {
+            $siswa = siswa::all();
             $input_kelas = Input::get('search_kelas');
         }
 
@@ -36,6 +36,7 @@ class AbsensiController extends Controller
             'Budha' => 'Budha',
         );
         $kelas = array(
+            '' => 'Semua Kelas',
             'X AK 1' => 'X AK 1',
             'X AK 2' => 'X AK 2',
             'X AK 3' => 'X AK 3',

@@ -176,7 +176,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Ubah Data Guru</h4>
             </div>
-            <form class="form-horizontal" method="post" action="storeguru" id="TambahGuru">          
+            <form class="form-horizontal" method="post" action="updateguru" id="UbahGuru">          
                 <div class="modal-body">
                     <label class="control-label col-sm-3">NIP</label>
                     <div class="form-group">
@@ -193,7 +193,7 @@
                     <label class="control-label col-sm-3">Username</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="username" class="form-control" placeholder="Username" disabled="disabled">
+                            <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Password</label>

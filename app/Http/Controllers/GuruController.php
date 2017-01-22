@@ -117,7 +117,7 @@ class GuruController extends Controller
         $guru = ['nip' => $request->nip
                 ,'name' => $request->nama
                 ,'email' => $request->username
-                ,'password' => bcrypt($request['password'])
+                ,'password' => Hash::make($request->password)
                 ,'role' => $request->role
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama

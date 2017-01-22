@@ -21,7 +21,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Home</div>
 					 	<div class="panel-body">							 
-						Login sek jancuk, bajingan, asu, kirik, telek!
+						<!-- Login sek jancuk, bajingan, asu, kirik, telek! -->
 					</div>
 				</div>
 			</div>

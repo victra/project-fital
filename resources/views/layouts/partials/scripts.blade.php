@@ -187,11 +187,11 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
 });
 </script>
 
-<!-- validasi form modal tambah dan ubah guru -->
+<!-- validasi form modal tambah guru -->
 <script type="text/javascript">
 $(document).ready(function() {
-$('#ModalTambahGuru, #ModalUbahGuru').modal('hide');
-  var validator = $('#TambahGuru, #UbahGuru').bootstrapValidator({
+$('#ModalTambahGuru').modal('hide');
+  var validator = $('#TambahGuru').bootstrapValidator({
     feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -253,6 +253,133 @@ $('#ModalTambahGuru, #ModalUbahGuru').modal('hide');
                 };
             },
             message: 'The username is not available'
+          }
+        }
+      },
+
+      password: {
+        validators: {
+          notEmpty: {
+            message: "Password is required"
+          },
+          stringLength: {
+            min: 6,
+            message: "Password must be 8 characters long"
+          },
+          different: {
+            field: "username",
+            message: "Username and Password must be different"
+          }
+        }
+      },
+
+      role: {
+        validators: {
+          notEmpty: {
+            message: "Role is required"
+          }
+        }
+      },
+
+      // jkl: {
+      //   validators: {
+      //     notEmpty: {
+      //       message: "Jenis Kelamin is required"
+      //     }
+      //   }
+      // },
+
+      // agama: {
+      //   validators: {
+      //     notEmpty: {
+      //       message: "Agama is required"
+      //     }
+      //   }
+      // },
+
+      tlp: {
+        validators: {
+          // notEmpty: {
+          //   message: "Telepon is required"
+          // },
+          // stringLength: {
+          //   min: 6,
+          //   message: "Telepon must be 6 characters long"
+          // },
+          // Telephon: {
+          //   message: "Telepon must be valid"
+          // },
+          regexp: {
+            regexp: /^[0-9]*$/,
+            message: 'Not a valid Telepon'
+          }
+        }
+      }
+      
+    }
+  });
+});
+</script>
+
+<!-- validasi form modal tambah dan ubah guru -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalUbahGuru').modal('hide');
+  var validator = $('#UbahGuru').bootstrapValidator({
+    excluded: [':disabled', ':hidden', ':not(:visible)'],
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nip: {
+        validators: {
+          notEmpty: {
+            message: "NIP is required"
+          },
+          stringLength: {
+            min: 4,
+            message: "NIP must be 4 characters long"
+          },
+          remote: {
+            url: "{{ URL::to('/checkNIP') }}",
+              data: function(validator) {
+                return {
+                    nis: validator.getFieldElements('nip').val()
+                };
+            },
+            message: 'NIP sudah ada'
+          }
+        }
+      },
+
+      nama: {
+        validators: {
+          notEmpty: {
+            message: "Nama is required"
+          },
+          stringLength: {
+            min: 3,
+            max: 25,
+            message: "Nama must be between 3 and 25 characters long"
+          }
+        }
+      },
+
+      username: {
+        excluded: 'true',
+        validators: {
+          notEmpty: {
+            message: "Username is required"
+          },
+          stringLength: {
+            min: 6,
+            message: "Username must be 6 characters long"
+          },
+          regexp: {
+                    regexp: /^[a-zA-Z0-9_\.]+$/,
+                    message: 'The username can only consist of alphabetical, number, dot and underscore'
           }
         }
       },
