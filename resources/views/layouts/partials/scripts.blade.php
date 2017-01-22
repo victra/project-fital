@@ -321,7 +321,7 @@ $('#ModalTambahGuru').modal('hide');
 });
 </script>
 
-<!-- validasi form modal tambah dan ubah guru -->
+<!-- validasi form modal ubah guru -->
 <script type="text/javascript">
 $(document).ready(function() {
 $('#ModalUbahGuru').modal('hide');
