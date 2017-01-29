@@ -1,33 +1,38 @@
 <?php 
 namespace App\Http\Controllers;
 use App\Models\Siswa;
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 class AbsensiController extends Controller
 {
     public function showabsensi()
     {
-        $siswa = Siswa::orderby('nis', 'ASC');
+        $siswas = Siswa::orderby('nis', 'ASC');
 
-        $input_kelas = 'a';
+        $input_kelas = '';
         if(Input::has('search_kelas')){
-            $siswa = $siswa->where('kelas', Input::get('search_kelas'))->get();
+            $siswas = $siswas->where('kelas', Input::get('search_kelas'))->get();
             $input_kelas = Input::get('search_kelas');
         }
-        elseif (Input::has('value','search_kelas=semua_kelas')) {
-            $siswa = siswa::all();
-            $input_kelas = Input::get('search_kelas');
+
+        if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
         }
 
         $jenis_kelamin = array(
             'Laki-Laki' => 'Laki-Laki',
             'Perempuan' => 'Perempuan',
         );
+
         $agama = array(
             'Islam' => 'Islam',
             'Katolik' => 'Katolik',
@@ -35,8 +40,8 @@ class AbsensiController extends Controller
             'Hindu' => 'Hindu',
             'Budha' => 'Budha',
         );
+
         $kelas = array(
-            '' => 'Semua Kelas',
             'X AK 1' => 'X AK 1',
             'X AK 2' => 'X AK 2',
             'X AK 3' => 'X AK 3',
@@ -54,13 +59,56 @@ class AbsensiController extends Controller
             'XII RPL 1' => 'XII RPL 1',
             'XII RPL 2' => 'XII RPL 2',
         );
-       
-        $content['siswas'] = $siswa;
+
+        $status = array(
+            '' => '-',
+            'H' => 'Hadir',
+            'I' => 'Izin',
+            'S' => 'Sakit',
+            'A' => 'Alpa',
+        );
+
+        if ($tanggal && Input::has('search_kelas')) {
+            for ($i=0; $i < count($siswas) ; $i++) { 
+                $siswas[$i]['absensi'] = Absensi::where('siswa_id', $siswas[$i]['id'])->where('date', $tanggal)->first();
+            }
+        }
+
+        $content['siswas'] = $siswas;
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;
         $content['input_kelas'] = $input_kelas;
+        $content['status'] = $status;
+        $content['tanggal'] = $tanggal;
+
         return View::make('absensi.showabsensi')
                     ->with('content', $content);
+    }
+
+    public function storeabsensi()
+    {
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        foreach (Input::get('absensi') as $siswa_id=>$item) {
+            $check_absensi = Absensi::where('siswa_id', $siswa_id)->where('date', Input::get('tanggal'))->where('kelas', Input::get('kelas'))->first();
+            if ($check_absensi) {
+                $absensi = $check_absensi;
+            } else {
+                $absensi = new Absensi;
+            }
+            $absensi->check_by = Auth::user()->id;//ini mksudnya yang absenin siapa
+            $absensi->siswa_id = $siswa_id;
+            $absensi->kelas = Input::get('kelas');
+            $absensi->status = $item['status'];
+            $absensi->description = $item['description'];
+            $absensi->date = Input::get('tanggal');
+
+            if(!$absensi->save()) {
+                throw new \ValidationException($absensi->errors());
+            }
+        }
+        return back ();
     }
 }

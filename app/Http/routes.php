@@ -41,5 +41,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     //absensi siswa
     Route::get('absensisiswa', 'AbsensiController@showabsensi');    
-
+    Route::post('store', 'AbsensiController@storeabsensi');
 });

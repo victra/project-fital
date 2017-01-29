@@ -23,10 +23,16 @@
 <script src="{{ asset('/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#datetimePicker').datetimepicker({
-        format: 'DD/MM/YYYY'
+        $('#datetimePicker').datepicker({
+          format: "yyyy-mm-dd",
+          autoclose: true
+        });
     });
-    });
+
+    function masuk()
+    {
+      console.log('asdasd');
+    }
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
