@@ -5,18 +5,18 @@
 @endsection
 
 @section('contentheader_title')
-    Data Guru Piket
+    Data User
 @endsection
 
 @section('contentheader_description')
-    Olah Data Guru Piket
+    Olah Data User
 @endsection
 
 @section('main-content')
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Guru</h3>
+        <!-- <h3 class="box-title">Data Guru</h3> -->
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahGuru"> <i class="fa fa-plus"></i> Tambah Guru</a>
     </div><!-- /.box-header -->
 

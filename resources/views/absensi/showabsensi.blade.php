@@ -16,7 +16,7 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Absensi</h3>            
+        <h3 class="box-title"></h3>            
             <div style="margin-right:-15px; margin-top:-20px" class="form-group">
                 <div class="col-lg-2 pull-right">
                     <div class="input-group date" id="datetimePicker">

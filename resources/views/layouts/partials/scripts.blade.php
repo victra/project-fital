@@ -134,11 +134,11 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
       nis: {
         validators: {
           notEmpty: {
-            message: "NIS is required"
+            message: "NIS harus diisi"
           },          
           stringLength: {
             min: 4,
-            message: "NIS must be 4 characters long"
+            message: "NIS minimal 4 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIS') }}",
@@ -155,12 +155,12 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
       nama: {
         validators: {
           notEmpty: {
-            message: "Nama is required"
+            message: "Nama harus diisi"
           },          
           stringLength: {
             min: 3,
-            max: 25,
-            message: "Nama must be between 3 and 25 characters long"
+            max: 50,
+            message: "Nama minimla 3 karakter"
           },       
         }
       },
@@ -184,7 +184,7 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
       kelas: {
         validators: {
           notEmpty: {
-            message: "Kelas is required"
+            message: "Kelas harus diisi"
           }
         }
       }
@@ -209,11 +209,11 @@ $('#ModalTambahGuru').modal('hide');
       nip: {
         validators: {
           notEmpty: {
-            message: "NIP is required"
+            message: "NIP harus diisi"
           },
           stringLength: {
             min: 4,
-            message: "NIP must be 4 characters long"
+            message: "NIP minimal 21 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIP') }}",
@@ -230,12 +230,12 @@ $('#ModalTambahGuru').modal('hide');
       nama: {
         validators: {
           notEmpty: {
-            message: "Nama is required"
+            message: "Nama harus diisi"
           },
           stringLength: {
             min: 3,
-            max: 25,
-            message: "Nama must be between 3 and 25 characters long"
+            max: 50,
+            message: "Nama minimal 3 karakter"
           }
         }
       },
@@ -243,11 +243,11 @@ $('#ModalTambahGuru').modal('hide');
       username: {
         validators: {
           notEmpty: {
-            message: "Username is required"
+            message: "Username harus diisi"
           },
           stringLength: {
             min: 6,
-            message: "Username must be 6 characters long"
+            message: "Username minimal 6 karakter"
           },
           regexp: {
                     regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -260,7 +260,7 @@ $('#ModalTambahGuru').modal('hide');
                     username: validator.getFieldElements('username').val()
                 };
             },
-            message: 'The username is not available'
+            message: 'Username sudah ada'
           }
         }
       },
@@ -268,15 +268,15 @@ $('#ModalTambahGuru').modal('hide');
       password: {
         validators: {
           notEmpty: {
-            message: "Password is required"
+            message: "Password harus diisi"
           },
           stringLength: {
             min: 6,
-            message: "Password must be 8 characters long"
+            message: "Password minimal 6 karakter"
           },
           different: {
             field: "username",
-            message: "Username and Password must be different"
+            message: "Username dan password tidak boleh sama"
           }
         }
       },
@@ -284,7 +284,7 @@ $('#ModalTambahGuru').modal('hide');
       role: {
         validators: {
           notEmpty: {
-            message: "Role is required"
+            message: "Role harus diisi"
           }
         }
       },
@@ -319,7 +319,7 @@ $('#ModalTambahGuru').modal('hide');
           // },
           regexp: {
             regexp: /^[0-9]*$/,
-            message: 'Not a valid Telepon'
+            message: 'Telepon tidak valid'
           }
         }
       }
@@ -344,11 +344,11 @@ $('#ModalUbahGuru').modal('hide');
       nip: {
         validators: {
           notEmpty: {
-            message: "NIP is required"
+            message: "NIP harus diisi"
           },
           stringLength: {
             min: 4,
-            message: "NIP must be 4 characters long"
+            message: "NIP minimal 21 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIP') }}",
@@ -365,12 +365,12 @@ $('#ModalUbahGuru').modal('hide');
       nama: {
         validators: {
           notEmpty: {
-            message: "Nama is required"
+            message: "Nama harus diisi"
           },
           stringLength: {
             min: 3,
-            max: 25,
-            message: "Nama must be between 3 and 25 characters long"
+            max: 50,
+            message: "Nama minimal 3 karakter"
           }
         }
       },
@@ -379,15 +379,15 @@ $('#ModalUbahGuru').modal('hide');
         excluded: 'true',
         validators: {
           notEmpty: {
-            message: "Username is required"
+            message: "Username harus diisi"
           },
           stringLength: {
             min: 6,
-            message: "Username must be 6 characters long"
+            message: "Username minimal 6 karakter"
           },
           regexp: {
                     regexp: /^[a-zA-Z0-9_\.]+$/,
-                    message: 'The username can only consist of alphabetical, number, dot and underscore'
+                    message: 'Hanya boleh memakai huruf, nomor dan garis bawah'
           }
         }
       },
@@ -395,15 +395,15 @@ $('#ModalUbahGuru').modal('hide');
       password: {
         validators: {
           notEmpty: {
-            message: "Password is required"
+            message: "Password harus diisi"
           },
           stringLength: {
             min: 6,
-            message: "Password must be 8 characters long"
+            message: "Password minimal 6 karakter"
           },
           different: {
             field: "username",
-            message: "Username and Password must be different"
+            message: "Username dan password tidak boleh sama"
           }
         }
       },
@@ -411,7 +411,7 @@ $('#ModalUbahGuru').modal('hide');
       role: {
         validators: {
           notEmpty: {
-            message: "Role is required"
+            message: "Role harus diisi"
           }
         }
       },
@@ -446,7 +446,7 @@ $('#ModalUbahGuru').modal('hide');
           // },
           regexp: {
             regexp: /^[0-9]*$/,
-            message: 'Not a valid Telepon'
+            message: 'Telepon tidak valid'
           }
         }
       }

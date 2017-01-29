@@ -16,7 +16,7 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Cari Data Absensi Siswa</h3>            
+        <h3 class="box-title"></h3>            
             <div style="margin-right:-15px; margin-top:-20px" class="form-group">
                 <div class="col-sm-4 pull-right">
                     <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Siswa">
