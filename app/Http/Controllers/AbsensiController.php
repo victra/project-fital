@@ -111,4 +111,90 @@ class AbsensiController extends Controller
         }
         return back ();
     }
+
+    //rekap absensi per bulan
+    public function rekapabsensibulan()
+    {
+        $siswa = Siswa::orderby('created_at', 'DESC');
+
+        $kelas = array(
+            'X AK 1' => 'X AK 1',
+            'X AK 2' => 'X AK 2',
+            'X AK 3' => 'X AK 3',
+            'X FARMASI' => 'X FARMASI',
+            'X RPL 1' => 'X RPL 1',
+            'X RPL 2' => 'X RPL 2',
+            'XI AK 1' => 'XI AK 1',
+            'XI AK 2' => 'XI AK 2',
+            'XI FARMASI' => 'XI FARMASI',
+            'XI RPL 1' => 'XI RPL 1',
+            'XI RPL 2' => 'XI RPL 2',
+            'XII AK 1' => 'XII AK 1',
+            'XII AK 2' => 'XII AK 2',
+            'XII FARMASI' => 'XII FARMASI',
+            'XII RPL 1' => 'XII RPL 1',
+            'XII RPL 2' => 'XII RPL 2',
+        );
+
+        $bulan = array(
+            'Januari' => 'Januari',
+            'Februari' => 'Februari',
+            'Maret' => 'Maret',
+            'April' => 'April',
+            'Mei' => 'Mei',
+            'Juni' => 'Juni',
+            'Juli' => 'Juli',
+            'Agustus' => 'Agustus',
+            'September' => 'September',
+            'Oktober' => 'Oktober',
+            'November' => 'November',
+            'Desember' => 'Desember',
+        );
+       
+        $content['siswas'] = $siswa->get();
+        $content['kelas'] = $kelas;
+        $content['bulan'] = $bulan;
+        return View::make('absensi.rekapabsensibulan')
+                    ->with('content', $content);
+
+        // return View('absensi.rekapabsensibulan');
+    }
+
+    //rekap absensi per semester
+    public function rekapabsensisemester()
+    {
+        $siswa = Siswa::orderby('created_at', 'DESC');
+
+        $kelas = array(
+            'X AK 1' => 'X AK 1',
+            'X AK 2' => 'X AK 2',
+            'X AK 3' => 'X AK 3',
+            'X FARMASI' => 'X FARMASI',
+            'X RPL 1' => 'X RPL 1',
+            'X RPL 2' => 'X RPL 2',
+            'XI AK 1' => 'XI AK 1',
+            'XI AK 2' => 'XI AK 2',
+            'XI FARMASI' => 'XI FARMASI',
+            'XI RPL 1' => 'XI RPL 1',
+            'XI RPL 2' => 'XI RPL 2',
+            'XII AK 1' => 'XII AK 1',
+            'XII AK 2' => 'XII AK 2',
+            'XII FARMASI' => 'XII FARMASI',
+            'XII RPL 1' => 'XII RPL 1',
+            'XII RPL 2' => 'XII RPL 2',
+        );
+
+        $semester = array(
+            'Semester 1' => 'Semester 1',
+            'Semester 2' => 'Semester 2',
+        );
+       
+        $content['siswas'] = $siswa->get();
+        $content['kelas'] = $kelas;
+        $content['semester'] = $semester;
+        return View::make('absensi.rekapabsensisemester')
+                    ->with('content', $content);
+
+        // return View('absensi.rekapabsensisemester');
+    }
 }

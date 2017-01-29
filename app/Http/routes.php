@@ -42,4 +42,12 @@ Route::group(['middleware' => 'auth'], function () {
     //absensi siswa
     Route::get('absensisiswa', 'AbsensiController@showabsensi');    
     Route::post('store', 'AbsensiController@storeabsensi');
+
+    //ongoing
+    Route::get('ubahpassword', 'GuruController@ubahpassword');
+    Route::get('storeabsensi', 'AbsensiController@storeabsensi');
+    Route::get('deleteabsensi', 'AbsensiController@deleteabsensi');
+    Route::get('cariabsensi', 'AbsensiController@cariabsensi');
+    Route::get('rekapperbulan', 'AbsensiController@rekapabsensibulan');
+    Route::get('rekappersemester', 'AbsensiController@rekapabsensisemester');
 });
