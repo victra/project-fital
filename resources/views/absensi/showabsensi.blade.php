@@ -82,7 +82,8 @@
     </div><!-- /.box-body -->
 
     <div class="box-footer">
-          <button type="submit" name="simpan" class="btn btn-info pull-right">Simpan Absensi</button>
+        <button type="submit" name="simpan" class="btn btn-info pull-right">Simpan</button>
+        <button style="margin-right:20px; name="hapus" class="btn btn-danger pull-right">Hapus</button>
     </div>
 </div>
 @endsection
