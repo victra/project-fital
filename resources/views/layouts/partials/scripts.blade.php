@@ -50,6 +50,14 @@
             "bInfo": true,
             "bAutoWidth": true
         });
+        $('#example3').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": true
+        });
     });            
 </script>
 

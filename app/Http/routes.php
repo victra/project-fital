@@ -40,6 +40,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/updateguru&{nip}', 'GuruController@updateguru');
 
     //absensi siswa
-    Route::get('absensisiswa', 'AbsensiController@showabsensi');    
+    Route::get('absensisiswa', 'AbsensiController@showabsensi');
+
+    //ongoing
+    Route::get('storeabsensi', 'AbsensiController@storeabsensi');
+    Route::get('deleteabsensi', 'AbsensiController@deleteabsensi');
+    Route::get('cariabsensi', 'AbsensiController@cariabsensi');
+    Route::get('rekapperbulan', 'AbsensiController@rekapabsensibulan');
+    Route::get('rekappersemester', 'AbsensiController@rekapabsensisemester');
+
 
 });
