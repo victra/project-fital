@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('absensisiswa', 'AbsensiController@showabsensi');
 
     //ongoing
+    Route::get('ubahpassword', 'GuruController@ubahpassword');
     Route::get('storeabsensi', 'AbsensiController@storeabsensi');
     Route::get('deleteabsensi', 'AbsensiController@deleteabsensi');
     Route::get('cariabsensi', 'AbsensiController@cariabsensi');

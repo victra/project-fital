@@ -54,7 +54,7 @@
                                 </div>
                             </li> -->
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-key"></i> Ganti Password</a></li>
+                            <li><a href="{{ url('/ubahpassword') }}"><i class="fa fa-key"></i> Ganti Password</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Log Out</a></li>
                             <li class="divider"></li>

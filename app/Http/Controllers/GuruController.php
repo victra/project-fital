@@ -125,4 +125,9 @@ class GuruController extends Controller
         DB::table('users')->where('nip',$request->nip)->update($guru);
         return redirect('guru_piket');        
     }
+
+    public function ubahpassword()
+    {
+        return View::make('guru.ubahpasswordguru');
+    }
 }
