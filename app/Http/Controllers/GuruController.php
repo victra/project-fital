@@ -84,7 +84,7 @@ class GuruController extends Controller
             'guru piket' => 'Guru Piket',
         );
         $jenis_kelamin = array(
-            'Laki-Laki' => 'Laki-Laki',
+            'Laki-laki' => 'Laki-laki',
             'Perempuan' => 'Perempuan',
         );
         $agama = array(

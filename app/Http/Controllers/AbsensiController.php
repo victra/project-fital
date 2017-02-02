@@ -197,4 +197,9 @@ class AbsensiController extends Controller
 
         // return View('absensi.rekapabsensisemester');
     }
+
+    public function cariabsensi()
+    {
+        return View('absensi.cariabsensi');
+    }
 }

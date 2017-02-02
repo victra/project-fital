@@ -18,7 +18,7 @@ class SiswaTableSeeder extends Seeder {
 				'id' => 1,
 				'nis' => '00001',
 				'nama' => 'TELEK',
-				'jkl' => LK,
+				'jkl' => PR,
 				'agama' => ISLAM,
 				'kelas' => 'X AK 1',
 				'created_at' => '2017-01-07 12:00:00',

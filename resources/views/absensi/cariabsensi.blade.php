@@ -21,7 +21,14 @@
                 <div class="col-sm-4 pull-right">
                     <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Siswa">
                 </div>  
-                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Cari :</label>   
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Cari Berdasarkan Nama:</label>   
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-left">Cari Berdasarkan Tanggal :</label>
+                <div class="col-sm-2">
+                    <div class="input-group date" id="datetimePicker">
+                        <input type="text" name="tanggal" class="form-control tanggal input-sm">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
             </div>
     </div><!-- /.box-header -->
 
@@ -32,10 +39,10 @@
                 <tr>
                     <th><center>No</center></th>
                     <th><center>Tanggal</center></th>
-                    <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
                     <th><center>Kelas</center></th>
+                    <th><center>Status</center></th>
                     <th><center>Keterangan</center></th>
                 </tr>
             </thead>
@@ -48,8 +55,8 @@
                     <td><center></center></td>
                     <td></td>
                     <td><center></center></td>
-                    <td><center></center></td>
                     <td><center></center></td> 
+                    <td><center></center></td>
                     <td><center></center></td>                
                 </tr>                                    
                 

@@ -52,7 +52,7 @@ class SiswaController extends Controller
         }
 
         $jenis_kelamin = array(
-            'Laki-Laki' => 'Laki-Laki',
+            'Laki-laki' => 'Laki-laki',
             'Perempuan' => 'Perempuan',
         );
         $agama = array(
