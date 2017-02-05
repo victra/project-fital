@@ -49,17 +49,17 @@
 
             <tbody>
                 <?php $no=1; ?>
-                
+                @foreach($content['absensis'] as $item)
                 <tr>
                     <td><center>{{$no++}}</center></td>
-                    <td><center></center></td>
-                    <td></td>
-                    <td><center></center></td>
-                    <td><center></center></td> 
-                    <td><center></center></td>
-                    <td><center></center></td>                
+                    <td><center>{{$item->date}}</center></td>
+                    <td>{{$item->nama}}</td>
+                    <td><center>{{$item->jkl}}</center></td>
+                    <td><center>{{$item->kelas}}</center></td> 
+                    <td><center>{{$item->status}}</center></td>
+                    <td><center>{{$item->description}}</center></td>                
                 </tr>                                    
-                
+                @endforeach
             </tbody>                       
         </table>                
                 

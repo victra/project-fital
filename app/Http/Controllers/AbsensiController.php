@@ -200,6 +200,11 @@ class AbsensiController extends Controller
 
     public function cariabsensi()
     {
-        return View('absensi.cariabsensi');
+        $absensi = Absensi::orderby('created_at', 'DESC');
+        $content['absensis'] = $absensi->get();
+        
+        return View::make('absensi.cariabsensi')
+                    ->with('content', $content);
+        // return View('absensi.cariabsensi');
     }
 }
