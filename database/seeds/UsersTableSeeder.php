@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder {
 				'email' => 'dk',
 				'password' => Hash::make('password'),
 				'role' => 'administrator',
-				'jkl' => 'Laki-Laki',
+				'jkl' => 'Laki-laki',
 				'agama' => 'Islam',
 				'tlp' => '0987654321',
 				'created_at' => '2017-01-07 12:00:00',

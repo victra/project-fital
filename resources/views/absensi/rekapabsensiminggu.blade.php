@@ -22,8 +22,25 @@
                 <div class="col-lg-2 pull-right">
                 <a class="pull-right btn btn-success btn-sm">Rekap</a>
                 </div>
+                <!-- Rekap Mingguan -->
+                <div class="col-lg-2 pull-right">
+                    <div class="input-group date" id="datetimePicker">
+                        <input type="text" name="tanggal_mulai" class="form-control tanggal input-sm">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">sampai Tanggal :</label>
+
+                <div class="col-lg-2 pull-right">
+                    <div class="input-group date" id="datetimePicker">
+                        <input type="text" name="tanggal_akhir" class="form-control tanggal input-sm">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari Tanggal :</label>
+
                 <!-- Pilih Bulan -->
-                <form style="margin-right:150px; margin-top:0px" class="pull-right">
+                {{--<form style="margin-right:150px; margin-top:0px" class="pull-right">
                     <select class="form-control" name="bulan">
                         <option value="">-Pilih Bulan-</option>
                         @foreach($content['bulan'] as $key => $value)
@@ -31,7 +48,7 @@
                         @endforeach
                     </select>
                 </form>
-                <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Bulan :</label>
+                <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Bulan :</label>--}}
 
                 <!-- Pilih Kelas -->
                 <form style="margin-right:30px; margin-top:0px" class="pull-right">
@@ -57,11 +74,10 @@
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
-                    <th><center>Hadir</center></th>
                     <th><center>Sakit</center></th>
                     <th><center>Izin</center></th>
                     <th><center>Absen</center></th>
-                    <th><center>% Kehadiran</center></th>
+                    <th><center>Total</center></th>
                 </tr>
             </thead>
 
@@ -72,7 +88,6 @@
                     <td><center>{{$no++}}</center></td>
                     <td></td>
                     <td></td>
-                    <td><center></center></td>
                     <td><center></center></td>
                     <td><center></center></td>
                     <td><center></center></td>

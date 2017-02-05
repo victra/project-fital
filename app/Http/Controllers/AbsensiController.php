@@ -62,7 +62,6 @@ class AbsensiController extends Controller
 
         $status = array(
             '' => '-',
-            'H' => 'Hadir',
             'I' => 'Izin',
             'S' => 'Sakit',
             'A' => 'Alpa',
@@ -98,7 +97,7 @@ class AbsensiController extends Controller
             } else {
                 $absensi = new Absensi;
             }
-            $absensi->check_by = Auth::user()->id;//ini mksudnya yang absenin siapa
+            $absensi->check_by = Auth::user()->id;//Orang yang melakukan absensi
             $absensi->siswa_id = $siswa_id;
             $absensi->kelas = Input::get('kelas');
             $absensi->status = $item['status'];
@@ -109,11 +108,12 @@ class AbsensiController extends Controller
                 throw new \ValidationException($absensi->errors());
             }
         }
+        \Session::flash('flash_message','Data absensi berhasil disimpan.');
         return back ();
     }
 
     //rekap absensi per bulan
-    public function rekapabsensibulan()
+    public function rekapabsensiminggu()
     {
         $siswa = Siswa::orderby('created_at', 'DESC');
 
@@ -136,25 +136,25 @@ class AbsensiController extends Controller
             'XII RPL 2' => 'XII RPL 2',
         );
 
-        $bulan = array(
-            'Januari' => 'Januari',
-            'Februari' => 'Februari',
-            'Maret' => 'Maret',
-            'April' => 'April',
-            'Mei' => 'Mei',
-            'Juni' => 'Juni',
-            'Juli' => 'Juli',
-            'Agustus' => 'Agustus',
-            'September' => 'September',
-            'Oktober' => 'Oktober',
-            'November' => 'November',
-            'Desember' => 'Desember',
-        );
+        // $bulan = array(
+        //     'Januari' => 'Januari',
+        //     'Februari' => 'Februari',
+        //     'Maret' => 'Maret',
+        //     'April' => 'April',
+        //     'Mei' => 'Mei',
+        //     'Juni' => 'Juni',
+        //     'Juli' => 'Juli',
+        //     'Agustus' => 'Agustus',
+        //     'September' => 'September',
+        //     'Oktober' => 'Oktober',
+        //     'November' => 'November',
+        //     'Desember' => 'Desember',
+        // );
        
         $content['siswas'] = $siswa->get();
         $content['kelas'] = $kelas;
-        $content['bulan'] = $bulan;
-        return View::make('absensi.rekapabsensibulan')
+        // $content['bulan'] = $bulan;
+        return View::make('absensi.rekapabsensiminggu')
                     ->with('content', $content);
 
         // return View('absensi.rekapabsensibulan');

@@ -14,6 +14,11 @@
 
 @section('main-content')
 
+<!-- pesan peringatan berhasil -->
+@if(Session::has('flash_message'))
+    <div id="successMessage" class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
+@endif
+
 <div class="box">
     <div class="box-header">
         <h3 class="box-title"></h3>            
@@ -67,7 +72,6 @@
                                 <center>
                                     <select style="width:100px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
                                         <option value="">-</option>
-                                        <option value="H">Hadir</option>
                                         <option value="I">Izin</option>
                                         <option value="S">Sakit</option>
                                         <option value="A">Alpa</option>

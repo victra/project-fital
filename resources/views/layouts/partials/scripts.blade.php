@@ -461,3 +461,12 @@ $('#ModalUbahGuru').modal('hide');
   });
 });
 </script>
+
+<!-- pengaturan pesan berhasil -->
+<script type="text/javascript">
+$(document).ready(function(){
+                    setTimeout(function() {
+            $('#successMessage').fadeOut('slow');
+            }, 3000); //hilang setelah 3 detik
+        });
+</script>

@@ -65,9 +65,10 @@ class GuruController extends Controller
             $guru->agama = $request->agama;
             $guru->tlp = $request->tlp;
             $guru->save();
-
+            \Session::flash('flash_message','Data user berhasil disimpan.');
             return redirect('guru_piket');
         }
+        \Session::flash('flash_message','Data user berhasil disimpan.');
         return redirect('home');
     }
     public function showguru()
@@ -107,6 +108,7 @@ class GuruController extends Controller
     public function deleteguru($nip)
     {
         DB::table('users')->where('nip',$nip)->delete();
+        \Session::flash('flash_message','Data user berhasil dihapus.');
         return back ();
     }
 
@@ -123,6 +125,7 @@ class GuruController extends Controller
                 ,'agama' => $request->agama
                 ,'tlp'=> $request->tlp];
         DB::table('users')->where('nip',$request->nip)->update($guru);
+        \Session::flash('flash_message','Data user berhasil diubah.');
         return redirect('guru_piket');        
     }
 

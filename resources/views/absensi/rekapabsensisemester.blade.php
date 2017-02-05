@@ -57,11 +57,10 @@
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
-                    <th><center>Hadir</center></th>
                     <th><center>Sakit</center></th>
                     <th><center>Izin</center></th>
                     <th><center>Absen</center></th>
-                    <th><center>% Kehadiran</center></th>
+                    <th><center>Total</center></th>
                 </tr>
             </thead>
 
@@ -72,7 +71,6 @@
                     <td><center>{{$no++}}</center></td>
                     <td></td>
                     <td></td>
-                    <td><center></center></td>
                     <td><center></center></td>
                     <td><center></center></td>
                     <td><center></center></td>

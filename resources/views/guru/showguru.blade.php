@@ -14,6 +14,11 @@
 
 @section('main-content')
 
+<!-- pesan peringatan berhasil -->
+@if(Session::has('flash_message'))
+    <div id="successMessage" class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
+@endif
+
 <div class="box">
     <div class="box-header">
         <!-- <h3 class="box-title">Data Guru</h3> -->
@@ -64,7 +69,7 @@
                             data-agama="{{$item->agama}}"
                             data-tlp="{{$item->tlp}}">
                             <span class="fa fa-edit"></span> Ubah</a>
-                            <a href="deleteguru&{{$item->nip}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</a>
+                            <a onclick="return confirm('Are you sure?')" href="deleteguru&{{$item->nip}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</a>
                         </center>
                     </td>
                 </tr>                                    
@@ -109,7 +114,7 @@
                     <label class="control-label col-sm-3">Password</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Role</label>
@@ -199,7 +204,7 @@
                     <label class="control-label col-sm-3">Password</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Role</label>

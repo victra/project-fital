@@ -39,6 +39,7 @@ class SiswaController extends Controller
         $siswa->kelas = $request->kelas;
         $siswa->save();
         //return redirect('show');
+        \Session::flash('flash_message','Data siswa berhasil disimpan.');
         return back ();
     }
     public function showsiswa()
@@ -93,6 +94,7 @@ class SiswaController extends Controller
     public function deletesiswa($nis)
     {
         DB::table('siswa')->where('nis',$nis)->delete();
+        \Session::flash('flash_message','Data siswa berhasil dihapus.');
         return back ();
     }
 
@@ -106,6 +108,7 @@ class SiswaController extends Controller
                 ,'kelas'=> $request->kelas];
         DB::table('siswa')->where('nis',$request->nis)->update($siswa);
         //return redirect('show');
+        \Session::flash('flash_message','Data siswa berhasil diubah.');
         return back ();        
     }
 }
