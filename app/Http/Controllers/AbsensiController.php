@@ -62,6 +62,7 @@ class AbsensiController extends Controller
 
         $status = array(
             '' => '-',
+            'H' => 'Hadir',
             'I' => 'Izin',
             'S' => 'Sakit',
             'A' => 'Alpa',
@@ -100,7 +101,7 @@ class AbsensiController extends Controller
             $absensi->check_by = Auth::user()->id;//Orang yang melakukan absensi
             $absensi->siswa_id = $siswa_id;
             $absensi->kelas = Input::get('kelas');
-            $absensi->status = $item['status'];
+            $absensi->status = $item['status'] ? $item['status'] : 'H';
             $absensi->description = $item['description'];
             $absensi->date = Input::get('tanggal');
 
@@ -110,6 +111,11 @@ class AbsensiController extends Controller
         }
         \Session::flash('flash_message','Data absensi berhasil disimpan.');
         return back ();
+    }
+
+    public function deleteabsensi()
+    {
+        
     }
 
     //rekap absensi per bulan
@@ -201,7 +207,7 @@ class AbsensiController extends Controller
     public function cariabsensi()
     {
         $absensi = Absensi::orderby('created_at', 'DESC');
-        $content['absensis'] = $absensi->get();
+        $content['absensis'] = $absensi->where('status','!=', 'H')->get();
         
         return View::make('absensi.cariabsensi')
                     ->with('content', $content);
