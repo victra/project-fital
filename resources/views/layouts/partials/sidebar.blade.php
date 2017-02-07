@@ -33,7 +33,7 @@
         <ul class="sidebar-menu">
             <li class="header">DAFTAR MENU</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="{{ (Request::is('*home*')) ? 'active':'' }}"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
+            <li class="{{ (Request::is('/')) ? 'active':'' }}"><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
             <!-- <li class="{{ (Request::is('*show*')) ? 'active':'' }}"><a href="{{ url('show') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li> -->
             <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li>
             <li class="{{ (Request::is('*guru_piket*')) ? 'active':'' }}"><a href="{{ url('guru_piket') }}"><i class='fa fa-users'></i> <span> Data User </span></a></li>
