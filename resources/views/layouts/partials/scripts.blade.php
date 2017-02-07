@@ -462,11 +462,37 @@ $('#ModalUbahGuru').modal('hide');
 });
 </script>
 
-<!-- pengaturan pesan berhasil -->
+<!-- pengaturan pesan peringatan -->
 <script type="text/javascript">
 $(document).ready(function(){
                     setTimeout(function() {
-            $('#successMessage').fadeOut('slow');
+            $('#successMessage, #errorsMessage').fadeOut(1500);
             }, 3000); //hilang setelah 3 detik
         });
+</script>
+
+<!-- validasi form login -->
+<script type="text/javascript">
+$(document).ready(function() {
+  var validator = $('#formLogin').bootstrapValidator({
+    fields: {
+      email: {
+        validators: {
+          notEmpty: {
+            message: "Masukkan username terlebih dahulu"
+          }
+        }
+      },
+
+      password: {
+        validators: {
+          notEmpty: {
+            message: "Masukkan password terlebih dahulu"
+          }
+        }
+      }
+      
+    }
+  });
+});
 </script>

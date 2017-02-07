@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Home
+    Data Siswa
 @endsection
 
 @section('contentheader_title')

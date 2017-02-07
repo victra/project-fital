@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Home
+    Cari Absensi
 @endsection
 
 @section('contentheader_title')

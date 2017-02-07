@@ -8,10 +8,10 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/login') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/login') }}"><b>SIAbsensi</b></a>
         </div><!-- /.login-logo -->
 
-    @if (count($errors) > 0)
+    <!-- @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
             <ul>
@@ -20,11 +20,21 @@
                 @endforeach
             </ul>
         </div>
+    @endif -->
+
+    @if (count($errors) > 0)
+        <div id="errorsMessage" class="alert alert-danger">
+            <ul><center>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </center></ul>
+        </div>
     @endif
 
     <div class="login-box-body">
-    <p class="login-box-msg"> {{ trans('adminlte_lang::message.siginsession') }} </p>
-    <form action="{{ url('/login') }}" method="post">
+    <p class="login-box-msg"> Silahkan login terlebih dahulu. </p>
+    <form id="formLogin" action="{{ url('/login') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group has-feedback">
             <input type="text" class="form-control" placeholder="Masukan username" name="email"/>

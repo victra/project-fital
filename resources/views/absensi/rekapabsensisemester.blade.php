@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Home
+    Rekap Absensi (Semester)
 @endsection
 
 @section('contentheader_title')
