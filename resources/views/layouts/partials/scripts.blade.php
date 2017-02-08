@@ -166,7 +166,7 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
           stringLength: {
             min: 3,
             max: 50,
-            message: "Nama minimla 3 karakter"
+            message: "Nama antara 3-50 karakter"
           },       
         }
       },
@@ -219,7 +219,7 @@ $('#ModalTambahGuru').modal('hide');
           },
           stringLength: {
             min: 4,
-            message: "NIP minimal 21 karakter"
+            message: "NIP minimal 4 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIP') }}",
@@ -241,7 +241,7 @@ $('#ModalTambahGuru').modal('hide');
           stringLength: {
             min: 3,
             max: 50,
-            message: "Nama minimal 3 karakter"
+            message: "Nama antara 3-50 karakter"
           }
         }
       },
@@ -354,7 +354,7 @@ $('#ModalUbahGuru').modal('hide');
           },
           stringLength: {
             min: 4,
-            message: "NIP minimal 21 karakter"
+            message: "NIP minimal 4 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIP') }}",
@@ -376,7 +376,7 @@ $('#ModalUbahGuru').modal('hide');
           stringLength: {
             min: 3,
             max: 50,
-            message: "Nama minimal 3 karakter"
+            message: "Nama antara 3-50 karakter"
           }
         }
       },

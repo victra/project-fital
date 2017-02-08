@@ -51,8 +51,8 @@
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
-                    <th><center>Agama</center></th>
-                    <th><center>Kelas</center></th>
+                    <!-- <th><center>Agama</center></th>
+                    <th><center>Kelas</center></th> -->
                     <th><center>Status</center></th>
                     <th><center>Keterangan</center></th>
                 </tr>
@@ -65,8 +65,8 @@
                         <td><center>{{$item->nis}}</center></td>
                         <td>{{$item->nama}}</td>
                         <td><center>{{$item->jkl}}</center></td>
-                        <td><center>{{$item->agama}}</center></td>
-                        <td><center>{{$item->kelas}}</center></td>  
+                        <!-- <td><center>{{$item->agama}}</center></td>
+                        <td><center>{{$item->kelas}}</center></td>   -->
                         @if(!isset($item['absensi']))
                             <td>
                                 <center>
