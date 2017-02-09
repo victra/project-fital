@@ -47,7 +47,7 @@
                     <th><center>Jenis Kelamin</center></th>
                     <th><center>Agama</center></th>
                     <th><center>Kelas</center></th>
-                    <th><center>Action</center></th>
+                    <th class="no-export"><center>Action</center></th>
                 </tr>
             </thead>
 

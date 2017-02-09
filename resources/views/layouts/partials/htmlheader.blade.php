@@ -27,9 +27,13 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="{{ asset('/plugins/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css" />    
+    <!-- TableTools -->
+    <link href="{{ asset('/plugins/datatables/extensions/TableTools/css/dataTables.TableTools.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/plugins/datatables/extensions/TableTools/css/dataTables.TableTools.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.css" rel="stylesheet" type="text/css" /> -->
     <link href="{{ asset('/css/bootstrapValidator.css') }}" rel="stylesheet" type="text/css" />
+
 </head>

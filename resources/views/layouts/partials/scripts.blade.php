@@ -45,6 +45,12 @@
 <!-- Datatables -->
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
+
+<!-- TableTools -->
+<script src="{{ asset('/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js') }}" type="text/javascript"></script>
+
+<!-- Pengaturan Datatables -->
 <script type="text/javascript">
     $(function() {
         $("#example1").dataTable();
@@ -54,7 +60,23 @@
             "bFilter": true,
             "bSort": true,
             "bInfo": true,
-            "bAutoWidth": true
+            "bAutoWidth": true,
+            "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            "aButtons": [
+                    {
+                      "sExtends": "xls",
+                      "sButtonText": "Save as Excel",
+                      "sFileName": "file.xls",
+                      "mColumns": function (settings) {
+                         var api = new $.fn.dataTable.Api( settings );
+                         return api.columns(":not(.no-export)").indexes().toArray();
+                      }
+                    }
+                ]
+            }
+
         });
         $('#example3').dataTable({
             "bPaginate": true,
