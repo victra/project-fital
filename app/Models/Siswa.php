@@ -31,7 +31,7 @@ class Siswa extends \BaseModel
 	public static $rules;
 	public static $customMessages;
 	public static $relationsData = array(
-
+		'kelas' 	=> array(self::BELONGS_TO, 'Model\Kelas'),
 	);
 
 	/*
@@ -71,6 +71,15 @@ class Siswa extends \BaseModel
 	}
 
 	/*
+	|--------------------------------------------------------------------------
+	| Custom Setups
+	|--------------------------------------------------------------------------
+	*/
+	protected $appends = array(
+		'kelas',
+	);
+
+	/*
 	 |--------------------------------------------------------------------------
 	 | Methods
 	 |--------------------------------------------------------------------------
@@ -88,4 +97,8 @@ class Siswa extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
+	 public function getKelasAttribute()
+	 {
+	 	return $this->kelas()->first();
+	 }
 }
