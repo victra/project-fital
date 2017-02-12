@@ -29,7 +29,7 @@
                     <option value="?search_kelas=semua_kelas">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
                         <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
-                    <option {{$selected}} value="?search_kelas={{$value}}">{{$value}}</option>
+                    <option {{$selected}} value="?search_kelas={{$value['id']}}">{{$value['nama_kelas']}}</option>
                         @endforeach
                 </select>
             </form>
@@ -60,7 +60,7 @@
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->agama}}</center></td>
-                    <td><center>{{$item->kelas}}</center></td>  
+                    <td><center>{{$item->kelas_id}}</center></td>  
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
@@ -136,7 +136,7 @@
                         <select class="form-control" name="kelas">
                                 <option value="">-- Kelas --</option>
                                 @foreach($content['kelas'] as $key => $value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                    <option value="{{$key['id']}}">{{$value['nama_kelas']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -208,7 +208,7 @@
                         <select class="form-control" name="kelas">
                                 <option value="">-- Kelas --</option>
                                 @foreach($content['kelas'] as $key => $value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                    <option value="{{$key['id']}}">{{$value['nama_kelas']}}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -64,7 +64,7 @@ class SiswaController extends Controller
             'Hindu' => 'Hindu',
             'Budha' => 'Budha',
         );
-        $kelas = Kelas::orderby('created_at','DESC');
+        $kelas = Kelas::get();
         // $kelas = array(
         //     'X AK 1' => 'X AK 1',
         //     'X AK 2' => 'X AK 2',
