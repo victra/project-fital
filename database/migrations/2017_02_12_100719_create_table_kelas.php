@@ -16,7 +16,7 @@ class CreateTableKelas extends Migration
             $table->integer('id', true);            
             $table->string('nama_kelas');
             $table->string('jurusan');
-            $table->integer('wali_kelas')->inex('kelas_wali_kelas')->nullable();
+            $table->integer('wali_kelas_id')->inex('kelas_wali_kelas_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -24,7 +24,7 @@ class CreateTableKelas extends Migration
         //add foreign
         Schema::table('kelas', function(Blueprint $table)
         {
-            $table->foreign('wali_kelas', 'kelas_ibfk_1')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('wali_kelas_id', 'kelas_ibfk_1')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
