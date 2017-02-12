@@ -28,6 +28,20 @@ class UsersTableSeeder extends Seeder {
 				'updated_at' => '2017-01-07 12:01:00',
 				'deleted_at' => NULL,
 			),
+			array (
+				'id' => 2,
+				'nip' => '00002',
+				'name' => 'Blue Eyes',
+				'email' => 'be',
+				'password' => Hash::make('password'),
+				'role' => 'administrator',
+				'jkl' => 'Laki-laki',
+				'agama' => 'Islam',
+				'tlp' => '0987654321',
+				'created_at' => '2017-01-07 12:00:00',
+				'updated_at' => '2017-01-07 12:01:00',
+				'deleted_at' => NULL,
+			),
 		));
 	}
 
