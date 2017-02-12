@@ -1,6 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 use App\Models\Siswa;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -63,6 +64,7 @@ class SiswaController extends Controller
             'Hindu' => 'Hindu',
             'Budha' => 'Budha',
         );
+        $kelas = Kelas::orderby('id','DESC');
         $kelas = array(
             'X AK 1' => 'X AK 1',
             'X AK 2' => 'X AK 2',
