@@ -13,7 +13,7 @@ class KelasTableSeeder extends Seeder {
 	{
 		\DB::table('kelas')->delete();
         
-		\DB::table('users')->insert(array ( 
+		\DB::table('kelas')->insert(array ( 
 			array (
 				'id' => 1,
 				'nama_kelas' => 'X AK 1',
