@@ -49,7 +49,7 @@ class SiswaController extends Controller
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $siswa = $siswa->where('kelas', Input::get('search_kelas'));
+            $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
             $input_kelas = Input::get('search_kelas');
         }
 
