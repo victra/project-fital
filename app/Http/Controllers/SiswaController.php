@@ -1,7 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
-use App\Models\Siswa;
-use App\Models\Kelas;
+use Model\Siswa;
+use Model\Kelas;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;

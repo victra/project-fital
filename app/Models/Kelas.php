@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace Model;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Kelas extends Model
+class Kelas extends \BaseModel
 {
 	/*
 	 |--------------------------------------------------------------------------

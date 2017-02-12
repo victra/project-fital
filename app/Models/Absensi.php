@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace Model;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Absensi extends Model
+class Absensi extends \BaseModel
 {
 	/*
 	 |--------------------------------------------------------------------------
