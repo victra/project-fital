@@ -19,9 +19,15 @@ class CreateTableSiswa extends Migration
             $table->string('nama');
             $table->string('jkl');
             $table->string('agama');
-            $table->string('kelas');
+            $table->integer('kelas')->index('siswa_kelas')->nullable();
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        //add foreign
+        Schema::table('siswa', function(Blueprint $table)
+        {
+            $table->foreign('kelas', 'siswa_ibfk_1')->references('id')->on('kelas')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -32,6 +38,11 @@ class CreateTableSiswa extends Migration
      */
     public function down()
     {
+        Schema::table('siswa', function(Blueprint $table)
+        {
+            $table->dropForeign('siswa_ibfk_1');
+        });
+
         Schema::drop('siswa');
     }
 }
