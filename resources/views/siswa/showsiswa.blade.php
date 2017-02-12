@@ -28,7 +28,7 @@
                     <option value="?search_kelas=">Pilih Kelas</option>
                     <option value="?search_kelas=semua_kelas">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
-                        <?php $selected = $content['input_kelas']==$value ? 'selected' : '' ?>
+                        <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
                     <option {{$selected}} value="?search_kelas={{$value['id']}}">{{$value['nama_kelas']}}</option>
                         @endforeach
                 </select>
