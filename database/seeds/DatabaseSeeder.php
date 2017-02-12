@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UsersTableSeeder::class);
         $this->call(SiswaTableSeeder::class);
+        $this->call(KelasTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         if(defined('STDERR')) fwrite(STDERR, print_r("Set FOREIGN_KEY_CHECKS=1 --- DONE\n", TRUE));        
