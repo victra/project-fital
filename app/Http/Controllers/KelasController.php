@@ -31,7 +31,7 @@ class KelasController extends Controller
     public function showkelas()
     {
         $kelas = Kelas::orderby('created_at', 'DESC');
-        // dd($siswa->get()->toArray());
+        // dd($kelas->get()->toArray());
 
         $jurusan = array(
             'ak' => 'Akutansi',

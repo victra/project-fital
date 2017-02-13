@@ -47,7 +47,7 @@
                     <td><center>{{$item->kd}}</center></td>
                     <td><center>{{$item->nama_kelas}}</center></td>
                     <td>{{$item->jurusan}}</td>
-                    <td><center>{{$item->wali_kelas}}</center></td> 
+                    <td><center>{{$item->wali_kelas_id}}</center></td> 
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->kd}}"><span class="fa fa-edit"></span> Ubah</a> --}}

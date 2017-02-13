@@ -31,7 +31,7 @@ class Kelas extends \BaseModel
 	public static $rules;
 	public static $customMessages;
 	public static $relationsData = array(
-
+		// 'wali_kelas' 	=> array(self::HAS_ONE, 'app\User'),
 	);
 
 	/*
@@ -71,6 +71,16 @@ class Kelas extends \BaseModel
 	}
 
 	/*
+	|--------------------------------------------------------------------------
+	| Custom Setups
+	|--------------------------------------------------------------------------
+	*/
+	// protected $appends = array(
+	// 	'wali_kelas',
+	// );
+
+
+	/*
 	 |--------------------------------------------------------------------------
 	 | Methods
 	 |--------------------------------------------------------------------------
@@ -88,4 +98,8 @@ class Kelas extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
+	 // public function getWaliKelasAttribute()
+	 // {
+	 // 	return $this->wali_kelas()->first();
+	 // }
 }
