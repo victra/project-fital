@@ -25,8 +25,7 @@
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahSiswa"> <i class="fa fa-plus"></i> Tambah Siswa</a>
             <form style="margin-right:125px; margin-top:0px" class="pull-right">
                 <select class="form-control input-sm" onchange="location = this.value;">
-                    <option value="?search_kelas=">Pilih Kelas</option>
-                    <option value="?search_kelas=semua_kelas">Semua Kelas</option>
+                    <option value="?search_kelas=">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
                         <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
                     <option {{$selected}} value="?search_kelas={{$value['id']}}">{{$value['nama_kelas']}}</option>
@@ -60,7 +59,7 @@
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->agama}}</center></td>
-                    <td><center>{{$item->kelas_id}}</center></td>  
+                    <td><center>{{$item->kelas->nama_kelas}}</center></td>  
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
@@ -69,7 +68,7 @@
                             data-nama="{{$item->nama}}"
                             data-jenis-kelamin="{{$item->jkl}}"
                             data-agama="{{$item->agama}}"
-                            data-kelas="{{$item->kelas}}">
+                            data-kelas="{{$item->kelas->nama_kelas}}">
                             <span class="fa fa-edit"></span> Ubah</a>
                             <a onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->

@@ -40,6 +40,7 @@
       fixed layout. -->
 
 <script type="text/javascript" src="js/guru.js"></script>
+<script type="text/javascript" src="js/kelas.js"></script>
 <script type="text/javascript" src="js/siswa.js"></script>
 
 <!-- Datatables -->

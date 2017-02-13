@@ -51,4 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cariabsensi', 'AbsensiController@cariabsensi');
     Route::get('rekapperbulan', 'AbsensiController@rekapabsensiminggu');
     Route::get('rekappersemester', 'AbsensiController@rekapabsensisemester');
+
+    // kelas
+    Route::get('kelas', 'KelasController@showkelas');
+    Route::post('storekelas', 'KelasController@storekelas');
+    Route::get('/delete&{kd}', 'KelasController@deletekelas');    
+    Route::post('/update&{kd}', 'KelasController@updatekelas');
 });

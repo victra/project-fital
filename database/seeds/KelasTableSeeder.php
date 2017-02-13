@@ -16,6 +16,7 @@ class KelasTableSeeder extends Seeder {
 		\DB::table('kelas')->insert(array ( 
 			array (
 				'id' => 1,
+				'kd' => 'XAK1',
 				'nama_kelas' => 'X AK 1',
 				'jurusan' => 'Akutansi',
 				'wali_kelas_id' => '1',
@@ -25,6 +26,7 @@ class KelasTableSeeder extends Seeder {
 			),
 			array (
 				'id' => 2,
+				'kd' => 'XAK2',
 				'nama_kelas' => 'X AK 2',
 				'jurusan' => 'Akutansi',
 				'wali_kelas_id' => '1',
@@ -34,6 +36,7 @@ class KelasTableSeeder extends Seeder {
 			),
 			array (
 				'id' => 3,
+				'kd' => 'XAK3',
 				'nama_kelas' => 'X AK 3',
 				'jurusan' => 'Akutansi',
 				'wali_kelas_id' => '1',
@@ -43,6 +46,7 @@ class KelasTableSeeder extends Seeder {
 			),
 			array (
 				'id' => 4,
+				'kd' => 'XRPL1',
 				'nama_kelas' => 'X RPL 1',
 				'jurusan' => 'Rekayasa Perangkat Lunak',
 				'wali_kelas_id' => '1',
@@ -52,6 +56,7 @@ class KelasTableSeeder extends Seeder {
 			),
 			array (
 				'id' => 5,
+				'kd' => 'XRPL2',
 				'nama_kelas' => 'X RPL 2',
 				'jurusan' => 'Rekayasa Perangkat Lunak',
 				'wali_kelas_id' => '1',
@@ -61,6 +66,7 @@ class KelasTableSeeder extends Seeder {
 			),
 			array (
 				'id' => 6,
+				'kd' => 'XFARMASI',
 				'nama_kelas' => 'X FARMASI',
 				'jurusan' => 'Farmasi',
 				'wali_kelas_id' => '1',
