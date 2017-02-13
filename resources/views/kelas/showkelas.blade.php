@@ -41,7 +41,7 @@
 
             <tbody>
                 <?php $no=1; ?>
-                @foreach($content['kelas'] as $item)
+                @foreach($content['kelasku'] as $item)
                 <tr>
                     <td><center>{{$no++}}</center></td>
                     <td><center>{{$item->kd}}</center></td>
@@ -55,7 +55,7 @@
                             data-kd="{{$item->kd}}"
                             data-nama_kelas="{{$item->nama_kelas}}"
                             data-jurusan="{{$item->jurusan}}"
-                            data-wali_kelas="{{$item->wali_kelas}}"
+                            data-wali_kelas="{{$item->wali_kelas_id}}"
                             <span class="fa fa-edit"></span> Ubah</a>
                             <a onclick="return confirm('Are you sure?')" href='delete&{{$item->kd}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
@@ -110,8 +110,8 @@
                         <div class="col-sm-5">
                             <select class="form-control" name="wali_kelas">
                                 <option value="">-- Wali Kelas --</option>
-                                @foreach($content['wali_kelas'] as $key => $value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                @foreach($content['wali_kelas_id'] as $key => $value)
+                                    <option value="{{$key['wali_kelas']}}">{{$value['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -171,8 +171,8 @@
                         <div class="col-sm-5">
                             <select class="form-control" name="jkl">
                                 <option value="">-- Wali Kelas --</option>
-                                @foreach($content['wali_kelas'] as $key => $value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                @foreach($content['wali_kelas_id'] as $key => $value)
+                                    <option value="{{$key['wali_kelas']}}">{{$value['name']}}</option>
                                 @endforeach
                             </select>
                         </div>

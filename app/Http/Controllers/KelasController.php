@@ -39,13 +39,13 @@ class KelasController extends Controller
             'fms' => 'Farmasi',
         );
 
-        // $wali_kelas = User::get();
+        $wali_kelas_id = User::get();
 
-        $wali_kelas = array(
-            '1' => 'Adin',
-            '2' => 'Budi',
-            '3' => 'Vei',
-        );
+        // $wali_kelas = array(
+        //     '1' => 'Adin',
+        //     '2' => 'Budi',
+        //     '3' => 'Vei',
+        // );
         // $kelas = array(
         //     'X AK 1' => 'X AK 1',
         //     'X AK 2' => 'X AK 2',
@@ -65,9 +65,9 @@ class KelasController extends Controller
         //     'XII RPL 2' => 'XII RPL 2',
         // );
        
-        $content['kelas'] = $kelas->get();
+        $content['kelasku'] = $kelas->get();
         $content['jurusan'] = $jurusan;
-        $content['wali_kelas'] = $wali_kelas;
+        $content['wali_kelas_id'] = $wali_kelas_id;
         return View::make('kelas.showkelas')
                     ->with('content', $content);
     }
