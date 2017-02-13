@@ -37,7 +37,7 @@ class SiswaController extends Controller
         $siswa->nama = $request->nama;
         $siswa->jkl = $request->jkl;
         $siswa->agama = $request->agama;
-        $siswa->kelas = $request->kelas;
+        $siswa->kelas_id = $request->kelas;
         $siswa->save();
         //return redirect('show');
         \Session::flash('flash_message','Data siswa berhasil disimpan.');
@@ -107,7 +107,7 @@ class SiswaController extends Controller
                 ,'nama' => $request->nama
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
-                ,'kelas'=> $request->kelas];
+                ,'kelas_id'=> $request->kelas];
         DB::table('siswa')->where('nis',$request->nis)->update($siswa);
         //return redirect('show');
         \Session::flash('flash_message','Data siswa berhasil diubah.');

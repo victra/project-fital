@@ -47,7 +47,7 @@
                     <td><center>{{$item->kd}}</center></td>
                     <td><center>{{$item->nama_kelas}}</center></td>
                     <td>{{$item->jurusan}}</td>
-                    <td><center>{{$item->wali_kelas_id}}</center></td> 
+                    <td><center>{{$item->wali_kelas->name}}</center></td> 
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->kd}}"><span class="fa fa-edit"></span> Ubah</a> --}}
@@ -111,7 +111,7 @@
                             <select class="form-control" name="wali_kelas">
                                 <option value="">-- Wali Kelas --</option>
                                 @foreach($content['wali_kelas_id'] as $key => $value)
-                                    <option value="{{$key['wali_kelas']}}">{{$value['name']}}</option>
+                                    <option value="{{$key}}">{{$value['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -172,7 +172,7 @@
                             <select class="form-control" name="jkl">
                                 <option value="">-- Wali Kelas --</option>
                                 @foreach($content['wali_kelas_id'] as $key => $value)
-                                    <option value="{{$key['wali_kelas']}}">{{$value['name']}}</option>
+                                    <option value="{{$key}}">{{$value['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
