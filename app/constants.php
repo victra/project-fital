@@ -14,4 +14,11 @@ define('BUDHA', "Budha");
 define('LK', "Laki-laki");
 define('PR', "Perempuan");
 
+// kelas
+define('XAK1', "X AK 1");
+define('XAK2', "X AK 2");
+define('XAK3', "X AK 3");
+define('XRPL1', "X RPL 1");
+define('XRPL2', "X RPL 2");
+define('XFARMASI', "X FARMASI");
 //sisane tambah ke dewe

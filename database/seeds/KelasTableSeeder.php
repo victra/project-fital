@@ -17,7 +17,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 1,
 				'kd' => 'XAK1',
-				'nama_kelas' => 'X AK 1',
+				'nama_kelas' => XAK1,
 				'jurusan' => 'Akutansi',
 				'wali_kelas_id' => '1',
 				'created_at' => '2017-01-07 12:00:00',
@@ -27,7 +27,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 2,
 				'kd' => 'XAK2',
-				'nama_kelas' => 'X AK 2',
+				'nama_kelas' => XAK2,
 				'jurusan' => 'Akutansi',
 				'wali_kelas_id' => '1',
 				'created_at' => '2017-01-07 12:00:00',
@@ -37,7 +37,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 3,
 				'kd' => 'XAK3',
-				'nama_kelas' => 'X AK 3',
+				'nama_kelas' => XAK3,
 				'jurusan' => 'Akutansi',
 				'wali_kelas_id' => '1',
 				'created_at' => '2017-01-07 12:00:00',
@@ -47,7 +47,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 4,
 				'kd' => 'XRPL1',
-				'nama_kelas' => 'X RPL 1',
+				'nama_kelas' => XRPL1,
 				'jurusan' => 'Rekayasa Perangkat Lunak',
 				'wali_kelas_id' => '1',
 				'created_at' => '2017-01-07 12:00:00',
@@ -57,7 +57,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 5,
 				'kd' => 'XRPL2',
-				'nama_kelas' => 'X RPL 2',
+				'nama_kelas' => XRPL2,
 				'jurusan' => 'Rekayasa Perangkat Lunak',
 				'wali_kelas_id' => '1',
 				'created_at' => '2017-01-07 12:00:00',
@@ -67,7 +67,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 6,
 				'kd' => 'XFARMASI',
-				'nama_kelas' => 'X FARMASI',
+				'nama_kelas' => XFARMASI,
 				'jurusan' => 'Farmasi',
 				'wali_kelas_id' => '1',
 				'created_at' => '2017-01-07 12:00:00',

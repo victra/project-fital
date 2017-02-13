@@ -25,7 +25,7 @@ class CreateTableKelas extends Migration
         //add foreign
         Schema::table('kelas', function(Blueprint $table)
         {
-            $table->foreign('wali_kelas_id', 'kelas_ibfk_1')->references('nip')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('wali_kelas_id', 'kelas_ibfk_1')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

@@ -4,7 +4,7 @@ function showModalSiswa(button){
 	var nama = $(button).data('nama');
 	var jenis_kelamin = $(button).data('jenis-kelamin');
 	var agama = $(button).data('agama');
-	var kelas = $(button).data('kelas_id');
+	var kelas = $(button).data('kelas');
 	
 	// Show Modal
 	modal.find('h4').html('Ubaha Data Siswa');
