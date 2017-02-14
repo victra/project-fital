@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Model\Siswa;
 use Model\Kelas;
+use App\User;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -64,7 +65,7 @@ class SiswaController extends Controller
             'Hindu' => 'Hindu',
             'Budha' => 'Budha',
         );
-        $kelas = Kelas::get();
+        $kelas = User::get();
         // $kelas = array(
         //     'X AK 1' => 'X AK 1',
         //     'X AK 2' => 'X AK 2',

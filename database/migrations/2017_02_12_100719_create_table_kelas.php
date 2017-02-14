@@ -12,7 +12,8 @@ class CreateTableKelas extends Migration
      */
     public function up()
     {
-        Schema::create('kelas', function(Blueprint $table){
+        Schema::create('kelas', function(Blueprint $table)
+        {
             $table->integer('id', true);     
             $table->string('kd')->unique();
             $table->string('nama_kelas');
