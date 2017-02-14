@@ -68,7 +68,7 @@
                             data-nama="{{$item->nama}}"
                             data-jenis-kelamin="{{$item->jkl}}"
                             data-agama="{{$item->agama}}"
-                            data-kelas="{{$item->kelas->nama_kelas}}">
+                            data-kelas="{{$item->kelas_id}}">
                             <span class="fa fa-edit"></span> Ubah</a>
                             <a onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->

@@ -12,31 +12,31 @@ use Illuminate\Support\Facades\Input;
 
 class KelasController extends Controller
 {
-    //public function index()
-    //{
-        //return view('siswa.insert');
-    //}
-    // public function storekelas(Request $request)
-    // {
-    //     $kelas = new Kelas;
-    //     $kelas->kd = $request->kd;
-    //     $kelas->nama_kelas = $request->nama_kelas;
-    //     $kelas->jurusan = $request->jurusan;
-    //     $kelas->wali_kelas_id = $request->wali_kelas;
-    //     $kelas->save();
-    //     //return redirect('show');
-    //     \Session::flash('flash_message','Data kelas berhasil disimpan.');
-    //     return back ();
-    // }
+    public function index()
+    {
+        return view('siswa.insert');
+    }
+    public function storekelas(Request $request)
+    {
+        $kelas = new Kelas;
+        $kelas->kd = $request->kd;
+        $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->jurusan = $request->jurusan;
+        $kelas->wali_kelas_id = $request->wali_kelas;
+        $kelas->save();
+        //return redirect('show');
+        \Session::flash('flash_message','Data kelas berhasil disimpan.');
+        return back ();
+    }
     public function showkelas()
     {
         $kelas = Kelas::orderby('created_at', 'DESC');
-        dd($kelas->get()->toArray());
+        // dd($kelas->get()->toArray());
 
         $jurusan = array(
-            'ak' => 'Akutansi',
-            'rpl' => 'Rekayasa Perangkat Lunak',
-            'fms' => 'Farmasi',
+            'Akutansi' => 'Akutansi',
+            'Rekayasa Perangkat Lunak' => 'Rekayasa Perangkat Lunak',
+            'Farmasi' => 'Farmasi',
         );
 
         $walikelas = User::get();
@@ -72,23 +72,23 @@ class KelasController extends Controller
                     ->with('content', $content);
     }
     
-    // public function deletekelas($kd)
-    // {
-    //     DB::table('kelas')->where('kd',$kd)->delete();
-    //     \Session::flash('flash_message','Data kelas berhasil dihapus.');
-    //     return back ();
-    // }
+    public function deletekelas($kd)
+    {
+        DB::table('kelas')->where('kd',$kd)->delete();
+        \Session::flash('flash_message','Data kelas berhasil dihapus.');
+        return back ();
+    }
 
-    // public function updatekelas(Request $request, $kd)
-    // {
+    public function updatekelas(Request $request, $kd)
+    {
         
-    //     $kelas = ['kd' => $request->kd
-    //             ,'nama_kelas' => $request->nama_kelas
-    //             ,'jurusan' => $request->jurusan
-    //             ,'wali_kelas_id' => $request->wali_kelas];
-    //     DB::table('kelas')->where('kd',$request->kd)->update($kelas);
-    //     //return redirect('show');
-    //     \Session::flash('flash_message','Data kelas berhasil diubah.');
-    //     return back ();        
-    // }
+        $kelas = ['kd' => $request->kd
+                ,'nama_kelas' => $request->nama_kelas
+                ,'jurusan' => $request->jurusan
+                ,'wali_kelas_id' => $request->wali_kelas];
+        DB::table('kelas')->where('kd',$request->kd)->update($kelas);
+        //return redirect('show');
+        \Session::flash('flash_message','Data kelas berhasil diubah.');
+        return back ();        
+    }
 }

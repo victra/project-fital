@@ -76,7 +76,7 @@ class Siswa extends \BaseModel
 	|--------------------------------------------------------------------------
 	*/
 	protected $appends = array(
-		'kelass',
+		'kelas',
 	);
 
 	/*
@@ -97,7 +97,7 @@ class Siswa extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
-	 public function getKelassAttribute()
+	 public function getKelasAttribute()
 	 {
 	 	return $this->kelas()->first();
 	 }

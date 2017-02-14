@@ -21,4 +21,10 @@ define('XAK3', "X AK 3");
 define('XRPL1', "X RPL 1");
 define('XRPL2', "X RPL 2");
 define('XFARMASI', "X FARMASI");
+
+// jurusan
+define('AK', "Akutansi");
+define('RPL', "Rekayasa Perangkat Lunak");
+define('FMS', "Farmasi");
+
 //sisane tambah ke dewe

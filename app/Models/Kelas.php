@@ -31,7 +31,7 @@ class Kelas extends \BaseModel
 	public static $rules;
 	public static $customMessages;
 	public static $relationsData = array(
-		'users' 	=> array(self::BELONGS_TO, 'App\User'),
+		'waliKelas' 	=> array(self::BELONGS_TO, 'App\User'),
 	);
 
 	/*
@@ -76,7 +76,7 @@ class Kelas extends \BaseModel
 	|--------------------------------------------------------------------------
 	*/
 	protected $appends = array(
-		'waliikelas',
+		'walikelas',
 	);
 
 
@@ -98,8 +98,8 @@ class Kelas extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
-	 public function getWaliikelasAttribute()
+	 public function getWalikelasAttribute()
 	 {
-	 	return $this->users()->first();
+	 	return $this->waliKelas()->first();
 	 }
 }

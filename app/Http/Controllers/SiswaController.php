@@ -47,7 +47,7 @@ class SiswaController extends Controller
     public function showsiswa()
     {
         $siswa = Siswa::orderby('created_at', 'DESC');
-        dd($siswa->get()->toArray());
+        // dd($siswa->get()->toArray());
         $input_kelas = '';
         if(Input::has('search_kelas')){
             $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
@@ -65,7 +65,7 @@ class SiswaController extends Controller
             'Hindu' => 'Hindu',
             'Budha' => 'Budha',
         );
-        $kelas = User::get();
+        $kelas = Kelas::get();
         // $kelas = array(
         //     'X AK 1' => 'X AK 1',
         //     'X AK 2' => 'X AK 2',
