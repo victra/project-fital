@@ -62,6 +62,40 @@
             "bSort": true,
             "bInfo": true,
             "bAutoWidth": true,
+            // pengaturan lebar kolom
+            // "bAutoWidth": false,
+            // "aoColumns" : [
+            //   { sWidth: '5%' },
+            //   { sWidth: '15%' },
+            //   { sWidth: '25%' },
+            //   { sWidth: '15%' },
+            //   { sWidth: '15%' },
+            //   { sWidth: '15%' },
+            //   { sWidth: '10%' }
+            // ],
+            // "aLengthMenu": [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"]],
+            // "oLanguage": {
+            //     sEmptyTable: "Belum ada data dalam tabel ini",
+            //     sInfo: "Menampilkan _START_ sampai _END_ data _TOTAL_ data",
+            //     sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+            //     sInfoFiltered: "(filtered from _MAX_ total data)",
+            //     sInfoPostFix: "",
+            //     sDecimal: "",
+            //     sThousands: ",",
+            //     sLengthMenu: "Tampilkan _MENU_ data",
+            //     sLoadingRecords: "Loading...",
+            //     sProcessing: "Processing...",
+            //     sSearch: "Cari:",
+            //     sSearchPlaceholder: "",
+            //     sUrl: "",
+            //     sZeroRecords: "Tidak ditemukan"
+            //     },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
+              {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
+            ],
             "sDom": 'T<"clear">lfrtip',
             "oTableTools": {
             "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
@@ -87,6 +121,18 @@
             "bInfo": true,
             "bAutoWidth": true
         });
+          // coba-coba
+            var table = $('#example4').DataTable();
+            
+            // #myInput is a <input type="text"> element
+            $('#myInput').on( 'keyup', function () {              
+                table.search( this.value ).draw();
+                // pencarian exact match
+                // var term = $(this).val(),
+                // regex = '\\b' + term + '\\b';
+                // table.search(regex, true, false).draw();
+            });
+
     });            
 </script>
 
