@@ -14,7 +14,7 @@ class CreateTableAbsensi extends Migration
     {
         Schema::create('absensi', function(Blueprint $table){
             $table->integer('id', true);
-            $table->integer('check_by')->index('absensi_check_by')->nullable();
+            $table->integer('check_by_id')->index('absensi_check_by')->nullable();
             $table->integer('siswa_id')->index('absensi_siswa_id')->nullable();
             $table->string('kelas');
             $table->string('status');
@@ -27,7 +27,7 @@ class CreateTableAbsensi extends Migration
         //add foreign
         Schema::table('absensi', function(Blueprint $table)
         {
-            $table->foreign('check_by', 'absensi_ibfk_1')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('check_by_id', 'absensi_ibfk_1')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('siswa_id', 'absensi_ibfk_2')->references('id')->on('siswa')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }

@@ -10,12 +10,11 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 
-class AbsensiController extends Controller
+class AbsensiControllerBackup extends Controller
 {
     public function showabsensi()
     {
         $siswas = Siswa::orderby('nis', 'ASC');
-        dd($siswas->get()->toArray());
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
@@ -122,30 +121,26 @@ class AbsensiController extends Controller
     //rekap absensi per bulan
     public function rekapabsensiminggu()
     {
-        $absensi = Absensi::orderby('created_at', 'DESC');
+        $siswa = Siswa::orderby('created_at', 'DESC');
 
-        $sakit = DB::table('absensi')->where('status', 'S')->count();
-        $izin = DB::table('absensi')->where('status', 'I')->count();
-        $alpa = DB::table('absensi')->where('status', 'A')->count();
-        
-        // $kelas = array(
-        //     'X AK 1' => 'X AK 1',
-        //     'X AK 2' => 'X AK 2',
-        //     'X AK 3' => 'X AK 3',
-        //     'X FARMASI' => 'X FARMASI',
-        //     'X RPL 1' => 'X RPL 1',
-        //     'X RPL 2' => 'X RPL 2',
-        //     'XI AK 1' => 'XI AK 1',
-        //     'XI AK 2' => 'XI AK 2',
-        //     'XI FARMASI' => 'XI FARMASI',
-        //     'XI RPL 1' => 'XI RPL 1',
-        //     'XI RPL 2' => 'XI RPL 2',
-        //     'XII AK 1' => 'XII AK 1',
-        //     'XII AK 2' => 'XII AK 2',
-        //     'XII FARMASI' => 'XII FARMASI',
-        //     'XII RPL 1' => 'XII RPL 1',
-        //     'XII RPL 2' => 'XII RPL 2',
-        // );
+        $kelas = array(
+            'X AK 1' => 'X AK 1',
+            'X AK 2' => 'X AK 2',
+            'X AK 3' => 'X AK 3',
+            'X FARMASI' => 'X FARMASI',
+            'X RPL 1' => 'X RPL 1',
+            'X RPL 2' => 'X RPL 2',
+            'XI AK 1' => 'XI AK 1',
+            'XI AK 2' => 'XI AK 2',
+            'XI FARMASI' => 'XI FARMASI',
+            'XI RPL 1' => 'XI RPL 1',
+            'XI RPL 2' => 'XI RPL 2',
+            'XII AK 1' => 'XII AK 1',
+            'XII AK 2' => 'XII AK 2',
+            'XII FARMASI' => 'XII FARMASI',
+            'XII RPL 1' => 'XII RPL 1',
+            'XII RPL 2' => 'XII RPL 2',
+        );
 
         // $bulan = array(
         //     'Januari' => 'Januari',
@@ -162,11 +157,8 @@ class AbsensiController extends Controller
         //     'Desember' => 'Desember',
         // );
        
-        $content['absensis'] = $absensi->get();
-        $content['sakit'] = $sakit;
-        $content['izin'] = $izin;
-        $content['alpa'] = $alpa;
-        // $content['kelas'] = $kelas;
+        $content['siswas'] = $siswa->get();
+        $content['kelas'] = $kelas;
         // $content['bulan'] = $bulan;
         return View::make('absensi.rekapabsensiminggu')
                     ->with('content', $content);
@@ -215,8 +207,6 @@ class AbsensiController extends Controller
     public function cariabsensi()
     {
         $absensi = Absensi::orderby('created_at', 'DESC');
-        // dd($absensi->get()->toArray());
-
         $content['absensis'] = $absensi->where('status','!=', 'H')->get();
         
         return View::make('absensi.cariabsensi')

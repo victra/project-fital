@@ -31,6 +31,8 @@ class Absensi extends \BaseModel
 	public static $rules;
 	public static $customMessages;
 	public static $relationsData = array(
+		'Siswa' 	=> array(self::BELONGS_TO, 'Model\Siswa'),
+		'checkBy' 	=> array(self::BELONGS_TO, 'App\User'),
 
 	);
 
@@ -71,6 +73,16 @@ class Absensi extends \BaseModel
 	}
 
 	/*
+	|--------------------------------------------------------------------------
+	| Custom Setups
+	|--------------------------------------------------------------------------
+	*/
+	protected $appends = array(
+		'check_by','siswa'
+	);
+
+
+	/*
 	 |--------------------------------------------------------------------------
 	 | Methods
 	 |--------------------------------------------------------------------------
@@ -88,4 +100,13 @@ class Absensi extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
+	 public function getCheckbyAttribute()
+	 {
+	 	return $this->checkBy()->first();
+	 }
+
+	 public function getSiswaAttribute()
+	 {
+	 	return $this->Siswa()->first();
+	 }
 }

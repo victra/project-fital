@@ -53,9 +53,9 @@
                 <tr>
                     <td><center>{{$no++}}</center></td>
                     <td><center>{{$item->date}}</center></td>
-                    <td>{{$item->nama}}</td>
-                    <td><center>{{$item->jkl}}</center></td>
-                    <td><center>{{$item->kelas}}</center></td> 
+                    <td>{{$item->siswa->nama}}</td>
+                    <td><center>{{$item->siswa->jkl}}</center></td>
+                    <td><center>{{$item->siswa->kelas->nama_kelas}}</center></td> 
                     <td><center>{{$item->status}}</center></td>
                     <td><center>{{$item->description}}</center></td>                
                 </tr>                                    

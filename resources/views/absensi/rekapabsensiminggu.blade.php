@@ -53,10 +53,10 @@
                 <!-- Pilih Kelas -->
                 <form style="margin-right:30px; margin-top:0px" class="pull-right">
                     <select class="form-control" name="kelas">
-                        <option value="">-Pilih Kelas-</option>
+                        {{-- <option value="">-Pilih Kelas-</option>
                         @foreach($content['kelas'] as $key => $value)
                             <option value="{{$key}}">{{$value}}</option>
-                        @endforeach
+                        @endforeach --}}
                     </select>
                 </form>
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Kelas :</label>
@@ -83,18 +83,18 @@
 
             <tbody>
                 <?php $no=1; ?>
-                
+                @foreach($content['absensis'] as $item)
                 <tr>
                     <td><center>{{$no++}}</center></td>
-                    <td></td>
-                    <td></td>
-                    <td><center></center></td>
-                    <td><center></center></td>
+                    <td>{{$item->siswa->nis}}</td>
+                    <td>{{$item->siswa->nama}}</td>
+                    <td><center>{{$item->siswa->jkl}}</center></td>
+                    <td><center>{{$item->nama}}</center></td>
                     <td><center></center></td>
                     <td><center></center></td>
                     <td><center></center></td>                    
                 </tr>                                    
-                
+                @endforeach
             </tbody>                       
         </table>                
                 
