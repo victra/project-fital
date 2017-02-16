@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Model\Siswa;
 use Model\Absensi;
+use Model\Kelas;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -42,24 +43,25 @@ class AbsensiController extends Controller
             'Budha' => 'Budha',
         );
 
-        $kelas = array(
-            'X AK 1' => 'X AK 1',
-            'X AK 2' => 'X AK 2',
-            'X AK 3' => 'X AK 3',
-            'X FARMASI' => 'X FARMASI',
-            'X RPL 1' => 'X RPL 1',
-            'X RPL 2' => 'X RPL 2',
-            'XI AK 1' => 'XI AK 1',
-            'XI AK 2' => 'XI AK 2',
-            'XI FARMASI' => 'XI FARMASI',
-            'XI RPL 1' => 'XI RPL 1',
-            'XI RPL 2' => 'XI RPL 2',
-            'XII AK 1' => 'XII AK 1',
-            'XII AK 2' => 'XII AK 2',
-            'XII FARMASI' => 'XII FARMASI',
-            'XII RPL 1' => 'XII RPL 1',
-            'XII RPL 2' => 'XII RPL 2',
-        );
+        $kelas = Kelas::get();
+        // $kelas = array(
+        //     'X AK 1' => 'X AK 1',
+        //     'X AK 2' => 'X AK 2',
+        //     'X AK 3' => 'X AK 3',
+        //     'X FARMASI' => 'X FARMASI',
+        //     'X RPL 1' => 'X RPL 1',
+        //     'X RPL 2' => 'X RPL 2',
+        //     'XI AK 1' => 'XI AK 1',
+        //     'XI AK 2' => 'XI AK 2',
+        //     'XI FARMASI' => 'XI FARMASI',
+        //     'XI RPL 1' => 'XI RPL 1',
+        //     'XI RPL 2' => 'XI RPL 2',
+        //     'XII AK 1' => 'XII AK 1',
+        //     'XII AK 2' => 'XII AK 2',
+        //     'XII FARMASI' => 'XII FARMASI',
+        //     'XII RPL 1' => 'XII RPL 1',
+        //     'XII RPL 2' => 'XII RPL 2',
+        // );
 
         $status = array(
             '' => '-',

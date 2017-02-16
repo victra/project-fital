@@ -134,8 +134,8 @@
                         <div class="col-sm-4">
                         <select class="form-control" name="kelas">
                                 <option value="">-- Kelas --</option>
-                                @foreach($content['kelas'] as $key => $value)
-                                    <option value="{{$key}}">{{$value['nama_kelas']}}</option>
+                                @foreach($content['kelas'] as $value)
+                                    <option value="{{$value['id']}}">{{$value['nama_kelas']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -206,8 +206,8 @@
                         <div class="col-sm-4">
                         <select class="form-control" name="kelas">
                                 <option value="">-- Kelas --</option>
-                                @foreach($content['kelas'] as $key => $value)
-                                    <option value="{{$key}}">{{$value['nama_kelas']}}</option>
+                                @foreach($content['kelas'] as $value)
+                                    <option value="{{$value['id']}}">{{$value['nama_kelas']}}</option>
                                 @endforeach
                             </select>
                         </div>

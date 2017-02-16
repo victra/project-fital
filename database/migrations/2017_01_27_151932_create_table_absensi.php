@@ -16,7 +16,7 @@ class CreateTableAbsensi extends Migration
             $table->integer('id', true);
             $table->integer('check_by_id')->index('absensi_check_by')->nullable();
             $table->integer('siswa_id')->index('absensi_siswa_id')->nullable();
-            $table->string('kelas');
+            $table->integer('kelas_id')->index('absensi_kelas_id')->nullable();;
             $table->string('status');
             $table->string('description')->nullable();
             $table->date('date');

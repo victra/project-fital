@@ -33,6 +33,7 @@ class Absensi extends \BaseModel
 	public static $relationsData = array(
 		'Siswa' 	=> array(self::BELONGS_TO, 'Model\Siswa'),
 		'checkBy' 	=> array(self::BELONGS_TO, 'App\User'),
+		'Kelas' 	=> array(self::BELONGS_TO, 'Model\Kelas'),
 
 	);
 
@@ -78,7 +79,7 @@ class Absensi extends \BaseModel
 	|--------------------------------------------------------------------------
 	*/
 	protected $appends = array(
-		'check_by','siswa'
+		'check_by','siswa','kelas'
 	);
 
 
@@ -108,5 +109,10 @@ class Absensi extends \BaseModel
 	 public function getSiswaAttribute()
 	 {
 	 	return $this->Siswa()->first();
+	 }
+
+	 public function getKelasAttribute()
+	 {
+	 	return $this->Kelas()->first();
 	 }
 }

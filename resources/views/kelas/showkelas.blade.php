@@ -110,8 +110,8 @@
                         <div class="col-sm-5">
                             <select class="form-control" name="wali_kelas">
                                 <option value="">-- Wali Kelas --</option>
-                                @foreach($content['walikelas'] as $key => $value)
-                                    <option value="{{$key}}">{{$value['name']}}</option>
+                                @foreach($content['walikelas'] as $value)
+                                    <option value="{{$value['id']}}">{{$value['name']}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -141,7 +141,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Ubah Data Kelas</h4>
             </div>
-            <form class="form-horizontal" method="post" action="storekelas" id="UbahKelas">          
+            <form class="form-horizontal" method="post" action="updatekelas" id="UbahKelas">          
                 <div class="modal-body">
                     <label class="control-label col-sm-3">Kode Kelas</label>
                     <div class="form-group">
@@ -171,8 +171,8 @@
                         <div class="col-sm-5">
                             <select class="form-control" name="wali_kelas">
                                 <option value="">-- Wali Kelas --</option>
-                                @foreach($content['walikelas'] as $key => $value)
-                                    <option value="{{$key}}">{{$value['name']}}</option>
+                                @foreach($content['walikelas'] as $value)
+                                    <option value="{{$value['id']}}">{{$value['name']}}</option>
                                 @endforeach
                             </select>
                         </div>

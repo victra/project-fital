@@ -33,9 +33,9 @@
                 <form style="margin-right:30px; margin-top:0px" class="pull-right">
                     <select class="form-control input-sm" onchange="location = this.value+'&tanggal={{$content['tanggal']}}';">
                         <option value="?search_kelas=">Pilih Kelas</option>
-                        @foreach($content['kelas'] as $key => $value)
-                            <?php $selected = $content['input_kelas']==$key ? 'selected' : '' ?>
-                            <option {{$selected}} value="?search_kelas={{$key}}">{{$value}}</option>
+                        @foreach($content['kelas'] as $value)
+                        <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
+                    <option {{$selected}} value="?search_kelas={{$value['id']}}">{{$value['nama_kelas']}}</option>
                         @endforeach
                     </select>
                 </form>
