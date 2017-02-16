@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Data Siswa
+    Data Kelas
 @endsection
 
 @section('contentheader_title')
-    Data Siswa
+    Data Kelas
 @endsection
 
 @section('contentheader_description')
-    Olah Data Siswa
+    Olah Data Kelas
 @endsection
 
 @section('main-content')
@@ -21,7 +21,7 @@
 
 <div class="box">
     <div class="box-header">
-        <!-- <h3 class="box-title">Data Siswa</h3> -->
+        <!-- <h3 class="box-title">Data Kelas</h3> -->
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Kelas" data-toggle="modal" data-target="#ModalTambahKelas"> <i class="fa fa-plus"></i> Tambah Kelas</a>            
     </div><!-- /.box-header -->
 
@@ -55,9 +55,9 @@
                             data-kd="{{$item->kd}}"
                             data-nama_kelas="{{$item->nama_kelas}}"
                             data-jurusan="{{$item->jurusan}}"
-                            data-wali_kelas="{{$item->wali_kelas_id}}"
+                            data-wali_kelas="{{$item->wali_kelas_id}}">
                             <span class="fa fa-edit"></span> Ubah</a>
-                            <a onclick="return confirm('Are you sure?')" href='delete&{{$item->kd}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
+                            <a onclick="return confirm('Are you sure?')" href='deletekelas&{{$item->kd}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
                         </center>
                     </td>
@@ -71,7 +71,7 @@
 @endsection
 
 @section('modals')
-<!-- Modal Form Tambah Data Siswa-->
+<!-- Modal Form Tambah Data Kelas-->
 <div class="modal fade" id="ModalTambahKelas" role="dialog">
     <div class="modal-dialog">
     <!-- Modal content-->
@@ -130,9 +130,9 @@
         </div>      
     </div>
 </div>
-<!-- Modal Form Tambah Data Siswa -->
+<!-- Modal Form Tambah Data Kelas -->
 
-<!-- Modal Form Ubah Data Siswa-->
+<!-- Modal Form Ubah Data Kelas-->
 <div class="modal fade" id="ModalUbahKelas" role="dialog">
     <div class="modal-dialog">
     <!-- Modal content-->
@@ -141,7 +141,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Ubah Data Kelas</h4>
             </div>
-            <form class="form-horizontal" method="post" action="updatekelas" id="UbahKelas">          
+            <form class="form-horizontal" method="post" action="storekelas" id="UbahKelas">          
                 <div class="modal-body">
                     <label class="control-label col-sm-3">Kode Kelas</label>
                     <div class="form-group">
@@ -191,5 +191,5 @@
         </div>      
     </div>
 </div>
-<!-- Modal Form Ubah Data Siswa -->
+<!-- Modal Form Ubah Data Kelas -->
 @endsection

@@ -12,6 +12,6 @@ function showModalKelas(button){
 	modal.find('select[name=jurusan]').val(jurusan);
 	modal.find('select[name=wali_kelas]').val(wali_kelas);
 		
-	modal.find('form.form-horizontal').prop('action', 'update&'+kd);
+	modal.find('form.form-horizontal').prop('action', 'updatekelas&'+kd);
 	modal.modal({backdrop: 'static', keyboard: false});
 }
