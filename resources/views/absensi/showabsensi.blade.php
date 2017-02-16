@@ -51,22 +51,22 @@
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
-                    <!-- <th><center>Agama</center></th>
-                    <th><center>Kelas</center></th> -->
+                    <th><center>Agama</center></th>
+                    <th><center>Kelas</center></th>
                     <th><center>Status</center></th>
                     <th><center>Keterangan</center></th>
                 </tr>
             </thead>
             <tbody>
                 <?php $no=1; ?>
-                @foreach($content['siswas'] as $item)
+                @foreach($content['siswasi'] as $item)
                     <tr>
                         <td><center>{{$no++}}</center></td>
                         <td><center>{{$item->nis}}</center></td>
                         <td>{{$item->nama}}</td>
                         <td><center>{{$item->jkl}}</center></td>
-                        <!-- <td><center>{{$item->agama}}</center></td>
-                        <td><center>{{$item->kelas}}</center></td>   -->
+                        <td><center>{{$item->agama}}</center></td>
+                        <td><center>{{$item->kelas->nama_kelas}}</center></td>  
                         @if(!isset($item['absensi']))
                             <td>
                                 <center>

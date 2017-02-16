@@ -15,11 +15,11 @@ class AbsensiController extends Controller
     public function showabsensi()
     {
         $siswas = Siswa::orderby('nis', 'ASC');
-        dd($siswas->get()->toArray());
+        // dd($siswas->get()->toArray());
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $siswas = $siswas->where('kelas', Input::get('search_kelas'))->get();
+            $siswas = $siswas->where('kelas_id', Input::get('search_kelas'))->get();
             $input_kelas = Input::get('search_kelas');
         }
 
@@ -75,7 +75,7 @@ class AbsensiController extends Controller
             }
         }
 
-        $content['siswas'] = $siswas;
+        $content['siswasi'] = $siswas->get();
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;
@@ -99,7 +99,7 @@ class AbsensiController extends Controller
             } else {
                 $absensi = new Absensi;
             }
-            $absensi->check_by = Auth::user()->id;//Orang yang melakukan absensi
+            $absensi->check_by_id = Auth::user()->id;//Orang yang melakukan absensi
             $absensi->siswa_id = $siswa_id;
             $absensi->kelas = Input::get('kelas');
             $absensi->status = $item['status'] ? $item['status'] : 'H';
