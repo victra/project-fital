@@ -39,6 +39,12 @@ class SiswaController extends Controller
         $siswa->jkl = $request->jkl;
         $siswa->agama = $request->agama;
         $siswa->kelas_id = $request->kelas;
+        $siswa->tlp_siswa = $request->tlp_siswa;
+        $siswa->alamat_siswa = $request->alamat_siswa;
+        $siswa->nama_ayah = $request->nama_ayah;
+        $siswa->nama_ibu = $request->nama_ibu;
+        $siswa->tlp_ortu = $request->tlp_ortu;
+        $siswa->alamat_ortu = $request->alamat_ortu;
         $siswa->save();
         //return redirect('show');
         \Session::flash('flash_message','Data siswa berhasil disimpan.');
@@ -102,13 +108,18 @@ class SiswaController extends Controller
     }
 
     public function updatesiswa(Request $request, $nis)
-    {
-        
+    {       
         $siswa = ['nis' => $request->nis
                 ,'nama' => $request->nama
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
-                ,'kelas_id'=> $request->kelas];
+                ,'kelas_id' => $request->kelas
+                ,'tlp_siswa' => $request->tlp_siswa
+                ,'alamat_siswa' => $request->alamat_siswa
+                ,'nama_ayah' => $request->nama_ayah
+                ,'nama_ibu' => $request->nama_ibu
+                ,'tlp_ortu' => $request->tlp_ortu
+                ,'alamat_ortu' => $request->alamat_ortu];
         DB::table('siswa')->where('nis',$request->nis)->update($siswa);
         //return redirect('show');
         \Session::flash('flash_message','Data siswa berhasil diubah.');

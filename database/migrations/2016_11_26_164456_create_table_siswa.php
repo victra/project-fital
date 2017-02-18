@@ -20,9 +20,12 @@ class CreateTableSiswa extends Migration
             $table->string('jkl');
             $table->string('agama');
             $table->integer('kelas_id')->index('siswa_kelas_id')->nullable();
-            $table->string('alamat');
-            $table->string('nama_ortu');
+            $table->string('tlp_siswa');
+            $table->string('alamat_siswa');
+            $table->string('nama_ayah');
+            $table->string('nama_ibu');
             $table->string('tlp_ortu');
+            $table->string('alamat_ortu');
             $table->timestamps();
             $table->softDeletes();
         });

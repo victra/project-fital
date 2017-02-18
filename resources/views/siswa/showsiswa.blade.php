@@ -48,9 +48,12 @@
                     <th><center>Jenis Kelamin</center></th>
                     <th><center>Agama</center></th>
                     <th><center>Kelas</center></th>
-                    <th class="none">Alamat</th>
-                    <th class="none">Nama Ayah/Ibu</th>
-                    <th class="none">Telepon Ayah/Ibu</th>
+                    <th class="none">Telepon Siswa</th>
+                    <th class="none">Alamat Siswa</th>
+                    <th class="none">Nama Ayah</th>
+                    <th class="none">Nama Ibu</th>
+                    <th class="none">Telepon Orang Tua</th>
+                    <th class="none">Alamat Orang Tua</th>
                     <th class="no-expor"><center>Action</center></th>
                 </tr>
             </thead>
@@ -65,9 +68,12 @@
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->agama}}</center></td>
                     <td><center>{{$item->kelas->nama_kelas}}</center></td>
-                    <td>{{$item->alamat}}</td>
-                    <td>{{$item->nama_ortu}}</td>
-                    <td>{{$item->tlp_ortu}}</td>  
+                    <td>{{$item->tlp_siswa}}</td>
+                    <td>{{$item->alamat_siswa}}</td>
+                    <td>{{$item->nama_ayah}}</td> 
+                    <td>{{$item->nama_ibu}}</td>
+                    <td>{{$item->tlp_ortu}}</td>
+                    <td>{{$item->alamat_ortu}}</td> 
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
@@ -77,9 +83,12 @@
                             data-jenis-kelamin="{{$item->jkl}}"
                             data-agama="{{$item->agama}}"
                             data-kelas="{{$item->kelas_id}}"
-                            data-alamat="{{$item->alamat}}"
-                            data-nama-ortu="{{$item->nama_ortu}}"
-                            data-tlp-ortu="{{$item->tlp_ortu}}">
+                            data-tlp-siswa="{{$item->tlp_siswa}}"
+                            data-alamat-siswa="{{$item->alamat_siswa}}"
+                            data-nama-ayah="{{$item->nama_ayah}}"
+                            data-nama-ibu="{{$item->nama_ibu}}"
+                            data-tlp-ortu="{{$item->tlp_ortu}}"
+                            data-alamat-ortu="{{$item->alamat_ortu}}">
                             <span class="fa fa-edit"></span></a>
                             <a onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
@@ -150,23 +159,41 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <label class="control-label col-sm-4">Telepon Siswa</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="tlp_siswa" class="form-control" placeholder="Telepon Siswa">
+                        </div>  
                     </div> 
-                    <label class="control-label col-sm-4">Alamat</label>
+                    <label class="control-label col-sm-4">Alamat Siswa</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <textarea name="alamat" class="form-control" placeholder="Alamat Siswa"></textarea>
+                            <textarea name="alamat_siswa" class="form-control" placeholder="Alamat Siswa"></textarea>
                         </div>  
                     </div>
-                    <label class="control-label col-sm-4">Nama Ayah/Ibu</label>
+                    <label class="control-label col-sm-4">Nama Ayah</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="nama_ortu" class="form-control" placeholder="Nama">
+                            <input type="text" name="nama_ayah" class="form-control" placeholder="Nama Ayah">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-4">Telepon Ayah/Ibu</label>
+                    <label class="control-label col-sm-4">Nama Ibu</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="tlp" class="form-control" placeholder="Telepon Ayah/Ibu">
+                            <input type="text" name="nama_ibu" class="form-control" placeholder="Nama Ibu">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Telepon Orang Tua</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="tlp_ortu" class="form-control" placeholder="Telepon Ayah/Ibu">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Alamat Orang Tua</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <textarea name="alamat_ortu" class="form-control" placeholder="Alamat Orang Tua"></textarea>
                         </div>  
                     </div>                 
                 </div>
@@ -240,23 +267,41 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <label class="control-label col-sm-4">Telepon Siswa</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="tlp_siswa" class="form-control" placeholder="Telepon Siswa">
+                        </div>  
                     </div> 
-                    <label class="control-label col-sm-4">Alamat</label>
+                    <label class="control-label col-sm-4">Alamat Siswa</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <textarea name="alamat" class="form-control" placeholder="Alamat Siswa"></textarea>
+                            <textarea name="alamat_siswa" class="form-control" placeholder="Alamat Siswa"></textarea>
                         </div>  
                     </div>
-                    <label class="control-label col-sm-4">Nama Ayah/Ibu</label>
+                    <label class="control-label col-sm-4">Nama Ayah</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="namaortu" class="form-control" placeholder="Nama">
+                            <input type="text" name="nama_ayah" class="form-control" placeholder="Nama Ayah">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-4">Telepon Ayah/Ibu</label>
+                    <label class="control-label col-sm-4">Nama Ibu</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="tlportu" class="form-control" placeholder="Telepon Ayah/Ibu">
+                            <input type="text" name="nama_ibu" class="form-control" placeholder="Nama Ibu">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Telepon Orang Tua</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="tlp_ortu" class="form-control" placeholder="Telepon Ayah/Ibu">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Alamat Orang Tua</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <textarea name="alamat_ortu" class="form-control" placeholder="Alamat Orang Tua"></textarea>
                         </div>  
                     </div>                   
                 </div>
