@@ -115,8 +115,45 @@ class GuruController extends Controller
     
     public function updateguru(Request $request, $nip)
     {
-        
-        $guru = ['nip' => $request->nip
+        // if ($request->has('password')) {
+        // // update dengan password 
+        //  $guru = ['nip' => $request->nip
+        //         ,'name' => $request->nama
+        //         ,'email' => $request->username
+        //         // ,'password' => Hash::make($request->password)
+        //         ,'role' => $request->role
+        //         ,'jkl' => $request->jkl
+        //         ,'agama' => $request->agama
+        //         ,'tlp'=> $request->tlp];
+        //     DB::table('users')->where('nip',$request->nip)->update($guru);     
+        // }else{
+        //     $guru = ['nip' => $request->nip
+        //         ,'name' => $request->nama
+        //         ,'email' => $request->username
+        //         ,'password' => Hash::make($request->password)
+        //         ,'role' => $request->role
+        //         ,'jkl' => $request->jkl
+        //         ,'agama' => $request->agama
+        //         ,'tlp'=> $request->tlp];
+        //     DB::table('users')->where('nip',$request->nip)->update($guru);  
+        // }
+        // Auth()->user()->update($request->only(['email', 'name']));
+
+        // return back()->withSuccess('update.');
+
+        if ($request['password'] == ''){
+            $guru = ['nip' => $request->nip
+                ,'name' => $request->nama
+                ,'email' => $request->username
+                // ,'password' => Hash::make($request->password)
+                ,'role' => $request->role
+                ,'jkl' => $request->jkl
+                ,'agama' => $request->agama
+                ,'tlp'=> $request->tlp];
+            DB::table('users')->where('nip',$request->nip)->update($guru);
+         
+        }else{
+            $guru = ['nip' => $request->nip
                 ,'name' => $request->nama
                 ,'email' => $request->username
                 ,'password' => Hash::make($request->password)
@@ -124,9 +161,10 @@ class GuruController extends Controller
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
                 ,'tlp'=> $request->tlp];
-        DB::table('users')->where('nip',$request->nip)->update($guru);
-        \Session::flash('flash_message','Data user berhasil diubah.');
-        return redirect('guru_piket');        
+            DB::table('users')->where('nip',$request->nip)->update($guru);      
+        
+        } 
+        return redirect('guru_piket');      
     }
 
     public function ubahpassword()

@@ -204,7 +204,7 @@
                     <label class="control-label col-sm-3">Password</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <input type="text" name="password" class="form-control" placeholder="Password">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Role</label>

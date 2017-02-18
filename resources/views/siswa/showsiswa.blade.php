@@ -21,8 +21,10 @@
 
 <div class="box">
     <div class="box-header">
+    @if (Auth::user()->role == 'administrator' or 'guru piket')
         <!-- <h3 class="box-title">Data Siswa</h3> -->
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahSiswa"> <i class="fa fa-plus"></i> Tambah Siswa</a>
+        @endif
             <form style="margin-right:125px; margin-top:0px" class="pull-right">
                 <select class="form-control input-sm" onchange="location = this.value;">
                     <option value="?search_kelas=">Semua Kelas</option>

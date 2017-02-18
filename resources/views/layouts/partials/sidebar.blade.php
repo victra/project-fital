@@ -5,7 +5,8 @@
     <section class="sidebar">
 
         <!-- Sidebar user panel (optional) -->
-        @if (! Auth::guest())
+        <!-- @if (! Auth::guest()) -->
+
             <!-- <div class="user-panel">
                 <div class="pull-left image">
                     <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
@@ -28,7 +29,7 @@
             </div>
         </form> -->
         <!-- /.search form -->        
-
+        @if (Auth::user()->role == 'administrator')
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">DAFTAR MENU</li>
@@ -59,7 +60,26 @@
                 </ul>
             </li> -->
         </ul><!-- /.sidebar-menu -->
-
+        @elseif (Auth::user()->role == 'guru piket')
+        <ul class="sidebar-menu">
+            <li class="header">DAFTAR MENU</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li class="{{ (Request::is('/')) ? 'active':'' }}"><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
+            <!-- <li class="{{ (Request::is('*show*')) ? 'active':'' }}"><a href="{{ url('show') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li> -->
+            <li class="{{ (Request::is('kelas')) ? 'active':'' }}"><a href="{{ url('kelas') }}"><i class='fa fa-user'></i> <span> Data Kelas </span></a></li>
+            <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li>            
+            <li class="{{ (Request::is('absensisiswa')) ? 'active':'' }}"><a href="{{ url('absensisiswa') }}"><i class='fa fa-table'></i> <span> Absensi Siswa </span></a></li>
+            <li class="{{ (Request::is('cariabsensi')) ? 'active':'' }}"><a href="{{ url('cariabsensi') }}"><i class='fa fa-search'></i> <span> Cari Absensi </span></a></li>
+            <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
+            <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Semester) </span></a></li>
+        </ul>
+        @else
+        <ul class="sidebar-menu">
+            <li class="header">DAFTAR MENU</li>
+            <!-- Optionally, you can add icons to the links -->
+            
+        </ul>
+        @endif
     </section>
     <!-- /.sidebar -->
 </aside>
