@@ -28,8 +28,24 @@ class Kelas extends \BaseModel
 	public $forceEntityHydrationFromInput = true; // Also for Update
 	public static $passwordAttributes  = array('');
 	public $autoHashPasswordAttributes = true;
-	public static $rules;
-	public static $customMessages;
+	public static $rules = array(
+		'nama_kelas' => 'required|max:15|unique',
+		'jurusan' => 'required',
+		'wali_kelas_id' => 'required'
+		);
+	public static $customMessages = 'custom' => array(
+    	'nama_kelas' => array(
+	        'required' => 'Nama Kelas harus diisi',
+	        'max' => 'Maksimal 15 karakter',
+	        'unique' => 'Nama Kelas sudah ada'
+    	),
+    	'jurusan' => array(
+	        'required' => 'Jurusan harus diisi'
+    	),
+    	'wali_kelas_id' => array(
+	        'required' => 'Wali Kelas harus diisi'
+    	)
+	);
 	public static $relationsData = array(
 		'waliKelas' 	=> array(self::BELONGS_TO, 'App\User'),
 	);
