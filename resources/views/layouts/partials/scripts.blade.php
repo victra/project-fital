@@ -70,13 +70,13 @@
             // pengaturan lebar kolom
             "bAutoWidth": false,
             "aoColumns" : [
-              { sWidth: '5%' },
-              { sWidth: '10%' },
-              { sWidth: '35%' },
-              { sWidth: '15%' },
-              { sWidth: '10%' },
-              { sWidth: '15%' },
-              { sWidth: '10%' },
+              { sWidth: '5%' }, //no
+              { sWidth: '10%' }, //nis
+              { sWidth: '35%' }, //nama
+              { sWidth: '15%' }, //jenis kelamin
+              { sWidth: '10%' }, //agama
+              { sWidth: '15%' }, //kelas
+              { sWidth: '10%' }, //action
               { sWidth: '0%' },
               { sWidth: '0%' },
               { sWidth: '0%' },
@@ -103,10 +103,10 @@
             //     },
 
             // kolom dengan class "iii" tidak ada fitur sorting
-            "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
-              {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
-            ],
+            // "aoColumnDefs" : [ 
+            //   {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
+            //   {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
+            // ],
             "sDom": 'T<"clear">lfrtip',
             "oTableTools": {
             "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
@@ -123,6 +123,51 @@
                 ]
             }
 
+        });
+        $('#tableuser').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '20%' }, //nip
+              { sWidth: '30%' }, //nama
+              { sWidth: '0%' },
+              { sWidth: '15%' }, //role
+              { sWidth: '15%' }, //jenis kelamin
+              { sWidth: '10%' }, //agama           
+              { sWidth: '0%' },              
+              { sWidth: '5%' }, //action
+            ],
+            // "aLengthMenu": [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"]],
+            // "oLanguage": {
+            //     sEmptyTable: "Belum ada data dalam tabel ini",
+            //     sInfo: "Menampilkan _START_ sampai _END_ data _TOTAL_ data",
+            //     sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+            //     sInfoFiltered: "(filtered from _MAX_ total data)",
+            //     sInfoPostFix: "",
+            //     sDecimal: "",
+            //     sThousands: ",",
+            //     sLengthMenu: "Tampilkan _MENU_ data",
+            //     sLoadingRecords: "Loading...",
+            //     sProcessing: "Processing...",
+            //     sSearch: "Cari:",
+            //     sSearchPlaceholder: "",
+            //     sUrl: "",
+            //     sZeroRecords: "Tidak ditemukan"
+            //     },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            // "aoColumnDefs" : [ 
+            //   {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
+            //   {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
+            // ],
         });
         $('#example2').dataTable({
             "bPaginate": true,
@@ -161,10 +206,10 @@
             //     },
 
             // kolom dengan class "iii" tidak ada fitur sorting
-            "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
-              {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
-            ],
+            // "aoColumnDefs" : [ 
+            //   {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
+            //   {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
+            // ],
             "sDom": 'T<"clear">lfrtip',
             "oTableTools": {
             "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",

@@ -26,19 +26,18 @@
     </div><!-- /.box-header -->
 
     <div class="box-body table-responsive">
-        <table id="example2" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info">
+        <table id="tableuser" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tableuser_info" cellspacing="0" width="100%">
 
             <thead>
                 <tr>
                     <th><center>No</center></th>
                     <th><center>NIP</center></th>
                     <th><center>Nama Guru</center></th>
-                    <th><center>Username</center></th>
-                    {{-- <th><center>Password</center></th> --}}
+                    <th class="none">Username</th>
                     <th><center>Role</center></th>
                     <th><center>Jenis Kelamin</center></th>
                     <th><center>Agama</center></th>
-                    <th><center>Telepon</center></th>
+                    <th class="none">Telepon</th>
                     <th><center>Action</center></th>
                 </tr>
             </thead>
@@ -50,12 +49,11 @@
                     <td><center>{{$no++}}</center></td>
                     <td><center>{{$item->nip}}</center></td>
                     <td>{{$item->name}}</td>
-                    <td><center>{{$item->email}}</center></td>
-                    {{-- <td><center>{{$item->password}}</center></td> --}}
+                    <td>{{$item->email}}</td>
                     <td><center>{{$item->role}}</center></td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->agama}}</center></td>
-                    <td><center>{{$item->tlp}}</center></td>  
+                    <td>{{$item->tlp}}</td>  
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nip}}"><span class="fa fa-edit"></span> Ubah</a> --}}
@@ -69,8 +67,8 @@
                             data-tlp="{{$item->tlp}}">
                             <!-- data-password="{{$item->password}}" -->
                             
-                            <span class="fa fa-edit"></span> Ubah</a>
-                            <a onclick="return confirm('Are you sure?')" href="deleteguru&{{$item->nip}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</a>
+                            <span class="fa fa-edit"></span></a>
+                            <a onclick="return confirm('Are you sure?')" href="deleteguru&{{$item->nip}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
                         </center>
                     </td>
                 </tr>                                    

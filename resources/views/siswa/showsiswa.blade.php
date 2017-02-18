@@ -38,7 +38,7 @@
     </div><!-- /.box-header -->
 
     <div class="box-body table-responsive">
-        <table id="tablesiswa" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info" cellspacing="0" width="100%">
+        <table id="tablesiswa" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablesiswa_info" cellspacing="0" width="100%">
 
             <thead>
                 <tr>
