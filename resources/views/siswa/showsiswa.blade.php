@@ -38,7 +38,7 @@
     </div><!-- /.box-header -->
 
     <div class="box-body table-responsive">
-        <table id="example2" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info">
+        <table id="tablesiswa" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info" cellspacing="0" width="100%">
 
             <thead>
                 <tr>
@@ -48,7 +48,10 @@
                     <th><center>Jenis Kelamin</center></th>
                     <th><center>Agama</center></th>
                     <th><center>Kelas</center></th>
-                    <th class="no-export"><center>Action</center></th>
+                    <th class="none">Alamat</th>
+                    <th class="none">Nama Ayah/Ibu</th>
+                    <th class="none">Telepon Ayah/Ibu</th>
+                    <th class="no-expor"><center>Action</center></th>
                 </tr>
             </thead>
 
@@ -61,7 +64,10 @@
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->agama}}</center></td>
-                    <td><center>{{$item->kelas->nama_kelas}}</center></td>  
+                    <td><center>{{$item->kelas->nama_kelas}}</center></td>
+                    <td>{{$item->alamat}}</td>
+                    <td>{{$item->nama_ortu}}</td>
+                    <td>{{$item->tlp_ortu}}</td>  
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
@@ -70,9 +76,12 @@
                             data-nama="{{$item->nama}}"
                             data-jenis-kelamin="{{$item->jkl}}"
                             data-agama="{{$item->agama}}"
-                            data-kelas="{{$item->kelas_id}}">
-                            <span class="fa fa-edit"></span> Ubah</a>
-                            <a onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
+                            data-kelas="{{$item->kelas_id}}"
+                            data-alamat="{{$item->alamat}}"
+                            data-nama-ortu="{{$item->nama_ortu}}"
+                            data-tlp-ortu="{{$item->tlp_ortu}}">
+                            <span class="fa fa-edit"></span></a>
+                            <a onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
                         </center>
                     </td>
@@ -97,19 +106,19 @@
             </div>
             <form class="form-horizontal" method="post" action="storesiswa" id="TambahSiswa">          
                 <div class="modal-body">
-                    <label class="control-label col-sm-3">NIS</label>
+                    <label class="control-label col-sm-4">NIS</label>
                     <div class="form-group">
                         <div class="col-sm-3">
                             <input type="text" name="nis" class="form-control" placeholder="NIS">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-3">Nama</label>
+                    <label class="control-label col-sm-4">Nama</label>
                     <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="nama" class="form-control" placeholder="Nama">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-3">Jenis Kelamin</label>
+                    <label class="control-label col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="jkl">
@@ -120,7 +129,7 @@
                             </select>
                         </div>
                     </div>
-                    <label class="control-label col-sm-3">Agama</label>
+                    <label class="control-label col-sm-4">Agama</label>
                     <div class="form-group">
                         <div class="col-sm-3">
                             <select class="form-control" name="agama">
@@ -131,7 +140,7 @@
                             </select>
                         </div>
                     </div>
-                    <label class="control-label col-sm-3">Kelas</label>
+                    <label class="control-label col-sm-4">Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-4">
                         <select class="form-control" name="kelas">
@@ -141,7 +150,25 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>                  
+                    </div> 
+                    <label class="control-label col-sm-4">Alamat</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <textarea name="alamat" class="form-control" placeholder="Alamat Siswa"></textarea>
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Nama Ayah/Ibu</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="nama_ortu" class="form-control" placeholder="Nama">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Telepon Ayah/Ibu</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="tlp" class="form-control" placeholder="Telepon Ayah/Ibu">
+                        </div>  
+                    </div>                 
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">
@@ -169,19 +196,19 @@
             </div>
             <form class="form-horizontal" method="post" action="storesiswa" id="UbahSiswa">          
                 <div class="modal-body">
-                    <label class="control-label col-sm-3">NIS</label>
+                    <label class="control-label col-sm-4">NIS</label>
                     <div class="form-group">
                         <div class="col-sm-3">
                             <input type="text" name="nis" class="form-control" placeholder="NIS" disabled="disabled">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-3">Nama</label>
+                    <label class="control-label col-sm-4">Nama</label>
                     <div class="form-group">
                         <div class="col-sm-6">
                             <input type="text" name="nama" class="form-control" placeholder="Nama">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-3">Jenis Kelamin</label>
+                    <label class="control-label col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">
                         <div class="col-sm-4">
                             <select class="form-control" name="jkl">
@@ -192,7 +219,7 @@
                             </select>
                         </div>
                     </div>
-                    <label class="control-label col-sm-3">Agama</label>
+                    <label class="control-label col-sm-4">Agama</label>
                     <div class="form-group">
                         <div class="col-sm-3">
                             <select class="form-control" name="agama">
@@ -203,7 +230,7 @@
                             </select>
                         </div>
                     </div>
-                    <label class="control-label col-sm-3">Kelas</label>
+                    <label class="control-label col-sm-4">Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-4">
                         <select class="form-control" name="kelas">
@@ -213,7 +240,25 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>                  
+                    </div> 
+                    <label class="control-label col-sm-4">Alamat</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <textarea name="alamat" class="form-control" placeholder="Alamat Siswa"></textarea>
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Nama Ayah/Ibu</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="namaortu" class="form-control" placeholder="Nama">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Telepon Ayah/Ibu</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="tlportu" class="form-control" placeholder="Telepon Ayah/Ibu">
+                        </div>  
+                    </div>                   
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">

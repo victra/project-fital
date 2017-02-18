@@ -51,10 +51,76 @@
 <script src="{{ asset('/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js') }}" type="text/javascript"></script>
 
+<!-- Responsive Table -->
+<script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+
 <!-- Pengaturan Datatables -->
 <script type="text/javascript">
     $(function() {
         $("#example1").dataTable();
+        $('#tablesiswa').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' },
+              { sWidth: '15%' },
+              { sWidth: '25%' },
+              { sWidth: '15%' },
+              { sWidth: '15%' },
+              { sWidth: '15%' },
+              { sWidth: '10%' },
+              { sWidth: '0%' },
+              { sWidth: '0%' },
+              { sWidth: '0%' },
+            ],
+            // "aLengthMenu": [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"]],
+            // "oLanguage": {
+            //     sEmptyTable: "Belum ada data dalam tabel ini",
+            //     sInfo: "Menampilkan _START_ sampai _END_ data _TOTAL_ data",
+            //     sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+            //     sInfoFiltered: "(filtered from _MAX_ total data)",
+            //     sInfoPostFix: "",
+            //     sDecimal: "",
+            //     sThousands: ",",
+            //     sLengthMenu: "Tampilkan _MENU_ data",
+            //     sLoadingRecords: "Loading...",
+            //     sProcessing: "Processing...",
+            //     sSearch: "Cari:",
+            //     sSearchPlaceholder: "",
+            //     sUrl: "",
+            //     sZeroRecords: "Tidak ditemukan"
+            //     },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
+              {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
+            ],
+            "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            "aButtons": [
+                    {
+                      "sExtends": "xls",
+                      "sButtonText": "Save as Excel",
+                      "sFileName": "file.xls",
+                      "mColumns": function (settings) {
+                         var api = new $.fn.dataTable.Api( settings );
+                         return api.columns(":not(.no-export)").indexes().toArray();
+                      }
+                    }
+                ]
+            }
+
+        });
         $('#example2').dataTable({
             "bPaginate": true,
             "bLengthChange": true,

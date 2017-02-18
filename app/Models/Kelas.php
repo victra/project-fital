@@ -33,7 +33,7 @@ class Kelas extends \BaseModel
 		'jurusan' => 'required',
 		'wali_kelas_id' => 'required'
 		);
-	public static $customMessages = 'custom' => array(
+	public static $customMessages = array(
     	'nama_kelas' => array(
 	        'required' => 'Nama Kelas harus diisi',
 	        'max' => 'Maksimal 15 karakter',
