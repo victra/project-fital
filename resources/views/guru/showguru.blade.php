@@ -62,12 +62,13 @@
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalGuru(this)" 
                             data-nip="{{$item->nip}}"
                             data-nama="{{$item->name}}"
-                            data-username="{{$item->email}}"
-                            data-password="{{$item->password}}"
+                            data-username="{{$item->email}}"                            
                             data-role="{{$item->role}}"
                             data-jenis-kelamin="{{$item->jkl}}"
                             data-agama="{{$item->agama}}"
                             data-tlp="{{$item->tlp}}">
+                            <!-- data-password="{{$item->password}}" -->
+                            
                             <span class="fa fa-edit"></span> Ubah</a>
                             <a onclick="return confirm('Are you sure?')" href="deleteguru&{{$item->nip}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</a>
                         </center>
@@ -204,7 +205,7 @@
                     <label class="control-label col-sm-3">Password</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Role</label>

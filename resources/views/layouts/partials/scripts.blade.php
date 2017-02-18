@@ -469,9 +469,9 @@ $('#ModalUbahGuru').modal('hide');
 
       password: {
         validators: {
-          notEmpty: {
-            message: "Password harus diisi"
-          },
+          // notEmpty: {
+          //   message: "Password harus diisi"
+          // },
           stringLength: {
             min: 6,
             message: "Password minimal 6 karakter"
