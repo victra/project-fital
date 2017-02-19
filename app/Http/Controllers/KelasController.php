@@ -33,6 +33,13 @@ class KelasController extends Controller
         $kelas = Kelas::orderby('created_at', 'DESC');
         // dd($kelas->get()->toArray());
 
+        // relasi manual
+        // $kelas = Kelas::orderby('created_at', 'DESC')->get();
+        // foreach ($kelas as $value) {
+        //     $value['wali_kelas_manual'] = User::where('id', $value['wali_kelas_id'])->first()->toArray();
+        // }
+        // dd($kelas->toArray());
+
         $jurusan = array(
             'Akutansi' => 'Akutansi',
             'Rekayasa Perangkat Lunak' => 'Rekayasa Perangkat Lunak',

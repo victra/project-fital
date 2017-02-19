@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Model\Siswa;
 use Model\Absensi;
 use Model\Kelas;
+use App\User;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -218,6 +219,15 @@ class AbsensiController extends Controller
     {
         $absensi = Absensi::orderby('created_at', 'DESC');
         // dd($absensi->get()->toArray());
+
+        // relasi manual
+        // $absensi = Absensi::orderby('created_at', 'DESC')->get();
+        // foreach ($absensi as $value) {
+        //     $value['check_by_manual'] = User::where('id', $value['check_by_id'])->first()->toArray();
+        //     $value['siswa_manual'] = Siswa::where('id', $value['siswa_id'])->first()->toArray();
+        //     $value['kelas_manual'] = Kelas::where('id', $value['kelas_id'])->first()->toArray();
+        // }
+        // dd($absensi->toArray());
 
         $content['absensis'] = $absensi->where('status','!=', 'H')->get();
         
