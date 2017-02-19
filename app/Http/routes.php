@@ -45,7 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('store', 'AbsensiController@storeabsensi');
 
     //ongoing
-    Route::get('ubahpassword', 'GuruController@ubahpassword');
+    Route::get('ubahpassword', 'GuruController@tampilubahpassword');
+    Route::post('ubahpasswordku', 'GuruController@ubahpasswordku');
     Route::get('storeabsensi', 'AbsensiController@storeabsensi');
     Route::get('deleteabsensi', 'AbsensiController@deleteabsensi');
     Route::get('cariabsensi', 'AbsensiController@cariabsensi');

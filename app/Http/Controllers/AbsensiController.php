@@ -16,8 +16,15 @@ class AbsensiController extends Controller
 {
     public function showabsensi()
     {
-        $siswas = Siswa::orderby('nis', 'ASC');
+        // $siswas = Siswa::orderby('nis', 'ASC');
         // dd($siswas->get()->toArray());
+
+        // relasi manual
+        $siswas = Siswa::orderby('created_at', 'DESC')->get();
+        foreach ($siswas as $value) {
+            $value['kelas_manual'] = Kelas::where('id', $value['kelas_id'])->first()->toArray();
+        }
+        // dd($siswa->toArray());
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
@@ -45,24 +52,6 @@ class AbsensiController extends Controller
         );
 
         $kelas = Kelas::get();
-        // $kelas = array(
-        //     'X AK 1' => 'X AK 1',
-        //     'X AK 2' => 'X AK 2',
-        //     'X AK 3' => 'X AK 3',
-        //     'X FARMASI' => 'X FARMASI',
-        //     'X RPL 1' => 'X RPL 1',
-        //     'X RPL 2' => 'X RPL 2',
-        //     'XI AK 1' => 'XI AK 1',
-        //     'XI AK 2' => 'XI AK 2',
-        //     'XI FARMASI' => 'XI FARMASI',
-        //     'XI RPL 1' => 'XI RPL 1',
-        //     'XI RPL 2' => 'XI RPL 2',
-        //     'XII AK 1' => 'XII AK 1',
-        //     'XII AK 2' => 'XII AK 2',
-        //     'XII FARMASI' => 'XII FARMASI',
-        //     'XII RPL 1' => 'XII RPL 1',
-        //     'XII RPL 2' => 'XII RPL 2',
-        // );
 
         $status = array(
             '' => '-',
@@ -74,11 +63,11 @@ class AbsensiController extends Controller
 
         if ($tanggal && Input::has('search_kelas')) {
             for ($i=0; $i < count($siswas) ; $i++) { 
-                $siswas[$i]['absensi'] = Absensi::where('siswa_id', $siswas[$i]['id'])->where('date', $tanggal)->first();
+                $siswas[$i]['absensi'] = Absensi::where('siswa_id', $siswas[$i]['kelas_manual']['id'])->where('date', $tanggal)->first();
             }
         }
 
-        $content['siswasi'] = $siswas->get();
+        $content['siswasi'] = $siswas;
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;

@@ -19,19 +19,20 @@
     <!-- <h3 class="box-title">Ubah Password</h3> -->
         </div>
             <div class="box-body">
-                 <form>
+                 <form method="post" action="ubahpasswordku">
                   <div class="form-group">
-                    <label for="pwdlama">Password Lama :</label>
-                    <input type="password" class="form-control" placeholder="Masukan Password Lama" id="pwdlama">
+                    <label for="current_password">Password Lama :</label>
+                    <input name="current_password" type="password" class="form-control" placeholder="Masukan Password Lama" id="pwdlama">
                   </div>
                   <div class="form-group">
-                    <label for="pwd">Password Baru (minimal 6 karakter) :</label>
-                    <input type="password" class="form-control" placeholder="Masukan Password Baru" id="pwdbaru">
+                    <label for="new_password">Password Baru (minimal 6 karakter) :</label>
+                    <input name="new_password" type="password" class="form-control" placeholder="Masukan Password Baru" id="pwdbaru">
                   </div>
                   <div class="form-group">
-                    <label for="pwd">Konfirmasi Password Baru :</label>
-                    <input type="password" class="form-control" placeholder="Ulangi Password Baru" id="pwdkonfirm">
-                  </div>                  
+                    <label for="password_confirmation">Konfirmasi Password Baru :</label>
+                    <input name="password_confirmation" type="password" class="form-control" placeholder="Ulangi Password Baru" id="pwdkonfirm">
+                  </div>
+                  <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                   <button type="submit" class="btn btn-primary">Ubah Password</button>
                 </form>
         </div>

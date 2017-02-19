@@ -59,7 +59,6 @@ class SiswaController extends Controller
         // $siswa = Siswa::orderby('created_at', 'DESC')->get();
         // foreach ($siswa as $value) {
         //     $value['kelas_pakek_cara_manual'] = Kelas::where('id', $value['kelas_id'])->first()->toArray();
-        //     # code...
         // }
         // dd($siswa->toArray());
 
