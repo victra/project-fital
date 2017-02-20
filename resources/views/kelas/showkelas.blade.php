@@ -26,14 +26,14 @@
     </div><!-- /.box-header -->
 
     <div class="box-body table-responsive">
-        <table id="example2" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info">
+        <table id="tablekelas" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablekelas_info">
 
             <thead>
                 <tr>
                     <th><center>No</center></th>
-                    <th><center>Kode Kelas</center></th>
                     <th><center>Nama Kelas</center></th>
-                    <th><center>Jurusan</center></th>
+                    <th><center>Kompetensi Keahlian</center></th>
+                    <th><center>Tahun Ajaran</center></th>
                     <th><center>Wali Kelas</center></th>
                     <th class="no-export"><center>Action</center></th>
                 </tr>
@@ -44,20 +44,21 @@
                 @foreach($content['kelasku'] as $item)
                 <tr>
                     <td><center>{{$no++}}</center></td>
-                    <td><center>{{$item->kd}}</center></td>
-                    <td><center>{{$item->nama_kelas}}</center></td>
+                    <td><center>{{$item->nama_kelas}}</center></td>                    
                     <td>{{$item->jurusan}}</td>
+                    <td><center>{{$item->thn_ajaran}}</center></td>
                     <td><center>{{$item->waliKelas->name}}</center></td> 
                     <td>
                         <center>                                    
-                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->kd}}"><span class="fa fa-edit"></span> Ubah</a> --}}
+                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalKelas(this)" 
-                            data-kd="{{$item->kd}}"
+                            data-id="{{$item->id}}"
                             data-nama_kelas="{{$item->nama_kelas}}"
                             data-jurusan="{{$item->jurusan}}"
+                            data-thn_ajaran="{{$item->thn_ajaran}}"
                             data-wali_kelas="{{$item->wali_kelas_id}}">
-                            <span class="fa fa-edit"></span> Ubah</a>
-                            <a onclick="return confirm('Are you sure?')" href='deletekelas&{{$item->kd}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span> Hapus</a>
+                            <span class="fa fa-edit"></span></a>
+                            <a onclick="return confirm('Are you sure?')" href='deletekelas&{{$item->id}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
                         </center>
                     </td>
@@ -82,30 +83,30 @@
             </div>
             <form class="form-horizontal" method="post" action="storekelas" id="TambahKelas">          
                 <div class="modal-body">
-                    <label class="control-label col-sm-3">Kode Kelas</label>
-                    <div class="form-group">
-                        <div class="col-sm-3">
-                            <input type="text" name="kd" class="form-control" placeholder="Kode Kelas">
-                        </div>  
-                    </div>
-                    <label class="control-label col-sm-3">Nama Kelas</label>
+                    <label class="control-label col-sm-4">Nama Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-3">
                             <input type="text" name="nama_kelas" class="form-control" placeholder="Nama Kelas">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-3">Jurusan</label>
+                    <label class="control-label col-sm-4">Kompetensi Keahlian</label>
                     <div class="form-group">
                         <div class="col-sm-5">
                             <select class="form-control" name="jurusan">
-                                <option value="">-- Jurusan --</option>
+                                <option value="">-- Kompetensi Keahlian --</option>
                                 @foreach($content['jurusan'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <label class="control-label col-sm-4">Tahun Ajaran</label>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <input type="text" name="thn_ajaran" class="form-control" placeholder="20xx/20xx">
+                        </div>  
                     </div>                    
-                    <label class="control-label col-sm-3">Wali Kelas</label>
+                    <label class="control-label col-sm-4">Wali Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-5">
                             <select class="form-control" name="wali_kelas">
@@ -143,19 +144,13 @@
             </div>
             <form class="form-horizontal" method="post" action="storekelas" id="UbahKelas">          
                 <div class="modal-body">
-                    <label class="control-label col-sm-3">Kode Kelas</label>
+                    <label class="control-label col-sm-4">Nama Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-3">
-                            <input type="text" name="kd" class="form-control" placeholder="Kode Kelas">
+                            <input type="text" name="nama_kelas" class="form-control" placeholder="Nama Kelas" readonly>
                         </div>  
                     </div>
-                    <label class="control-label col-sm-3">Nama Kelas</label>
-                    <div class="form-group">
-                        <div class="col-sm-3">
-                            <input type="text" name="nama_kelas" class="form-control" placeholder="Nama Kelas" disabled="disabled">
-                        </div>  
-                    </div>
-                    <label class="control-label col-sm-3">Jurusan</label>
+                    <label class="control-label col-sm-4">Jurusan</label>
                     <div class="form-group">
                         <div class="col-sm-5">
                             <select class="form-control" name="jurusan">
@@ -166,7 +161,13 @@
                             </select>
                         </div>
                     </div>
-                    <label class="control-label col-sm-3">Wali Kelas</label>
+                    <label class="control-label col-sm-4">Tahun Ajaran</label>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <input type="text" name="thn_ajaran" class="form-control" placeholder="20xx/20xx">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Wali Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-5">
                             <select class="form-control" name="wali_kelas">

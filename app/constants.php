@@ -7,8 +7,8 @@
 define('ISLAM', "Islam");
 define('KATOLIK', "Katolik");
 define('KRISTEN', "Kristen");
-define('HINDU', "Hindu");
-define('BUDHA', "Budha");
+// define('HINDU', "Hindu");
+// define('BUDHA', "Budha");
 
 //gender
 define('LK', "Laki-laki");

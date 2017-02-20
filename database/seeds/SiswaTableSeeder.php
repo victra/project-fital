@@ -53,7 +53,7 @@ class SiswaTableSeeder extends Seeder {
 				'nis' => '00003',
 				'nama' => 'JANCUK',
 				'jkl' => LK,
-				'agama' => HINDU,
+				'agama' => KRISTEN,
 				'kelas_id' => '3',
 				'tlp_siswa' => '08545430980',
 				'alamat_siswa' => 'Dekat Rumah Kepala Sekolah',

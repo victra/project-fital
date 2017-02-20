@@ -169,6 +169,48 @@
             //   {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
             // ],
         });
+        $('#tablekelas').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '20%' }, //nama kelas
+              { sWidth: '25%' }, //jurusan
+              { sWidth: '20%' }, //tahun ajaran
+              { sWidth: '25%' }, //wali kelas
+              { sWidth: '5%' }, //action
+            ],
+            // "aLengthMenu": [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"]],
+            // "oLanguage": {
+            //     sEmptyTable: "Belum ada data dalam tabel ini",
+            //     sInfo: "Menampilkan _START_ sampai _END_ data _TOTAL_ data",
+            //     sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+            //     sInfoFiltered: "(filtered from _MAX_ total data)",
+            //     sInfoPostFix: "",
+            //     sDecimal: "",
+            //     sThousands: ",",
+            //     sLengthMenu: "Tampilkan _MENU_ data",
+            //     sLoadingRecords: "Loading...",
+            //     sProcessing: "Processing...",
+            //     sSearch: "Cari:",
+            //     sSearchPlaceholder: "",
+            //     sUrl: "",
+            //     sZeroRecords: "Tidak ditemukan"
+            //     },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            // "aoColumnDefs" : [ 
+            //   {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
+            //   {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
+            // ],
+        });
         $('#example2').dataTable({
             "bPaginate": true,
             "bLengthChange": true,

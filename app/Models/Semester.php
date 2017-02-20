@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class Kelas extends \BaseModel
+class Semester extends \BaseModel
 {
 	/*
 	 |--------------------------------------------------------------------------
@@ -10,7 +10,7 @@ class Kelas extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
-	protected $table = 'kelas';
+	protected $table = 'semester';
 	protected $fillable = ['',];
 	protected $hidden = [
 		'updated_at',
@@ -28,27 +28,10 @@ class Kelas extends \BaseModel
 	public $forceEntityHydrationFromInput = true; // Also for Update
 	public static $passwordAttributes  = array('');
 	public $autoHashPasswordAttributes = true;
-	public static $rules = array(
-		'nama_kelas' => 'required|max:15|unique',
-		'jurusan' => 'required',
-		'wali_kelas_id' => 'required'
-		);
-	public static $customMessages = array(
-    	'nama_kelas' => array(
-	        'required' => 'Nama Kelas harus diisi',
-	        'max' => 'Maksimal 15 karakter',
-	        'unique' => 'Nama Kelas sudah ada'
-    	),
-    	'jurusan' => array(
-	        'required' => 'Jurusan harus diisi'
-    	),
-    	'wali_kelas_id' => array(
-	        'required' => 'Wali Kelas harus diisi'
-    	)
-	);
+	public static $rules;
+	public static $customMessages;
 	public static $relationsData = array(
-		'waliKelas' 	=> array(self::BELONGS_TO, 'App\User'),
-		// 'Semester'		=> array(self::BELONGS_TO, 'Model\Semester'),
+
 	);
 
 	/*
@@ -92,11 +75,6 @@ class Kelas extends \BaseModel
 	| Custom Setups
 	|--------------------------------------------------------------------------
 	*/
-	protected $appends = array(
-		'walikelas',
-		// 'semester',
-	);
-
 
 	/*
 	 |--------------------------------------------------------------------------
@@ -115,14 +93,4 @@ class Kelas extends \BaseModel
 	 | Appends & Attributes
 	 |--------------------------------------------------------------------------
 	 */
-
-	 public function getWalikelasAttribute()
-	 {
-	 	return $this->waliKelas()->first();
-	 }
-
-	 // public function getSemesterAttribute()
-	 // {
-	 // 	return $this->Semester()->first();
-	 // }
 }

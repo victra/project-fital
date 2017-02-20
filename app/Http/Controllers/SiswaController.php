@@ -76,8 +76,8 @@ class SiswaController extends Controller
             'Islam' => 'Islam',
             'Katolik' => 'Katolik',
             'Kristen' => 'Kristen',
-            'Hindu' => 'Hindu',
-            'Budha' => 'Budha',
+            // 'Hindu' => 'Hindu',
+            // 'Budha' => 'Budha',
         );
         $kelas = Kelas::get();
         // $kelas = array(

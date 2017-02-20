@@ -92,8 +92,8 @@ class GuruController extends Controller
             'Islam' => 'Islam',
             'Katolik' => 'Katolik',
             'Kristen' => 'Kristen',
-            'Hindu' => 'Hindu',
-            'Budha' => 'Budha',
+            // 'Hindu' => 'Hindu',
+            // 'Budha' => 'Budha',
         );
        
         $content['gurupkt'] = $guru->get();

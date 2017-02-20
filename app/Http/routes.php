@@ -56,6 +56,6 @@ Route::group(['middleware' => 'auth'], function () {
     // kelas
     Route::get('kelas', 'KelasController@showkelas');
     Route::post('storekelas', 'KelasController@storekelas');
-    Route::get('/deletekelas&{kd}', 'KelasController@deletekelas');    
-    Route::post('/updatekelas&{kd}', 'KelasController@updatekelas');
+    Route::get('/deletekelas&{id}', 'KelasController@deletekelas');    
+    Route::post('/updatekelas&{id}', 'KelasController@updatekelas');
 });

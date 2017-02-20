@@ -106,13 +106,13 @@
                     </div>
                     <label class="control-label col-sm-3">Username</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <input type="text" name="username" class="form-control" placeholder="Username">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Password</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>  
                     </div>
@@ -196,15 +196,16 @@
                     </div>
                     <label class="control-label col-sm-3">Username</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Password</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
-                            <input type="password" name="password" class="form-control" placeholder="Password">
-                        </div>  
+                        <div class="col-sm-3">
+                            <input type="password" name="password" class="form-control" placeholder="****************">
+                        </div>
+                        <span class="help-inline col-sm-5"> <i class="fa fa-info-circle"></i> Kosongkan jika tidak diubah </span>  
                     </div>
                     <label class="control-label col-sm-3">Role</label>
                     <div class="form-group">
