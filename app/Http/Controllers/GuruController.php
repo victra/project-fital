@@ -53,7 +53,7 @@ class GuruController extends Controller
 
     public function checkUsernameAvailability() {
 
-    $users = DB::table('users')->where('nip', Input::get('username')->get();
+    $users = DB::table('users')->where('nip', Input::get('nip'))->get();
     // dd($users);
     if ($users->email == Input::get('username')){
         $isAvailable = TRUE;
