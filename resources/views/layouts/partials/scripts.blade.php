@@ -619,6 +619,16 @@ $('#ModalUbahGuru').modal('hide');
           regexp: {
                     regexp: /^[a-zA-Z0-9_\.]+$/,
                     message: 'Hanya boleh memakai huruf, nomor dan garis bawah'
+          },
+          remote: {
+            url: "{{ URL::to('/checkUsername') }}",
+              data: function(validator) {
+                return {
+                    username: validator.getFieldElements('username').val(),
+                    nip: validator.getFieldElements('nip').val()
+                };
+            },
+            message: 'Username sudah ada'
           }
         }
       },

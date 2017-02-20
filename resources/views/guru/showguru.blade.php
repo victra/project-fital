@@ -197,7 +197,8 @@
                     <label class="control-label col-sm-3">Username</label>
                     <div class="form-group">
                         <div class="col-sm-3">
-                            <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true">
+                            <input type="text" name="username" class="form-control" placeholder="Username">
+                            <!-- <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true"> -->
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Password</label>

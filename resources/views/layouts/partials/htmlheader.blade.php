@@ -33,7 +33,7 @@
 
     <!-- Responsive Table -->
     <link href="{{ asset('/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/plugins/datatables/extensions/Responsive/css/dataTables.responsive.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ asset('/plugins/datatables/extensions/Responsive/css/dataTables.responsive.min.css') }}" rel="stylesheet" type="text/css" /> -->
 
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css" />

@@ -35,20 +35,49 @@ class GuruController extends Controller
             ));
     }
 
+    // public function checkUsernameAvailability() {
+
+    // $user = DB::table('users')->where('email', Input::get('username'))->count();
+
+    // if($user > 0) {
+    //     $isAvailable = FALSE;
+    // } else {
+    //     $isAvailable = TRUE;
+    // }
+
+    // echo json_encode(
+    //         array(
+    //             'valid' => $isAvailable
+    //         ));
+    // }
+
     public function checkUsernameAvailability() {
 
-    $user = DB::table('users')->where('email', Input::get('username'))->count();
-
-    if($user > 0) {
-        $isAvailable = FALSE;
-    } else {
+    $users = DB::table('users')->where('nip', 'Input::get('username')')->get();
+    // dd($users);
+    if ($users->email == Input::get('username')){
         $isAvailable = TRUE;
-    }
-
-    echo json_encode(
+        echo json_encode(
             array(
                 'valid' => $isAvailable
             ));
+
+    } else {
+        $user = DB::table('users')->where('email', Input::get('username'))->count();
+
+        if($user > 0) {
+            $isAvailable = FALSE;
+        } else {
+            $isAvailable = TRUE;
+        }
+
+        echo json_encode(
+                array(
+                    'valid' => $isAvailable
+                ));
+    }
+
+    
     }
 
     public function storeguru(Request $request)
