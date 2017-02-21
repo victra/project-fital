@@ -356,6 +356,62 @@ $('#confirm-delete').on('show.bs.modal', function(e) {
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js" type="text/javascript"></script> -->
 <script src="{{ asset('/js/bootstrapValidator.js') }}" type="text/javascript"></script>
 
+<!-- validasi form ubah password -->
+<script type="text/javascript">
+$(document).ready(function() {
+  var validator = $('#UbahPassword').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      current_password: {
+        validators: {
+          notEmpty: {
+            message: "Password lama harus diisi"
+          },
+          remote: {
+            url: "{{ URL::to('/checkPassword') }}",
+              data: function(validator) {
+                return {
+                    current_password: validator.getFieldElements('current_password').val()
+                };
+            },
+            message: 'Password yang anda masukkan salah'
+          }
+        }
+      },
+
+      new_password: {
+        validators: {
+          notEmpty: {
+            message: "Password baru harus diisi"
+          },          
+          stringLength: {
+            min: 6,
+            max: 50,
+            message: "Nama antara 6-50 karakter"
+          },
+        }
+      },
+
+      password_confirmation: {
+        validators: {
+          notEmpty: {
+            message: "Konfirmasi password harus diisi"
+          },
+          identical: {
+            field: "new_password",
+            message: "Konfirmasi password baru tidak sama dengan password baru"
+          }
+        }
+      }
+    }
+  });
+});
+</script>
+
 <!-- validasi form modal tambah siswa -->
 <script type="text/javascript">
 $(document).ready(function() {

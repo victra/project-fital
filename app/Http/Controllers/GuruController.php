@@ -20,6 +20,39 @@ class GuruController extends Controller
 
 //guru disini berarti user
 
+    public function checkPassword() {
+// if (Hash::check($request->current_password, Auth::user()->password)){
+    $password = DB::table('users')->where('id', '=' ,'Auth::user()->id')->value('password');
+     // dd($password);
+    // $user = new User;
+    //             $user->where('id', '=' ,Auth::user()->id)
+    //             ->update(['password' => Hash::make($request->new_password)]);
+    // $test = Hash::make('password');
+    // dd($test);
+    // $data = User::find($id);
+    if (Hash::check( Input::get('current_password') , Auth::user()->password) ){
+
+    //     if ($password == Hash::check(Input::get('current_password'))){
+        // if (Hash::check(Input::get('current')) == $password) {
+                
+            $isAvailable = TRUE;
+          
+            echo json_encode(
+                    array(
+                        'valid' => $isAvailable
+                    ));
+            
+        } else {
+            $isAvailable = FALSE;
+          
+            echo json_encode(
+                    array(
+                        'valid' => $isAvailable
+                    ));
+        }
+    
+    }
+
     public function checkNIPAvailability() {
 
     $user = DB::table('users')->where('nip', Input::get('nip'))->count();

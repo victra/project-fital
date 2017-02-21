@@ -23,7 +23,7 @@
     <!-- <h3 class="box-title">Ubah Password</h3> -->
         </div>
             <div class="box-body">
-                 <form method="post" action="{{url('ubahpassworduser')}}">
+                 <form method="post" action="{{url('ubahpassworduser')}}" id="UbahPassword">
                  {{csrf_field()}}
                   <div class="form-group">
                     <label for="current_password">Password Lama :</label>
