@@ -426,7 +426,7 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
 });
 </script>
 
-<!-- validasi form modal tambah guru -->
+<!-- validasi form modah tambah guru -->
 <script type="text/javascript">
 $(document).ready(function() {
 $('#ModalTambahGuru').modal('hide');
@@ -488,7 +488,8 @@ $('#ModalTambahGuru').modal('hide');
             url: "{{ URL::to('/checkUsername') }}",
               data: function(validator) {
                 return {
-                    username: validator.getFieldElements('username').val()
+                    username: validator.getFieldElements('username').val(),
+                    nama: validator.getFieldElements('nama').val()
                 };
             },
             message: 'Username sudah ada'
@@ -565,7 +566,6 @@ $('#ModalTambahGuru').modal('hide');
 $(document).ready(function() {
 $('#ModalUbahGuru').modal('hide');
   var validator = $('#UbahGuru').bootstrapValidator({
-    excluded: [':disabled', ':hidden', ':not(:visible)'],
     feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -607,7 +607,6 @@ $('#ModalUbahGuru').modal('hide');
       },
 
       username: {
-        excluded: 'true',
         validators: {
           notEmpty: {
             message: "Username harus diisi"
@@ -621,7 +620,7 @@ $('#ModalUbahGuru').modal('hide');
                     message: 'Hanya boleh memakai huruf, nomor dan garis bawah'
           },
           remote: {
-            url: "{{ URL::to('/checkUsername') }}",
+            url: "{{ URL::to('/checkUsernameUbah') }}",
               data: function(validator) {
                 return {
                     username: validator.getFieldElements('username').val(),

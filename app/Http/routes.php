@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     //guru piket
     Route::get('/checkNIP', 'GuruController@checkNIPAvailability');
     Route::get('/checkUsername', 'GuruController@checkUsernameAvailability');
+    Route::get('/checkUsernameUbah', 'GuruController@checkUsernameAvailabilityUbah');
     Route::post('storeguru', 'GuruController@storeguru');
     Route::get('guru_piket', 'GuruController@showguru');   
     Route::get('/deleteguru&{nip}', 'GuruController@deleteguru');
