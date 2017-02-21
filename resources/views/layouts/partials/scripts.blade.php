@@ -345,6 +345,13 @@
 })
 </script>
 
+<!-- MODAL KONFIRMASI HAPUS DATA -->
+<script type="text/javascript">
+$('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
+</script>
+
 <!-- bootstrapvalidator -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js" type="text/javascript"></script> -->
 <script src="{{ asset('/js/bootstrapValidator.js') }}" type="text/javascript"></script>

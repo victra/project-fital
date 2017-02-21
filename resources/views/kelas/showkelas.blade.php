@@ -58,9 +58,8 @@
                             data-thn_ajaran="{{$item->thn_ajaran}}"
                             data-wali_kelas="{{$item->wali_kelas_id}}">
                             <span class="fa fa-edit"></span></a>
-                            <a onclick="return confirm('Are you sure?')" href='deletekelas&{{$item->id}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a>
-                            <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
-                        </center>
+                            <!-- <a onclick="return confirm('Are you sure?')" href='deletekelas&{{$item->id}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a> -->
+                            <a data-href="deletekelas&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
                     </td>
                 </tr>                                    
                 @endforeach
@@ -72,6 +71,24 @@
 @endsection
 
 @section('modals')
+<!-- Modal Konfirmasi Hapus -->
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                Konfirmasi Hapus Data
+            </div>
+            <div class="modal-body">
+                Apa anda yakin akan menghapus data ini?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
+                <a class="btn btn-danger btn-ok">Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Form Tambah Data Kelas-->
 <div class="modal fade" id="ModalTambahKelas" role="dialog">
     <div class="modal-dialog">
