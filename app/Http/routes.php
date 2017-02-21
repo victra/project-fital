@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ubahpassword', 'GuruController@tampilubahpassword');
     Route::post('ubahpassworduser', 'GuruController@ubahpassworduser');
     Route::get('/checkPassword', 'GuruController@checkPassword');
+    Route::post('ubahpassworduser', 'GuruController@ubahpasswordpakaimodal');
 
 
     Route::get('storeabsensi', 'AbsensiController@storeabsensi');

@@ -271,30 +271,30 @@ class GuruController extends Controller
         return View::make('guru.ubahpasswordguru');
     }
 
-    public function ubahpassword(Request $request)
-    {
-        $user = Auth::user();
+    // public function ubahpassword(Request $request)
+    // {
+    //     $user = Auth::user();
 
-        $current_password = $request->input('current_password');
+    //     $current_password = $request->input('current_password');
 
-        $new_password = $request->input('new_password');
+    //     $new_password = $request->input('new_password');
 
-        if (Hash::check($current_password, $user->password)) {
+    //     if (Hash::check($current_password, $user->password)) {
 
-            $user->fill([
+    //         $user->fill([
 
-                    // This should be $request->password, not `$request->newPassword`
+    //                 // This should be $request->password, not `$request->newPassword`
 
-                    'new_password' => Hash::make($request->newPassword)
+    //                 'new_password' => Hash::make($request->newPassword)
 
-                ])->save();
+    //             ])->save();
 
-        } else {
-            return ('Please enter the correct password');
-        }
+    //     } else {
+    //         return ('Please enter the correct password');
+    //     }
 
-        return back();
-    }
+    //     return back();
+    // }
 
     public function ubahpassworduser(Request $request){
         $rules = [
@@ -327,5 +327,13 @@ class GuruController extends Controller
                 return redirect('ubahpassword')->with('message','Password yang anda masukkan salah');
             }
         }
+    }
+
+    public function ubahpasswordpakaimodal(Request $request){        
+        $user = new User;
+        $user->where('id', '=' ,Auth::user()->id)
+        ->update(['password' => Hash::make($request->new_password)]);
+        // return redirect('guru_piket')->with('status','Password ya ya');
+        // return back ();           
     }
 }
