@@ -1,5 +1,6 @@
 function showModalGuru(button){
 	var modal  = $('#ModalUbahGuru');
+	var id = $(button).data('id');
 	var nip = $(button).data('nip');
 	var nama = $(button).data('nama');
 	var username = $(button).data('username');
@@ -11,6 +12,7 @@ function showModalGuru(button){
 	
 	// Show Modal
 	modal.find('h4').html('Ubaha Data Guru');
+	modal.find('input[name=id]').val(id);
 	modal.find('input[name=nip]').val(nip);
 	modal.find('input[name=nama]').val(nama);
 	modal.find('input[name=username]').val(username);
@@ -20,6 +22,6 @@ function showModalGuru(button){
 	modal.find('select[name=agama]').val(agama);
 	modal.find('input[name=tlp]').val(tlp);
 		
-	modal.find('form.form-horizontal').prop('action', 'updateguru&'+nip);
+	modal.find('form.form-horizontal').prop('action', 'updateguru&'+id);
 	modal.modal({backdrop: 'static', keyboard: false});
 }

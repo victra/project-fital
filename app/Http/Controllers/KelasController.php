@@ -16,6 +16,54 @@ class KelasController extends Controller
     {
         return view('siswa.insert');
     }
+    
+    public function checkKelasAvailability() {
+
+    $kelas = DB::table('kelas')->where('nama_kelas', Input::get('nama_kelas'))->count();
+
+    if($kelas > 0) {
+        $isAvailable = FALSE;
+    } else {
+        $isAvailable = TRUE;
+    }
+
+    echo json_encode(
+            array(
+                'valid' => $isAvailable
+            ));
+    }
+
+    public function checkKelasAvailabilityUbah() {
+
+    $kelas = DB::table('kelas')->where('id', Input::get('id'))->value('nama_kelas');
+    // dd($users);
+
+        if ($kelas == Input::get('nama_kelas')){
+                
+            $isAvailable = TRUE;
+          
+            echo json_encode(
+                    array(
+                        'valid' => $isAvailable
+                    ));
+            
+        } else {
+            $kelas = DB::table('kelas')->where('nama_kelas', Input::get('nama_kelas'))->count();
+
+            if($kelas > 0) {
+                $isAvailable = FALSE;
+            } else {
+                $isAvailable = TRUE;
+            }
+
+            echo json_encode(
+                    array(
+                        'valid' => $isAvailable
+                ));
+        }
+    
+    }
+
     public function storekelas(Request $request)
     {
         $kelas = new Kelas;

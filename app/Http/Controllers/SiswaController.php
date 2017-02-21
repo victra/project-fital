@@ -31,6 +31,37 @@ class SiswaController extends Controller
         ));
     }
 
+    public function checkNISAvailabilityUbah() {
+
+    $nis = DB::table('siswa')->where('id', Input::get('id'))->value('nis');
+    // dd($nis);
+
+        if ($nis == Input::get('nis')){
+                
+            $isAvailable = TRUE;
+          
+            echo json_encode(
+                    array(
+                        'valid' => $isAvailable
+                    ));
+            
+        } else {
+            $nis = DB::table('siswa')->where('nis', Input::get('nis'))->count();
+
+            if($nis > 0) {
+                $isAvailable = FALSE;
+            } else {
+                $isAvailable = TRUE;
+            }
+
+            echo json_encode(
+                    array(
+                        'valid' => $isAvailable
+                ));
+        }
+    
+    }
+
     public function storesiswa(Request $request)
     {
         $siswa = new Siswa;
@@ -80,24 +111,6 @@ class SiswaController extends Controller
             // 'Budha' => 'Budha',
         );
         $kelas = Kelas::get();
-        // $kelas = array(
-        //     'X AK 1' => 'X AK 1',
-        //     'X AK 2' => 'X AK 2',
-        //     'X AK 3' => 'X AK 3',
-        //     'X FARMASI' => 'X FARMASI',
-        //     'X RPL 1' => 'X RPL 1',
-        //     'X RPL 2' => 'X RPL 2',
-        //     'XI AK 1' => 'XI AK 1',
-        //     'XI AK 2' => 'XI AK 2',
-        //     'XI FARMASI' => 'XI FARMASI',
-        //     'XI RPL 1' => 'XI RPL 1',
-        //     'XI RPL 2' => 'XI RPL 2',
-        //     'XII AK 1' => 'XII AK 1',
-        //     'XII AK 2' => 'XII AK 2',
-        //     'XII FARMASI' => 'XII FARMASI',
-        //     'XII RPL 1' => 'XII RPL 1',
-        //     'XII RPL 2' => 'XII RPL 2',
-        // );
        
         $content['siswas'] = $siswa->get();
         $content['jenis_kelamin'] = $jenis_kelamin;
@@ -108,16 +121,17 @@ class SiswaController extends Controller
                     ->with('content', $content);
     }
     
-    public function deletesiswa($nis)
+    public function deletesiswa($id)
     {
-        DB::table('siswa')->where('nis',$nis)->delete();
+        DB::table('siswa')->where('id',$id)->delete();
         \Session::flash('flash_message','Data siswa berhasil dihapus.');
         return back ();
     }
 
-    public function updatesiswa(Request $request, $nis)
+    public function updatesiswa(Request $request, $id)
     {       
-        $siswa = ['nis' => $request->nis
+        $siswa = ['id' => $request->id
+                ,'nis' => $request->nis
                 ,'nama' => $request->nama
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
@@ -128,7 +142,7 @@ class SiswaController extends Controller
                 ,'nama_ibu' => $request->nama_ibu
                 ,'tlp_ortu' => $request->tlp_ortu
                 ,'alamat_ortu' => $request->alamat_ortu];
-        DB::table('siswa')->where('nis',$request->nis)->update($siswa);
+        DB::table('siswa')->where('id',$request->id)->update($siswa);
         //return redirect('show');
         \Session::flash('flash_message','Data siswa berhasil diubah.');
         return back ();        

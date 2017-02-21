@@ -27,19 +27,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     // siswa
     Route::get('/checkNIS', 'SiswaController@checkNISAvailability');
+    Route::get('/checkNISUbah', 'SiswaController@checkNISAvailabilityUbah');
     Route::post('storesiswa', 'SiswaController@storesiswa');    
     Route::get('siswa', 'SiswaController@showsiswa');
-    Route::get('/delete&{nis}', 'SiswaController@deletesiswa');    
-    Route::post('/update&{nis}', 'SiswaController@updatesiswa');
+    Route::get('/deletesiswa&{id}', 'SiswaController@deletesiswa');    
+    Route::post('/updatesiswa&{id}', 'SiswaController@updatesiswa');
     
     //guru piket
     Route::get('/checkNIP', 'GuruController@checkNIPAvailability');
+    Route::get('/checkNIPUbah', 'GuruController@checkNIPAvailabilityUbah');
     Route::get('/checkUsername', 'GuruController@checkUsernameAvailability');
     Route::get('/checkUsernameUbah', 'GuruController@checkUsernameAvailabilityUbah');
     Route::post('storeguru', 'GuruController@storeguru');
     Route::get('guru_piket', 'GuruController@showguru');   
-    Route::get('/deleteguru&{nip}', 'GuruController@deleteguru');
-    Route::post('/updateguru&{nip}', 'GuruController@updateguru');
+    Route::get('/deleteguru&{id}', 'GuruController@deleteguru');
+    Route::post('/updateguru&{id}', 'GuruController@updateguru');
 
     //absensi siswa
     Route::get('absensisiswa', 'AbsensiController@showabsensi');    
@@ -55,6 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('rekappersemester', 'AbsensiController@rekapabsensisemester');
 
     // kelas
+    Route::get('/checkKelas', 'KelasController@checkKelasAvailability');
+    Route::get('/checkKelasUbah', 'KelasController@checkKelasAvailabilityUbah');
     Route::get('kelas', 'KelasController@showkelas');
     Route::post('storekelas', 'KelasController@storekelas');
     Route::get('/deletekelas&{id}', 'KelasController@deletekelas');    

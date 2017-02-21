@@ -76,8 +76,9 @@
                     <td>{{$item->alamat_ortu}}</td> 
                     <td>
                         <center>                                    
-                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nis}}"><span class="fa fa-edit"></span> Ubah</a> --}}
+                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalSiswa(this)" 
+                            data-id="{{$item->id}}"
                             data-nis="{{$item->nis}}"
                             data-nama="{{$item->nama}}"
                             data-jenis-kelamin="{{$item->jkl}}"
@@ -90,7 +91,7 @@
                             data-tlp-ortu="{{$item->tlp_ortu}}"
                             data-alamat-ortu="{{$item->alamat_ortu}}">
                             <span class="fa fa-edit"></span></a>
-                            <a onclick="return confirm('Are you sure?')" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a>
+                            <a onclick="return confirm('Are you sure?')" href='deletesiswa&{{$item->id}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
                         </center>
                     </td>
@@ -129,7 +130,7 @@
                     </div>
                     <label class="control-label col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <select class="form-control" name="jkl">
                                 <option value="">-- Jenis Kelamin --</option>
                                 @foreach($content['jenis_kelamin'] as $key => $value)
@@ -140,7 +141,7 @@
                     </div>
                     <label class="control-label col-sm-4">Agama</label>
                     <div class="form-group">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="form-control" name="agama">
                                 <option value="">-- Agama --</option>
                                 @foreach($content['agama'] as $key => $value)
@@ -162,13 +163,13 @@
                     </div>
                     <label class="control-label col-sm-4">Telepon Siswa</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <input type="text" name="tlp_siswa" class="form-control" placeholder="Telepon Siswa">
                         </div>  
                     </div> 
                     <label class="control-label col-sm-4">Alamat Siswa</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <textarea name="alamat_siswa" class="form-control" placeholder="Alamat Siswa"></textarea>
                         </div>  
                     </div>
@@ -186,7 +187,7 @@
                     </div>
                     <label class="control-label col-sm-4">Telepon Orang Tua</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <input type="text" name="tlp_ortu" class="form-control" placeholder="Telepon Ayah/Ibu">
                         </div>  
                     </div>
@@ -223,10 +224,15 @@
             </div>
             <form class="form-horizontal" method="post" action="storesiswa" id="UbahSiswa">          
                 <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <input type="hidden" name="id" class="form-control">
+                        </div>  
+                    </div>
                     <label class="control-label col-sm-4">NIS</label>
                     <div class="form-group">
                         <div class="col-sm-3">
-                            <input type="text" name="nis" class="form-control" placeholder="NIS" disabled="disabled">
+                            <input type="text" name="nis" class="form-control" placeholder="NIS">
                         </div>  
                     </div>
                     <label class="control-label col-sm-4">Nama</label>
@@ -237,7 +243,7 @@
                     </div>
                     <label class="control-label col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <select class="form-control" name="jkl">
                                 <option value="">-- Jenis Kelamin --</option>
                                 @foreach($content['jenis_kelamin'] as $key => $value)
@@ -248,7 +254,7 @@
                     </div>
                     <label class="control-label col-sm-4">Agama</label>
                     <div class="form-group">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <select class="form-control" name="agama">
                                 <option value="">-- Agama --</option>
                                 @foreach($content['agama'] as $key => $value)
@@ -270,7 +276,7 @@
                     </div>
                     <label class="control-label col-sm-4">Telepon Siswa</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <input type="text" name="tlp_siswa" class="form-control" placeholder="Telepon Siswa">
                         </div>  
                     </div> 
@@ -294,7 +300,7 @@
                     </div>
                     <label class="control-label col-sm-4">Telepon Orang Tua</label>
                     <div class="form-group">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <input type="text" name="tlp_ortu" class="form-control" placeholder="Telepon Ayah/Ibu">
                         </div>  
                     </div>

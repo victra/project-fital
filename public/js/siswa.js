@@ -1,5 +1,6 @@
 function showModalSiswa(button){
 	var modal  = $('#ModalUbahSiswa');
+	var id = $(button).data('id');
 	var nis = $(button).data('nis');
 	var nama = $(button).data('nama');
 	var jenis_kelamin = $(button).data('jenis-kelamin');
@@ -14,6 +15,7 @@ function showModalSiswa(button){
 	
 	// Show Modal
 	modal.find('h4').html('Ubah Data Siswa');
+	modal.find('input[name=id]').val(id);
 	modal.find('input[name=nis]').val(nis);
 	modal.find('input[name=nama]').val(nama);
 	modal.find('select[name=jkl]').val(jenis_kelamin);
@@ -26,6 +28,6 @@ function showModalSiswa(button){
 	modal.find('input[name=tlp_ortu]').val(tlp_ortu);
 	modal.find('textarea[name=alamat_ortu]').val(alamat_ortu);
 		
-	modal.find('form.form-horizontal').prop('action', 'update&'+nis);
+	modal.find('form.form-horizontal').prop('action', 'updatesiswa&'+id);
 	modal.modal({backdrop: 'static', keyboard: false});
 }

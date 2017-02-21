@@ -328,7 +328,7 @@
 <script type="text/javascript">
     $('[data-dismiss=modal]').on('click', function (e) {
     // $("#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru").data('bootstrapValidator').resetForm();
-    $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru').bootstrapValidator("resetForm",true);          
+    $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru, #TambahKelas, #UbahKelas').bootstrapValidator("resetForm",true);          
     var $t = $(this),
         target = $t[0].href || $t.data("target") || $t.parents('.modal') || [];
     
@@ -349,13 +349,11 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js" type="text/javascript"></script> -->
 <script src="{{ asset('/js/bootstrapValidator.js') }}" type="text/javascript"></script>
 
-<!-- validasi form modal tambah dan ubah siswa -->
+<!-- validasi form modal tambah siswa -->
 <script type="text/javascript">
 $(document).ready(function() {
-$('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
-
-
-  var validator = $('#TambahSiswa, #UbahSiswa').bootstrapValidator({
+$('#ModalTambahSiswa').modal('hide');
+  var validator = $('#TambahSiswa').bootstrapValidator({
     feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -396,21 +394,97 @@ $('#ModalTambahSiswa, #ModalUbahSiswa').modal('hide');
         }
       },
 
-      // jkl: {
-      //   validators: {
-      //     notEmpty: {
-      //       message: "Jenis Kelamin is required"
-      //     }
-      //   }
-      // },
+      jkl: {
+        validators: {
+          notEmpty: {
+            message: "Jenis kelamin harus diisi"
+          }
+        }
+      },
 
-      // agama: {
-      //   validators: {
-      //     notEmpty: {
-      //       message: "Agama is required"
-      //     }
-      //   }
-      // },
+      agama: {
+        validators: {
+          notEmpty: {
+            message: "Agama harus diisi"
+          }
+        }
+      },
+
+      kelas: {
+        validators: {
+          notEmpty: {
+            message: "Kelas harus diisi"
+          }
+        }
+      }
+
+
+    }
+  });
+});
+</script>
+
+<!-- validasi form modal ubah siswa -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalUbahSiswa').modal('hide');
+  var validator = $('#UbahSiswa').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nis: {
+        validators: {
+          notEmpty: {
+            message: "NIS harus diisi"
+          },          
+          stringLength: {
+            min: 4,
+            message: "NIS minimal 4 karakter"
+          },
+          remote: {
+            url: "{{ URL::to('/checkNISUbah') }}",
+              data: function(validator) {
+                return {
+                    nis: validator.getFieldElements('nis').val(),
+                    id: validator.getFieldElements('id').val()
+                };
+            },
+            message: 'NIS sudah ada'
+          }
+        }
+      },
+
+      nama: {
+        validators: {
+          notEmpty: {
+            message: "Nama harus diisi"
+          },          
+          stringLength: {
+            min: 3,
+            max: 50,
+            message: "Nama antara 3-50 karakter"
+          },       
+        }
+      },
+
+      jkl: {
+        validators: {
+          notEmpty: {
+            message: "Jenis kelamin harus diisi"
+          }
+        }
+      },
+
+      agama: {
+        validators: {
+          notEmpty: {
+            message: "Agama hraus diisi"
+          }
+        }
+      },
 
       kelas: {
         validators: {
@@ -521,21 +595,21 @@ $('#ModalTambahGuru').modal('hide');
         }
       },
 
-      // jkl: {
-      //   validators: {
-      //     notEmpty: {
-      //       message: "Jenis Kelamin is required"
-      //     }
-      //   }
-      // },
+      jkl: {
+        validators: {
+          notEmpty: {
+            message: "Jenis kelamin harus diisi"
+          }
+        }
+      },
 
-      // agama: {
-      //   validators: {
-      //     notEmpty: {
-      //       message: "Agama is required"
-      //     }
-      //   }
-      // },
+      agama: {
+        validators: {
+          notEmpty: {
+            message: "Agama harus diisi"
+          }
+        }
+      },
 
       tlp: {
         validators: {
@@ -582,10 +656,11 @@ $('#ModalUbahGuru').modal('hide');
             message: "NIP minimal 4 karakter"
           },
           remote: {
-            url: "{{ URL::to('/checkNIP') }}",
+            url: "{{ URL::to('/checkNIPUbah') }}",
               data: function(validator) {
                 return {
-                    nis: validator.getFieldElements('nip').val()
+                    nis: validator.getFieldElements('nip').val(),
+                    id: validator.getFieldElements('id').val()
                 };
             },
             message: 'NIP sudah ada'
@@ -624,7 +699,7 @@ $('#ModalUbahGuru').modal('hide');
               data: function(validator) {
                 return {
                     username: validator.getFieldElements('username').val(),
-                    nip: validator.getFieldElements('nip').val()
+                    id: validator.getFieldElements('id').val()
                 };
             },
             message: 'Username sudah ada'
@@ -656,21 +731,21 @@ $('#ModalUbahGuru').modal('hide');
         }
       },
 
-      // jkl: {
-      //   validators: {
-      //     notEmpty: {
-      //       message: "Jenis Kelamin is required"
-      //     }
-      //   }
-      // },
+      jkl: {
+        validators: {
+          notEmpty: {
+            message: "Jenis kelamin harus diisi"
+          }
+        }
+      },
 
-      // agama: {
-      //   validators: {
-      //     notEmpty: {
-      //       message: "Agama is required"
-      //     }
-      //   }
-      // },
+      agama: {
+        validators: {
+          notEmpty: {
+            message: "Agama harus diisi"
+          }
+        }
+      },
 
       tlp: {
         validators: {
@@ -687,6 +762,129 @@ $('#ModalUbahGuru').modal('hide');
           regexp: {
             regexp: /^[0-9]*$/,
             message: 'Telepon tidak valid'
+          }
+        }
+      }
+      
+    }
+  });
+});
+</script>
+
+<!-- validasi form modah tambah kelas -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalTambahKelas').modal('hide');
+  var validator = $('#TambahKelas').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nama_kelas: {
+        validators: {
+          notEmpty: {
+            message: "Nama kelas harus diisi"
+          },
+          remote: {
+            url: "{{ URL::to('/checkKelas') }}",
+              data: function(validator) {
+                return {
+                    nama_kelas: validator.getFieldElements('nama_kelas').val()
+                };
+            },
+            message: 'Nama kelas sudah ada'
+          }
+        }
+      },
+
+      jurusan: {
+        validators: {
+          notEmpty: {
+            message: "Jurusan harus diisi"
+          }
+        }
+      },
+
+      thn_ajaran: {
+        validators: {
+          notEmpty: {
+            message: "Tahun ajaran harus diisi"
+          },
+          stringLength: {
+            min: 9,
+            message: "Tahun ajaran minimal 9 karakter"
+          }
+        }
+      },
+
+      wali_kelas: {
+        validators: {
+          notEmpty: {
+            message: "Wali kelas harus diisi"
+          }
+        }
+      }
+      
+    }
+  });
+});
+</script>
+
+<!-- validasi form modah ubah kelas -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalUbahKelas').modal('hide');
+  var validator = $('#UbahKelas').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nama_kelas: {
+        validators: {
+          notEmpty: {
+            message: "Nama kelas harus diisi"
+          },
+          remote: {
+            url: "{{ URL::to('/checkKelasUbah') }}",
+              data: function(validator) {
+                return {
+                    nama_kelas: validator.getFieldElements('nama_kelas').val(),
+                    id : validator.getFieldElements('id').val()
+                };
+            },
+            message: 'Nama kelas sudah ada'
+          }
+        }
+      },
+
+      jurusan: {
+        validators: {
+          notEmpty: {
+            message: "Jurusan harus diisi"
+          }
+        }
+      },
+
+      thn_ajaran: {
+        validators: {
+          notEmpty: {
+            message: "Tahun ajaran harus diisi"
+          },
+          stringLength: {
+            min: 9,
+            message: "Tahun ajaran minimal 9 karakter"
+          }
+        }
+      },
+
+      wali_kelas: {
+        validators: {
+          notEmpty: {
+            message: "Wali kelas harus diisi"
           }
         }
       }

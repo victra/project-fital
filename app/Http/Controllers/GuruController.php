@@ -35,6 +35,37 @@ class GuruController extends Controller
             ));
     }
 
+    public function checkNIPAvailabilityUbah() {
+
+    $users = DB::table('users')->where('id', Input::get('id'))->value('nip');
+     // dd($users);
+
+        if ($users == Input::get('nip')){
+                
+            $isAvailable = TRUE;
+          
+            echo json_encode(
+                    array(
+                        'valid' => $isAvailable
+                    ));
+            
+        } else {
+            $user = DB::table('users')->where('nip', Input::get('nip'))->count();
+
+            if($user > 0) {
+                $isAvailable = FALSE;
+            } else {
+                $isAvailable = TRUE;
+            }
+
+            echo json_encode(
+                    array(
+                        'valid' => $isAvailable
+                ));
+        }
+    
+    }
+
     public function checkUsernameAvailability() {
 
     $user = DB::table('users')->where('email', Input::get('username'))->count();
@@ -53,11 +84,10 @@ class GuruController extends Controller
 
     public function checkUsernameAvailabilityUbah() {
 
-    $users = DB::table('users')->where('nip', Input::get('nip'))->value('email');
+    $users = DB::table('users')->where('id', Input::get('id'))->value('email');
     // dd($users);
 
         if ($users == Input::get('username')){
-            $user = DB::table('users')->where('email', Input::get('username'))->count();
                 
             $isAvailable = TRUE;
           
@@ -137,15 +167,15 @@ class GuruController extends Controller
                     ->with('content', $content);
     }
     
-    public function deleteguru($nip)
+    public function deleteguru($id)
     {
-        DB::table('users')->where('nip',$nip)->delete();
+        DB::table('users')->where('id',$id)->delete();
         \Session::flash('flash_message','Data user berhasil dihapus.');
         return back ();
     }
 
     
-    public function updateguru(Request $request, $nip)
+    public function updateguru(Request $request, $id)
     {
         // if ($request->has('password')) {
         // // update dengan password 
@@ -174,7 +204,8 @@ class GuruController extends Controller
         // return back()->withSuccess('update.');
 
         if ($request['password'] == ''){
-            $guru = ['nip' => $request->nip
+            $guru = ['id' => $request->id
+                ,'nip' => $request->nip
                 ,'name' => $request->nama
                 ,'email' => $request->username
                 // ,'password' => Hash::make($request->password)
@@ -182,10 +213,11 @@ class GuruController extends Controller
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
                 ,'tlp'=> $request->tlp];
-            DB::table('users')->where('nip',$request->nip)->update($guru);
+            DB::table('users')->where('id',$request->id)->update($guru);
          
         }else{
-            $guru = ['nip' => $request->nip
+            $guru = ['id' => $request->id
+                ,'nip' => $request->nip
                 ,'name' => $request->nama
                 ,'email' => $request->username
                 ,'password' => Hash::make($request->password)
@@ -193,7 +225,7 @@ class GuruController extends Controller
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
                 ,'tlp'=> $request->tlp];
-            DB::table('users')->where('nip',$request->nip)->update($guru);      
+            DB::table('users')->where('id',$request->id)->update($guru);      
         
         } 
         return redirect('guru_piket');      

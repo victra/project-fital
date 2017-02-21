@@ -56,8 +56,9 @@
                     <td>{{$item->tlp}}</td>  
                     <td>
                         <center>                                    
-                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->nip}}"><span class="fa fa-edit"></span> Ubah</a> --}}
+                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalGuru(this)" 
+                            data-id="{{$item->id}}"
                             data-nip="{{$item->nip}}"
                             data-nama="{{$item->name}}"
                             data-username="{{$item->email}}"                            
@@ -68,7 +69,7 @@
                             <!-- data-password="{{$item->password}}" -->
                             
                             <span class="fa fa-edit"></span></a>
-                            <a onclick="return confirm('Are you sure?')" href="deleteguru&{{$item->nip}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
+                            <a onclick="return confirm('Are you sure?')" href="deleteguru&{{$item->id}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
                         </center>
                     </td>
                 </tr>                                    
@@ -92,10 +93,10 @@
             </div>
             <form class="form-horizontal" method="post" action="storeguru" id="TambahGuru">          
                 <div class="modal-body">
-                    <label class="control-label col-sm-3">NIP</label>
+                    <label class="control-label col-sm-3">NIP/NIK</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="nip" class="form-control" placeholder="NIP">
+                            <input type="text" name="nip" class="form-control" placeholder="NIP/NIK">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Nama</label>
@@ -182,10 +183,15 @@
             </div>
             <form class="form-horizontal" method="post" action="updateguru" id="UbahGuru">          
                 <div class="modal-body">
-                    <label class="control-label col-sm-3">NIP</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="nip" class="form-control" placeholder="NIP" disabled="disabled">
+                            <input type="hidden" name="id" class="form-control">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-3">NIP/NIK</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="nip" class="form-control" placeholder="NIP/NIK">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Nama</label>
@@ -206,7 +212,7 @@
                         <div class="col-sm-3">
                             <input type="password" name="password" class="form-control" placeholder="****************">
                         </div>
-                        <span class="help-inline col-sm-5"> <i class="fa fa-info-circle"></i> Kosongkan jika tidak diubah </span>  
+                        <span class="help-inline col-sm-5"> <i class="fa fa-info-circle"></i> Biarkan jika tidak diubah </span>  
                     </div>
                     <label class="control-label col-sm-3">Role</label>
                     <div class="form-group">

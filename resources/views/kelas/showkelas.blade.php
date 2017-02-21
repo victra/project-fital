@@ -85,15 +85,15 @@
                 <div class="modal-body">
                     <label class="control-label col-sm-4">Nama Kelas</label>
                     <div class="form-group">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <input type="text" name="nama_kelas" class="form-control" placeholder="Nama Kelas">
                         </div>  
                     </div>
                     <label class="control-label col-sm-4">Kompetensi Keahlian</label>
                     <div class="form-group">
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <select class="form-control" name="jurusan">
-                                <option value="">-- Kompetensi Keahlian --</option>
+                                <option value="">-Kompetensi Keahlian-</option>
                                 @foreach($content['jurusan'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
@@ -102,7 +102,7 @@
                     </div>
                     <label class="control-label col-sm-4">Tahun Ajaran</label>
                     <div class="form-group">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <input type="text" name="thn_ajaran" class="form-control" placeholder="20xx/20xx">
                         </div>  
                     </div>                    
@@ -144,15 +144,20 @@
             </div>
             <form class="form-horizontal" method="post" action="storekelas" id="UbahKelas">          
                 <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <input type="hidden" name="id" class="form-control">
+                        </div>  
+                    </div>
                     <label class="control-label col-sm-4">Nama Kelas</label>
                     <div class="form-group">
-                        <div class="col-sm-3">
-                            <input type="text" name="nama_kelas" class="form-control" placeholder="Nama Kelas" readonly>
+                        <div class="col-sm-4">
+                            <input type="text" name="nama_kelas" class="form-control" placeholder="Nama Kelas">
                         </div>  
                     </div>
                     <label class="control-label col-sm-4">Jurusan</label>
                     <div class="form-group">
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <select class="form-control" name="jurusan">
                                 <option value="">-- Jurusan --</option>
                                 @foreach($content['jurusan'] as $key => $value)
@@ -163,7 +168,7 @@
                     </div>
                     <label class="control-label col-sm-4">Tahun Ajaran</label>
                     <div class="form-group">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <input type="text" name="thn_ajaran" class="form-control" placeholder="20xx/20xx">
                         </div>  
                     </div>

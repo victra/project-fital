@@ -8,6 +8,7 @@ function showModalKelas(button){
 	
 	// Show Modal
 	modal.find('h4').html('Ubaha Data Kelas');
+	modal.find('input[name=id]').val(id);
 	modal.find('input[name=nama_kelas]').val(nama_kelas);
 	modal.find('select[name=jurusan]').val(jurusan);
 	modal.find('input[name=thn_ajaran]').val(thn_ajaran);
