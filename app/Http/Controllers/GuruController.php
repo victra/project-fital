@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class GuruController extends Controller
 {
@@ -262,81 +263,36 @@ class GuruController extends Controller
         return back();
     }
 
-    // public function admin_credential_rules(array $data)
-    // {
-    //   $messages = [
-    //     'current-password.required' => 'Please enter current password',
-    //     'password.required' => 'Please enter password',
-    //   ];
+    public function ubahpassworduser(Request $request){
+        $rules = [
+            'current_password' => 'required',
+            'new_password' => 'required|same:password_confirmation|min:6',
+            'password_confirmation' => 'required|same:new_password|min:6',
+        ];
 
-    //   $validator = Validator::make($data, [
-    //     'current-password' => 'required',
-    //     'password' => 'required|same:password',
-    //     'password_confirmation' => 'required|same:password',     
-    //   ], $messages);
+        $messages = [
+            'current_password.required' => 'Password harus diisi',
+            'new_password.required' => 'Password harus diisi',
+            // 'new_password.confirmed' => 'Password tidak sama',
+            'new_password.min' => 'Password minimal 6 karakter',
+            'same:password' => 'Password tidak sama',
+        ];
 
-    //   return $validator;
-    // }
-
-    // public function postCredentials(Request $request)
-    // {
-    //   if(Auth::Check())
-    //   {
-    //     $request_data = $request->All();
-    //     $validator = $this->admin_credential_rules($request_data);
-    //     if($validator->fails())
-    //     {
-    //       return response()->json(array('error' => $validator->getMessageBag()->toArray()), 400);
-    //     }
-    //     else
-    //     {  
-    //       $current_password = Auth::User()->password;           
-    //       if(Hash::check($request_data['current_password'], $current_password))
-    //       {           
-    //         $user_id = Auth::User()->id;                       
-    //         $obj_user = User::find($user_id);
-    //         $obj_user->password = Hash::make($request_data['password']);;
-    //         $obj_user->save(); 
-    //         return "ok";
-    //       }
-    //       else
-    //       {           
-    //         $error = array('current_password' => 'Please enter correct current password');
-    //         return response()->json(array('error' => $error), 400);   
-    //       }
-    //     }        
-    //   }
-    //   else
-    //   {
-    //     return redirect()->to('/');
-    //   }
-    //   return back();    
-    // }
-
-    public function ubahpasswordku(Request $request) {
-
-        $user = Auth::user();
-
-        $password = $this->$request->only([
-            'current_password', 'new_password', 'password_confirmation'
-        ]);
-
-        $validator = Validator::make($password, [
-            'current_password' => 'required|current_password_match',
-            'new_password'     => 'required|min:6|confirmed',
-        ]);
-
-        if ( $validator->fails() )
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-
-
-        $updated = $user->update([ 'password' => Hash::make($password['new_password']) ]);
-
-        if($updated)
-            return back()->with('success', 1);
-
-        return back()->with('success', 0);
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()){
+            return redirect('ubahpassword')->withErrors($validator);
+        } else {
+            if (Hash::check($request->current_password, Auth::user()->password)){
+                $user = new User;
+                $user->where('id', '=' ,Auth::user()->id)
+                ->update(['password' => Hash::make($request->new_password)]);
+                // return redirect('guru_piket')->with('status','Password ya ya');
+                \Session::flash('flash_message','Password berhasil diubah.');
+                return back ();
+            }else{
+                
+                return redirect('ubahpassword')->with('message','Password yang anda masukkan salah');
+            }
+        }
     }
 }
