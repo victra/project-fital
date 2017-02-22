@@ -43,6 +43,32 @@
 <script type="text/javascript" src="js/kelas.js"></script>
 <script type="text/javascript" src="js/siswa.js"></script>
 
+<!-- PERCOBAAN INFO DETAIL SISWA -->
+<!-- <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                    header: function ( row ) {
+                        var data = row.data();
+                        return 'Details for '+data[2];
+                    }
+                } ),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                    tableClass: 'table'
+                } )
+            }
+        }
+    } );
+} );
+</script> -->
+
 <!-- Datatables -->
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
@@ -307,6 +333,15 @@
        .end();
 })
 </script> -->
+
+<!-- Autofocus Inputan -->
+<script type="text/javascript">
+  $('#ModalTambahSiswa, #ModalTambahKelas, #ModalTambahGuru').on('shown.bs.modal', function () {
+    $('#nis').focus();
+    $('#nama_kelas').focus();
+    $('#nip').focus();
+})
+</script>
 
 <!-- Javascript Center Modal Dialog -->
     <script>

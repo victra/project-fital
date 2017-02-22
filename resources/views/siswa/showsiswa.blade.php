@@ -139,7 +139,7 @@
                     <label class="control-label col-sm-4">NIS</label>
                     <div class="form-group">
                         <div class="col-sm-3">
-                            <input type="text" name="nis" class="form-control" placeholder="NIS">
+                            <input type="text" id="nis" name="nis" class="form-control" placeholder="NIS">
                         </div>  
                     </div>
                     <label class="control-label col-sm-4">Nama</label>
@@ -183,7 +183,7 @@
                     </div>
                     <label class="control-label col-sm-4">Telepon Siswa</label>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <input type="text" name="tlp_siswa" class="form-control" placeholder="Telepon Siswa">
                         </div>  
                     </div> 

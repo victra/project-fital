@@ -103,7 +103,7 @@
                     <label class="control-label col-sm-4">Nama Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <input type="text" name="nama_kelas" class="form-control" placeholder="Nama Kelas">
+                            <input type="text" id="nama_kelas" name="nama_kelas" class="form-control" placeholder="Nama Kelas">
                         </div>  
                     </div>
                     <label class="control-label col-sm-4">Kompetensi Keahlian</label>

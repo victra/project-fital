@@ -115,7 +115,7 @@
                     <label class="control-label col-sm-3">NIP/NIK</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="text" name="nip" class="form-control" placeholder="NIP/NIK">
+                            <input type="text" id="nip" name="nip" class="form-control" placeholder="NIP/NIK">
                         </div>  
                     </div>
                     <label class="control-label col-sm-3">Nama</label>

@@ -41,4 +41,7 @@
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.css" rel="stylesheet" type="text/css" /> -->
     <link href="{{ asset('/css/bootstrapValidator.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- PERCOBAAN INFO DETAIL SISWA -->
+    <!-- <link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
 </head>
