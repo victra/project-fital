@@ -77,6 +77,20 @@
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
+                            <a class="btn btn-success btn-xs" title="Info" onclick="showModalInfoSiswa(this)" 
+                            data-id="{{$item->id}}"
+                            data-nis="{{$item->nis}}"
+                            data-nama="{{$item->nama}}"
+                            data-jenis-kelamin="{{$item->jkl}}"
+                            data-agama="{{$item->agama}}"
+                            data-kelas="{{$item->kelas->nama_kelas}}"
+                            data-tlp-siswa="{{$item->tlp_siswa}}"
+                            data-alamat-siswa="{{$item->alamat_siswa}}"
+                            data-nama-ayah="{{$item->nama_ayah}}"
+                            data-nama-ibu="{{$item->nama_ibu}}"
+                            data-tlp-ortu="{{$item->tlp_ortu}}"
+                            data-alamat-ortu="{{$item->alamat_ortu}}">
+                            <span class="fa fa-eye"></span></a>
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalSiswa(this)" 
                             data-id="{{$item->id}}"
                             data-nis="{{$item->nis}}"
@@ -345,4 +359,99 @@
     </div>
 </div>
 <!-- Modal Form Ubah Data Siswa -->
+
+<!-- Modal Form Info Data Siswa-->
+<div class="modal fade" id="ModalInfoSiswa" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Info Detail Siswa</h4>
+            </div>
+            <form class="form-horizontal" method="" action="" id="InfoSiswa">         
+                <div class="modal-body">
+                    <div class="row-fluid">                    
+                    <label class="col-sm-4">NIS</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="nis">: </label>
+                        </div>  
+                    </div>
+                    </div>
+                    <label class="col-sm-4">Nama</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="nama">: </label>
+                        </div>  
+                    </div>
+                    <label class="col-sm-4">Jenis Kelamin</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="jkl"></label>
+                        </div>
+                    </div>
+                    <label class="col-sm-4">Agama</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="agama"></label>
+                        </div>
+                    </div>
+                    <label class="col-sm-4">Kelas</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="kelas"></label>
+                        </div>
+                    </div>
+                    <label class="col-sm-4">Telepon Siswa</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="tlp_siswa"></label>
+                        </div>  
+                    </div> 
+                    <label class="col-sm-4">Alamat Siswa</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="alamat_siswa"></label>
+                        </div>  
+                    </div>
+                    <label class="col-sm-4">Nama Ayah</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="nama_ayah"></label>
+                        </div>  
+                    </div>
+                    <label class="col-sm-4">Nama Ibu</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="nama_ibu"></label>
+                        </div>  
+                    </div>
+                    <label class="col-sm-4">Telepon Orang Tua</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="tlp_ortu"></label>
+                        </div>  
+                    </div>
+                    <label class="col-sm-4">Alamat Orang Tua</label>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <label for="alamat_ortu"></label>
+                        </div>  
+                    </div>                   
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-xs-5 col-xs-offset-3">
+                            <!-- <input type="hidden" name="_token" value="{{{ csrf_token() }}}" /> -->
+                            <!-- <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button> -->
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>      
+    </div>
+</div>
+<!-- Modal Form Info Data Siswa -->
 @endsection

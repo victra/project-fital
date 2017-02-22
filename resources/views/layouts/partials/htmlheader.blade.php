@@ -15,6 +15,11 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
+
+    <!-- Bootstrap 3.3.4 Harusnya Ditaruh Disini -->
+    <!-- <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" /> -->
+
     <link href="{{ asset('/css/skins/skin-blue.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/skins/skin-green.css') }}" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
