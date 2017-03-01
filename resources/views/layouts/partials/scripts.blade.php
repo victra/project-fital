@@ -87,6 +87,8 @@
     $(function() {
         $("#example1").dataTable();
         $('#tablesiswa').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
             "bPaginate": true,
             "bLengthChange": true,
             "bFilter": true,
@@ -99,11 +101,11 @@
             "aoColumns" : [
               { sWidth: '5%' }, //no
               { sWidth: '10%' }, //nis
-              { sWidth: '35%' }, //nama
+              { sWidth: '34%' }, //nama
               { sWidth: '15%' }, //jenis kelamin
               { sWidth: '10%' }, //agama
               { sWidth: '15%' }, //kelas
-              { sWidth: '10%' }, //action
+              { sWidth: '11%' }, //action
               { sWidth: '0%' },
               { sWidth: '0%' },
               { sWidth: '0%' },
@@ -111,47 +113,49 @@
               { sWidth: '0%' },
               { sWidth: '0%' },
             ],
-            // "aLengthMenu": [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"]],
-            // "oLanguage": {
-            //     sEmptyTable: "Belum ada data dalam tabel ini",
-            //     sInfo: "Menampilkan _START_ sampai _END_ data _TOTAL_ data",
-            //     sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-            //     sInfoFiltered: "(filtered from _MAX_ total data)",
-            //     sInfoPostFix: "",
-            //     sDecimal: "",
-            //     sThousands: ",",
-            //     sLengthMenu: "Tampilkan _MENU_ data",
-            //     sLoadingRecords: "Loading...",
-            //     sProcessing: "Processing...",
-            //     sSearch: "Cari:",
-            //     sSearchPlaceholder: "",
-            //     sUrl: "",
-            //     sZeroRecords: "Tidak ditemukan"
-            //     },
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "NIS / Nama Siswa",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
 
             // kolom dengan class "iii" tidak ada fitur sorting
-            // "aoColumnDefs" : [ 
-            //   {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
-            //   {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
-            // ],
-            "sDom": 'T<"clear">lfrtip',
-            "oTableTools": {
-            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
-            "aButtons": [
-                    {
-                      "sExtends": "xls",
-                      "sButtonText": "Save as Excel",
-                      "sFileName": "file.xls",
-                      "mColumns": function (settings) {
-                         var api = new $.fn.dataTable.Api( settings );
-                         return api.columns(":not(.no-export)").indexes().toArray();
-                      }
-                    }
-                ]
-            }
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","agama","jkl","kelas","none" ]},
+              {"bSortable" : false, "aTargets" : [ "agama","jkl","kelas","no-expor" ]} 
+            ],
+            // "sDom": 'T<"clear">lfrtip',
+            // "oTableTools": {
+            // "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            // "aButtons": [
+            //         {
+            //           "sExtends": "xls",
+            //           "sButtonText": "Save as Excel",
+            //           "sFileName": "file.xls",
+            //           "mColumns": function (settings) {
+            //              var api = new $.fn.dataTable.Api( settings );
+            //              return api.columns(":not(.no-export)").indexes().toArray();
+            //           }
+            //         }
+            //     ]
+            // }
 
         });
         $('#tableuser').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
             "bPaginate": true,
             "bLengthChange": true,
             "bFilter": true,
@@ -172,31 +176,32 @@
               { sWidth: '0%' },              
               { sWidth: '5%' }, //action
             ],
-            // "aLengthMenu": [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"]],
-            // "oLanguage": {
-            //     sEmptyTable: "Belum ada data dalam tabel ini",
-            //     sInfo: "Menampilkan _START_ sampai _END_ data _TOTAL_ data",
-            //     sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-            //     sInfoFiltered: "(filtered from _MAX_ total data)",
-            //     sInfoPostFix: "",
-            //     sDecimal: "",
-            //     sThousands: ",",
-            //     sLengthMenu: "Tampilkan _MENU_ data",
-            //     sLoadingRecords: "Loading...",
-            //     sProcessing: "Processing...",
-            //     sSearch: "Cari:",
-            //     sSearchPlaceholder: "",
-            //     sUrl: "",
-            //     sZeroRecords: "Tidak ditemukan"
-            //     },
-
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "NIP/NIK / Nama User",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
             // kolom dengan class "iii" tidak ada fitur sorting
-            // "aoColumnDefs" : [ 
-            //   {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
-            //   {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
-            // ],
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","role","none" ]},
+              {"bSortable" : false, "aTargets" : [ "jkl","agama","action" ]} 
+            ],
         });
         $('#tablekelas').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
             "bPaginate": true,
             "bLengthChange": true,
             "bFilter": true,
@@ -214,29 +219,29 @@
               { sWidth: '25%' }, //wali kelas
               { sWidth: '5%' }, //action
             ],
-            // "aLengthMenu": [[25, 50, 100, 250, 500, -1], [25, 50, 100, 250, 500, "All"]],
-            // "oLanguage": {
-            //     sEmptyTable: "Belum ada data dalam tabel ini",
-            //     sInfo: "Menampilkan _START_ sampai _END_ data _TOTAL_ data",
-            //     sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-            //     sInfoFiltered: "(filtered from _MAX_ total data)",
-            //     sInfoPostFix: "",
-            //     sDecimal: "",
-            //     sThousands: ",",
-            //     sLengthMenu: "Tampilkan _MENU_ data",
-            //     sLoadingRecords: "Loading...",
-            //     sProcessing: "Processing...",
-            //     sSearch: "Cari:",
-            //     sSearchPlaceholder: "",
-            //     sUrl: "",
-            //     sZeroRecords: "Tidak ditemukan"
-            //     },
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Kelas",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
 
             // kolom dengan class "iii" tidak ada fitur sorting
-            // "aoColumnDefs" : [ 
-            //   {"bSearchable" : false, "aTargets" : [ "no","jkl","agm" ]},
-            //   {"bSortable" : false, "aTargets" : [ "nis","jkl","no" ]} 
-            // ],
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jurusan","thn_ajaran","walikelas","no" ]},
+              {"bSortable" : false, "aTargets" : [ "thn_ajaran","walikelas","no-export" ]} 
+            ],
         });
         $('#example2').dataTable({
             "bPaginate": true,
@@ -427,7 +432,7 @@ $(document).ready(function() {
           stringLength: {
             min: 6,
             max: 50,
-            message: "Nama antara 6-50 karakter"
+            message: "Password baru antara 6-50 karakter"
           },
         }
       },
@@ -435,11 +440,11 @@ $(document).ready(function() {
       password_confirmation: {
         validators: {
           notEmpty: {
-            message: "Konfirmasi password harus diisi"
+            message: "Password konfirmasi harus diisi"
           },
           identical: {
             field: "new_password",
-            message: "Konfirmasi password baru tidak sama dengan password baru"
+            message: "Password konfirmasi tidak sama dengan password baru"
           }
         }
       }
@@ -723,7 +728,7 @@ $('#ModalTambahGuru').modal('hide');
           //   message: "Telepon must be valid"
           // },
           regexp: {
-            regexp: /^[0-9]*$/,
+            regexp: /^[+0-9]*$/,
             message: 'Telepon tidak valid'
           }
         }
@@ -859,7 +864,7 @@ $('#ModalUbahGuru').modal('hide');
           //   message: "Telepon must be valid"
           // },
           regexp: {
-            regexp: /^[0-9]*$/,
+            regexp: /^[+0-9]*$/,
             message: 'Telepon tidak valid'
           }
         }

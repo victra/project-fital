@@ -37,17 +37,17 @@
         <label style="margin-right:10px; margin-top:5px" class="control-label pull-right">Kelas :</label>
     </div><!-- /.box-header -->
 
-    <div class="box-body table-responsive">
+    <div class="box-body">
         <table id="tablesiswa" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablesiswa_info" cellspacing="0" width="100%">
 
             <thead>
                 <tr>
-                    <th><center>No</center></th>
+                    <th class="no"><center>No</center></th>
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
-                    <th><center>Jenis Kelamin</center></th>
-                    <th><center>Agama</center></th>
-                    <th><center>Kelas</center></th>
+                    <th class="jkl"><center>Jenis Kelamin</center></th>
+                    <th class="agama"><center>Agama</center></th>
+                    <th class="kelas"><center>Kelas</center></th>
                     <th class="none">Telepon Siswa</th>
                     <th class="none">Alamat Siswa</th>
                     <th class="none">Nama Ayah</th>
@@ -77,7 +77,7 @@
                     <td>
                         <center>                                    
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
-                            <a class="btn btn-success btn-xs" title="Info" onclick="showModalInfoSiswa(this)" 
+                            <a class="btn btn-info btn-xs" title="Info" onclick="showModalInfoSiswa(this)" 
                             data-id="{{$item->id}}"
                             data-nis="{{$item->nis}}"
                             data-nama="{{$item->nama}}"
@@ -121,22 +121,23 @@
 
 @section('modals')
 <!-- Modal Konfirmasi Hapus -->
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade modal-danger" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                Konfirmasi Hapus Data
+                <h4 class="modal-title">Konfirmasi Hapus Data</h4>
             </div>
             <div class="modal-body">
                 Apa anda yakin akan menghapus data ini?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
                 <a class="btn btn-danger btn-ok">Hapus</a>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
             </div>
         </div>
     </div>
 </div>
+<!-- Modal Konfirmasi Hapus -->
 
 
 <!-- Modal Form Tambah Data Siswa-->
@@ -237,7 +238,7 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <button type="submit" value="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                         </div>
                     </div>
                 </div>
@@ -350,7 +351,7 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                         </div>
                     </div>
                 </div>
@@ -370,14 +371,12 @@
                 <h4 class="modal-title">Info Detail Siswa</h4>
             </div>
             <form class="form-horizontal" method="" action="" id="InfoSiswa">         
-                <div class="modal-body">
-                    <div class="row-fluid">                    
+                <div class="modal-body">                   
                     <label class="col-sm-4">NIS</label>
                     <div class="form-group">
                         <div class="col-sm-7">
                             <label for="nis">: </label>
                         </div>  
-                    </div>
                     </div>
                     <label class="col-sm-4">Nama</label>
                     <div class="form-group">
@@ -445,7 +444,7 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <!-- <input type="hidden" name="_token" value="{{{ csrf_token() }}}" /> -->
                             <!-- <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button> -->
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" style="margin-right:-150px" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -454,4 +453,49 @@
     </div>
 </div>
 <!-- Modal Form Info Data Siswa -->
+
+<!-- Modal Ubah Password -->
+<div class="modal fade" id="ModalUbahPassword" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ubah Password</h4>
+            </div>
+            <form class="form-horizontal" method="post" action="ubahpasswordpakaimodal" id="UbahPassword">
+                <div class="modal-body">
+                    <label class="control-label col-sm-4">Password Lama</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="password" name="current_password" class="form-control" placeholder="Password Lama">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Password Baru</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="password" name="new_password" class="form-control" placeholder="Password Baru">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Password Konfirmasi</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="password" name="password_confirmation" class="form-control" placeholder="Password Konfirmasi">
+                        </div>  
+                    </div>                                      
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-xs-5 col-xs-offset-3">
+                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                            <button type="submit" value="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>      
+    </div>
+</div>
+<!-- Modal Ubah Password -->
 @endsection

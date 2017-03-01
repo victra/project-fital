@@ -28,6 +28,6 @@ function showModalInfoSiswa(button){
 	modal.find('label[for=tlp_ortu]').html(tlp_ortu);
 	modal.find('label[for=alamat_ortu]').html(alamat_ortu);
 		
-	modal.find('form.form-horizontal').prop('action', 'updatesiswa&'+id);
+	// modal.find('form.form-horizontal').prop('action', 'updatesiswa&'+id);
 	modal.modal({backdrop: 'static', keyboard: false});
 }

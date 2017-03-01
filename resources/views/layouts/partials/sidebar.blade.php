@@ -36,9 +36,9 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="{{ (Request::is('/')) ? 'active':'' }}"><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
             <!-- <li class="{{ (Request::is('*show*')) ? 'active':'' }}"><a href="{{ url('show') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li> -->
-            <li class="{{ (Request::is('kelas')) ? 'active':'' }}"><a href="{{ url('kelas') }}"><i class='fa fa-user'></i> <span> Data Kelas </span></a></li>
-            <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li>
-            <li class="{{ (Request::is('*guru_piket*')) ? 'active':'' }}"><a href="{{ url('guru_piket') }}"><i class='fa fa-users'></i> <span> Data User </span></a></li>
+            <li class="{{ (Request::is('*guru_piket*')) ? 'active':'' }}"><a href="{{ url('guru_piket') }}"><i class='fa fa-user'></i> <span> Data User </span></a></li>
+            <li class="{{ (Request::is('kelas')) ? 'active':'' }}"><a href="{{ url('kelas') }}"><i class='fa fa-building'></i> <span> Data Kelas </span></a></li>
+            <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-users'></i> <span> Data Siswa </span></a></li>
             <li class="{{ (Request::is('absensisiswa')) ? 'active':'' }}"><a href="{{ url('absensisiswa') }}"><i class='fa fa-table'></i> <span> Absensi Siswa </span></a></li>
             <li class="{{ (Request::is('cariabsensi')) ? 'active':'' }}"><a href="{{ url('cariabsensi') }}"><i class='fa fa-search'></i> <span> Cari Absensi </span></a></li>
             <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
@@ -66,8 +66,8 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="{{ (Request::is('/')) ? 'active':'' }}"><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
             <!-- <li class="{{ (Request::is('*show*')) ? 'active':'' }}"><a href="{{ url('show') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li> -->
-            <li class="{{ (Request::is('kelas')) ? 'active':'' }}"><a href="{{ url('kelas') }}"><i class='fa fa-user'></i> <span> Data Kelas </span></a></li>
-            <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li>            
+            <li class="{{ (Request::is('kelas')) ? 'active':'' }}"><a href="{{ url('kelas') }}"><i class='fa fa-building'></i> <span> Data Kelas </span></a></li>
+            <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-users'></i> <span> Data Siswa </span></a></li>            
             <li class="{{ (Request::is('absensisiswa')) ? 'active':'' }}"><a href="{{ url('absensisiswa') }}"><i class='fa fa-table'></i> <span> Absensi Siswa </span></a></li>
             <li class="{{ (Request::is('cariabsensi')) ? 'active':'' }}"><a href="{{ url('cariabsensi') }}"><i class='fa fa-search'></i> <span> Cari Absensi </span></a></li>
             <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>

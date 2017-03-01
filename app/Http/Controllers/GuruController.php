@@ -334,6 +334,7 @@ class GuruController extends Controller
         $user->where('id', '=' ,Auth::user()->id)
         ->update(['password' => Hash::make($request->new_password)]);
         // return redirect('guru_piket')->with('status','Password ya ya');
-        // return back ();           
+        \Session::flash('flash_message','Password berhasil diubah.');
+        return back ();           
     }
 }

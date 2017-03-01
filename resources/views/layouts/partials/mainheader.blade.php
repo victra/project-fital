@@ -54,11 +54,11 @@
                                 </div>
                             </li> -->
                             <li class="divider"></li>
-                            <li><a href="{{ url('/ubahpassword') }}"><i class="fa fa-key"></i> Ganti Password</a></li>
+                            <!-- <li><a href="{{ url('/ubahpassword') }}"><i class="fa fa-key"></i> Ganti Password</a></li>
+                            <li class="divider"></li> -->
+                            <li><a data-toggle="modal" data-target="#ModalUbahPassword"><i class="fa fa-key"></i> Ganti Password</a></li>
                             <li class="divider"></li>
-                            <li><a data-toggle="modal" data-target="#ModalUbahPassword"><i class="fa fa-key"></i> Ganti Password Modal</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Log Out</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             <li class="divider"></li>
                         </ul>
                     </li>
@@ -85,10 +85,10 @@
             </div>
             <form class="form-horizontal" method="post" action="ubahpasswordpakaimodal" id="UbahPassword">
                 <div class="modal-body">
-                    <label class="control-label col-sm-4">Password</label>
+                    <label class="control-label col-sm-4">Password Lama</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="password" name="current_password" class="form-control" placeholder="Password">
+                            <input type="password" name="current_password" class="form-control" placeholder="Password Lama">
                         </div>  
                     </div>
                     <label class="control-label col-sm-4">Password Baru</label>
@@ -97,10 +97,10 @@
                             <input type="password" name="new_password" class="form-control" placeholder="Password Baru">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-4">Konfirmasi Password</label>
+                    <label class="control-label col-sm-4">Password Konfirmasi</label>
                     <div class="form-group">
                         <div class="col-sm-6">
-                            <input type="password" name="password_confirmation" class="form-control" placeholder="Konfirmasi Password">
+                            <input type="password" name="password_confirmation" class="form-control" placeholder="Password Konfirmasi">
                         </div>  
                     </div>                                      
                 </div>
@@ -109,7 +109,7 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <button type="submit" value="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                         </div>
                     </div>
                 </div>
@@ -117,4 +117,5 @@
         </div>      
     </div>
 </div>
+<!-- Modal Ubah Password -->
 @endsection
