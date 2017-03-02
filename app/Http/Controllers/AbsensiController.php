@@ -28,7 +28,7 @@ class AbsensiController extends Controller
 
         // append array absensi ke array siswa
         $absensisiswa = Siswa::with('absensi');
-            dd($absensisiswa->get()->toArray());
+            // dd($absensisiswa->get()->toArray());
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
@@ -67,7 +67,7 @@ class AbsensiController extends Controller
 
         if ($tanggal && Input::has('search_kelas')) {
             for ($i=0; $i < count($absensisiswa) ; $i++) { 
-                $absensisiswa[$i]['absensi'] = Absensi::where('siswa_id', $absensisiswa[$i]['id'])->where('date', $tanggal)->first();
+                $absensisiswa[$i]['absensis'] = Absensi::where('siswa_id', $absensisiswa[$i]['id'])->where('date', $tanggal)->first();
             }
         }
 

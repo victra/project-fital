@@ -67,7 +67,7 @@
                         <td><center>{{$item->jkl}}</center></td>
                         <td><center>{{$item->agama}}</center></td>
                         <td><center>{{$item->kelas->nama_kelas}}</center></td>  
-                        @if(!isset($item['absensi']))
+                        @if(!isset($item['absensis']))
                             <td>
                                 <center>
                                     <select style="width:100px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
@@ -91,7 +91,7 @@
                                 <center>
                                     <select style="width:100px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
                                         @foreach($content['status'] as $key => $value)
-                                            <?php $selected = $key==$item['absensi']['status'] ? 'selected' : '' ?>
+                                            <?php $selected = $key==$item['absensis']['status'] ? 'selected' : '' ?>
                                             <option {{$selected}} value="{{$key}}">{{$value}}</option>
                                         @endforeach
                                     </select>                        
@@ -100,7 +100,7 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi']['description']}}</textarea>
+                                        <textarea name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensis']['description']}}</textarea>
                                     </div>
                                 </center>
                             </td>                   
