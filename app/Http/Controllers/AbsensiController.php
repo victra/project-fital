@@ -27,23 +27,12 @@ class AbsensiController extends Controller
         // dd($siswa->toArray());
 
         // append array absensi ke array siswa
-        $absensisiswa = Siswa::with('absensi')
-            ->get();
-            dd($absensisiswa->toArray());
-
-        // append array
-        // $a = Siswa::get();
-        // $b = Absensi::get();
-        // foreach($b as $key => $val){
-        //     $a[$key]['absensi'] = $b->toArray();; 
-               
-        // }
-
-        // dd($a->toArray());
+        $absensisiswa = Siswa::with('absensi');
+            dd($absensisiswa->get()->toArray());
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $siswas = $siswas->where('kelas_id', Input::get('search_kelas'))->get();
+            $absensisiswa = $absensisiswa->where('kelas_id', Input::get('search_kelas'))->get();
             $input_kelas = Input::get('search_kelas');
         }
 
@@ -77,12 +66,12 @@ class AbsensiController extends Controller
         );
 
         if ($tanggal && Input::has('search_kelas')) {
-            for ($i=0; $i < count($siswas) ; $i++) { 
-                $siswas[$i]['absensi'] = Absensi::where('siswa_id', $siswas[$i]['kelas_manual']['id'])->where('date', $tanggal)->first();
+            for ($i=0; $i < count($absensisiswa) ; $i++) { 
+                $absensisiswa[$i]['absensi'] = Absensi::where('siswa_id', $absensisiswa[$i]['id'])->where('date', $tanggal)->first();
             }
         }
 
-        $content['siswasi'] = $siswas;
+        $content['siswasi'] = $absensisiswa;
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;
