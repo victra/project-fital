@@ -43,6 +43,11 @@ class Absensi extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
+	public function siswa()
+	{
+		return $this->belongsTo('Model\Siswa');
+	}
+
 	public static function boot()
 	{
 		parent::boot();

@@ -204,7 +204,7 @@
                     </div> 
                     <label class="control-label col-sm-4">Alamat Siswa</label>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <textarea name="alamat_siswa" class="form-control" placeholder="Alamat Siswa"></textarea>
                         </div>  
                     </div>

@@ -40,6 +40,11 @@ class Siswa extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
+	public function absensi()
+	{
+		return $this->hasMany('Model\Absensi');
+	}
+
 	public static function boot()
 	{
 		parent::boot();

@@ -26,15 +26,20 @@ class AbsensiController extends Controller
         }
         // dd($siswa->toArray());
 
-        // append array
-        $a = Siswa::get();
-        $b = Absensi::get();
-        foreach($b as $key => $val){
-            $a[$key]['absensi'] = $b->toArray();; 
-               
-        }
+        // append array absensi ke array siswa
+        $absensisiswa = Siswa::with('absensi')
+            ->get();
+            dd($absensisiswa->toArray());
 
-        dd($a->toArray());
+        // append array
+        // $a = Siswa::get();
+        // $b = Absensi::get();
+        // foreach($b as $key => $val){
+        //     $a[$key]['absensi'] = $b->toArray();; 
+               
+        // }
+
+        // dd($a->toArray());
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
