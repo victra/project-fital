@@ -20,19 +20,19 @@ class AbsensiController extends Controller
         // dd($siswas->get()->toArray());
 
         // relasi manual
-        $siswas = Siswa::orderby('created_at', 'DESC')->get();
-        foreach ($siswas as $value) {
-            $value['kelas_manual'] = Kelas::where('id', $value['kelas_id'])->first()->toArray();
-        }
+        $siswas = Siswa::orderby('created_at', 'DESC');
+        // foreach ($siswas as $value) {
+        //     $value['kelas_manual'] = Kelas::where('id', $value['kelas_id'])->first()->toArray();
+        // }
         // dd($siswa->toArray());
 
         // append array absensi ke array siswa
-        $absensisiswa = Siswa::with('absensi');
+        // $absensisiswa = Siswa::with('absensi');
             // dd($absensisiswa->get()->toArray());
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $absensisiswa = $absensisiswa->where('kelas_id', Input::get('search_kelas'))->get();
+            $siswas = $siswas->where('kelas_id', Input::get('search_kelas'))->get();
             $input_kelas = Input::get('search_kelas');
         }
 
@@ -65,13 +65,27 @@ class AbsensiController extends Controller
             'A' => 'Alpa',
         );
 
+        //ini pakek cara manual
         if ($tanggal && Input::has('search_kelas')) {
-            for ($i=0; $i < count($absensisiswa) ; $i++) { 
-                $absensisiswa[$i]['absensis'] = Absensi::where('siswa_id', $absensisiswa[$i]['id'])->where('date', $tanggal)->first();
+            for ($i=0; $i < count($siswas) ; $i++) { 
+                $siswas[$i]['absensi_manual'] = Absensi::where('siswa_id', $siswas[$i]['id'])->where('date', $tanggal)->first()->toArray();
             }
         }
 
-        $content['siswasi'] = $absensisiswa;
+        //ini pakek cara relation
+        if ($tanggal && Input::has('search_kelas')) {
+            //kenapa pakek ada addAppends? soalnya relasi ini cuma di panggil di absensi controller kalo mau di permanen maka dipanggilnya disini,
+            //model siswa
+            //protected $appends = array(
+            //    'kelas',
+            //);
+            foreach ($siswas as $siswa) {
+                $siswa->addAppends('absensi_non_permanent');
+            }
+        }
+
+        dd($siswas->toArray());
+        $content['siswasi'] = $siswas;
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;

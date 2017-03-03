@@ -2,6 +2,8 @@
 
 namespace Model;
 
+use Illuminate\Support\Facades\Input;
+
 class Siswa extends \BaseModel
 {
 	/*
@@ -82,7 +84,8 @@ class Siswa extends \BaseModel
 	|--------------------------------------------------------------------------
 	*/
 	protected $appends = array(
-		'kelas','absensi'
+		'kelas',
+		'absensi',
 	);
 
 	/*
@@ -103,13 +106,37 @@ class Siswa extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
-	 public function getKelasAttribute()
-	 {
+	public function getKelasAttribute()
+	{
 	 	return $this->kelas()->first();
-	 }
+	}
 
-	 public function getAbsensiAttribute()
-	 {
-	 	return $this->absensi()->first();
-	 }
+	public function getAbsensiNonPermanentAttribute()
+	{
+	 	if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+
+        if ($tanggal && Input::has('search_kelas')) {
+		 	return $this->absensi()->where('date', $tanggal)->first();
+        }
+        return null;
+	}
+
+	//ini yang permanent
+	public function getAbsensiAttribute()
+	{
+	 	if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+
+        if ($tanggal && Input::has('search_kelas')) {
+		 	return $this->absensi()->where('date', $tanggal)->first();
+        }
+        return null;
+	}
 }
