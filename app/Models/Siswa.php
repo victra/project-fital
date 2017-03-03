@@ -32,6 +32,7 @@ class Siswa extends \BaseModel
 	public static $customMessages;
 	public static $relationsData = array(
 		'kelas' 	=> array(self::BELONGS_TO, 'Model\Kelas'),
+		'absensi'	=> array(self::HAS_MANY, 'Model\Absensi'),
 	);
 
 	/*
@@ -40,10 +41,10 @@ class Siswa extends \BaseModel
 	 |--------------------------------------------------------------------------
 	 */
 
-	public function absensi()
-	{
-		return $this->hasMany('Model\Absensi');
-	}
+	// public function absensi()
+	// {
+	// 	return $this->hasMany('Model\Absensi');
+	// }
 
 	public static function boot()
 	{
@@ -81,7 +82,7 @@ class Siswa extends \BaseModel
 	|--------------------------------------------------------------------------
 	*/
 	protected $appends = array(
-		'kelas',
+		'kelas','absensi'
 	);
 
 	/*
@@ -105,5 +106,10 @@ class Siswa extends \BaseModel
 	 public function getKelasAttribute()
 	 {
 	 	return $this->kelas()->first();
+	 }
+
+	 public function getAbsensiAttribute()
+	 {
+	 	return $this->absensi()->first();
 	 }
 }

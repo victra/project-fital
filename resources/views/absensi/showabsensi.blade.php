@@ -117,7 +117,7 @@
         <input type="hidden" name="tanggal" value="{{$content['tanggal']}}">
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
         <button type="submit" name="simpan" class="btn btn-info pull-right">Simpan Absensi</button>
-        <button type="button" style="margin-right:15px; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
+        <button type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
     </div>
     </form> 
 </div>
