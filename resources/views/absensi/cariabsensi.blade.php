@@ -37,18 +37,18 @@
             </div>
     </div><!-- /.box-header -->
 
-    <div class="box-body table-responsive">
-        <table id="example3" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info">
+    <div class="box-body">
+        <table id="tablecariabsensi" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablecariabsensi_info">
 
             <thead>
                 <tr>
-                    <th><center>No</center></th>
-                    <th><center>Tanggal</center></th>
+                    <th class="no"><center>No</center></th>
+                    <th class="tanggal"><center>Tanggal</center></th>
                     <th><center>Nama Siswa</center></th>
-                    <th><center>Jenis Kelamin</center></th>
-                    <th><center>Kelas</center></th>
-                    <th><center>Status</center></th>
-                    <th><center>Keterangan</center></th>
+                    <th class="jkl"><center>Jenis Kelamin</center></th>
+                    <th class="kelas"><center>Kelas</center></th>
+                    <th class="status"><center>Status</center></th>
+                    <th class="keterangan"><center>Keterangan</center></th>
                 </tr>
             </thead>
 

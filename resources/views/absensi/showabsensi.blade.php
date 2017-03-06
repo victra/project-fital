@@ -43,18 +43,18 @@
                 </div>
     </div><!-- /.box-header -->
     <form class="form-horizontal" method="post" action="store">
-    <div class="box-body table-responsive">
-        <table id="example2" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info">
+    <div class="box-body">
+        <table id="tableabsensi" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tableabsensi_info">
             <thead>
                 <tr>
-                    <th><center>No</center></th>
+                    <th class="no"><center>No</center></th>
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
-                    <th><center>Jenis Kelamin</center></th>
-                    <th><center>Agama</center></th>
-                    <th><center>Kelas</center></th>
-                    <th><center>Status</center></th>
-                    <th><center>Keterangan</center></th>
+                    <th class="jkl"><center>Jenis Kelamin</center></th>
+                    <th class="agama"><center>Agama</center></th>
+                    <!-- <th><center>Kelas</center></th> -->
+                    <th class="status"><center>Status</center></th>
+                    <th class="keterangan"><center>Keterangan</center></th>
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +66,7 @@
                         <td>{{$item->nama}}</td>
                         <td><center>{{$item->jkl}}</center></td>
                         <td><center>{{$item->agama}}</center></td>
-                        <td><center>{{$item->kelas->nama_kelas}}</center></td>  
+                        <!-- <td><center>{{$item->kelas->nama_kelas}}</center></td>   -->
                         @if(!isset($item['absensi_non_permanent']))
                             <td>
                                 <center>
@@ -82,7 +82,7 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea name="absensi[{{$item->id}}][description]" class="form-control"></textarea>
+                                        <textarea style="width:230px" name="absensi[{{$item->id}}][description]" class="form-control"></textarea>
                                     </div>
                                 </center>
                             </td>                    

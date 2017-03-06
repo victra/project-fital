@@ -243,6 +243,96 @@
               {"bSortable" : false, "aTargets" : [ "thn_ajaran","walikelas","no-export" ]} 
             ],
         });
+        $('#tableabsensi').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '10%' }, //nis
+              { sWidth: '25%' }, //nama siswa
+              { sWidth: '15%' }, //jenis kelamin
+              { sWidth: '10%' }, //agama
+              { sWidth: '10%' }, //status
+              { sWidth: '25%' }, //keterangan
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "NIS / Nama Siswa",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","status","keterangan" ]},
+              {"bSortable" : false, "aTargets" : [ "jkl","agama","status","keterangan" ]} 
+            ],
+        });
+        $('#tablecariabsensi').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '10%' }, //tanggal
+              { sWidth: '25%' }, //nama siswa
+              { sWidth: '15%' }, //jenis kelamin
+              { sWidth: '11%' }, //kelas
+              { sWidth: '9%' }, //status
+              { sWidth: '25%' }, //keterangan
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Siswa",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","status","keterangan" ]},
+              {"bSortable" : false, "aTargets" : [ "jkl","kelas","status","keterangan" ]} 
+            ],
+        });
         $('#example2').dataTable({
             "bPaginate": true,
             "bLengthChange": true,

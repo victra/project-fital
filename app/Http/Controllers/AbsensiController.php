@@ -103,7 +103,7 @@ class AbsensiController extends Controller
         // print_r($_POST);
         // echo "</pre>";
         foreach (Input::get('absensi') as $siswa_id=>$item) {
-            $check_absensi = Absensi::where('siswa_id', $siswa_id)->where('date', Input::get('tanggal'))->where('kelas', Input::get('kelas'))->first();
+            $check_absensi = Absensi::where('siswa_id', $siswa_id)->where('date', Input::get('tanggal'))->where('kelas_id', Input::get('kelas'))->first();
             if ($check_absensi) {
                 $absensi = $check_absensi;
             } else {
@@ -111,7 +111,7 @@ class AbsensiController extends Controller
             }
             $absensi->check_by_id = Auth::user()->id;//Orang yang melakukan absensi
             $absensi->siswa_id = $siswa_id;
-            $absensi->kelas = Input::get('kelas');
+            $absensi->kelas_id = Input::get('kelas');
             $absensi->status = $item['status'] ? $item['status'] : 'H';
             $absensi->description = $item['description'];
             $absensi->date = Input::get('tanggal');
@@ -224,9 +224,6 @@ class AbsensiController extends Controller
 
     public function cariabsensi()
     {
-        $absensi = Absensi::orderby('created_at', 'DESC');
-        // dd($absensi->get()->toArray());
-
         // relasi manual
         // $absensi = Absensi::orderby('created_at', 'DESC')->get();
         // foreach ($absensi as $value) {
@@ -236,6 +233,8 @@ class AbsensiController extends Controller
         // }
         // dd($absensi->toArray());
 
+        $absensi = Absensi::orderby('created_at', 'DESC');
+        // dd($absensi->get()->toArray());
         $content['absensis'] = $absensi->where('status','!=', 'H')->get();
         
         return View::make('absensi.cariabsensi')
