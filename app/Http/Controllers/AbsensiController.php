@@ -20,7 +20,7 @@ class AbsensiController extends Controller
         // dd($siswas->get()->toArray());
 
         // relasi manual
-        $siswas = Siswa::orderby('created_at', 'DESC');
+        $siswas = Siswa::orderby('created_at', 'DESC')->get();
         // foreach ($siswas as $value) {
         //     $value['kelas_manual'] = Kelas::where('id', $value['kelas_id'])->first()->toArray();
         // }
@@ -32,7 +32,7 @@ class AbsensiController extends Controller
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $siswas = $siswas->where('kelas_id', Input::get('search_kelas'))->get();
+            $siswas = Siswa::orderby('created_at', 'DESC')->where('kelas_id', Input::get('search_kelas'))->get();
             $input_kelas = Input::get('search_kelas');
         }
 
@@ -66,9 +66,9 @@ class AbsensiController extends Controller
         );
 
         //ini pakek cara manual
-        if ($tanggal && Input::has('search_kelas')) {
+        if ($tanggal && Input::has('search_kelas') && $siswas) {
             for ($i=0; $i < count($siswas) ; $i++) { 
-                $siswas[$i]['absensi_manual'] = Absensi::where('siswa_id', $siswas[$i]['id'])->where('date', $tanggal)->first()->toArray();
+                $siswas[$i]['absensi_manual'] = Absensi::where('siswa_id', $siswas[$i]['id'])->where('date', $tanggal)->first();
             }
         }
 
@@ -84,7 +84,7 @@ class AbsensiController extends Controller
             }
         }
 
-        dd($siswas->toArray());
+        // dd($siswas->toArray());
         $content['siswasi'] = $siswas;
         $content['jenis_kelamin'] = $jenis_kelamin;
         $content['agama'] = $agama;
