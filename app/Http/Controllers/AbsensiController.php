@@ -126,7 +126,12 @@ class AbsensiController extends Controller
 
     public function deleteabsensi()
     {
-        
+        // $tanggal = Input::get('tanggal');
+        // dd($tanggal);
+        // DB::table('absensi')->where('date', '2017-03-06')->where('kelas_id', '2')->delete();
+        DB::table('absensi')->where('date', Input::get('tanggal'))->where('kelas_id', Input::get('kelas'))->delete();
+        \Session::flash('flash_message','Data absensi berhasil dihapus.');
+        return back ();   
     }
 
     //rekap absensi per bulan
@@ -137,51 +142,14 @@ class AbsensiController extends Controller
         $sakit = DB::table('absensi')->where('status', 'S')->count();
         $izin = DB::table('absensi')->where('status', 'I')->count();
         $alpa = DB::table('absensi')->where('status', 'A')->count();
-        
-        // $kelas = array(
-        //     'X AK 1' => 'X AK 1',
-        //     'X AK 2' => 'X AK 2',
-        //     'X AK 3' => 'X AK 3',
-        //     'X FARMASI' => 'X FARMASI',
-        //     'X RPL 1' => 'X RPL 1',
-        //     'X RPL 2' => 'X RPL 2',
-        //     'XI AK 1' => 'XI AK 1',
-        //     'XI AK 2' => 'XI AK 2',
-        //     'XI FARMASI' => 'XI FARMASI',
-        //     'XI RPL 1' => 'XI RPL 1',
-        //     'XI RPL 2' => 'XI RPL 2',
-        //     'XII AK 1' => 'XII AK 1',
-        //     'XII AK 2' => 'XII AK 2',
-        //     'XII FARMASI' => 'XII FARMASI',
-        //     'XII RPL 1' => 'XII RPL 1',
-        //     'XII RPL 2' => 'XII RPL 2',
-        // );
-
-        // $bulan = array(
-        //     'Januari' => 'Januari',
-        //     'Februari' => 'Februari',
-        //     'Maret' => 'Maret',
-        //     'April' => 'April',
-        //     'Mei' => 'Mei',
-        //     'Juni' => 'Juni',
-        //     'Juli' => 'Juli',
-        //     'Agustus' => 'Agustus',
-        //     'September' => 'September',
-        //     'Oktober' => 'Oktober',
-        //     'November' => 'November',
-        //     'Desember' => 'Desember',
-        // );
        
         $content['absensis'] = $absensi->get();
         $content['sakit'] = $sakit;
         $content['izin'] = $izin;
         $content['alpa'] = $alpa;
-        // $content['kelas'] = $kelas;
-        // $content['bulan'] = $bulan;
+
         return View::make('absensi.rekapabsensiminggu')
                     ->with('content', $content);
-
-        // return View('absensi.rekapabsensibulan');
     }
 
     //rekap absensi per semester
@@ -239,6 +207,5 @@ class AbsensiController extends Controller
         
         return View::make('absensi.cariabsensi')
                     ->with('content', $content);
-        // return View('absensi.cariabsensi');
     }
 }

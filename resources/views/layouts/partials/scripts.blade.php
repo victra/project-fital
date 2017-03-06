@@ -82,6 +82,19 @@
 <script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
 
+<!-- Enable/Disable Tombol Absensi -->
+<script type="text/javascript">
+    $(function(){
+    var rowCount = $('#tableabsensi tbody tr').length;
+    if(rowCount < 1){
+        $('#simpan, #hapus').attr('disabled','disabled');
+    } else {
+        $('#simpan, #hapus').removeAttr('disabled');
+    }
+});
+</script>
+<!-- Enable/Disable Tombol Absensi -->
+
 <!-- Pengaturan Datatables -->
 <script type="text/javascript">
     $(function() {
@@ -413,6 +426,25 @@
 
     });            
 </script>
+<!-- Pengaturan Datatables -->
+
+<!-- Hide/Show Tombol Absensi -->
+<script type="text/javascript">
+    $(document).ready(function (){
+        validate();
+        $('#kelasku').change(validate);
+    });
+
+    function validate(){
+        if ($('#kelasku').val().length   >   0 ) {
+            $('#simpan, #hapus').show();
+        }
+        else {
+            $('#simpan, #hapus').hide();
+        }
+    }        
+</script>
+<!-- Hide/Show Tombol Absensi -->
 
 <!-- reset form modal tambah siswa -->
 <!-- <script type="text/javascript">

@@ -100,7 +100,7 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi_non_permanent']['description']}}</textarea>
+                                        <textarea style="width:230px" name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi_non_permanent']['description']}}</textarea>
                                     </div>
                                 </center>
                             </td>                   
@@ -113,11 +113,12 @@
     </div><!-- /.box-body -->
 
     <div class="box-footer">
-        <input type="hidden" name="kelas" value="{{$content['input_kelas']}}">
+        <input id="kelasku" type="hidden" name="kelasku" value="{{$content['input_kelas']}}">
         <input type="hidden" name="tanggal" value="{{$content['tanggal']}}">
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-        <button type="submit" name="simpan" class="btn btn-info pull-right">Simpan Absensi</button>
-        <button type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
+        <button id="simpan" type="submit" name="simpan" class="btn btn-info pull-right">Simpan Absensi</button>
+        <button id="hapus" onclick="window.location.href='deleteabsensi';" type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
+        <!-- <a href="deleteabsensi" style="margin-right:15px"; class="btn btn-danger pull-right" title="Hapus"> Hapus Absensi</a> -->
     </div>
     </form> 
 </div>
