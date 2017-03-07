@@ -34,6 +34,20 @@
       console.log('asdasd');
     }
 </script>
+
+<script type="text/javascript">
+    $(function() {
+    $('#datetimePicker').datepicker({
+          format: "yyyy-mm-dd",
+          autoclose: true
+        });
+    // $('#fname').datepicker();
+    $('#fname').on("change",function(){
+        var selected = $(this).val();
+        document.getElementById("caritanggal").value = selected;
+    });
+});
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the

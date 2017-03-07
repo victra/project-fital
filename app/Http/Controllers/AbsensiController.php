@@ -190,6 +190,8 @@ class AbsensiController extends Controller
 
     public function cariabsensi()
     {
+        
+
         // relasi manual
         // $absensi = Absensi::orderby('created_at', 'DESC')->get();
         // foreach ($absensi as $value) {
@@ -201,6 +203,14 @@ class AbsensiController extends Controller
 
         $absensi = Absensi::orderby('created_at', 'DESC');
         // dd($absensi->get()->toArray());
+
+        if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+        
+        $content['tanggal'] = $tanggal;
         $content['absensis'] = $absensi->where('status','!=', 'H')->get();
         
         return View::make('absensi.cariabsensi')

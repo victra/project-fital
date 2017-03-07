@@ -23,22 +23,26 @@
     <div class="box-header">
         <h3 class="box-title"></h3>            
             <div style="margin-right:-15px; margin-top:-20px" class="form-group">
-                <div class="col-sm-4 pull-right">
-                    <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Siswa">
+                <input id="caritanggal" type="text"/>
+                <!-- <div class="col-sm-4 pull-right">
+                    <input id="myInput" type="text" name="nama" class="form-control" placeholder="Masukkan Nama Siswa">
                 </div>  
-                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Cari Berdasarkan Nama:</label>   
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Cari Berdasarkan Nama:</label> -->   
                 <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-left">Cari Berdasarkan Tanggal :</label>
                 <div class="col-sm-2">
                     <div class="input-group date" id="datetimePicker">
-                        <input type="text" name="tanggal" class="form-control tanggal input-sm">
+                        <input id="fname"  type="text" name="tanggal" class="form-control tanggal input-sm">
+                        <!-- <input type="text" name="tanggal" class="form-control tanggal input-sm"> -->
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
+                <button onclick="window.location.href='';" type="button" style="margin-right:5px"; name="lihat" class="btn btn-info pull-left fa fa-search btn-sm" title="Lihat"></button>
+                <button onclick="window.location.href='';" type="button" style="margin-right:15px"; name="reset" class="btn btn-danger pull-left fa fa-close btn-sm" title="Reset"></button>
             </div>
     </div><!-- /.box-header -->
 
     <div class="box-body">
-        <table id="tablecariabsensi" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablecariabsensi_info">
+        <table id="example4" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablecariabsensi_info">
 
             <thead>
                 <tr>
