@@ -41,8 +41,8 @@
           format: "yyyy-mm-dd",
           autoclose: true
         });
-    // $('#fname').datepicker();
-    $('#fname').on("change",function(){
+    // $('#tanggal').datepicker();
+    $('#tanggal').on("change",function(){
         var selected = $(this).val();
         document.getElementById("caritanggal").value = selected;
     });
@@ -450,7 +450,7 @@
     });
 
     function validate(){
-        if ($('#kelasku').val().length   >   0 ) {
+        if ($('#kelasku').val()   >   0 ) {
             $('#simpan, #hapus').show();
         }
         else {

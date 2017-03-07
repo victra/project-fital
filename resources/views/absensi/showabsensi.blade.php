@@ -25,7 +25,7 @@
             <div style="margin-right:-15px; margin-top:-20px" class="form-group">
                 <div class="col-lg-2 pull-right">
                     <div class="input-group date" id="datetimePicker">
-                        <input type="text" name="tanggal" class="form-control tanggal input-sm" onchange="location = '?search_kelas={{$content['input_kelas']}}&tanggal='+this.value;" value="{{$content['tanggal']}}">
+                        <input type="text" name="tanggalku" class="form-control tanggal input-sm" onchange="location = '?search_kelas={{$content['input_kelas']}}&tanggal='+this.value;" value="{{$content['tanggal']}}">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>

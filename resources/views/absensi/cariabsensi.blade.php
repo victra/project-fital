@@ -31,12 +31,12 @@
                 <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-left">Cari Berdasarkan Tanggal :</label>
                 <div class="col-sm-2">
                     <div class="input-group date" id="datetimePicker">
-                        <input id="fname"  type="text" name="tanggal" class="form-control tanggal input-sm">
+                        <input id="tanggal" type="text" name="tanggal" class="form-control tanggal input-sm">
                         <!-- <input type="text" name="tanggal" class="form-control tanggal input-sm"> -->
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
-                <button onclick="window.location.href='';" type="button" style="margin-right:5px"; name="lihat" class="btn btn-info pull-left fa fa-search btn-sm" title="Lihat"></button>
+                <button onclick="window.location.href = '?tanggal=' " type="button" style="margin-right:5px"; name="lihat" class="btn btn-info pull-left fa fa-search btn-sm" title="Lihat"></button>
                 <button onclick="window.location.href='';" type="button" style="margin-right:15px"; name="reset" class="btn btn-danger pull-left fa fa-close btn-sm" title="Reset"></button>
             </div>
     </div><!-- /.box-header -->
