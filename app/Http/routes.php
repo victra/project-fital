@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('storeabsensi', 'AbsensiController@storeabsensi');
-    Route::get('deleteabsensi', 'AbsensiController@deleteabsensi');
+    Route::get('deleteabsensi/{date}/{kelas_id}', 'AbsensiController@deleteabsensi');
     Route::get('cariabsensi', 'AbsensiController@cariabsensi');
     Route::get('rekapperbulan', 'AbsensiController@rekapabsensiminggu');
     Route::get('rekappersemester', 'AbsensiController@rekapabsensisemester');

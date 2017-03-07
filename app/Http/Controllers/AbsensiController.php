@@ -102,6 +102,7 @@ class AbsensiController extends Controller
         // echo "<pre>";
         // print_r($_POST);
         // echo "</pre>";
+
         foreach (Input::get('absensi') as $siswa_id=>$item) {
             $check_absensi = Absensi::where('siswa_id', $siswa_id)->where('date', Input::get('tanggal'))->where('kelas_id', Input::get('kelas'))->first();
             if ($check_absensi) {
@@ -124,12 +125,9 @@ class AbsensiController extends Controller
         return back ();
     }
 
-    public function deleteabsensi()
+    public function deleteabsensi($date, $kelas_id)
     {
-        // $tanggal = Input::get('tanggal');
-        // dd($tanggal);
-        // DB::table('absensi')->where('date', '2017-03-06')->where('kelas_id', '2')->delete();
-        DB::table('absensi')->where('date', Input::get('tanggal'))->where('kelas_id', Input::get('kelas'))->delete();
+        DB::table('absensi')->where('date', $date)->where('kelas_id', $kelas_id)->delete();
         \Session::flash('flash_message','Data absensi berhasil dihapus.');
         return back ();   
     }

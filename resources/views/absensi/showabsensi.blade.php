@@ -113,12 +113,12 @@
     </div><!-- /.box-body -->
 
     <div class="box-footer">
-        <input id="kelasku" type="hidden" name="kelasku" value="{{$content['input_kelas']}}">
-        <input type="hidden" name="tanggal" value="{{$content['tanggal']}}">
+        <input id="kelasku" type="hidden" name="kelas" value="{{$content['input_kelas']}}">
+        <input type="text" name="hidden" value="{{$content['tanggal']}}">
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
         <button id="simpan" type="submit" name="simpan" class="btn btn-info pull-right">Simpan Absensi</button>
-        <button id="hapus" onclick="window.location.href='deleteabsensi';" type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
-        <!-- <a href="deleteabsensi" style="margin-right:15px"; class="btn btn-danger pull-right" title="Hapus"> Hapus Absensi</a> -->
+        <button id="hapus" onclick="window.location.href='deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}';" type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
+        <!-- <a href="deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}" style="margin-right:15px"; class="btn btn-danger pull-right" title="Hapus"> Hapus Absensi</a> -->
     </div>
     </form> 
 </div>
