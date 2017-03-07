@@ -28,7 +28,7 @@
                     <input id="myInput" type="text" name="nama" class="form-control" placeholder="Masukkan Nama Siswa">
                 </div>  
                 <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Cari Berdasarkan Nama:</label> -->   
-                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-left">Cari Berdasarkan Tanggal :</label>
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-left">Cari Tanggal :</label>
                 <div class="col-sm-2">
                     <div class="input-group date" id="datetimePicker">
                         <input id="tanggal" type="text" name="tanggal" class="form-control tanggal input-sm">
@@ -36,23 +36,24 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
-                <button onclick="window.location.href = '?tanggal=' " type="button" style="margin-right:5px"; name="lihat" class="btn btn-info pull-left fa fa-search btn-sm" title="Lihat"></button>
-                <button onclick="window.location.href='';" type="button" style="margin-right:15px"; name="reset" class="btn btn-danger pull-left fa fa-close btn-sm" title="Reset"></button>
+                <!-- <button onclick="window.location.href = '?tanggal=' " type="button" style="margin-right:5px"; name="lihat" class="btn btn-info pull-left fa fa-search btn-sm" title="Lihat"></button> -->
+                <button onclick="myFunction()" type="button" style="margin-right:15px; margin-top:4px"; name="reset" class="btn btn-danger pull-left fa fa-close btn-xs" title="Reset Tanggal"></button>
             </div>
     </div><!-- /.box-header -->
 
     <div class="box-body">
-        <table id="example4" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablecariabsensi_info">
+        <table id="tablecariabsensi" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablecariabsensi_info">
 
             <thead>
                 <tr>
-                    <th class="no"><center>No</center></th>
-                    <th class="tanggal"><center>Tanggal</center></th>
-                    <th><center>Nama Siswa</center></th>
-                    <th class="jkl"><center>Jenis Kelamin</center></th>
-                    <th class="kelas"><center>Kelas</center></th>
-                    <th class="status"><center>Status</center></th>
-                    <th class="keterangan"><center>Keterangan</center></th>
+                    <!-- <th class="no"><center>No</center></th> -->
+                    <th class="tanggal">Tanggal</th>
+                    <th class="nis">NIS</th>
+                    <th>Nama Siswa</th>
+                    <th class="jkl">Jenis Kelamin</th>
+                    <th class="kelas">Kelas</th>
+                    <th class="status">Status</th>
+                    <th class="keterangan">Keterangan</th>
                 </tr>
             </thead>
 
@@ -60,13 +61,14 @@
                 <?php $no=1; ?>
                 @foreach($content['absensis'] as $item)
                 <tr>
-                    <td><center>{{$no++}}</center></td>
-                    <td><center>{{$item->date}}</center></td>
+                    <!-- <td><center>{{$no++}}</center></td> -->
+                    <td>{{$item->date}}</td>
+                    <td><center>{{$item->siswa->nis}}</center></td>
                     <td>{{$item->siswa->nama}}</td>
                     <td><center>{{$item->siswa->jkl}}</center></td>
-                    <td><center>{{$item->siswa->kelas->nama_kelas}}</center></td> 
+                    <td>{{$item->siswa->kelas->nama_kelas}}</td> 
                     <td><center>{{$item->status}}</center></td>
-                    <td><center>{{$item->description}}</center></td>                
+                    <td>{{$item->description}}</td>                
                 </tr>                                    
                 @endforeach
             </tbody>                       

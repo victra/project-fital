@@ -284,8 +284,8 @@
             "bAutoWidth": false,
             "aoColumns" : [
               { sWidth: '5%' }, //no
-              { sWidth: '10%' }, //nis
-              { sWidth: '25%' }, //nama siswa
+              { sWidth: '5%' }, //nis
+              { sWidth: '30%' }, //nama siswa
               { sWidth: '15%' }, //jenis kelamin
               { sWidth: '10%' }, //agama
               { sWidth: '10%' }, //status
@@ -328,8 +328,9 @@
             // pengaturan lebar kolom
             "bAutoWidth": false,
             "aoColumns" : [
-              { sWidth: '5%' }, //no
+              // { sWidth: '5%' }, //no
               { sWidth: '10%' }, //tanggal
+              { sWidth: '5%' }, //no
               { sWidth: '25%' }, //nama siswa
               { sWidth: '15%' }, //jenis kelamin
               { sWidth: '11%' }, //kelas
@@ -356,8 +357,8 @@
 
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","status","keterangan" ]},
-              {"bSortable" : false, "aTargets" : [ "jkl","kelas","status","keterangan" ]} 
+              {"bSearchable" : false, "aTargets" : [ "no","nis","jkl","agama","kelas","status","keterangan" ]},
+              {"bSortable" : false, "aTargets" : [ "jkl","keterangan" ]} 
             ],
         });
         $('#example2').dataTable({
@@ -452,13 +453,60 @@
     function validate(){
         if ($('#kelasku').val()   >   0 ) {
             $('#simpan, #hapus').show();
+            $('#tableabsensi').parents('div.dataTables_wrapper').first().show();
         }
         else {
             $('#simpan, #hapus').hide();
+            $('#tableabsensi').parents('div.dataTables_wrapper').first().hide();
         }
     }        
 </script>
 <!-- Hide/Show Tombol Absensi -->
+
+<!-- Cari Absensi Berdasarkan Tanggal -->
+<script type="text/javascript">
+    $(document).ready(function (){
+    var table = $('#tablecariabsensi').DataTable();
+
+    $("#tanggal").on("change",function(){
+        
+     var _val = $(this).val();
+     var i = $("#caritanggal").val();     
+     if(i != ''){  
+            table
+            .columns(0)
+            .search(_val, true, false)
+            .draw();
+      }else{  
+            table
+            .columns(0)
+            .search('', true, false)
+            .draw();
+      }
+    });
+
+    });
+</script>
+<!-- Cari Absensi Berdasarkan Tanggal -->
+
+<!-- Tombol Reste Cari Tanggal -->
+<script type="text/javascript">
+function myFunction() {
+    // $('input[type="text"]').val('');
+    $("#tanggal").val('');
+    $("#caritanggal").val('');
+}
+</script>
+<!-- Tombol Reste Cari Tanggal -->
+
+<!-- <script type="text/javascript">
+    $("#reset").on("click", function() {
+    // if ($(this).val() != "")
+        // $("#tanggal").val("")
+        // $('input[type="text"]').val('');
+        document.getElementById("tanggal").empty();
+});
+</script> -->
 
 <!-- reset form modal tambah siswa -->
 <!-- <script type="text/javascript">
