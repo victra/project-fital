@@ -114,12 +114,33 @@
 
     <div class="box-footer">
         <input id="kelasku" type="hidden" name="kelas" value="{{$content['input_kelas']}}">
-        <input type="text" name="hidden" value="{{$content['tanggal']}}">
+        <input type="hidden" name="tanggal" value="{{$content['tanggal']}}">
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
         <button id="simpan" type="submit" name="simpan" class="btn btn-info pull-right">Simpan Absensi</button>
-        <button id="hapus" onclick="window.location.href='deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}';" type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
+        <button id="hapus" data-href='deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}' data-toggle="modal" data-target="#confirm-delete" type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
         <!-- <a href="deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}" style="margin-right:15px"; class="btn btn-danger pull-right" title="Hapus"> Hapus Absensi</a> -->
     </div>
     </form> 
 </div>
+@endsection
+
+@section('modals')
+<!-- Modal Konfirmasi Hapus -->
+<div class="modal fade modal-danger" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Konfirmasi Hapus Data</h4>
+            </div>
+            <div class="modal-body">
+                Apa anda yakin akan menghapus data ini?
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger btn-ok">Hapus</a>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Konfirmasi Hapus -->
 @endsection
