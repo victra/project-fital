@@ -70,7 +70,9 @@
                             
                             <span class="fa fa-edit"></span></a>
                             <!-- <a onclick="return confirm('Are you sure?')" href="deleteguru&{{$item->id}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a> -->
+                            @if (Auth::user()->id != $item->id)
                             <a data-href="deleteguru&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
+                            @endif
                         </center>
                     </td>
                 </tr>                                    
@@ -127,13 +129,13 @@
                     </div>
                     <label class="control-label col-sm-4">Username</label>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <input type="text" name="username" class="form-control" placeholder="Username">
                         </div>  
                     </div>
                     <label class="control-label col-sm-4">Password</label>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>  
                     </div>
@@ -222,17 +224,17 @@
                     </div>
                     <label class="control-label col-sm-4">Username</label>
                     <div class="form-group">
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <input type="text" name="username" class="form-control" placeholder="Username">
                             <!-- <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true"> -->
                         </div>  
                     </div>
                     <label class="control-label col-sm-4">Password</label>
                     <div class="form-group">
-                        <div class="col-sm-3">
-                            <input type="password" name="password" class="form-control" placeholder="****************">
+                        <div class="col-sm-5">
+                            <input type="password" name="password" class="form-control" placeholder="Biarkan jika tidak diubah.">
                         </div>
-                        <span class="help-inline col-sm-4"> <i class="fa fa-info-circle"></i> Biarkan jika tidak diubah </span>  
+                        <!-- <span class="help-inline col-sm-4"> <i class="fa fa-info-circle"></i> Biarkan jika tidak diubah </span> -->  
                     </div>
                     <label class="control-label col-sm-4">Role</label>
                     <div class="form-group">

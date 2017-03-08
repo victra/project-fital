@@ -51,17 +51,16 @@
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Bulan :</label>--}}
 
                 <!-- Pilih Kelas -->
-                <form style="margin-right:30px; margin-top:0px" class="pull-right">
-                    <select class="form-control" name="kelas">
-                        {{-- <option value="">-Pilih Kelas-</option>
-                        @foreach($content['kelas'] as $key => $value)
-                            <option value="{{$key}}">{{$value}}</option>
-                        @endforeach --}}
+                <form style="margin-right:125px; margin-top:0px" class="pull-right">
+                    <select class="form-control input-sm" onchange="location = this.value;">
+                        <option value="">-Pilih Kelas-</option>
+                            @foreach($content['kelas'] as $value)
+                            <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
+                        <option {{$selected}} value="?search_kelas={{$value['id']}}">{{$value['nama_kelas']}}</option>
+                        @endforeach
                     </select>
                 </form>
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Kelas :</label>
-                
-
                 </div>
     </div><!-- /.box-header -->
 
@@ -74,6 +73,7 @@
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
+                    <th><center>Kelas</center></th>
                     <th><center>Sakit</center></th>
                     <th><center>Izin</center></th>
                     <th><center>Absen</center></th>
@@ -89,6 +89,7 @@
                     <td>{{$item->siswa->nis}}</td>
                     <td>{{$item->siswa->nama}}</td>
                     <td><center>{{$item->siswa->jkl}}</center></td>
+                    <td><center>{{$item->kelas->nama_kelas}}</center></td>                    
                     <td><center>{{$item->nama}}</center></td>
                     <td><center></center></td>
                     <td><center></center></td>

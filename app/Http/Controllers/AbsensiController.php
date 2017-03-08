@@ -137,11 +137,21 @@ class AbsensiController extends Controller
     {
         $absensi = Absensi::orderby('created_at', 'DESC');
 
+        $input_kelas = '';
+        if(Input::has('search_kelas')){
+            $absensi = $absensi->where('kelas_id', Input::get('search_kelas'));
+            $input_kelas = Input::get('search_kelas');
+        }
+
+        $kelas = Kelas::get();
+
         $sakit = DB::table('absensi')->where('status', 'S')->count();
         $izin = DB::table('absensi')->where('status', 'I')->count();
         $alpa = DB::table('absensi')->where('status', 'A')->count();
        
         $content['absensis'] = $absensi->get();
+        $content['kelas'] = $kelas;
+        $content['input_kelas'] = $input_kelas;
         $content['sakit'] = $sakit;
         $content['izin'] = $izin;
         $content['alpa'] = $alpa;

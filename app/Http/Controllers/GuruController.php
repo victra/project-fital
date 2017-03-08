@@ -149,7 +149,7 @@ class GuruController extends Controller
 
     public function storeguru(Request $request)
     {
-        if (Auth::user()->role = 'administrator') {
+        if (Auth::user()->role == 'administrator') {
             $guru = new User;
             $guru->nip = $request->nip;
             $guru->name = $request->nama;
@@ -169,36 +169,44 @@ class GuruController extends Controller
     }
     public function showguru()
     {
-        $guru = User::orderby('created_at', 'DESC');
+        if (Auth::user()->role == 'administrator') {
+            $guru = User::orderby('created_at', 'DESC');
 
-        //$input_kelas = '';
-        //if(Input::has('search_kelas')){
-           // $siswa = $siswa->where('kelas', Input::get('search_kelas'));
-           // $input_kelas = Input::get('search_kelas');
-        //}
-        $role = array(
-            'administrator' => 'Administrator',
-            'guru piket' => 'Guru Piket',
-        );
-        $jenis_kelamin = array(
-            'Laki-laki' => 'Laki-laki',
-            'Perempuan' => 'Perempuan',
-        );
-        $agama = array(
-            'Islam' => 'Islam',
-            'Katolik' => 'Katolik',
-            'Kristen' => 'Kristen',
-            // 'Hindu' => 'Hindu',
-            // 'Budha' => 'Budha',
-        );
-       
-        $content['gurupkt'] = $guru->get();
-        $content['role'] = $role;
-        $content['jenis_kelamin'] = $jenis_kelamin;
-        $content['agama'] = $agama;
-        //$content['input_kelas'] = $input_kelas;
-        return View::make('guru.showguru')
-                    ->with('content', $content);
+            //$input_kelas = '';
+            //if(Input::has('search_kelas')){
+               // $siswa = $siswa->where('kelas', Input::get('search_kelas'));
+               // $input_kelas = Input::get('search_kelas');
+            //}
+            $role = array(
+                'administrator' => 'Administrator',
+                'guru' => 'Guru',
+                'guru piket' => 'Guru Piket',
+                'karyawan' => 'Karyawan',
+                'wali kelas' => 'Wali Kelas',
+            );
+            $jenis_kelamin = array(
+                'Laki-laki' => 'Laki-laki',
+                'Perempuan' => 'Perempuan',
+            );
+            $agama = array(
+                'Islam' => 'Islam',
+                'Katolik' => 'Katolik',
+                'Kristen' => 'Kristen',
+                'Hindu' => 'Hindu',
+                'Budha' => 'Budha',
+            );
+           
+            $content['gurupkt'] = $guru->get();
+            $content['role'] = $role;
+            $content['jenis_kelamin'] = $jenis_kelamin;
+            $content['agama'] = $agama;
+            //$content['input_kelas'] = $input_kelas;
+            return View::make('guru.showguru')
+                        ->with('content', $content);
+        }
+        else{
+            return view('errors.404');
+        }
     }
     
     public function deleteguru($id)
