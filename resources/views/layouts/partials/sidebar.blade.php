@@ -41,7 +41,7 @@
             <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-users'></i> <span> Data Siswa </span></a></li>
             <li class="{{ (Request::is('absensisiswa')) ? 'active':'' }}"><a href="{{ url('absensisiswa') }}"><i class='fa fa-table'></i> <span> Absensi Siswa </span></a></li>
             <li class="{{ (Request::is('cariabsensi')) ? 'active':'' }}"><a href="{{ url('cariabsensi') }}"><i class='fa fa-search'></i> <span> Cari Absensi </span></a></li>
-            <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
+            <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
             <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Semester) </span></a></li>
             <<!-- li class="treeview">
                 <a href="#"><i class='fa fa-file-o'></i> <span>Rekap Absensi</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -70,7 +70,7 @@
             <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-users'></i> <span> Data Siswa </span></a></li>            
             <li class="{{ (Request::is('absensisiswa')) ? 'active':'' }}"><a href="{{ url('absensisiswa') }}"><i class='fa fa-table'></i> <span> Absensi Siswa </span></a></li>
             <li class="{{ (Request::is('cariabsensi')) ? 'active':'' }}"><a href="{{ url('cariabsensi') }}"><i class='fa fa-search'></i> <span> Cari Absensi </span></a></li>
-            <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
+            <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
             <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Semester) </span></a></li>
         </ul>
         @else

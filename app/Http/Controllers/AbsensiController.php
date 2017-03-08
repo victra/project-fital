@@ -132,24 +132,38 @@ class AbsensiController extends Controller
         return back ();   
     }
 
-    //rekap absensi per bulan
+    //rekap absensi per minggu
     public function rekapabsensiminggu()
     {
-        $absensi = Absensi::orderby('created_at', 'DESC');
+        $siswa = Siswa::orderby('created_at', 'DESC');
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $absensi = $absensi->where('kelas_id', Input::get('search_kelas'));
+            $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
             $input_kelas = Input::get('search_kelas');
         }
 
         $kelas = Kelas::get();
 
-        $sakit = DB::table('absensi')->where('status', 'S')->count();
-        $izin = DB::table('absensi')->where('status', 'I')->count();
-        $alpa = DB::table('absensi')->where('status', 'A')->count();
+        // SELECT COUNT(*) FROM absensi WHERE status = 'I' AND date >= '2017-03-04' AND date <= '2017-03-07'
+        $sakit = DB::table('absensi')
+                    ->where('status','I')
+                    ->where('kelas_id',Input::get('search_kelas'))
+                    ->where('date','>=','2017-03-04')
+                    ->where('date','<=','2017-03-07')->get();
+        $izin = DB::table('absensi')
+                    ->where('status','I')
+                    ->where('kelas_id',Input::get('search_kelas'))
+                    ->where('date','>=','2017-03-04')
+                    ->where('date','<=','2017-03-07')->get();
+        $alpa = DB::table('absensi')
+                    ->where('status','I')
+                    ->where('kelas_id',Input::get('search_kelas'))
+                    ->where('date','>=','2017-03-04')
+                    ->where('date','<=','2017-03-07')->get();
+        // dd($sakit);
        
-        $content['absensis'] = $absensi->get();
+        $content['absensis'] = $siswa->get();
         $content['kelas'] = $kelas;
         $content['input_kelas'] = $input_kelas;
         $content['sakit'] = $sakit;
@@ -165,37 +179,16 @@ class AbsensiController extends Controller
     {
         $siswa = Siswa::orderby('created_at', 'DESC');
 
-        $kelas = array(
-            'X AK 1' => 'X AK 1',
-            'X AK 2' => 'X AK 2',
-            'X AK 3' => 'X AK 3',
-            'X FARMASI' => 'X FARMASI',
-            'X RPL 1' => 'X RPL 1',
-            'X RPL 2' => 'X RPL 2',
-            'XI AK 1' => 'XI AK 1',
-            'XI AK 2' => 'XI AK 2',
-            'XI FARMASI' => 'XI FARMASI',
-            'XI RPL 1' => 'XI RPL 1',
-            'XI RPL 2' => 'XI RPL 2',
-            'XII AK 1' => 'XII AK 1',
-            'XII AK 2' => 'XII AK 2',
-            'XII FARMASI' => 'XII FARMASI',
-            'XII RPL 1' => 'XII RPL 1',
-            'XII RPL 2' => 'XII RPL 2',
-        );
-
+        
         $semester = array(
             'Semester 1' => 'Semester 1',
             'Semester 2' => 'Semester 2',
         );
        
         $content['siswas'] = $siswa->get();
-        $content['kelas'] = $kelas;
         $content['semester'] = $semester;
         return View::make('absensi.rekapabsensisemester')
                     ->with('content', $content);
-
-        // return View('absensi.rekapabsensisemester');
     }
 
     public function cariabsensi()
@@ -212,18 +205,16 @@ class AbsensiController extends Controller
         // dd($absensi->toArray());
 
         $absensi = Absensi::orderby('created_at', 'DESC');
-        // dd($absensi->get()->toArray());
 
-        if (Input::has('tanggal')) {
-            $tanggal = Input::get('tanggal');
-        } else {
-            $tanggal = date("Y-m-d");
-        }
-        
-        $content['tanggal'] = $tanggal;
         $content['absensis'] = $absensi->where('status','!=', 'H')->get();
         
         return View::make('absensi.cariabsensi')
                     ->with('content', $content);
+    }
+
+    public function cek()
+    {
+        $x = Input::get('tanggal');
+        dd($x);        
     }
 }

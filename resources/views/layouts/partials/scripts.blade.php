@@ -23,7 +23,7 @@
 <script src="{{ asset('/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#datetimePicker').datepicker({
+        $('#datetimePicker, #datetimePicker1').datepicker({
           format: "yyyy-mm-dd",
           autoclose: true
         });

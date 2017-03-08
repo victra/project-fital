@@ -32,7 +32,7 @@
                 <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">sampai Tanggal :</label>
 
                 <div class="col-lg-2 pull-right">
-                    <div class="input-group date" id="datetimePicker">
+                    <div class="input-group date" id="datetimePicker1">
                         <input type="text" name="tanggal_akhir" class="form-control tanggal input-sm">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
@@ -86,19 +86,18 @@
                 @foreach($content['absensis'] as $item)
                 <tr>
                     <td><center>{{$no++}}</center></td>
-                    <td>{{$item->siswa->nis}}</td>
-                    <td>{{$item->siswa->nama}}</td>
-                    <td><center>{{$item->siswa->jkl}}</center></td>
+                    <td>{{$item->nis}}</td>
+                    <td>{{$item->nama}}</td>
+                    <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->kelas->nama_kelas}}</center></td>                    
-                    <td><center>{{$item->nama}}</center></td>
+                    <td><center></center></td>
                     <td><center></center></td>
                     <td><center></center></td>
                     <td><center></center></td>                    
                 </tr>                                    
                 @endforeach
             </tbody>                       
-        </table>                
-                
+        </table>
     </div><!-- /.box-body -->
 
 </div>
