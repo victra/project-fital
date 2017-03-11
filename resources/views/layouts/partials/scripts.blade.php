@@ -490,12 +490,20 @@
 <!-- Cari Absensi Berdasarkan Tanggal -->
 
 <!-- Tombol Reste Cari Tanggal -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function myFunction() {
     // $('input[type="text"]').val('');
     $("#tanggal").val('');
     $("#caritanggal").val('');
 }
+</script> -->
+<!-- Tombol Reste Cari Tanggal -->
+
+<!-- Tombol Reste Cari Tanggal -->
+<script type="text/javascript">
+    $("#reset").click(function(){
+    $('#datetimePicker').data('datepicker').setDate(null);
+});
 </script>
 <!-- Tombol Reste Cari Tanggal -->
 

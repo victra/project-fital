@@ -21,23 +21,24 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title"></h3>            
+        <h3 class="box-title">Cari Absensi</h3>            
             <div style="margin-right:-15px; margin-top:-20px" class="form-group">
-                <input id="caritanggal" type="text"/>
+                <input id="caritanggal" type="hidden"/>
                 <!-- <div class="col-sm-4 pull-right">
                     <input id="myInput" type="text" name="nama" class="form-control" placeholder="Masukkan Nama Siswa">
                 </div>  
                 <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Cari Berdasarkan Nama:</label> -->   
-                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-left">Cari Tanggal :</label>
-                <div class="col-sm-2">
+                <!-- <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-left">Cari Tanggal :</label> -->
+                <button id="reset" type="button" style="margin-right:15px; margin-top:4px"; name="reset" class="btn btn-danger pull-right fa fa-close btn-xs" title="Reset Tanggal"></button>
+                <div class="col-sm-3 pull-right">
                     <div class="input-group date" id="datetimePicker">
-                        <input id="tanggal" type="text" name="tanggal" class="form-control tanggal input-sm">
+                        <input id="tanggal" type="text" name="tanggal" class="form-control tanggal input-sm" placeholder="Cari Tanggal Absensi">
                         <!-- <input type="text" name="tanggal" class="form-control tanggal input-sm"> -->
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
                 <!-- <button onclick="window.location.href = '?tanggal=' " type="button" style="margin-right:5px"; name="lihat" class="btn btn-info pull-left fa fa-search btn-sm" title="Lihat"></button> -->
-                <button onclick="myFunction()" type="button" style="margin-right:15px; margin-top:4px"; name="reset" class="btn btn-danger pull-left fa fa-close btn-xs" title="Reset Tanggal"></button>
+                <!-- <button id="reset" onclick="myFunction()" type="button" style="margin-right:15px; margin-top:4px"; name="reset" class="btn btn-danger pull-left fa fa-close btn-xs" title="Reset Tanggal"></button> -->
             </div>
     </div><!-- /.box-header -->
 

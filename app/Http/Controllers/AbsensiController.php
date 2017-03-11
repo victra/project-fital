@@ -145,6 +145,55 @@ class AbsensiController extends Controller
 
         $kelas = Kelas::get();
 
+        // $date = Input::get('tanggal');
+        // $kelas_id = Input::get('kelas');
+        
+        // $query = "SELECT siswa.nis, siswa.nama, siswa.jkl,
+
+        //         -- Jumlah Sakit
+        //         (SELECT COUNT(absensi.status)
+        //         FROM absensi
+        //         WHERE absensi.status = 'S'
+        //         AND absensi.date = '$date'
+        //         AND absensi.siswa_id = siswa.id
+        //         AND absensi.siswa_id IN (SELECT siswa.id
+        //                           FROM siswa
+        //                           WHERE siswa.kelas_id = '$kelas_id'
+        //                           ORDER BY siswa.nis ASC)
+        //         GROUP BY siswa.nis
+        //         ORDER BY siswa.nis ASC) AS Sakit,
+
+        //         -- Jumlah Izin
+        //         (SELECT COUNT(absensi.status)
+        //         FROM absensi
+        //         WHERE absensi.status = 'I'
+        //         AND absensi.date = '$date'
+        //         AND absensi.siswa_id = siswa.id
+        //         AND absensi.siswa_id IN (SELECT siswa.id
+        //                           FROM siswa
+        //                           WHERE siswa.kelas_id = '$kelas_id'
+        //                           ORDER BY siswa.nis ASC)
+        //         GROUP BY siswa.nis
+        //         ORDER BY siswa.nis ASC) AS Ijin,
+
+        //         -- Jumlah Alpa
+        //         (SELECT COUNT(absensi.status)
+        //         FROM absensi
+        //         WHERE absensi.status = 'A'
+        //         AND absensi.date = '$date'
+        //         AND absensi.siswa_id = siswa.id
+        //         AND absensi.siswa_id IN (SELECT siswa.id
+        //                           FROM siswa
+        //                           WHERE siswa.kelas_id = '$kelas_id'
+        //                           ORDER BY siswa.nis ASC)
+        //         GROUP BY siswa.nis
+        //         ORDER BY siswa.nis ASC) AS Alpa
+
+        //     FROM siswa
+        //     WHERE siswa.id_kelas = '$id_kelas'
+        //     GROUP BY siswa.nis
+        //     ORDER BY siswa.nis ASC;";
+
         // SELECT COUNT(*) FROM absensi WHERE status = 'I' AND date >= '2017-03-04' AND date <= '2017-03-07'
         $sakit = DB::table('absensi')
                     ->where('status','I')
