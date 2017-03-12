@@ -16,11 +16,15 @@ class AbsensiController extends Controller
 {
     public function showabsensi()
     {
+       
+        \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
+        
+
         // $siswas = Siswa::orderby('nis', 'ASC');
         // dd($siswas->get()->toArray());
 
         // relasi manual
-        $siswas = Siswa::orderby('created_at', 'DESC')->get();
+        $siswas = Siswa::orderby('nis', 'ASC')->get();
         // foreach ($siswas as $value) {
         //     $value['kelas_manual'] = Kelas::where('id', $value['kelas_id'])->first()->toArray();
         // }
@@ -32,8 +36,9 @@ class AbsensiController extends Controller
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $siswas = Siswa::orderby('created_at', 'DESC')->where('kelas_id', Input::get('search_kelas'))->get();
+            $siswas = Siswa::orderby('nis', 'ASC')->where('kelas_id', Input::get('search_kelas'))->get();
             $input_kelas = Input::get('search_kelas');
+            \Session::flash('info_absensi','Isi kolom "Status" untuk siswa yang berhalangan hadir saja.');
         }
 
         if (Input::has('tanggal')) {
@@ -135,7 +140,7 @@ class AbsensiController extends Controller
     //rekap absensi per minggu
     public function rekapabsensiminggu()
     {
-        $siswa = Siswa::orderby('created_at', 'DESC');
+        $siswa = Siswa::orderby('nis', 'ASC');
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
@@ -226,15 +231,24 @@ class AbsensiController extends Controller
     //rekap absensi per semester
     public function rekapabsensisemester()
     {
-        $siswa = Siswa::orderby('created_at', 'DESC');
+        $siswa = Siswa::orderby('nis', 'ASC');
 
-        
+        $input_kelas = '';
+        if(Input::has('search_kelas')){
+            $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
+            $input_kelas = Input::get('search_kelas');
+        }
+
+        $kelas = Kelas::get();
+
         $semester = array(
             'Semester 1' => 'Semester 1',
             'Semester 2' => 'Semester 2',
         );
        
-        $content['siswas'] = $siswa->get();
+        $content['absensis'] = $siswa->get();
+        $content['kelas'] = $kelas;
+        $content['input_kelas'] = $input_kelas;
         $content['semester'] = $semester;
         return View::make('absensi.rekapabsensisemester')
                     ->with('content', $content);

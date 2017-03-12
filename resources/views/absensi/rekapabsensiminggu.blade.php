@@ -16,16 +16,16 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title"></h3>            
-            <div style="margin-right:-15px; margin-top:-20px" class="form-group">
+        <h3 class="box-title">Rekap Absensi Per Minggu</h3>            
+            <div style="margin-right:0px; margin-top:30px" class="form-group pull-right">
                 <!-- Tombol Rekap -->
-                <div class="col-lg-2 pull-right">
-                <a class="pull-right btn btn-success btn-sm">Rekap</a>
+                <div class="pull-right">
+                <a class="btn btn-success btn-sm">Rekap</a>
                 </div>
                 <!-- Rekap Mingguan -->
                 <div class="col-lg-2 pull-right">
                     {{--<div class="input-group date" id="datetimePicker">--}}
-                        <input type="text" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai">
+                        <input type="text" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai" placeholder="Tanggal">
                         {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>--}}
                 </div>
@@ -33,11 +33,11 @@
 
                 <div class="col-lg-2 pull-right">
                     {{--<div class="input-group date" id="datetimePicker1">--}}
-                        <input type="text" id="datetimePicker1" class="form-control tanggal input-sm dari">
+                        <input type="text" id="datetimePicker1" class="form-control tanggal input-sm dari" placeholder="Tanggal">
                         {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>--}}
                 </div>
-                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari Tanggal :</label>
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari :</label>
 
                 <!-- Pilih Bulan -->
                 {{--<form style="margin-right:150px; margin-top:0px" class="pull-right">
@@ -51,7 +51,7 @@
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Bulan :</label>--}}
 
                 <!-- Pilih Kelas -->
-                <form style="margin-right:125px; margin-top:0px" class="pull-right">
+                <form style="margin-right:50px; margin-top:0px" class="pull-right">
                     <select class="form-control input-sm" onchange="location = this.value;">
                         <option value="">-Pilih Kelas-</option>
                             @foreach($content['kelas'] as $value)
@@ -61,15 +61,14 @@
                     </select>
                 </form>
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Kelas :</label>
-                </div>
+            </div>
     </div><!-- /.box-header -->
 
-    <div class="box-body table-responsive">
-        <table id="example2" class="table table-hover table-bordered table-striped dataTable" aria-describedby="example2_info">
+    <div class="box-body">
+        <table id="tablerekapminggu" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekapminggu_info">
 
             <thead>
                 <tr>
-                    {{--<th><center>No</center></th>--}}
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
@@ -78,6 +77,7 @@
                     <th><center>Izin</center></th>
                     <th><center>Absen</center></th>
                     <th><center>Total</center></th>
+                    <th><center>Info</center></th>
                 </tr>
             </thead>
 
@@ -85,7 +85,6 @@
                 <?php $no=1; ?>
                 @foreach($content['absensis'] as $item)
                 <tr>
-                    {{--<td><center>{{$no++}}</center></td>--}}
                     <td>{{$item->nis}}</td>
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
@@ -93,7 +92,8 @@
                     <td><center></center></td>
                     <td><center></center></td>
                     <td><center></center></td>
-                    <td><center></center></td>                    
+                    <td><center></center></td>
+                    <th><center></center></th>
                 </tr>                                    
                 @endforeach
             </tbody>                       

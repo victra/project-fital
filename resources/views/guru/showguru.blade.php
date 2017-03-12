@@ -21,7 +21,7 @@
 
 <div class="box">
     <div class="box-header">
-        <!-- <h3 class="box-title">Data Guru</h3> -->
+        <h3 class="box-title">Data User</h3>
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahGuru"> <i class="fa fa-plus"></i> Tambah User</a>
     </div><!-- /.box-header -->
 

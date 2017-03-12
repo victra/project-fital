@@ -19,6 +19,14 @@
     <div id="successMessage" class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
 @endif
 
+@if(Session::has('info_message'))
+    <div id="infoMessage" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_message') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+@endif
+
+@if(Session::has('info_absensi'))
+    <div id="infoAbsensi" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_absensi') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+@endif
+
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Absensi Siswa</h3>            
@@ -70,7 +78,7 @@
                         @if(!isset($item['absensi_non_permanent']))
                             <td>
                                 <center>
-                                    <select style="width:100px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
+                                    <select style="width:78px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
                                         <option value="">-</option>
                                         <option value="H">Hadir</option>
                                         <option value="I">Izin</option>
@@ -82,14 +90,14 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea style="width:230px" name="absensi[{{$item->id}}][description]" class="form-control"></textarea>
+                                        <textarea style="width:222px" name="absensi[{{$item->id}}][description]" class="form-control"></textarea>
                                     </div>
                                 </center>
                             </td>                    
                         @else
                             <td>
                                 <center>
-                                    <select style="width:100px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
+                                    <select style="width:78px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
                                         @foreach($content['status'] as $key => $value)
                                             <?php $selected = $key==$item['absensi_non_permanent']['status'] ? 'selected' : '' ?>
                                             <option {{$selected}} value="{{$key}}">{{$value}}</option>
@@ -100,7 +108,7 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea style="width:230px" name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi_non_permanent']['description']}}</textarea>
+                                        <textarea style="width:222px" name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi_non_permanent']['description']}}</textarea>
                                     </div>
                                 </center>
                             </td>                   
@@ -117,7 +125,9 @@
         <input type="hidden" name="tanggal" value="{{$content['tanggal']}}">
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
         <button id="simpan" type="submit" name="simpan" class="btn btn-info pull-right">Simpan Absensi</button>
+        @if(isset($item['absensi_non_permanent']))
         <button id="hapus" data-href='deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}' data-toggle="modal" data-target="#confirm-delete" type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
+        @endif
         <!-- <a href="deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}" style="margin-right:15px"; class="btn btn-danger pull-right" title="Hapus"> Hapus Absensi</a> -->
     </div>
     </form> 

@@ -32,7 +32,7 @@
         @if (Auth::user()->role == 'administrator')
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">DAFTAR MENU</li>
+            <!-- <li class="header">DAFTAR MENU</li> -->
             <!-- Optionally, you can add icons to the links -->
             <li class="{{ (Request::is('/')) ? 'active':'' }}"><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
             <!-- <li class="{{ (Request::is('*show*')) ? 'active':'' }}"><a href="{{ url('show') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li> -->

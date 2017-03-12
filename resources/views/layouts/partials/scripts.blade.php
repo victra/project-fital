@@ -361,6 +361,53 @@
               {"bSortable" : false, "aTargets" : [ "jkl","keterangan" ]} 
             ],
         });
+        $('#tablerekapminggu').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //nis
+              { sWidth: '25%' }, //nama siswa
+              { sWidth: '20%' }, //jenis kelamin
+              { sWidth: '15%' }, //kelas
+              { sWidth: '5%' }, //sakit
+              { sWidth: '5%' }, //izin
+              { sWidth: '5%' }, //alpa
+              { sWidth: '5%' }, //total
+              { sWidth: '15%' }, //info
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "NIS / Nama Siswa",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","status","keterangan" ]},
+              {"bSortable" : false, "aTargets" : [ "jkl","agama","status","keterangan" ]} 
+            ],
+        });
         $('#example2').dataTable({
             "bPaginate": true,
             "bLengthChange": true,
@@ -454,10 +501,14 @@
         if ($('#kelasku').val()   >   0 ) {
             $('#simpan, #hapus').show();
             $('#tableabsensi').parents('div.dataTables_wrapper').first().show();
+             // var div = document.getElementById("infoMessage");
+            document.getElementById("infoMessage").style.display = "none";
+
         }
         else {
             $('#simpan, #hapus').hide();
             $('#tableabsensi').parents('div.dataTables_wrapper').first().hide();
+            document.getElementById("infoAbsensi").style.display = "none";
         }
     }        
 </script>
