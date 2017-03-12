@@ -24,18 +24,18 @@
                 </div>
                 <!-- Rekap Mingguan -->
                 <div class="col-lg-2 pull-right">
-                    <div class="input-group date" id="datetimePicker">
-                        <input type="text" name="tanggal_mulai" class="form-control tanggal input-sm">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>
+                    {{--<div class="input-group date" id="datetimePicker">--}}
+                        <input type="text" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai">
+                        {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>--}}
                 </div>
-                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">sampai Tanggal :</label>
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">sampai </label>
 
                 <div class="col-lg-2 pull-right">
-                    <div class="input-group date" id="datetimePicker1">
-                        <input type="text" name="tanggal_akhir" class="form-control tanggal input-sm">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>
+                    {{--<div class="input-group date" id="datetimePicker1">--}}
+                        <input type="text" id="datetimePicker1" class="form-control tanggal input-sm dari">
+                        {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>--}}
                 </div>
                 <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari Tanggal :</label>
 
@@ -69,7 +69,7 @@
 
             <thead>
                 <tr>
-                    <th><center>No</center></th>
+                    {{--<th><center>No</center></th>--}}
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
@@ -85,7 +85,7 @@
                 <?php $no=1; ?>
                 @foreach($content['absensis'] as $item)
                 <tr>
-                    <td><center>{{$no++}}</center></td>
+                    {{--<td><center>{{$no++}}</center></td>--}}
                     <td>{{$item->nis}}</td>
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>

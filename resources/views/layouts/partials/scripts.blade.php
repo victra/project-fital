@@ -507,6 +507,16 @@ function myFunction() {
 </script>
 <!-- Tombol Reste Cari Tanggal -->
 
+<!-- Ambil Tanggal Per Minggu untuk Rekap Absensi Per Minggu -->
+<script type="text/javascript">
+    $('.dari').change(function() {
+    var date2 = $('.dari').datepicker('getDate', '+7d'); 
+    date2.setDate(date2.getDate()+7); 
+    $('.sampai').datepicker('setDate', date2);
+});
+</script>
+<!-- Ambil Tanggal Per Minggu untuk Rekap Absensi Per Minggu -->
+
 <!-- <script type="text/javascript">
     $("#reset").on("click", function() {
     // if ($(this).val() != "")
