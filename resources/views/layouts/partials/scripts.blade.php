@@ -594,11 +594,18 @@ function myFunction() {
     $(window).on('resize', centerModals);
   </script>
 
-<!-- reset form modal -->
 <script type="text/javascript">
+  $('#ModalTambahSiswa').on('shown.bs.modal', function() {
+    $('#TambahSiswa').bootstrapValidator('resetForm', true);
+});
+</script>
+
+<!-- reset form modal -->
+<!-- <script type="text/javascript">
     $('[data-dismiss=modal]').on('click', function (e) {
     // $("#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru").data('bootstrapValidator').resetForm();
-    $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru, #TambahKelas, #UbahKelas, #UbahPassword').bootstrapValidator("resetForm",true);          
+    $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru, #TambahKelas, #UbahKelas, #UbahPassword').bootstrapValidator("resetForm",true);
+    $('#siswa').bootstrapValidator("resetUl",true);          
     var $t = $(this),
         target = $t[0].href || $t.data("target") || $t.parents('.modal') || [];
     
@@ -613,7 +620,7 @@ function myFunction() {
        .val('{{{ csrf_token() }}}')
        .end();;
 })
-</script>
+</script> -->
 
 <!-- MODAL KONFIRMASI HAPUS DATA -->
 <script type="text/javascript">
@@ -753,6 +760,7 @@ $('#ModalTambahSiswa').modal('hide');
       },
 
       tlp_siswa: {
+        enabled: false,
         validators: {
           // notEmpty: {
           //   message: "Telepon is required"
@@ -765,6 +773,7 @@ $('#ModalTambahSiswa').modal('hide');
       },
 
       alamat_siswa: {
+        enabled: false,
         validators: {
           // notEmpty: {
           //   message: "Nama harus diisi"
@@ -801,6 +810,7 @@ $('#ModalTambahSiswa').modal('hide');
       },
 
       tlp_ortu: {
+        enabled: false,
         validators: {
           // notEmpty: {
           //   message: "Telepon is required"
@@ -813,6 +823,7 @@ $('#ModalTambahSiswa').modal('hide');
       },
 
       alamat_ortu: {
+        enabled: false,
         validators: {
           // notEmpty: {
           //   message: "Nama harus diisi"
@@ -827,25 +838,63 @@ $('#ModalTambahSiswa').modal('hide');
 
     }
   })
-  .on('status.field.bv', function(e, data) {
-            var $form     = $(e.target),
-                validator = data.bv,
-                $tabPane  = data.element.parents('.tab-pane'),
-                tabId     = $tabPane.attr('id');
+  // tambah feedback icon pada tab modal
+  // .on('status.field.bv', function(e, data) {
+  //           var $form     = $(e.target),
+  //               validator = data.bv,
+  //               $tabPane  = data.element.parents('.tab-pane'),
+  //               tabId     = $tabPane.attr('id');
             
-            if (tabId) {
-                var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
+  //           if (tabId) {
+  //               var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
 
-                // Add custom class to tab containing the field
-                if (data.status == validator.STATUS_INVALID) {
-                    $icon.removeClass('fa-check').addClass('fa-times');
-                } else if (data.status == validator.STATUS_VALID) {
-                    var isValidTab = validator.isValidContainer($tabPane);
-                    $icon.removeClass('fa-check fa-times')
-                         .addClass(isValidTab ? 'fa-check' : 'fa-times');
+  //               // Add custom class to tab containing the field
+  //               if (data.status == validator.STATUS_INVALID) {
+  //                   $icon.removeClass('fa-check').addClass('fa-times');
+  //               } else if (data.status == validator.STATUS_VALID) {
+  //                   var isValidTab = validator.isValidContainer($tabPane);
+  //                   $icon.removeClass('fa-check fa-times')
+  //                        .addClass(isValidTab ? 'fa-check' : 'fa-times');
+  //               }
+  //           }
+  //       })
+  // hilangkan feedback icon pada field yang kosong
+  .on('keyup', '[name="tlp_siswa"]', function () {
+                var isEmpty = $(this).val() == '';
+                $('#TambahSiswa')
+                       .bootstrapValidator('enableFieldValidators', 'tlp_siswa', !isEmpty);
+                // Revalidate the field when user start typing in the Phone field
+                if ($(this).val().length == 1) {
+                    $('#TambahSiswa').bootstrapValidator('validateField', 'tlp_siswa')
                 }
-            }
-        });
+            })
+  .on('keyup', '[name="alamat_siswa"]', function () {
+                var isEmpty = $(this).val() == '';
+                $('#TambahSiswa')
+                       .bootstrapValidator('enableFieldValidators', 'alamat_siswa', !isEmpty);
+                // Revalidate the field when user start typing in the Phone field
+                if ($(this).val().length == 1) {
+                    $('#TambahSiswa').bootstrapValidator('validateField', 'alamat_siswa')
+                }
+            })
+  .on('keyup', '[name="tlp_ortu"]', function () {
+                var isEmpty = $(this).val() == '';
+                $('#TambahSiswa')
+                       .bootstrapValidator('enableFieldValidators', 'tlp_ortu', !isEmpty);
+                // Revalidate the field when user start typing in the Phone field
+                if ($(this).val().length == 1) {
+                    $('#TambahSiswa').bootstrapValidator('validateField', 'tlp_ortu')
+                }
+            })
+  .on('keyup', '[name="alamat_ortu"]', function () {
+                var isEmpty = $(this).val() == '';
+                $('#TambahSiswa')
+                       .bootstrapValidator('enableFieldValidators', 'alamat_ortu', !isEmpty);
+                // Revalidate the field when user start typing in the Phone field
+                if ($(this).val().length == 1) {
+                    $('#TambahSiswa').bootstrapValidator('validateField', 'alamat_ortu')
+                }
+            });
 });
 </script>
 
