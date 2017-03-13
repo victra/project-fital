@@ -490,30 +490,6 @@
 </script>
 <!-- Pengaturan Datatables -->
 
-<!-- Hide/Show Tombol Absensi -->
-<script type="text/javascript">
-    $(document).ready(function (){
-        validate();
-        $('#kelasku').change(validate);
-    });
-
-    function validate(){
-        if ($('#kelasku').val()   >   0 ) {
-            $('#simpan, #hapus').show();
-            $('#tableabsensi').parents('div.dataTables_wrapper').first().show();
-             // var div = document.getElementById("infoMessage");
-            document.getElementById("infoMessage").style.display = "none";
-
-        }
-        else {
-            $('#simpan, #hapus').hide();
-            $('#tableabsensi').parents('div.dataTables_wrapper').first().hide();
-            document.getElementById("infoAbsensi").style.display = "none";
-        }
-    }        
-</script>
-<!-- Hide/Show Tombol Absensi -->
-
 <!-- Cari Absensi Berdasarkan Tanggal -->
 <script type="text/javascript">
     $(document).ready(function (){
@@ -711,6 +687,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 $('#ModalTambahSiswa').modal('hide');
   var validator = $('#TambahSiswa').bootstrapValidator({
+    excluded: [':disabled'],
     feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -773,11 +750,102 @@ $('#ModalTambahSiswa').modal('hide');
             message: "Kelas harus diisi"
           }
         }
-      }
+      },
+
+      tlp_siswa: {
+        validators: {
+          // notEmpty: {
+          //   message: "Telepon is required"
+          // },
+          regexp: {
+            regexp: /^[+0-9]*$/,
+            message: 'Telepon tidak valid'
+          }
+        }
+      },
+
+      alamat_siswa: {
+        validators: {
+          // notEmpty: {
+          //   message: "Nama harus diisi"
+          // },          
+          stringLength: {
+            max: 70,
+            message: "Alamat maksimal 70 karakter"
+          },       
+        }
+      },
+
+      nama_ayah: {
+        validators: {
+          notEmpty: {
+            message: "Nama harus diisi"
+          },          
+          stringLength: {
+            max: 50,
+            message: "Nama maksimal 50 karakter"
+          },       
+        }
+      },
+
+      nama_ibu: {
+        validators: {
+          notEmpty: {
+            message: "Nama harus diisi"
+          },          
+          stringLength: {
+            max: 50,
+            message: "Nama maksimal 50 karakter"
+          },       
+        }
+      },
+
+      tlp_ortu: {
+        validators: {
+          // notEmpty: {
+          //   message: "Telepon is required"
+          // },
+          regexp: {
+            regexp: /^[+0-9]*$/,
+            message: 'Telepon tidak valid'
+          }
+        }
+      },
+
+      alamat_ortu: {
+        validators: {
+          // notEmpty: {
+          //   message: "Nama harus diisi"
+          // },          
+          stringLength: {
+            max: 70,
+            message: "Alamat maksimal 70 karakter"
+          },       
+        }
+      },
 
 
     }
-  });
+  })
+  .on('status.field.bv', function(e, data) {
+            var $form     = $(e.target),
+                validator = data.bv,
+                $tabPane  = data.element.parents('.tab-pane'),
+                tabId     = $tabPane.attr('id');
+            
+            if (tabId) {
+                var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
+
+                // Add custom class to tab containing the field
+                if (data.status == validator.STATUS_INVALID) {
+                    $icon.removeClass('fa-check').addClass('fa-times');
+                } else if (data.status == validator.STATUS_VALID) {
+                    var isValidTab = validator.isValidContainer($tabPane);
+                    $icon.removeClass('fa-check fa-times')
+                         .addClass(isValidTab ? 'fa-check' : 'fa-times');
+                }
+            }
+        });
 });
 </script>
 
@@ -1285,3 +1353,27 @@ $(document).ready(function() {
   });
 });
 </script>
+
+<!-- Hide/Show Tombol Absensi -->
+<script type="text/javascript">
+    $(document).ready(function (){
+        validate();
+        $('#kelasku').change(validate);
+    });
+
+    function validate(){
+        if ($('#kelasku').val()   >   0 ) {
+            $('#simpan, #hapus').show();
+            $('#tableabsensi').parents('div.dataTables_wrapper').first().show();
+             // var div = document.getElementById("infoMessage");
+            document.getElementById("infoMessage").style.display = "none";
+
+        }
+        else {
+            $('#simpan, #hapus').hide();
+            $('#tableabsensi').parents('div.dataTables_wrapper').first().hide();
+            document.getElementById("infoAbsensi").style.display = "none";
+        }
+    }        
+</script>
+<!-- Hide/Show Tombol Absensi -->

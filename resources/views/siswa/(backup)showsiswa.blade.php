@@ -149,104 +149,89 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Tambah Data Siswa</h4>
             </div>
-
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#siswa-tab" data-toggle="tab">Siswa <i class="fa"></i></a></li>
-                <li><a href="#ortu-tab" data-toggle="tab">Orang Tua Siswa <i class="fa"></i></a></li>
-            </ul>
-
             <form class="form-horizontal" method="post" action="storesiswa" id="TambahSiswa">          
                 <div class="modal-body">
-                
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="siswa-tab">
-                            <label class="control-label col-sm-4">NIS</label>
-                            <div class="form-group">
-                                <div class="col-sm-3">
-                                    <input type="text" id="nis" name="nis" class="form-control" placeholder="NIS">
-                                </div>  
-                            </div>
-                            <label class="control-label col-sm-4">Nama</label>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input type="text" name="nama" class="form-control" placeholder="Nama">
-                                </div>  
-                            </div>
-                            <label class="control-label col-sm-4">Jenis Kelamin</label>
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    <select class="form-control" name="jkl">
-                                        <option value="">-- Jenis Kelamin --</option>
-                                        @foreach($content['jenis_kelamin'] as $key => $value)
-                                            <option value="{{$key}}">{{$value}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <label class="control-label col-sm-4">Agama</label>
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                    <select class="form-control" name="agama">
-                                        <option value="">-- Agama --</option>
-                                        @foreach($content['agama'] as $key => $value)
-                                            <option value="{{$key}}">{{$value}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <label class="control-label col-sm-4">Kelas</label>
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                <select class="form-control" name="kelas">
-                                        <option value="">-- Kelas --</option>
-                                        @foreach($content['kelas'] as $value)
-                                            <option value="{{$value['id']}}">{{$value['nama_kelas']}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <label class="control-label col-sm-4">Telepon Siswa</label>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input type="text" name="tlp_siswa" class="form-control" placeholder="Telepon Siswa">
-                                </div>  
-                            </div> 
-                            <label class="control-label col-sm-4">Alamat Siswa</label>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <textarea name="alamat_siswa" class="form-control" placeholder="Alamat Siswa"></textarea>
-                                </div>  
-                            </div>
+                    <label class="control-label col-sm-4">NIS</label>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <input type="text" id="nis" name="nis" class="form-control" placeholder="NIS">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Nama</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="nama" class="form-control" placeholder="Nama">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Jenis Kelamin</label>
+                    <div class="form-group">
+                        <div class="col-sm-5">
+                            <select class="form-control" name="jkl">
+                                <option value="">-- Jenis Kelamin --</option>
+                                @foreach($content['jenis_kelamin'] as $key => $value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                @endforeach
+                            </select>
                         </div>
-
-                        <div class="tab-pane" id="ortu-tab">
-                            <label class="control-label col-sm-4">Nama Ayah</label>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input type="text" name="nama_ayah" class="form-control" placeholder="Nama Ayah">
-                                </div>  
-                            </div>
-                            <label class="control-label col-sm-4">Nama Ibu</label>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <input type="text" name="nama_ibu" class="form-control" placeholder="Nama Ibu">
-                                </div>  
-                            </div>
-                            <label class="control-label col-sm-4">Telepon Orang Tua</label>
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                    <input type="text" name="tlp_ortu" class="form-control" placeholder="Telepon Ayah/Ibu">
-                                </div>  
-                            </div>
-                            <label class="control-label col-sm-4">Alamat Orang Tua</label>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <textarea name="alamat_ortu" class="form-control" placeholder="Alamat Orang Tua"></textarea>
-                                </div>  
-                            </div> 
+                    </div>
+                    <label class="control-label col-sm-4">Agama</label>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <select class="form-control" name="agama">
+                                <option value="">-- Agama --</option>
+                                @foreach($content['agama'] as $key => $value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                @endforeach
+                            </select>
                         </div>
-                    </div>                
-                                    
+                    </div>
+                    <label class="control-label col-sm-4">Kelas</label>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                        <select class="form-control" name="kelas">
+                                <option value="">-- Kelas --</option>
+                                @foreach($content['kelas'] as $value)
+                                    <option value="{{$value['id']}}">{{$value['nama_kelas']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <label class="control-label col-sm-4">Telepon Siswa</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="tlp_siswa" class="form-control" placeholder="Telepon Siswa">
+                        </div>  
+                    </div> 
+                    <label class="control-label col-sm-4">Alamat Siswa</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <textarea name="alamat_siswa" class="form-control" placeholder="Alamat Siswa"></textarea>
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Nama Ayah</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="nama_ayah" class="form-control" placeholder="Nama Ayah">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Nama Ibu</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="nama_ibu" class="form-control" placeholder="Nama Ibu">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Telepon Orang Tua</label>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <input type="text" name="tlp_ortu" class="form-control" placeholder="Telepon Ayah/Ibu">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Alamat Orang Tua</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <textarea name="alamat_ortu" class="form-control" placeholder="Alamat Orang Tua"></textarea>
+                        </div>  
+                    </div>                 
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">
