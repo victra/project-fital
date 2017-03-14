@@ -25,7 +25,7 @@
                 <!-- Rekap Mingguan -->
                 <div class="col-lg-2 pull-right">
                     {{--<div class="input-group date" id="datetimePicker">--}}
-                        <input type="text" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai" placeholder="Tanggal">
+                        <input type="text" disabled id="datetimePicker" name="dapat" value="{{$content['sampai_tanggal']}}" class="form-control tanggal input-sm sampai" placeholder="Tanggal">
                         {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>--}}
                 </div>
@@ -33,26 +33,15 @@
 
                 <div class="col-lg-2 pull-right">
                     {{--<div class="input-group date" id="datetimePicker1">--}}
-                        <input type="text" id="datetimePicker1" class="form-control tanggal input-sm dari" placeholder="Tanggal">
+                        <input type="text" id="datetimePicker1" class="form-control tanggal input-sm dari" onchange="location = '?search_kelas={{$content['input_kelas']}}&dari_tanggal='+this.value;" value="{{$content['dari_tanggal']}}" placeholder="Tanggal">
                         {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>--}}
                 </div>
                 <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari :</label>
 
-                <!-- Pilih Bulan -->
-                {{--<form style="margin-right:150px; margin-top:0px" class="pull-right">
-                    <select class="form-control" name="bulan">
-                        <option value="">-Pilih Bulan-</option>
-                        @foreach($content['bulan'] as $key => $value)
-                            <option value="{{$key}}">{{$value}}</option>
-                        @endforeach
-                    </select>
-                </form>
-                <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Bulan :</label>--}}
-
                 <!-- Pilih Kelas -->
                 <form style="margin-right:50px; margin-top:0px" class="pull-right">
-                    <select class="form-control input-sm" onchange="location = this.value;">
+                    <select class="form-control input-sm" onchange="location = this.value+'&dari_tanggal={{$content['dari_tanggal']}}';">
                         <option value="?search_kelas=">-Pilih Kelas-</option>
                             @foreach($content['kelas'] as $value)
                             <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
@@ -75,7 +64,7 @@
                     <th><center>Kelas</center></th>
                     <th><center>Sakit</center></th>
                     <th><center>Izin</center></th>
-                    <th><center>Absen</center></th>
+                    <th><center>Alpa</center></th>
                     <th><center>Total</center></th>
                     <th><center>Info</center></th>
                 </tr>
@@ -89,9 +78,9 @@
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->kelas->nama_kelas}}</center></td>                    
-                    <td><center></center></td>
-                    <td><center></center></td>
-                    <td><center></center></td>
+                    <td><center>{{$item->sakit}}</center></td>
+                    <td><center>{{$item->izin}}</center></td>
+                    <td><center>{{$item->alpa}}</center></td>
                     <td><center></center></td>
                     <th><center></center></th>
                 </tr>                                    

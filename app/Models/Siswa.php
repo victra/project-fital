@@ -85,7 +85,7 @@ class Siswa extends \BaseModel
 	*/
 	protected $appends = array(
 		'kelas',
-		'absensi',
+		// 'absensi',
 	);
 
 	/*
@@ -125,18 +125,76 @@ class Siswa extends \BaseModel
         return null;
 	}
 
-	//ini yang permanent
-	public function getAbsensiAttribute()
+	// Jumlah Sakit
+	public function getSakitAttribute()
 	{
-	 	if (Input::has('tanggal')) {
-            $tanggal = Input::get('tanggal');
+		if (Input::has('dari_tanggal')) {
+            $dari_tanggal = Input::get('dari_tanggal');
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
         } else {
-            $tanggal = date("Y-m-d");
+            $dari_tanggal = date("Y-m-d");
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
         }
 
-        if ($tanggal && Input::has('search_kelas')) {
-		 	return $this->absensi()->where('date', $tanggal)->first();
+        if ($dari_tanggal && $sampai_tanggal && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereBetween('date', [$dari_tanggal, $sampai_tanggal])->where('status','S')->count();
         }
+
         return null;
 	}
+	// Jumlah Izin
+	public function getIzinAttribute()
+	{
+	 	if (Input::has('dari_tanggal')) {
+            $dari_tanggal = Input::get('dari_tanggal');
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+        } else {
+            $dari_tanggal = date("Y-m-d");
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+        }
+
+        if ($dari_tanggal && $sampai_tanggal && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereBetween('date', [$dari_tanggal, $sampai_tanggal])->where('status','I')->count();
+        }
+        
+        return null;
+	}
+	// Jumlah Alpa
+	public function getAlpaAttribute()
+	{
+	 	if (Input::has('dari_tanggal')) {
+            $dari_tanggal = Input::get('dari_tanggal');
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+        } else {
+            $dari_tanggal = date("Y-m-d");
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+        }
+
+        if ($dari_tanggal && $sampai_tanggal && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereBetween('date', [$dari_tanggal, $sampai_tanggal])->where('status','A')->count();
+        }
+        
+        return null;
+	}
+
+	//ini yang permanent
+	// public function getAbsensiAttribute()
+	// {
+	//  	if (Input::has('tanggal')) {
+ //            $tanggal = Input::get('tanggal');
+ //        } else {
+ //            $tanggal = date("Y-m-d");
+ //        }
+
+ //        if ($tanggal && Input::has('search_kelas')) {
+	// 	 	return $this->absensi()->where('date', $tanggal)->first();
+ //        }
+ //        return null;
+	// }
 }

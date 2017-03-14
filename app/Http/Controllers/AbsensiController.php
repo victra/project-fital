@@ -70,14 +70,14 @@ class AbsensiController extends Controller
             'A' => 'Alpa',
         );
 
-        //ini pakek cara manual
-        if ($tanggal && Input::has('search_kelas') && $siswas) {
-            for ($i=0; $i < count($siswas) ; $i++) { 
-                $siswas[$i]['absensi_manual'] = Absensi::where('siswa_id', $siswas[$i]['id'])->where('date', $tanggal)->first();
-            }
-        }
+        //cara manual
+        // if ($tanggal && Input::has('search_kelas') && $siswas) {
+        //     for ($i=0; $i < count($siswas) ; $i++) { 
+        //         $siswas[$i]['absensi_manual'] = Absensi::where('siswa_id', $siswas[$i]['id'])->where('date', $tanggal)->first();
+        //     }
+        // }
 
-        //ini pakek cara relation
+        //cara relation
         if ($tanggal && Input::has('search_kelas')) {
             //kenapa pakek ada addAppends? soalnya relasi ini cuma di panggil di absensi controller kalo mau di permanen maka dipanggilnya disini,
             //model siswa
@@ -140,15 +140,44 @@ class AbsensiController extends Controller
     //rekap absensi per minggu
     public function rekapabsensiminggu()
     {
-        $siswa = Siswa::orderby('nis', 'ASC');
+        $siswa = Siswa::orderby('nis', 'ASC')->get();
 
         $input_kelas = '';
         if(Input::has('search_kelas')){
-            $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
+            $siswa = Siswa::orderby('nis', 'ASC')->where('kelas_id', Input::get('search_kelas'))->get();
             $input_kelas = Input::get('search_kelas');
         }
 
+        if (Input::has('dari_tanggal')) {
+            $dari_tanggal = Input::get('dari_tanggal');
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+        } else {
+            $dari_tanggal = date("Y-m-d");
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+        }
+
         $kelas = Kelas::get();
+
+        // if (Input::has('search_kelas')) {
+        //     foreach ($siswa as $siswai) {
+        //         $siswai->addAppends('absensi_non_permanent');
+        //     }
+        // }
+
+        // if (Input::has('search_kelas')) {
+        //     //kenapa pakek ada addAppends? soalnya relasi ini cuma di panggil di absensi controller kalo mau di permanen maka dipanggilnya disini,
+        //     //model siswa
+        //     //protected $appends = array(
+        //     //    'kelas',
+        //     //);
+        //     foreach ($siswa as $siswas) {
+        //         $siswas->addAppends('absensi_rekap');
+        //     }
+        // }
+
+        // dd($siswa->toArray());
 
         // $date = Input::get('tanggal');
         // $kelas_id = Input::get('kelas');
@@ -217,12 +246,14 @@ class AbsensiController extends Controller
                     ->where('date','<=','2017-03-07')->get();
         // dd($sakit);
        
-        $content['absensis'] = $siswa->get();
+        $content['absensis'] = $siswa;
         $content['kelas'] = $kelas;
         $content['input_kelas'] = $input_kelas;
         $content['sakit'] = $sakit;
         $content['izin'] = $izin;
         $content['alpa'] = $alpa;
+        $content['dari_tanggal'] = $dari_tanggal;
+        $content['sampai_tanggal'] = $sampai_tanggal;
 
         return View::make('absensi.rekapabsensiminggu')
                     ->with('content', $content);
