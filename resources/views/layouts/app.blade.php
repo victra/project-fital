@@ -62,5 +62,8 @@ desired effect
     @include('layouts.partials.scripts')
 @show
 
+@section('scripts-tambahan')
+@show
+
 </body>
 </html>

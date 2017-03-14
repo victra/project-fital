@@ -133,9 +133,8 @@ class Siswa extends \BaseModel
             $daystosum = '6';
             $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
         } else {
-            $dari_tanggal = date("Y-m-d");
-            $daystosum = '6';
-            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+            $dari_tanggal = "";
+            $sampai_tanggal = "";
         }
 
         if ($dari_tanggal && $sampai_tanggal && Input::has('search_kelas')) {
@@ -152,9 +151,8 @@ class Siswa extends \BaseModel
             $daystosum = '6';
             $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
         } else {
-            $dari_tanggal = date("Y-m-d");
-            $daystosum = '6';
-            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+            $dari_tanggal = "";
+            $sampai_tanggal = "";
         }
 
         if ($dari_tanggal && $sampai_tanggal && Input::has('search_kelas')) {
@@ -171,9 +169,8 @@ class Siswa extends \BaseModel
             $daystosum = '6';
             $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
         } else {
-            $dari_tanggal = date("Y-m-d");
-            $daystosum = '6';
-            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+            $dari_tanggal = "";
+            $sampai_tanggal = "";
         }
 
         if ($dari_tanggal && $sampai_tanggal && Input::has('search_kelas')) {

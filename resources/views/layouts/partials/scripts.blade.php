@@ -1403,26 +1403,3 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- Hide/Show Tombol Absensi -->
-<script type="text/javascript">
-    $(document).ready(function (){
-        validate();
-        $('#kelasku').change(validate);
-    });
-
-    function validate(){
-        if ($('#kelasku').val()   >   0 ) {
-            $('#simpan, #hapus').show();
-            $('#tableabsensi').parents('div.dataTables_wrapper').first().show();
-             // var div = document.getElementById("infoMessage");
-            document.getElementById("infoMessage").style.display = "none";
-
-        }
-        else {
-            $('#simpan, #hapus').hide();
-            $('#tableabsensi').parents('div.dataTables_wrapper').first().hide();
-            document.getElementById("infoAbsensi").style.display = "none";
-        }
-    }        
-</script>
-<!-- Hide/Show Tombol Absensi -->
