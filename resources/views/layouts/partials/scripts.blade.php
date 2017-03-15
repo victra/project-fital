@@ -594,14 +594,14 @@ function myFunction() {
     $(window).on('resize', centerModals);
   </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $('#ModalTambahSiswa').on('shown.bs.modal', function() {
     $('#TambahSiswa').bootstrapValidator('resetForm', true);
 });
-</script>
+</script> -->
 
 <!-- reset form modal -->
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     $('[data-dismiss=modal]').on('click', function (e) {
     // $("#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru").data('bootstrapValidator').resetForm();
     $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru, #TambahKelas, #UbahKelas, #UbahPassword').bootstrapValidator("resetForm",true);
@@ -620,7 +620,7 @@ function myFunction() {
        .val('{{{ csrf_token() }}}')
        .end();;
 })
-</script> -->
+</script>
 
 <!-- MODAL KONFIRMASI HAPUS DATA -->
 <script type="text/javascript">
@@ -767,7 +767,7 @@ $('#ModalTambahSiswa').modal('hide');
           // },
           regexp: {
             regexp: /^[+0-9]*$/,
-            message: 'Telepon tidak valid'
+            message: 'Masukkan hanya berupa angka'
           }
         }
       },
@@ -788,11 +788,12 @@ $('#ModalTambahSiswa').modal('hide');
       nama_ayah: {
         validators: {
           notEmpty: {
-            message: "Nama harus diisi"
+            message: "Nama Ayah harus diisi"
           },          
           stringLength: {
+            min: 3,
             max: 50,
-            message: "Nama maksimal 50 karakter"
+            message: "Nama Ayah antara 3-50 karakter"
           },       
         }
       },
@@ -800,11 +801,12 @@ $('#ModalTambahSiswa').modal('hide');
       nama_ibu: {
         validators: {
           notEmpty: {
-            message: "Nama harus diisi"
+            message: "Nama Ibu harus diisi"
           },          
           stringLength: {
+            min: 3,
             max: 50,
-            message: "Nama maksimal 50 karakter"
+            message: "Nama Ibu antara 3-50 karakter"
           },       
         }
       },
@@ -817,7 +819,7 @@ $('#ModalTambahSiswa').modal('hide');
           // },
           regexp: {
             regexp: /^[+0-9]*$/,
-            message: 'Telepon tidak valid'
+            message: 'Masukkan hanya berupa angka'
           }
         }
       },
@@ -903,6 +905,7 @@ $('#ModalTambahSiswa').modal('hide');
 $(document).ready(function() {
 $('#ModalUbahSiswa').modal('hide');
   var validator = $('#UbahSiswa').bootstrapValidator({
+    excluded: [':disabled'],
     feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -966,11 +969,125 @@ $('#ModalUbahSiswa').modal('hide');
             message: "Kelas harus diisi"
           }
         }
-      }
+      },
+
+      tlp_siswa: {
+        enabled: false,
+        validators: {
+          // notEmpty: {
+          //   message: "Telepon is required"
+          // },
+          regexp: {
+            regexp: /^[+0-9]*$/,
+            message: 'Masukkan hanya berupa angka'
+          }
+        }
+      },
+
+      alamat_siswa: {
+        enabled: false,
+        validators: {
+          // notEmpty: {
+          //   message: "Nama harus diisi"
+          // },          
+          stringLength: {
+            max: 70,
+            message: "Alamat maksimal 70 karakter"
+          },       
+        }
+      },
+
+      nama_ayah: {
+        validators: {
+          notEmpty: {
+            message: "Nama Ayah harus diisi"
+          },          
+          stringLength: {
+            min: 3,
+            max: 50,
+            message: "Nama Ayah antara 3-50 karakter"
+          },       
+        }
+      },
+
+      nama_ibu: {
+        validators: {
+          notEmpty: {
+            message: "Nama Ibu harus diisi"
+          },          
+          stringLength: {
+            min: 3,
+            max: 50,
+            message: "Nama Ibu antara 3-50 karakter"
+          },       
+        }
+      },
+
+      tlp_ortu: {
+        enabled: false,
+        validators: {
+          // notEmpty: {
+          //   message: "Telepon is required"
+          // },
+          regexp: {
+            regexp: /^[+0-9]*$/,
+            message: 'Masukkan hanya berupa angka'
+          }
+        }
+      },
+
+      alamat_ortu: {
+        enabled: false,
+        validators: {
+          // notEmpty: {
+          //   message: "Nama harus diisi"
+          // },          
+          stringLength: {
+            max: 70,
+            message: "Alamat maksimal 70 karakter"
+          },       
+        }
+      },
 
 
     }
-  });
+  })
+  .on('keyup', '[name="tlp_siswa"]', function () {
+                var isEmpty = $(this).val() == '';
+                $('#UbahSiswa')
+                       .bootstrapValidator('enableFieldValidators', 'tlp_siswa', !isEmpty);
+                // Revalidate the field when user start typing in the Phone field
+                if ($(this).val().length == 1) {
+                    $('#UbahSiswa').bootstrapValidator('validateField', 'tlp_siswa')
+                }
+            })
+  .on('keyup', '[name="alamat_siswa"]', function () {
+                var isEmpty = $(this).val() == '';
+                $('#UbahSiswa')
+                       .bootstrapValidator('enableFieldValidators', 'alamat_siswa', !isEmpty);
+                // Revalidate the field when user start typing in the Phone field
+                if ($(this).val().length == 1) {
+                    $('#UbahSiswa').bootstrapValidator('validateField', 'alamat_siswa')
+                }
+            })
+  .on('keyup', '[name="tlp_ortu"]', function () {
+                var isEmpty = $(this).val() == '';
+                $('#UbahSiswa')
+                       .bootstrapValidator('enableFieldValidators', 'tlp_ortu', !isEmpty);
+                // Revalidate the field when user start typing in the Phone field
+                if ($(this).val().length == 1) {
+                    $('#UbahSiswa').bootstrapValidator('validateField', 'tlp_ortu')
+                }
+            })
+  .on('keyup', '[name="alamat_ortu"]', function () {
+                var isEmpty = $(this).val() == '';
+                $('#UbahSiswa')
+                       .bootstrapValidator('enableFieldValidators', 'alamat_ortu', !isEmpty);
+                // Revalidate the field when user start typing in the Phone field
+                if ($(this).val().length == 1) {
+                    $('#UbahSiswa').bootstrapValidator('validateField', 'alamat_ortu')
+                }
+            });
 });
 </script>
 
@@ -1099,7 +1216,7 @@ $('#ModalTambahGuru').modal('hide');
           // },
           regexp: {
             regexp: /^[+0-9]*$/,
-            message: 'Telepon tidak valid'
+            message: 'Masukkan hanya berupa angka'
           }
         }
       }
@@ -1235,7 +1352,7 @@ $('#ModalUbahGuru').modal('hide');
           // },
           regexp: {
             regexp: /^[+0-9]*$/,
-            message: 'Telepon tidak valid'
+            message: 'Masukkan hanya berupa angka'
           }
         }
       }
