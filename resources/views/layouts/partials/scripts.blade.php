@@ -384,6 +384,26 @@
               { sWidth: '5%' }, //total
               { sWidth: '15%' }, //info
             ],
+            // "rowCallback": function( row, data, index ) {
+            //   if ( data[1] == "AHOK" ) {
+            //     $( row ).css( "background-color", "Red" );
+            //   }
+            // },
+            // "createdRow": function( row, data, dataIndex ) {
+            //   if ( data[1] == "AHOK" ) {
+            //     $( row ).css( "background-color", "Red" );
+            //   }
+            // },
+            // "rowCallback": function( row, data, dataIndex ) {
+            //     if ( data[1] == "AHOK" ) {
+            //         $( row ).css( "background-color", "Red" );
+            //         // $( row ).addClass( "warning" );
+            //     }
+            //     else {
+            //         $( row ).css( "background-color", "Blue" );
+            //         // $( row ).addClass( "warning" );
+            //     }
+            // },
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
             "oLanguage": {
                 sEmptyTable: "Belum ada data dalam tabel ini",
