@@ -1,6 +1,8 @@
 <?php
 
 namespace Model;
+use DB;
+use Illuminate\Support\Facades\Input;
 
 class Kelas extends \BaseModel
 {
@@ -49,6 +51,7 @@ class Kelas extends \BaseModel
 	public static $relationsData = array(
 		'waliKelas' 	=> array(self::BELONGS_TO, 'App\User'),
 		// 'Semester'		=> array(self::BELONGS_TO, 'Model\Semester'),
+		'siswa'	=> array(self::HAS_MANY, 'Model\Siswa'),
 	);
 
 	/*
@@ -125,4 +128,13 @@ class Kelas extends \BaseModel
 	 // {
 	 // 	return $this->Semester()->first();
 	 // }
+
+	 // jumlah siswa per kelas
+	 public function getJumlahSiswaAttribute()
+	{
+	 	$idkelas = DB::table('kelas')->value('id');
+	 	// return $this->siswa()->where('kelas_id', $idkelas)->get();
+	 	return $this->siswa()->where('kelas_id', $idkelas)->count();
+        // return null;
+	}
 }
