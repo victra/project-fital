@@ -188,12 +188,17 @@ class AbsensiController extends Controller
         $kelas = Kelas::get();
 
         $input_semester = '';
-        if(Input::has('search_semester')){
-            // $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
-            $input_semester = Input::get('search_semester');
+        if (Input::has('semester')) {
+            $semesters = Input::get('semester');
+            $input_semester = Input::get('semester');
+        } else {
+            $semesters = "";
         }
 
         $semester = Semester::get();
+
+        $tgl_awal = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_awal');
+        $tgl_akhir = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_akhir');
 
         // $semester = array(
         //     'Semester 1' => 'Semester 1',
@@ -204,6 +209,9 @@ class AbsensiController extends Controller
         $content['kelas'] = $kelas;
         $content['input_kelas'] = $input_kelas;
         $content['semester'] = $semester;
+        $content['sem'] = $semesters;
+        $content['tgl_awal'] = $tgl_awal;
+        $content['tgl_akhir'] = $tgl_akhir;
         $content['input_semester'] = $input_semester;
         return View::make('absensi.rekapabsensisemester')
                     ->with('content', $content);

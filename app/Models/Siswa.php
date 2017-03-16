@@ -1,7 +1,7 @@
 <?php
 
 namespace Model;
-
+use DB;
 use Illuminate\Support\Facades\Input;
 
 class Siswa extends \BaseModel
@@ -125,6 +125,8 @@ class Siswa extends \BaseModel
         return null;
 	}
 
+// JUMLAH SAKIT, IZIN, ALPA REKAP MINGGUAN
+
 	// Jumlah Sakit
 	public function getSakitAttribute()
 	{
@@ -179,6 +181,48 @@ class Siswa extends \BaseModel
         
         return null;
 	}
+// JUMLAH SAKIT, IZIN, ALPA REKAP MINGGUAN
+
+// JUMLAH SAKIT, IZIN, ALPA REKAP SEMESTER
+	// Jumlah Sakit
+	public function getSakitsAttribute()
+	{
+		$tgl_awal = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_awal');
+        $tgl_akhir = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_akhir');
+
+        if ($tgl_awal && $tgl_akhir && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereBetween('date', [$tgl_awal, $tgl_akhir])->where('status','S')->count();
+        }
+
+        return null;
+	}
+
+	// Jumlah Izin
+	public function getIzinsAttribute()
+	{
+		$tgl_awal = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_awal');
+        $tgl_akhir = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_akhir');
+
+        if ($tgl_awal && $tgl_akhir && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereBetween('date', [$tgl_awal, $tgl_akhir])->where('status','I')->count();
+        }
+
+        return null;
+	}
+
+	// Jumlah Alpa
+	public function getAlpasAttribute()
+	{
+		$tgl_awal = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_awal');
+        $tgl_akhir = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_akhir');
+
+        if ($tgl_awal && $tgl_akhir && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereBetween('date', [$tgl_awal, $tgl_akhir])->where('status','A')->count();
+        }
+
+        return null;
+	}
+	// JUMLAH SAKIT, IZIN, ALPA REKAP SEMESTER
 
 	//ini yang permanent
 	// public function getAbsensiAttribute()

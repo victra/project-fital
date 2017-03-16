@@ -36,11 +36,11 @@
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Semester :</label> -->
                 <!-- array dari tabel semester -->
                 <form style="margin-right:20px; margin-top:0px" class="pull-right">
-                    <select class="form-control input-sm" name="semester">
+                    <select class="form-control input-sm" name="semester" onchange="location = '?search_kelas={{$content['input_kelas']}}&semester='+this.value;">
                         <option value="">-Pilih Semester-</option>
                         @foreach($content['semester'] as $value)
                         <?php $selected = $content['input_semester']==$value['id'] ? 'selected' : '' ?>
-                            <option {{$selected}} value="?semester={{$value['id']}}">{{$value['semester']}}</option>
+                            <option {{$selected}} value="{{$value['id']}}">{{$value['semester']}}</option>
                         @endforeach
                     </select>
                 </form>
@@ -48,8 +48,8 @@
 
                 <!-- Pilih Kelas -->
                 <form style="margin-right:50px; margin-top:0px" class="pull-right">
-                    <select class="form-control input-sm" onchange="location = this.value;">
-                        <option value="">-Pilih Kelas-</option>
+                    <select class="form-control input-sm" onchange="location = this.value+'&semester={{$content['sem']}}';">
+                        <option value="?search_kelas=">-Pilih Kelas-</option>
                             @foreach($content['kelas'] as $value)
                             <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
                         <option {{$selected}} value="?search_kelas={{$value['id']}}">{{$value['nama_kelas']}}</option>
@@ -88,10 +88,10 @@
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->kelas->nama_kelas}}</center></td>
-                    <td><center></center></td>
-                    <td><center></center></td>
-                    <td><center></center></td>
-                    <td><center></center></td>
+                    <td><center>{{$item->sakits}}</center></td>
+                    <td><center>{{$item->izins}}</center></td>
+                    <td><center>{{$item->alpas}}</center></td>
+                    <td><center>{{$item->sakits + $item->izins + $item->alpas}}</center></td>
                 </tr>                                    
                 @endforeach
             </tbody>                       
@@ -102,7 +102,7 @@
     <div class="box-foot">
                 <div class="col-lg-2 pull-right">
                     {{--<div class="input-group date" id="datetimePicker">--}}
-                        <input type="text" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai" placeholder="Tanggal Akhir">
+                        <input type="text" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai" value="{{$content['tgl_akhir']}}" placeholder="Tanggal Akhir">
                         {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>--}}
                 </div>
@@ -110,7 +110,7 @@
 
                 <div class="col-lg-2 pull-right">
                     {{--<div class="input-group date" id="datetimePicker1">--}}
-                        <input type="text" disabled id="datetimePicker1" class="form-control tanggal input-sm dari"  placeholder="Tanggal Awal">
+                        <input type="text" disabled id="datetimePicker1" class="form-control tanggal input-sm dari" value="{{$content['tgl_awal']}}" placeholder="Tanggal Awal">
                         {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>--}}
                 </div>
