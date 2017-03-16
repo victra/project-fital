@@ -180,6 +180,24 @@ class Siswa extends \BaseModel
         
         return null;
 	}
+	// Jumlah Alpa
+	public function getTotalAttribute()
+	{
+	 	if (Input::has('dari_tanggal')) {
+            $dari_tanggal = Input::get('dari_tanggal');
+            $daystosum = '6';
+            $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
+        } else {
+            $dari_tanggal = "";
+            $sampai_tanggal = "";
+        }
+
+        if ($dari_tanggal && $sampai_tanggal && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereBetween('date', [$dari_tanggal, $sampai_tanggal])->where('status','!=','H')->count();
+        }
+        
+        return null;
+	}
 // JUMLAH SAKIT, IZIN, ALPA REKAP MINGGUAN
 
 // JUMLAH SAKIT, IZIN, ALPA REKAP BULAN

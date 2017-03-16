@@ -83,7 +83,7 @@
                 <?php $no=1; ?>
                 @foreach($content['absensis'] as $item)
                 <tr>
-                    <td>{{$item->nis}}</td>
+                    <!-- <td>{{$item->nis}}</td>
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->kelas->nama_kelas}}</center></td>                    
@@ -91,11 +91,27 @@
                     <td><center>{{$item->izin}}</center></td>
                     <td><center>{{$item->alpa}}</center></td>
                     <td><center>{{$item->sakit + $item->izin + $item->alpa}}</center></td>
-                    <!-- <td><center></center></td> -->
-                    <!-- notifikasi jika siswa sering tidak masuk -->
-                    @if ($item->sakit + $item->izin + $item->alpa >= 3)
-                        <td><center></center></td>
+                    <td><center></center></td> -->
+
+                    @if ($item->sakit + $item->izin + $item->alpa > 2)
+                        <td bgcolor="red"><center>{{$item->nis}}</center></td>
+                        <td bgcolor="red"><center>{{$item->nama}}</center></td>
+                        <td bgcolor="red"><center>{{$item->jkl}}</center></td>
+                        <td bgcolor="red"><center>{{$item->kelas->nama_kelas}}</center></td>
+                        <td bgcolor="red"><center>{{$item->sakit}}</center></td>
+                        <td bgcolor="red"><center>{{$item->izin}}</center></td>
+                        <td bgcolor="red"><center>{{$item->alpa}}</center></td>
+                        <td bgcolor="red"><center>{{$item->sakit + $item->izin + $item->alpa}}</center></td>
+                        <td bgcolor="red"><center></center></td>
                     @else
+                        <td><center>{{$item->nis}}</center></td>
+                        <td><center>{{$item->nama}}</center></td>
+                        <td><center>{{$item->jkl}}</center></td>
+                        <td><center>{{$item->kelas->nama_kelas}}</center></td>
+                        <td><center>{{$item->sakit}}</center></td>
+                        <td><center>{{$item->izin}}</center></td>
+                        <td><center>{{$item->alpa}}</center></td>
+                        <td><center>{{$item->sakit + $item->izin + $item->alpa}}</center></td>
                         <td><center></center></td>
                     @endif
                 </tr>                                    
