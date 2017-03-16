@@ -18,11 +18,6 @@
     <div class="box-header">
         <h3 class="box-title">Rekap Absensi Per Semester</h3>            
             <div style="margin-right:0px; margin-top:30px" class="form-group pull-right">
-                <!-- Tombol Rekap -->
-                <!-- <div class="pull-right">
-                <a class="pull-right btn btn-success btn-sm">Rekap</a>
-                </div> -->
-
                 <!-- Pilih Semester -->
                 <!-- array manual -->
                 <!-- <form style="margin-right:20px; margin-top:0px" class="pull-right">
@@ -63,7 +58,7 @@
     </div><!-- /.box-header -->
 
     <div class="box-body table-responsive">
-        <table id="tablerekapsemester" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekapsemester_info">
+        <table id="tablerekap" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekap_info">
 
             <thead>
                 <tr>

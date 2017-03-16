@@ -429,7 +429,7 @@
               {"bSortable" : false, "aTargets" : [ "jkl","kelas" ]} 
             ],
         });
-        $('#tablerekapsemester').dataTable({
+        $('#tablerekap').dataTable({
             "scrollY": 400,
             "scrollCollapse": true,
             "bPaginate": true,

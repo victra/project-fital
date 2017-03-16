@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/checkUsername', 'GuruController@checkUsernameAvailability');
     Route::get('/checkUsernameUbah', 'GuruController@checkUsernameAvailabilityUbah');
     Route::post('storeguru', 'GuruController@storeguru');
-    Route::get('guru_piket', 'GuruController@showguru');   
+    Route::get('user', 'GuruController@showguru');   
     Route::get('/deleteguru&{id}', 'GuruController@deleteguru');
     Route::post('/updateguru&{id}', 'GuruController@updateguru');
 
@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('deleteabsensi/{date}/{kelas_id}', 'AbsensiController@deleteabsensi');
     Route::get('cariabsensi', 'AbsensiController@cariabsensi');
     Route::get('rekapperminggu', 'AbsensiController@rekapabsensiminggu');
+    Route::get('rekapperbulan', 'AbsensiController@rekapabsensibulan');
     Route::get('rekappersemester', 'AbsensiController@rekapabsensisemester');
 
     // kelas

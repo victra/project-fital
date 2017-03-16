@@ -174,6 +174,50 @@ class AbsensiController extends Controller
                     ->with('content', $content);
     }
 
+    //rekap absensi per bulan
+    public function rekapabsensibulan()
+    {
+        $siswa = Siswa::orderby('nis', 'ASC');
+
+        $input_kelas = '';
+        if(Input::has('search_kelas')){
+            $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
+            $input_kelas = Input::get('search_kelas');
+        }
+
+        $kelas = Kelas::get();
+
+        $input_bulan = '';
+        if (Input::has('bulan')) {
+            $input_bulan = Input::get('bulan');
+        } else {
+            $input_bulan = "";
+        }
+
+        $bulan = array(
+            '01' => 'Januari',
+            '02' => 'Februari',
+            '03' => 'Maret',
+            '04' => 'April',
+            '05' => 'Mei',
+            '06' => 'Juni',
+            '07' => 'Juli',
+            '08' => 'Agustus',
+            '09' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember',
+        );
+       
+        $content['absensis'] = $siswa->get();
+        $content['kelas'] = $kelas;
+        $content['input_kelas'] = $input_kelas;
+        $content['bulan'] = $bulan;
+        $content['input_bulan'] = $input_bulan;
+        return View::make('absensi.rekapabsensibulan')
+                    ->with('content', $content);
+    }
+
     //rekap absensi per semester
     public function rekapabsensisemester()
     {
@@ -237,10 +281,5 @@ class AbsensiController extends Controller
         return View::make('absensi.cariabsensi')
                     ->with('content', $content);
     }
-
-    public function cek()
-    {
-        $x = Input::get('tanggal');
-        dd($x);        
-    }
+    
 }

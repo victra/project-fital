@@ -126,7 +126,6 @@ class Siswa extends \BaseModel
 	}
 
 // JUMLAH SAKIT, IZIN, ALPA REKAP MINGGUAN
-
 	// Jumlah Sakit
 	public function getSakitAttribute()
 	{
@@ -183,6 +182,56 @@ class Siswa extends \BaseModel
 	}
 // JUMLAH SAKIT, IZIN, ALPA REKAP MINGGUAN
 
+// JUMLAH SAKIT, IZIN, ALPA REKAP BULAN
+	// Jumlah Sakit
+	public function getSakitbAttribute()
+	{
+		if (Input::has('bulan')) {
+            $input_bulan = Input::get('bulan');
+        } else {
+            $input_bulan = "";
+        }
+
+        if ($input_bulan && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','S')->count();
+        }
+
+        return null;
+	}
+
+	// Jumlah Izin
+	public function getIzinbAttribute()
+	{
+		if (Input::has('bulan')) {
+            $input_bulan = Input::get('bulan');
+        } else {
+            $input_bulan = "";
+        }
+
+        if ($input_bulan && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','I')->count();
+        }
+
+        return null;
+	}
+
+	// Jumlah Alpa
+	public function getAlpabAttribute()
+	{
+		if (Input::has('bulan')) {
+            $input_bulan = Input::get('bulan');
+        } else {
+            $input_bulan = "";
+        }
+
+        if ($input_bulan && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','A')->count();
+        }
+
+        return null;
+	}
+// JUMLAH SAKIT, IZIN, ALPA REKAP BULAN
+
 // JUMLAH SAKIT, IZIN, ALPA REKAP SEMESTER
 	// Jumlah Sakit
 	public function getSakitsAttribute()
@@ -222,7 +271,7 @@ class Siswa extends \BaseModel
 
         return null;
 	}
-	// JUMLAH SAKIT, IZIN, ALPA REKAP SEMESTER
+// JUMLAH SAKIT, IZIN, ALPA REKAP SEMESTER
 
 	//ini yang permanent
 	// public function getAbsensiAttribute()

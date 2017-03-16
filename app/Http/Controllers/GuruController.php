@@ -162,7 +162,8 @@ class GuruController extends Controller
             $guru->tlp = $request->tlp;
             $guru->save();
             \Session::flash('flash_message','Data user berhasil disimpan.');
-            return redirect('guru_piket');
+            return redirect('user');
+            // return back ();
         }
         \Session::flash('flash_message','Data user berhasil disimpan.');
         return redirect('home');
@@ -179,6 +180,7 @@ class GuruController extends Controller
             //}
             $role = array(
                 'administrator' => 'Administrator',
+                'guest' => 'Guest',
                 'guru' => 'Guru',
                 'guru piket' => 'Guru Piket',
                 'karyawan' => 'Karyawan',
@@ -270,7 +272,9 @@ class GuruController extends Controller
             DB::table('users')->where('id',$request->id)->update($guru);      
         
         } 
-        return redirect('guru_piket');      
+        \Session::flash('flash_message','Data user berhasil diubah.');
+        return redirect('user');
+        // return back ();      
     }
 
     public function tampilubahpassword(Request $request)
@@ -327,7 +331,7 @@ class GuruController extends Controller
                 $user = new User;
                 $user->where('id', '=' ,Auth::user()->id)
                 ->update(['password' => Hash::make($request->new_password)]);
-                // return redirect('guru_piket')->with('status','Password ya ya');
+                // return redirect('user')->with('status','Password ya ya');
                 \Session::flash('flash_message','Password berhasil diubah.');
                 return back ();
             }else{
@@ -341,7 +345,7 @@ class GuruController extends Controller
         $user = new User;
         $user->where('id', '=' ,Auth::user()->id)
         ->update(['password' => Hash::make($request->new_password)]);
-        // return redirect('guru_piket')->with('status','Password ya ya');
+        // return redirect('user')->with('status','Password ya ya');
         \Session::flash('flash_message','Password berhasil diubah.');
         return back ();           
     }
