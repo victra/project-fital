@@ -57,6 +57,7 @@
 <script type="text/javascript" src="js/kelas.js"></script>
 <script type="text/javascript" src="js/siswa.js"></script>
 <script type="text/javascript" src="js/infosiswa.js"></script>
+<script type="text/javascript" src="js/semester.js"></script>
 
 <!-- PERCOBAAN INFO DETAIL SISWA -->
 <!-- <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -426,6 +427,24 @@
             "aoColumnDefs" : [ 
               {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","status","keterangan" ]},
               {"bSortable" : false, "aTargets" : [ "jkl","agama","status","keterangan" ]} 
+            ],
+        });
+        $('#tablesemester').dataTable({
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '40%' }, //semester
+              { sWidth: '25%' }, //tgl awal
+              { sWidth: '25%' }, //tgl akhir
+              { sWidth: '5%' }, //action
             ],
         });
         $('#example2').dataTable({

@@ -12,15 +12,17 @@ class CreateTableSemester extends Migration
      */
     public function up()
     {
-        // Schema::create('kelas', function(Blueprint $table)
-        // {
-        //     $table->integer('id', true);
-        //     $table->string('semester');
-        //     $table->string('thn_ajaran');
-        //     $table->string('status'); // aktif atau tidak aktif
-        //     $table->timestamps();
-        //     $table->softDeletes();
-        // });
+        Schema::create('semester', function(Blueprint $table)
+        {
+            $table->integer('id', true);
+            $table->string('semester');
+            $table->date('tgl_awal');
+            $table->date('tgl_akhir');
+            // $table->string('thn_ajaran');
+            // $table->string('status'); // aktif atau tidak aktif
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -30,6 +32,6 @@ class CreateTableSemester extends Migration
      */
     public function down()
     {
-        // Schema::drop('kelas');
+        Schema::drop('semester');
     }
 }

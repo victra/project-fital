@@ -67,4 +67,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('storekelas', 'KelasController@storekelas');
     Route::get('/deletekelas&{id}', 'KelasController@deletekelas');    
     Route::post('/updatekelas&{id}', 'KelasController@updatekelas');
+
+    // semester
+    Route::get('semester', 'SemesterController@showsemester');
+    Route::post('/updatesemester&{id}', 'SemesterController@updatesemester');
 });
