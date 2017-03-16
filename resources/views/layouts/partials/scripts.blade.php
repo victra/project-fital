@@ -375,15 +375,15 @@
             // pengaturan lebar kolom
             "bAutoWidth": false,
             "aoColumns" : [
-              { sWidth: '5%' }, //nis
-              { sWidth: '25%' }, //nama siswa
-              { sWidth: '20%' }, //jenis kelamin
+              { sWidth: '10%' }, //nis
+              { sWidth: '20%' }, //nama
+              { sWidth: '15%' }, //jkl
               { sWidth: '15%' }, //kelas
-              { sWidth: '5%' }, //sakit
-              { sWidth: '5%' }, //izin
-              { sWidth: '5%' }, //alpa
-              { sWidth: '5%' }, //total
-              { sWidth: '15%' }, //info
+              { sWidth: '8%' }, //sakit
+              { sWidth: '8%' }, //izin
+              { sWidth: '8%' }, //alpa
+              { sWidth: '8%' }, //total
+              { sWidth: '8%' }, //info
             ],
             // "rowCallback": function( row, data, index ) {
             //   if ( data[1] == "AHOK" ) {
@@ -425,8 +425,54 @@
 
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","status","keterangan" ]},
-              {"bSortable" : false, "aTargets" : [ "jkl","agama","status","keterangan" ]} 
+              {"bSearchable" : false, "aTargets" : [ "jkl","kelas","sakit","izin","alpa","infoa" ]},
+              {"bSortable" : false, "aTargets" : [ "jkl","kelas" ]} 
+            ],
+        });
+        $('#tablerekapsemester').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '10%' }, //nis
+              { sWidth: '25%' }, //nama
+              { sWidth: '15%' }, //jkl
+              { sWidth: '15%' }, //kelas
+              { sWidth: '8%' }, //sakit
+              { sWidth: '8%' }, //izin
+              { sWidth: '8%' }, //alpa
+              { sWidth: '11%' }, //total
+            ],            
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "NIS / Nama Siswa",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "jkl","kelas","sakit","izin","alpa" ]},
+              {"bSortable" : false, "aTargets" : [ "jkl","kelas" ]}
             ],
         });
         $('#tablesemester').dataTable({
@@ -445,6 +491,28 @@
               { sWidth: '25%' }, //tgl awal
               { sWidth: '25%' }, //tgl akhir
               { sWidth: '5%' }, //action
+            ],
+        });
+        $('#examplee').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //nis
+              { sWidth: '30%' }, //nama
+              { sWidth: '15%' }, //jkl
+              { sWidth: '15%' }, //kelas
+              { sWidth: '5%' }, //sakit
+              { sWidth: '5%' }, //izin
+              { sWidth: '5%' }, //alpa
+              { sWidth: '10%' }, //total
+              { sWidth: '10%' }, //info
             ],
         });
         $('#example2').dataTable({
@@ -555,7 +623,7 @@
 </script>
 <!-- Cari Absensi Berdasarkan Tanggal -->
 
-<!-- Tombol Reste Cari Tanggal -->
+<!-- Tombol Reset Cari Tanggal -->
 <!-- <script type="text/javascript">
 function myFunction() {
     // $('input[type="text"]').val('');
@@ -563,15 +631,15 @@ function myFunction() {
     $("#caritanggal").val('');
 }
 </script> -->
-<!-- Tombol Reste Cari Tanggal -->
+<!-- Tombol Reset Cari Tanggal -->
 
-<!-- Tombol Reste Cari Tanggal -->
+<!-- Tombol Reset Cari Tanggal -->
 <script type="text/javascript">
     $("#reset").click(function(){
     $('#datetimePicker').data('datepicker').setDate(null);
 });
 </script>
-<!-- Tombol Reste Cari Tanggal -->
+<!-- Tombol Reset Cari Tanggal -->
 
 <!-- Ambil Tanggal Per Minggu untuk Rekap Absensi Per Minggu -->
 <script type="text/javascript">
@@ -643,7 +711,7 @@ function myFunction() {
 <script type="text/javascript">
     $('[data-dismiss=modal]').on('click', function (e) {
     // $("#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru").data('bootstrapValidator').resetForm();
-    $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru, #TambahKelas, #UbahKelas, #UbahPassword').bootstrapValidator("resetForm",true);
+    $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru, #TambahKelas, #UbahKelas, #UbahPassword, #UbahSemester').bootstrapValidator("resetForm",true);
     $('#siswa').bootstrapValidator("resetUl",true);          
     var $t = $(this),
         target = $t[0].href || $t.data("target") || $t.parents('.modal') || [];
@@ -723,6 +791,37 @@ $(document).ready(function() {
           }
         }
       }
+    }
+  });
+});
+</script>
+<!-- validasi form ubah password -->
+
+<!-- validasi form ubah semester -->
+<script type="text/javascript">
+$(document).ready(function() {
+  var validator = $('#UbahSemester').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      tgl_awal: {
+        validators: {
+          notEmpty: {
+            message: "Tanggal awal harus diisi"
+          }
+        }
+      },
+
+      tgl_akhir: {
+        validators: {
+          notEmpty: {
+            message: "Tanggal akhir baru harus diisi"
+          }
+        }
+      },
     }
   });
 });

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Model\Siswa;
 use Model\Absensi;
 use Model\Kelas;
+use Model\Semester;
 use App\User;
 use Illuminate\Http\Request;
 use DB;
@@ -186,15 +187,24 @@ class AbsensiController extends Controller
 
         $kelas = Kelas::get();
 
-        $semester = array(
-            'Semester 1' => 'Semester 1',
-            'Semester 2' => 'Semester 2',
-        );
+        $input_semester = '';
+        if(Input::has('search_semester')){
+            // $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
+            $input_semester = Input::get('search_semester');
+        }
+
+        $semester = Semester::get();
+
+        // $semester = array(
+        //     'Semester 1' => 'Semester 1',
+        //     'Semester 2' => 'Semester 2',
+        // );
        
         $content['absensis'] = $siswa->get();
         $content['kelas'] = $kelas;
         $content['input_kelas'] = $input_kelas;
         $content['semester'] = $semester;
+        $content['input_semester'] = $input_semester;
         return View::make('absensi.rekapabsensisemester')
                     ->with('content', $content);
     }

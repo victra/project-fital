@@ -69,13 +69,13 @@
                 <tr>
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
-                    <th><center>Jenis Kelamin</center></th>
-                    <th><center>Kelas</center></th>
-                    <th><center>Sakit</center></th>
-                    <th><center>Izin</center></th>
-                    <th><center>Alpa</center></th>
-                    <th><center>Total</center></th>
-                    <th><center>Info</center></th>
+                    <th class="jkl"><center>Jenis Kelamin</center></th>
+                    <th class="kelas"><center>Kelas</center></th>
+                    <th class="sakit"><center>Sakit</center></th>
+                    <th class="izin"><center>Izin</center></th>
+                    <th class="alpa"><center>Alpa</center></th>
+                    <th class="total"><center>Total</center></th>
+                    <th class="infoa"><center>Info</center></th>
                 </tr>
             </thead>
 
