@@ -129,11 +129,11 @@
             "aoColumns" : [
               { sWidth: '5%' }, //no
               { sWidth: '10%' }, //nis
-              { sWidth: '34%' }, //nama
+              { sWidth: '32%' }, //nama
               { sWidth: '15%' }, //jenis kelamin
               { sWidth: '10%' }, //agama
               { sWidth: '15%' }, //kelas
-              { sWidth: '11%' }, //action
+              { sWidth: '13%' }, //action
               { sWidth: '0%' },
               { sWidth: '0%' },
               { sWidth: '0%' },
@@ -154,15 +154,15 @@
                 sLoadingRecords: "Loading...",
                 sProcessing: "Processing...",
                 sSearch: "Cari:",
-                sSearchPlaceholder: "NIS / Nama Siswa",
+                sSearchPlaceholder: "Nama Siswa",
                 sUrl: "",
                 sZeroRecords: "Data tidak ditemukan"
                 },
 
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","agama","jkl","kelas","none" ]},
-              {"bSortable" : false, "aTargets" : [ "agama","jkl","kelas","no-expor" ]} 
+              {"bSearchable" : false, "aTargets" : [ "no","nis","agama","jkl","kelas","none" ]},
+              {"bSortable" : false, "aTargets" : [ "no-expor" ]} 
             ],
             // "sDom": 'T<"clear">lfrtip',
             // "oTableTools": {
@@ -217,14 +217,14 @@
                 sLoadingRecords: "Loading...",
                 sProcessing: "Processing...",
                 sSearch: "Cari:",
-                sSearchPlaceholder: "NIP/NIK / Nama User",
+                sSearchPlaceholder: "Nama User",
                 sUrl: "",
                 sZeroRecords: "Data tidak ditemukan"
                 },
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","role","none" ]},
-              {"bSortable" : false, "aTargets" : [ "jkl","agama","action" ]} 
+              {"bSearchable" : false, "aTargets" : [ "no","nip","jkl","agama","role","none" ]},
+              {"bSortable" : false, "aTargets" : [ "agama","action" ]} 
             ],
         });
         $('#tablekelas').dataTable({
@@ -244,9 +244,9 @@
               { sWidth: '15%' }, //nama kelas
               { sWidth: '25%' }, //jurusan
               // { sWidth: '15%' }, //tahun ajaran
-              { sWidth: '20%' }, //wali kelas
-              { sWidth: '10%' }, //laki
-              { sWidth: '10%' }, //perempuan
+              { sWidth: '30%' }, //wali kelas
+              { sWidth: '5%' }, //laki
+              { sWidth: '5%' }, //perempuan
               { sWidth: '10%' }, //total
               { sWidth: '5%' }, //action
             ],
@@ -270,7 +270,7 @@
 
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","jurusan","thn_ajaran","walikelas","no" ]},
+              {"bSearchable" : false, "aTargets" : [ "no","jurusan","thn_ajaran","walikelas","laki","perempuan","total" ]},
               {"bSortable" : false, "aTargets" : [ "thn_ajaran","walikelas","no-export" ]} 
             ],
         });

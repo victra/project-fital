@@ -21,10 +21,19 @@ define('XAK3', "X AK 3");
 define('XRPL1', "X RPL 1");
 define('XRPL2', "X RPL 2");
 define('XFARMASI', "X FARMASI");
+define('XIAK1', "XI AK 1");
+define('XIAK2', "XI AK 2");
+define('XIRPL1', "XI RPL 1");
+define('XIRPL2', "XI RPL 2");
+define('XIFARMASI', "XI FARMASI");
+define('XIIAK1', "XII AK 1");
+define('XIIAK2', "XII AK 2");
+define('XIIRPL1', "XII RPL 1");
+define('XIIRPL2', "XII RPL 2");
+define('XIIFARMASI', "XII FARMASI");
 
 // jurusan
 define('AK', "Akutansi");
 define('RPL', "Rekayasa Perangkat Lunak");
 define('FMS', "Farmasi");
 
-//sisane tambah ke dewe

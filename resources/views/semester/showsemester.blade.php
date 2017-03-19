@@ -30,7 +30,7 @@
             <thead>
                 <tr>
                     <th class="no"><center>No</center></th>
-                    <th><center>Semester</center></th>
+                    <th><center>Nama Semester</center></th>
                     <th><center>Tanggal Awal</center></th>
                     <th><center>Tanggal Akhir</center></th>
                     <th class="no-export"><center>Action</center></th>

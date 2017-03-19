@@ -6,7 +6,7 @@ function showModalSemester(button){
 	var tgl_akhir = $(button).data('tgl-akhir');
 	
 	// Show Modal
-	modal.find('h4').html('Ubaha Data Semester');
+	modal.find('h4').html('Ubah Data Semester');
 	modal.find('input[name=id]').val(id);
 	modal.find('input[name=nama_semester]').val(nama_semester);
 	modal.find('input[name=tgl_awal]').val(tgl_awal);

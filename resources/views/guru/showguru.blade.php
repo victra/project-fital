@@ -31,7 +31,7 @@
             <thead>
                 <tr>
                     <th class="no"><center>No</center></th>
-                    <th><center>NIP/NIK</center></th>
+                    <th class="nip"><center>NIP/NIK</center></th>
                     <th><center>Nama User</center></th>
                     <th class="none">Username</th>
                     <th class="role"><center>Role</center></th>

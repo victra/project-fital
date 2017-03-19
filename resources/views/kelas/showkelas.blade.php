@@ -35,9 +35,9 @@
                     <th class="jurusan"><center>Kompetensi Keahlian</center></th>
                     <!-- <th class="thn_ajaran"><center>Tahun Ajaran</center></th> -->
                     <th class="walikelas"><center>Wali Kelas</center></th>
-                    <th class="walikelas"><center>L</center></th>
-                    <th class="walikelas"><center>P</center></th>
-                    <th class="walikelas"><center>Total</center></th>
+                    <th class="laki"><center>L</center></th>
+                    <th class="perempuan"><center>P</center></th>
+                    <th class="total"><center>Total</center></th>
                     <th class="no-export"><center>Action</center></th>
                 </tr>
             </thead>
@@ -47,10 +47,10 @@
                 @foreach($content['kelasku'] as $item)
                 <tr>
                     <td><center>{{$no++}}</center></td>
-                    <td><center>{{$item->nama_kelas}}</center></td>                    
+                    <td>{{$item->nama_kelas}}</td>                    
                     <td>{{$item->jurusan}}</td>
                     <!-- <td><center>{{$item->thn_ajaran}}</center></td> -->
-                    <td><center>{{$item->waliKelas->name}}</center></td> 
+                    <td>{{$item->waliKelas->name}}</td> 
                     <td><center>{{$item->jumlahlaki}}</center></td>
                     <td><center>{{$item->jumlahperempuan}}</center></td>
                     <td><center>{{$item->jumlah}}</center></td>
