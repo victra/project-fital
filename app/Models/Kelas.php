@@ -130,11 +130,19 @@ class Kelas extends \BaseModel
 	 // }
 
 	 // jumlah siswa per kelas
-	 public function getJumlahSiswaAttribute()
-	{
-	 	$idkelas = DB::table('kelas')->value('id');
-	 	// return $this->siswa()->where('kelas_id', $idkelas)->get();
-	 	return $this->siswa()->where('kelas_id', $idkelas)->count();
-        // return null;
-	}
+	//  public function getJumlahSiswaAttribute()
+	// {
+	// 	 $idkelass = DB::table('kelas')->pluck('id');
+	// 	foreach ($idkelass as $idkelas) {
+	// 		// $new = DB::table('kelas')->value('id');
+ //                // $idkelask = DB::table('kelas')->value('id');
+	// 	 	// return $this->siswa()->where('kelas_id', $idkelas)->get();
+	// 	 	return $this->siswa()->where('kelas_id', $idkelas)->get();
+ //        }
+
+	//  	// $idkelas = DB::table('kelas')->value('id');
+	//  	// // return $this->siswa()->where('kelas_id', $idkelas)->get();
+	//  	// return $this->siswa()->where('kelas_id', $idkelas)->count();
+ //        return null;
+	// }
 }

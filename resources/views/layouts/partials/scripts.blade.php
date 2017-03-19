@@ -241,10 +241,13 @@
             "bAutoWidth": false,
             "aoColumns" : [
               { sWidth: '5%' }, //no
-              { sWidth: '20%' }, //nama kelas
+              { sWidth: '15%' }, //nama kelas
               { sWidth: '25%' }, //jurusan
-              { sWidth: '20%' }, //tahun ajaran
-              { sWidth: '25%' }, //wali kelas
+              // { sWidth: '15%' }, //tahun ajaran
+              { sWidth: '20%' }, //wali kelas
+              { sWidth: '10%' }, //laki
+              { sWidth: '10%' }, //perempuan
+              { sWidth: '10%' }, //total
               { sWidth: '5%' }, //action
             ],
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],

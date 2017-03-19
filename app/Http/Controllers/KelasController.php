@@ -79,9 +79,20 @@ class KelasController extends Controller
     public function showkelas()
     {
         $kelas = Kelas::orderby('created_at', 'DESC')->get();
-        foreach ($kelas as $kelass) {
-                $kelass->addAppends('jumlah_siswa');
-            }
+
+        // jumlah siswa laki-laki
+        for ($i=0; $i < count($kelas); $i++) { 
+            $kelas[$i]['jumlahlaki'] = Siswa::where('kelas_id', $kelas[$i]['id'])->where('jkl','Laki-laki')->get()->count();
+        }
+        // jumlah siswa perempuan
+        for ($i=0; $i < count($kelas); $i++) { 
+            $kelas[$i]['jumlahperempuan'] = Siswa::where('kelas_id', $kelas[$i]['id'])->where('jkl','Perempuan')->get()->count();
+        }
+        // total siswa
+        for ($i=0; $i < count($kelas); $i++) { 
+            $kelas[$i]['jumlah'] = Siswa::where('kelas_id', $kelas[$i]['id'])->get()->count();
+        }
+
         // dd($kelas->toArray());
         // dd($kelas->get()->toArray());
 
@@ -100,7 +111,7 @@ class KelasController extends Controller
 
         $walikelas = User::get();
        
-        $content['kelasku'] = $kelass->get();
+        $content['kelasku'] = $kelas;
         $content['jurusan'] = $jurusan;
         $content['walikelas'] = $walikelas;
         return View::make('kelas.showkelas')
