@@ -1,9 +1,9 @@
 function showModalSemester(button){
 	var modal  = $('#ModalUbahSemester');
 	var id = $(button).data('id');
-	var nama_semester = $(button).data('nama_semester');
-	var tgl_awal = $(button).data('tgl_awal');
-	var tgl_akhir = $(button).data('tgl_akhir');
+	var nama_semester = $(button).data('nama-semester');
+	var tgl_awal = $(button).data('tgl-awal');
+	var tgl_akhir = $(button).data('tgl-akhir');
 	
 	// Show Modal
 	modal.find('h4').html('Ubaha Data Semester');

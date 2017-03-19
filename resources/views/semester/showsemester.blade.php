@@ -49,9 +49,9 @@
                         <center>                                    
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalSemester(this)" 
                             data-id="{{$item->id}}"
-                            data-nama_semester="{{$item->semester}}"
-                            data-tgl_awal="{{$item->tgl_awal}}"
-                            data-tgl_akhir="{{$item->tgl_akhir}}">
+                            data-nama-semester="{{$item->semester}}"
+                            data-tgl-awal="{{$item->tgl_awal}}"
+                            data-tgl-akhir="{{$item->tgl_akhir}}">
                             <span class="fa fa-edit"></span></a>
                     </td>
                 </tr>                                    
