@@ -702,7 +702,7 @@ $(window).on('resize', centerModals);
 <script type="text/javascript">
     $('[data-dismiss=modal]').on('click', function (e) {
     // $("#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru").data('bootstrapValidator').resetForm();
-    $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru, #TambahKelas, #UbahKelas, #UbahPassword, #UbahSemester').bootstrapValidator("resetForm",true);
+    $('#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru, #TambahKelas, #UbahKelas, #UbahPassword, #UbahSemester, #UbahProfil').bootstrapValidator("resetForm",true);
     $('#siswa').bootstrapValidator("resetUl",true);          
     var $t = $(this),
         target = $t[0].href || $t.data("target") || $t.parents('.modal') || [];

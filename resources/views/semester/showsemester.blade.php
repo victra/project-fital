@@ -171,4 +171,84 @@
     </div>
 </div>
 <!-- Modal Ubah Password -->
+
+<!-- Modal Form Ubah Profil-->
+<div class="modal fade" id="ModalUbahProfil" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ubah Profil</h4>
+            </div>
+            <form class="form-horizontal" method="post" action="updateprofil" id="UbahProfil">          
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="hidden" name="id" class="form-control">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">NIP/NIK</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="nip" class="form-control" placeholder="NIP/NIK">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Nama</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" name="nama" class="form-control" placeholder="Nama">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Username</label>
+                    <div class="form-group">
+                        <div class="col-sm-5">
+                            <input type="text" name="username" class="form-control" placeholder="Username">
+                            <!-- <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true"> -->
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Jenis Kelamin</label>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <select class="form-control" name="jkl">
+                                <option value="">-Jenis Kelamin-</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label class="control-label col-sm-4">Agama</label>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <select class="form-control" name="agama">
+                                <option value="">-Agama-</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Kristen">Kristen</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Budha">Budha</option>                                                  
+                            </select>
+                        </div>
+                    </div>
+                    <label class="control-label col-sm-4">Telepon</label>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <input type="text" name="tlp" class="form-control" placeholder="Telepon">
+                        </div>  
+                    </div>                  
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-xs-5 col-xs-offset-3">
+                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                            <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>      
+    </div>
+</div>
+<!-- Modal Form Ubah Data Guru -->
 @endsection
