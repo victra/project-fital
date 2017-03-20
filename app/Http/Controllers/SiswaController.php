@@ -142,7 +142,12 @@ class SiswaController extends Controller
                 ,'nama_ibu' => $request->nama_ibu
                 ,'tlp_ortu' => $request->tlp_ortu
                 ,'alamat_ortu' => $request->alamat_ortu];
+                
+        $absensi = ['kelas_id' => $request->kelas];
+
         DB::table('siswa')->where('id',$request->id)->update($siswa);
+        DB::table('absensi')->where('siswa_id',$request->id)->update($absensi);
+        
         //return redirect('show');
         \Session::flash('flash_message','Data siswa berhasil diubah.');
         return back ();        
