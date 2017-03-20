@@ -1,4 +1,4 @@
-<!-- REQUIRED JS SCRIPTS -->
+REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.1.4 -->
 <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
@@ -85,6 +85,7 @@
     } );
 } );
 </script> -->
+<!-- PERCOBAAN INFO DETAIL SISWA -->
 
 <!-- Datatables -->
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
@@ -98,18 +99,9 @@
 <script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
 
-<!-- Enable/Disable Tombol Absensi -->
-<script type="text/javascript">
-    $(function(){
-    var rowCount = $('#tableabsensi tbody tr').length;
-    if(rowCount < 1){
-        $('#simpan, #hapus').attr('disabled','disabled');
-    } else {
-        $('#simpan, #hapus').removeAttr('disabled');
-    }
-});
-</script>
-<!-- Enable/Disable Tombol Absensi -->
+<!-- ======================================================================================================= -->
+<!--                                   PENGATURAN DATATABLE DI BAWAH INI                                     -->
+<!-- ======================================================================================================= -->
 
 <!-- Pengaturan Datatables -->
 <script type="text/javascript">
@@ -276,10 +268,10 @@
             ],
         });
         $('#tableabsensi').dataTable({
-            "scrollY": 400,
+            "scrollY": 350,
             "scrollCollapse": true,
-            "bPaginate": true,
-            "bLengthChange": true,
+            "bPaginate": false,
+            "bLengthChange": false,
             "bFilter": true,
             "bSort": true,
             "bInfo": true,
@@ -296,10 +288,10 @@
               { sWidth: '10%' }, //status
               { sWidth: '25%' }, //keterangan
             ],
-            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "aLengthMenu": [[-1], ["Semua"]],
             "oLanguage": {
                 sEmptyTable: "Belum ada data dalam tabel ini",
-                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfo: "Jumlah Siswa : _TOTAL_ siswa",
                 sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
                 sInfoFiltered: "",
                 sInfoPostFix: "",
@@ -601,7 +593,11 @@
 </script>
 <!-- Pengaturan Datatables -->
 
-<!-- Cari Absensi Berdasarkan Tanggal -->
+<!-- ======================================================================================================= -->
+<!--                                    PENGATURAN DATATABLE DI ATAS INI                                     -->
+<!-- ======================================================================================================= -->
+
+<!-- CARI ABSENSI BERDASAR TANGGAL -->
 <script type="text/javascript">
     $(document).ready(function (){
     var table = $('#tablecariabsensi').DataTable();
@@ -625,34 +621,24 @@
 
     });
 </script>
-<!-- Cari Absensi Berdasarkan Tanggal -->
+<<!-- CARI ABSENSI BERDASAR TANGGAL -->
 
-<!-- Tombol Reset Cari Tanggal -->
-<!-- <script type="text/javascript">
-function myFunction() {
-    // $('input[type="text"]').val('');
-    $("#tanggal").val('');
-    $("#caritanggal").val('');
-}
-</script> -->
-<!-- Tombol Reset Cari Tanggal -->
-
-<!-- Tombol Reset Cari Tanggal -->
+<!-- TOMBOL RESET CARI TANGGAL -->
 <script type="text/javascript">
     $("#reset").click(function(){
     $('#datetimePicker').data('datepicker').setDate(null);
 });
 </script>
-<!-- Tombol Reset Cari Tanggal -->
+<!-- TOMBOL RESET CARI TANGGAL -->
 
 <!-- Ambil Tanggal Per Minggu untuk Rekap Absensi Per Minggu -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $('.dari').change(function() {
     var date2 = $('.dari').datepicker('getDate', '+7d'); 
     date2.setDate(date2.getDate()+7); 
     $('.sampai').datepicker('setDate', date2);
 });
-</script>
+</script> -->
 <!-- Ambil Tanggal Per Minggu untuk Rekap Absensi Per Minggu -->
 
 <!-- <script type="text/javascript">
@@ -680,7 +666,7 @@ function myFunction() {
 })
 </script> -->
 
-<!-- Autofocus Inputan -->
+<!-- AUTOFOCUS INPUTAN DI FORM MODAL -->
 <script type="text/javascript">
   $('#ModalTambahSiswa, #ModalTambahKelas, #ModalTambahGuru').on('shown.bs.modal', function () {
     $('#nis').focus();
@@ -688,22 +674,23 @@ function myFunction() {
     $('#nip').focus();
 })
 </script>
+<!-- AUTOFOCUS INPUTAN DI FORM MODAL -->
 
-<!-- Javascript Center Modal Dialog -->
-    <script>
-    /* center modal */
-    function centerModals(){
-      $('.modal').each(function(i){
-      var $clone = $(this).clone().css('display', 'block').appendTo('body');
-      var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
-      top = top > 0 ? top : 0;
-      $clone.remove();
-      $(this).find('.modal-content').css("margin-top", top);
-      });
-    }
-    $('.modal').on('show.bs.modal', centerModals);
-    $(window).on('resize', centerModals);
-  </script>
+<!-- CENTER MODAL DIALOG -->
+<script>
+function centerModals(){
+  $('.modal').each(function(i){
+  var $clone = $(this).clone().css('display', 'block').appendTo('body');
+  var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+  top = top > 0 ? top : 0;
+  $clone.remove();
+  $(this).find('.modal-content').css("margin-top", top);
+  });
+}
+$('.modal').on('show.bs.modal', centerModals);
+$(window).on('resize', centerModals);
+</script>
+<!-- CENTER MODAL DIALOG -->
 
 <!-- <script type="text/javascript">
   $('#ModalTambahSiswa').on('shown.bs.modal', function() {
@@ -711,7 +698,7 @@ function myFunction() {
 });
 </script> -->
 
-<!-- reset form modal -->
+<!-- RESET FORM MODAL -->
 <script type="text/javascript">
     $('[data-dismiss=modal]').on('click', function (e) {
     // $("#TambahSiswa, #UbahSiswa, #TambahGuru, #UbahGuru").data('bootstrapValidator').resetForm();
@@ -732,6 +719,7 @@ function myFunction() {
        .end();;
 })
 </script>
+<!-- RESET FORM MODAL -->
 
 <!-- MODAL KONFIRMASI HAPUS DATA -->
 <script type="text/javascript">
@@ -739,12 +727,18 @@ $('#confirm-delete').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 });
 </script>
+<!-- MODAL KONFIRMASI HAPUS DATA -->
 
-<!-- bootstrapvalidator -->
+<!-- ======================================================================================================= -->
+<!--                                 VALIDASI SEMUA FORM ADA DI BAWAH SINI                                   -->
+<!-- ======================================================================================================= -->
+
+<!-- BOOTSTRAP VALIDATOR -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js" type="text/javascript"></script> -->
 <script src="{{ asset('/js/bootstrapValidator.js') }}" type="text/javascript"></script>
+<!-- BOOTSTRAP VALIDATOR -->
 
-<!-- validasi form ubah password -->
+<!-- VALIDASI FORM UBAH PASSWORD-->
 <script type="text/javascript">
 $(document).ready(function() {
   var validator = $('#UbahPassword').bootstrapValidator({
@@ -799,9 +793,9 @@ $(document).ready(function() {
   });
 });
 </script>
-<!-- validasi form ubah password -->
+<!-- VALIDASI FORM UBAH PASSWORD-->
 
-<!-- validasi form ubah semester -->
+<!-- VALIDASI FORM UBAH SEMESTER -->
 <script type="text/javascript">
 $(document).ready(function() {
   var validator = $('#UbahSemester').bootstrapValidator({
@@ -822,7 +816,7 @@ $(document).ready(function() {
       tgl_akhir: {
         validators: {
           notEmpty: {
-            message: "Tanggal akhir baru harus diisi"
+            message: "Tanggal akhir harus diisi"
           }
         }
       },
@@ -830,8 +824,9 @@ $(document).ready(function() {
   });
 });
 </script>
+<!-- VALIDASI FORM UBAH SEMESTER -->
 
-<!-- validasi form modal tambah siswa -->
+<!-- VALIDASI FORM TAMBAH SISWA -->
 <script type="text/javascript">
 $(document).ready(function() {
 $('#ModalTambahSiswa').modal('hide');
@@ -870,14 +865,14 @@ $('#ModalTambahSiswa').modal('hide');
             message: "Nama harus diisi"
           },          
           stringLength: {
-            min: 3,
             max: 50,
-            message: "Nama antara 3-50 karakter"
+            message: "Nama maksimal 50 karakter"
           },       
         }
       },
 
       jkl: {
+        enabled: false,
         validators: {
           notEmpty: {
             message: "Jenis kelamin harus diisi"
@@ -886,6 +881,7 @@ $('#ModalTambahSiswa').modal('hide');
       },
 
       agama: {
+        enabled: false,
         validators: {
           notEmpty: {
             message: "Agama harus diisi"
@@ -1002,47 +998,67 @@ $('#ModalTambahSiswa').modal('hide');
   //               }
   //           }
   //       })
+
   // hilangkan feedback icon pada field yang kosong
+  .on('keyup', '[name="jkl"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahSiswa').bootstrapValidator('validateField', 'jkl')
+      }
+  })
+  .on('keyup', '[name="agama"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahSiswa').bootstrapValidator('validateField', 'agama')
+      }
+  })
   .on('keyup', '[name="tlp_siswa"]', function () {
-                var isEmpty = $(this).val() == '';
-                $('#TambahSiswa')
-                       .bootstrapValidator('enableFieldValidators', 'tlp_siswa', !isEmpty);
-                // Revalidate the field when user start typing in the Phone field
-                if ($(this).val().length == 1) {
-                    $('#TambahSiswa').bootstrapValidator('validateField', 'tlp_siswa')
-                }
-            })
+      var isEmpty = $(this).val() == '';
+      $('#TambahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'tlp_siswa', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#TambahSiswa').bootstrapValidator('validateField', 'tlp_siswa')
+      }
+  })
   .on('keyup', '[name="alamat_siswa"]', function () {
-                var isEmpty = $(this).val() == '';
-                $('#TambahSiswa')
-                       .bootstrapValidator('enableFieldValidators', 'alamat_siswa', !isEmpty);
-                // Revalidate the field when user start typing in the Phone field
-                if ($(this).val().length == 1) {
-                    $('#TambahSiswa').bootstrapValidator('validateField', 'alamat_siswa')
-                }
-            })
+      var isEmpty = $(this).val() == '';
+      $('#TambahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'alamat_siswa', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#TambahSiswa').bootstrapValidator('validateField', 'alamat_siswa')
+      }
+  })
   .on('keyup', '[name="tlp_ortu"]', function () {
-                var isEmpty = $(this).val() == '';
-                $('#TambahSiswa')
-                       .bootstrapValidator('enableFieldValidators', 'tlp_ortu', !isEmpty);
-                // Revalidate the field when user start typing in the Phone field
-                if ($(this).val().length == 1) {
-                    $('#TambahSiswa').bootstrapValidator('validateField', 'tlp_ortu')
-                }
-            })
+      var isEmpty = $(this).val() == '';
+      $('#TambahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'tlp_ortu', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#TambahSiswa').bootstrapValidator('validateField', 'tlp_ortu')
+      }
+  })
   .on('keyup', '[name="alamat_ortu"]', function () {
-                var isEmpty = $(this).val() == '';
-                $('#TambahSiswa')
-                       .bootstrapValidator('enableFieldValidators', 'alamat_ortu', !isEmpty);
-                // Revalidate the field when user start typing in the Phone field
-                if ($(this).val().length == 1) {
-                    $('#TambahSiswa').bootstrapValidator('validateField', 'alamat_ortu')
-                }
-            });
+      var isEmpty = $(this).val() == '';
+      $('#TambahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'alamat_ortu', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#TambahSiswa').bootstrapValidator('validateField', 'alamat_ortu')
+      }
+  });
 });
 </script>
+<!-- VALIDASI FORM TAMBAH SISWA -->
 
-<!-- validasi form modal ubah siswa -->
+<!-- VALIDASI FORM UBAH SISWA -->
 <script type="text/javascript">
 $(document).ready(function() {
 $('#ModalUbahSiswa').modal('hide');
@@ -1082,14 +1098,14 @@ $('#ModalUbahSiswa').modal('hide');
             message: "Nama harus diisi"
           },          
           stringLength: {
-            min: 3,
             max: 50,
-            message: "Nama antara 3-50 karakter"
+            message: "Nama maksimal 50 karakter"
           },       
         }
       },
 
       jkl: {
+        enabled: false,
         validators: {
           notEmpty: {
             message: "Jenis kelamin harus diisi"
@@ -1098,6 +1114,7 @@ $('#ModalUbahSiswa').modal('hide');
       },
 
       agama: {
+        enabled: false,
         validators: {
           notEmpty: {
             message: "Agama hraus diisi"
@@ -1145,9 +1162,8 @@ $('#ModalUbahSiswa').modal('hide');
             message: "Nama Ayah harus diisi"
           },          
           stringLength: {
-            min: 3,
             max: 50,
-            message: "Nama Ayah antara 3-50 karakter"
+            message: "Nama Ayah maksimal 50 karakter"
           },       
         }
       },
@@ -1158,9 +1174,8 @@ $('#ModalUbahSiswa').modal('hide');
             message: "Nama Ibu harus diisi"
           },          
           stringLength: {
-            min: 3,
             max: 50,
-            message: "Nama Ibu antara 3-50 karakter"
+            message: "Nama Ibu maksimal 50 karakter"
           },       
         }
       },
@@ -1194,46 +1209,65 @@ $('#ModalUbahSiswa').modal('hide');
 
     }
   })
+  .on('keyup', '[name="jkl"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahSiswa').bootstrapValidator('validateField', 'jkl')
+      }
+  })
+  .on('keyup', '[name="agama"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahSiswa').bootstrapValidator('validateField', 'agama')
+      }
+  })
   .on('keyup', '[name="tlp_siswa"]', function () {
-                var isEmpty = $(this).val() == '';
-                $('#UbahSiswa')
-                       .bootstrapValidator('enableFieldValidators', 'tlp_siswa', !isEmpty);
-                // Revalidate the field when user start typing in the Phone field
-                if ($(this).val().length == 1) {
-                    $('#UbahSiswa').bootstrapValidator('validateField', 'tlp_siswa')
-                }
-            })
+      var isEmpty = $(this).val() == '';
+      $('#UbahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'tlp_siswa', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahSiswa').bootstrapValidator('validateField', 'tlp_siswa')
+      }
+  })
   .on('keyup', '[name="alamat_siswa"]', function () {
-                var isEmpty = $(this).val() == '';
-                $('#UbahSiswa')
-                       .bootstrapValidator('enableFieldValidators', 'alamat_siswa', !isEmpty);
-                // Revalidate the field when user start typing in the Phone field
-                if ($(this).val().length == 1) {
-                    $('#UbahSiswa').bootstrapValidator('validateField', 'alamat_siswa')
-                }
-            })
+      var isEmpty = $(this).val() == '';
+      $('#UbahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'alamat_siswa', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahSiswa').bootstrapValidator('validateField', 'alamat_siswa')
+      }
+  })
   .on('keyup', '[name="tlp_ortu"]', function () {
-                var isEmpty = $(this).val() == '';
-                $('#UbahSiswa')
-                       .bootstrapValidator('enableFieldValidators', 'tlp_ortu', !isEmpty);
-                // Revalidate the field when user start typing in the Phone field
-                if ($(this).val().length == 1) {
-                    $('#UbahSiswa').bootstrapValidator('validateField', 'tlp_ortu')
-                }
-            })
+      var isEmpty = $(this).val() == '';
+      $('#UbahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'tlp_ortu', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahSiswa').bootstrapValidator('validateField', 'tlp_ortu')
+      }
+  })
   .on('keyup', '[name="alamat_ortu"]', function () {
-                var isEmpty = $(this).val() == '';
-                $('#UbahSiswa')
-                       .bootstrapValidator('enableFieldValidators', 'alamat_ortu', !isEmpty);
-                // Revalidate the field when user start typing in the Phone field
-                if ($(this).val().length == 1) {
-                    $('#UbahSiswa').bootstrapValidator('validateField', 'alamat_ortu')
-                }
-            });
+      var isEmpty = $(this).val() == '';
+      $('#UbahSiswa')
+             .bootstrapValidator('enableFieldValidators', 'alamat_ortu', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahSiswa').bootstrapValidator('validateField', 'alamat_ortu')
+      }
+  });
 });
 </script>
+<!-- VALIDASI FORM UBAH SISWA -->
 
-<!-- validasi form modah tambah guru -->
+<!-- VALIDASI FORM TAMBAH GURU -->
 <script type="text/javascript">
 $(document).ready(function() {
 $('#ModalTambahGuru').modal('hide');
@@ -1271,9 +1305,8 @@ $('#ModalTambahGuru').modal('hide');
             message: "Nama harus diisi"
           },
           stringLength: {
-            min: 3,
             max: 50,
-            message: "Nama antara 3-50 karakter"
+            message: "Nama maksimal 50 karakter"
           }
         }
       },
@@ -1329,6 +1362,7 @@ $('#ModalTambahGuru').modal('hide');
       },
 
       jkl: {
+        enabled: false,
         validators: {
           notEmpty: {
             message: "Jenis kelamin harus diisi"
@@ -1337,6 +1371,7 @@ $('#ModalTambahGuru').modal('hide');
       },
 
       agama: {
+        enabled: false,
         validators: {
           notEmpty: {
             message: "Agama harus diisi"
@@ -1345,17 +1380,8 @@ $('#ModalTambahGuru').modal('hide');
       },
 
       tlp: {
+        enabled: false,
         validators: {
-          // notEmpty: {
-          //   message: "Telepon is required"
-          // },
-          // stringLength: {
-          //   min: 6,
-          //   message: "Telepon must be 6 characters long"
-          // },
-          // Telephon: {
-          //   message: "Telepon must be valid"
-          // },
           regexp: {
             regexp: /^[+0-9]*$/,
             message: 'Masukkan hanya berupa angka'
@@ -1364,15 +1390,358 @@ $('#ModalTambahGuru').modal('hide');
       }
       
     }
-  });
+  })
+  .on('keyup', '[name="jkl"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'jkl')
+      }
+  })
+  .on('keyup', '[name="agama"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'agama')
+      }
+  })
+  .on('keyup', '[name="tlp"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'tlp', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'tlp')
+      }
+  })
 });
 </script>
+<!-- VALIDASI FORM TAMBAH GURU -->
 
-<!-- validasi form modal ubah guru -->
+<!-- VALIDASI FORM UBAH GURU -->
 <script type="text/javascript">
 $(document).ready(function() {
 $('#ModalUbahGuru').modal('hide');
   var validator = $('#UbahGuru').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nip: {
+        validators: {
+          notEmpty: {
+            message: "NIP harus diisi"
+          },
+          stringLength: {
+            min: 4,
+            message: "NIP minimal 4 karakter"
+          },
+          remote: {
+            url: "{{ URL::to('/checkNIPUbah') }}",
+              data: function(validator) {
+                return {
+                    nis: validator.getFieldElements('nip').val(),
+                    id: validator.getFieldElements('id').val()
+                };
+            },
+            message: 'NIP sudah ada'
+          }
+        }
+      },
+
+      nama: {
+        validators: {
+          notEmpty: {
+            message: "Nama harus diisi"
+          },
+          stringLength: {
+            max: 50,
+            message: "Nama maksimal 50 karakter"
+          }
+        }
+      },
+
+      username: {
+        validators: {
+          notEmpty: {
+            message: "Username harus diisi"
+          },
+          stringLength: {
+            min: 6,
+            message: "Username minimal 6 karakter"
+          },
+          regexp: {
+                    regexp: /^[a-zA-Z0-9_\.]+$/,
+                    message: 'Hanya boleh memakai huruf, nomor dan garis bawah'
+          },
+          remote: {
+            url: "{{ URL::to('/checkUsernameUbah') }}",
+              data: function(validator) {
+                return {
+                    username: validator.getFieldElements('username').val(),
+                    id: validator.getFieldElements('id').val()
+                };
+            },
+            message: 'Username sudah ada'
+          }
+        }
+      },
+
+      password: {
+        validators: {
+          stringLength: {
+            min: 6,
+            message: "Password minimal 6 karakter"
+          },
+          different: {
+            field: "username",
+            message: "Username dan password tidak boleh sama"
+          }
+        }
+      },
+
+      role: {
+        validators: {
+          notEmpty: {
+            message: "Role harus diisi"
+          }
+        }
+      },
+
+      jkl: {
+        enabled: false,
+        validators: {
+          notEmpty: {
+            message: "Jenis kelamin harus diisi"
+          }
+        }
+      },
+
+      agama: {
+        enabled: false,
+        validators: {
+          notEmpty: {
+            message: "Agama harus diisi"
+          }
+        }
+      },
+
+      tlp: {
+        enabled: false,
+        validators: {
+          regexp: {
+            regexp: /^[+0-9]*$/,
+            message: 'Masukkan hanya berupa angka'
+          }
+        }
+      }
+      
+    }
+  })
+  .on('keyup', '[name="jkl"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'jkl')
+      }
+  })
+  .on('keyup', '[name="agama"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'agama')
+      }
+  })
+  .on('keyup', '[name="tlp"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'tlp', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'tlp')
+      }
+  })
+});
+</script>
+<!-- VALIDASI FORM UBAH GURU -->
+
+<!-- VALIDASI FORM TAMBAH KELAS -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalTambahKelas').modal('hide');
+  var validator = $('#TambahKelas').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nama_kelas: {
+        validators: {
+          notEmpty: {
+            message: "Nama kelas harus diisi"
+          },
+          remote: {
+            url: "{{ URL::to('/checkKelas') }}",
+              data: function(validator) {
+                return {
+                    nama_kelas: validator.getFieldElements('nama_kelas').val()
+                };
+            },
+            message: 'Nama kelas sudah ada'
+          }
+        }
+      },
+
+      jurusan: {
+        validators: {
+          notEmpty: {
+            message: "Jurusan harus diisi"
+          }
+        }
+      },
+
+      thn_ajaran: {
+        validators: {
+          notEmpty: {
+            message: "Tahun ajaran harus diisi"
+          },
+          stringLength: {
+            min: 9,
+            message: "Tahun ajaran minimal 9 karakter"
+          }
+        }
+      },
+
+      wali_kelas: {
+        validators: {
+          notEmpty: {
+            message: "Wali kelas harus diisi"
+          }
+        }
+      }
+      
+    }
+  });
+});
+</script>
+<!-- VALIDASI FORM TAMBAH KELAS -->
+
+<!-- VALIDASI FORM UBAH KELAS -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalUbahKelas').modal('hide');
+  var validator = $('#UbahKelas').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nama_kelas: {
+        validators: {
+          notEmpty: {
+            message: "Nama kelas harus diisi"
+          },
+          remote: {
+            url: "{{ URL::to('/checkKelasUbah') }}",
+              data: function(validator) {
+                return {
+                    nama_kelas: validator.getFieldElements('nama_kelas').val(),
+                    id : validator.getFieldElements('id').val()
+                };
+            },
+            message: 'Nama kelas sudah ada'
+          }
+        }
+      },
+
+      jurusan: {
+        validators: {
+          notEmpty: {
+            message: "Jurusan harus diisi"
+          }
+        }
+      },
+
+      thn_ajaran: {
+        validators: {
+          notEmpty: {
+            message: "Tahun ajaran harus diisi"
+          },
+          stringLength: {
+            min: 9,
+            message: "Tahun ajaran minimal 9 karakter"
+          }
+        }
+      },
+
+      wali_kelas: {
+        validators: {
+          notEmpty: {
+            message: "Wali kelas harus diisi"
+          }
+        }
+      }
+      
+    }
+  });
+});
+</script>
+<!-- VALIDASI FORM UBAH KELAS -->
+
+<!-- PENGATURAN PESAN PERINGATAN -->
+<script type="text/javascript">
+$(document).ready(function(){
+                    setTimeout(function() {
+            $('#successMessage, #errorsMessage').fadeOut(1500);
+            }, 3000); //hilang setelah 3 detik
+        });
+</script>
+<!-- PENGATURAN PESAN PERINGATAN -->
+
+<!-- VALIDASI FORM LOGIN -->
+<script type="text/javascript">
+$(document).ready(function() {
+  var validator = $('#formLogin').bootstrapValidator({
+    fields: {
+      email: {
+        validators: {
+          notEmpty: {
+            message: "Masukkan username terlebih dahulu"
+          }
+        }
+      },
+
+      password: {
+        validators: {
+          notEmpty: {
+            message: "Masukkan password terlebih dahulu"
+          }
+        }
+      }
+      
+    }
+  });
+});
+</script>
+<!-- VALIDASI FORM LOGIN -->
+
+<!-- VALIDASI FORM UBAH PROFIL -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalUbahProfil').modal('hide');
+  var validator = $('#UbahProfil').bootstrapValidator({
     feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -1440,31 +1809,8 @@ $('#ModalUbahGuru').modal('hide');
         }
       },
 
-      password: {
-        validators: {
-          // notEmpty: {
-          //   message: "Password harus diisi"
-          // },
-          stringLength: {
-            min: 6,
-            message: "Password minimal 6 karakter"
-          },
-          different: {
-            field: "username",
-            message: "Username dan password tidak boleh sama"
-          }
-        }
-      },
-
-      role: {
-        validators: {
-          notEmpty: {
-            message: "Role harus diisi"
-          }
-        }
-      },
-
       jkl: {
+        enabled: false,
         validators: {
           notEmpty: {
             message: "Jenis kelamin harus diisi"
@@ -1473,6 +1819,7 @@ $('#ModalUbahGuru').modal('hide');
       },
 
       agama: {
+        enabled: false,
         validators: {
           notEmpty: {
             message: "Agama harus diisi"
@@ -1481,17 +1828,8 @@ $('#ModalUbahGuru').modal('hide');
       },
 
       tlp: {
+        enabled: false,
         validators: {
-          // notEmpty: {
-          //   message: "Telepon is required"
-          // },
-          // stringLength: {
-          //   min: 6,
-          //   message: "Telepon must be 6 characters long"
-          // },
-          // Telephon: {
-          //   message: "Telepon must be valid"
-          // },
           regexp: {
             regexp: /^[+0-9]*$/,
             message: 'Masukkan hanya berupa angka'
@@ -1500,165 +1838,34 @@ $('#ModalUbahGuru').modal('hide');
       }
       
     }
-  });
-});
-</script>
-
-<!-- validasi form modah tambah kelas -->
-<script type="text/javascript">
-$(document).ready(function() {
-$('#ModalTambahKelas').modal('hide');
-  var validator = $('#TambahKelas').bootstrapValidator({
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      nama_kelas: {
-        validators: {
-          notEmpty: {
-            message: "Nama kelas harus diisi"
-          },
-          remote: {
-            url: "{{ URL::to('/checkKelas') }}",
-              data: function(validator) {
-                return {
-                    nama_kelas: validator.getFieldElements('nama_kelas').val()
-                };
-            },
-            message: 'Nama kelas sudah ada'
-          }
-        }
-      },
-
-      jurusan: {
-        validators: {
-          notEmpty: {
-            message: "Jurusan harus diisi"
-          }
-        }
-      },
-
-      thn_ajaran: {
-        validators: {
-          notEmpty: {
-            message: "Tahun ajaran harus diisi"
-          },
-          stringLength: {
-            min: 9,
-            message: "Tahun ajaran minimal 9 karakter"
-          }
-        }
-      },
-
-      wali_kelas: {
-        validators: {
-          notEmpty: {
-            message: "Wali kelas harus diisi"
-          }
-        }
+  })
+  .on('keyup', '[name="jkl"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'jkl')
       }
-      
-    }
-  });
-});
-</script>
-
-<!-- validasi form modah ubah kelas -->
-<script type="text/javascript">
-$(document).ready(function() {
-$('#ModalUbahKelas').modal('hide');
-  var validator = $('#UbahKelas').bootstrapValidator({
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      nama_kelas: {
-        validators: {
-          notEmpty: {
-            message: "Nama kelas harus diisi"
-          },
-          remote: {
-            url: "{{ URL::to('/checkKelasUbah') }}",
-              data: function(validator) {
-                return {
-                    nama_kelas: validator.getFieldElements('nama_kelas').val(),
-                    id : validator.getFieldElements('id').val()
-                };
-            },
-            message: 'Nama kelas sudah ada'
-          }
-        }
-      },
-
-      jurusan: {
-        validators: {
-          notEmpty: {
-            message: "Jurusan harus diisi"
-          }
-        }
-      },
-
-      thn_ajaran: {
-        validators: {
-          notEmpty: {
-            message: "Tahun ajaran harus diisi"
-          },
-          stringLength: {
-            min: 9,
-            message: "Tahun ajaran minimal 9 karakter"
-          }
-        }
-      },
-
-      wali_kelas: {
-        validators: {
-          notEmpty: {
-            message: "Wali kelas harus diisi"
-          }
-        }
+  })
+  .on('keyup', '[name="agama"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'agama')
       }
-      
-    }
-  });
-});
-</script>
-
-<!-- pengaturan pesan peringatan -->
-<script type="text/javascript">
-$(document).ready(function(){
-                    setTimeout(function() {
-            $('#successMessage, #errorsMessage').fadeOut(1500);
-            }, 3000); //hilang setelah 3 detik
-        });
-</script>
-
-<!-- validasi form login -->
-<script type="text/javascript">
-$(document).ready(function() {
-  var validator = $('#formLogin').bootstrapValidator({
-    fields: {
-      email: {
-        validators: {
-          notEmpty: {
-            message: "Masukkan username terlebih dahulu"
-          }
-        }
-      },
-
-      password: {
-        validators: {
-          notEmpty: {
-            message: "Masukkan password terlebih dahulu"
-          }
-        }
+  })
+  .on('keyup', '[name="tlp"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahProfil')
+             .bootstrapValidator('enableFieldValidators', 'tlp', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahProfil').bootstrapValidator('validateField', 'tlp')
       }
-      
-    }
-  });
+  })
 });
 </script>
-
+<!-- VALIDASI FORM UBAH PROFIL

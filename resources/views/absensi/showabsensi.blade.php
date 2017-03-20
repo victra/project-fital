@@ -201,6 +201,19 @@
 @endsection
 
 @section('scripts-tambahan')
+<!-- Enable/Disable Tombol Absensi -->
+<script type="text/javascript">
+    $(function(){
+    var rowCount = $('#tableabsensi tbody tr').length;
+    if(rowCount < 1){
+        $('#simpan, #hapus').attr('disabled','disabled');
+    } else {
+        $('#simpan, #hapus').removeAttr('disabled');
+    }
+});
+</script>
+<!-- Enable/Disable Tombol Absensi -->
+
 <!-- Hide/Show Tombol Absensi -->
 <script type="text/javascript">
     $(document).ready(function (){
