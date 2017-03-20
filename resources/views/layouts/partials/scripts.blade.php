@@ -308,15 +308,15 @@
                 sLoadingRecords: "Loading...",
                 sProcessing: "Processing...",
                 sSearch: "Cari:",
-                sSearchPlaceholder: "NIS / Nama Siswa",
+                sSearchPlaceholder: "Nama Siswa",
                 sUrl: "",
                 sZeroRecords: "Data tidak ditemukan"
                 },
 
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","jkl","agama","status","keterangan" ]},
-              {"bSortable" : false, "aTargets" : [ "jkl","agama","status","keterangan" ]} 
+              {"bSearchable" : false, "aTargets" : [ "no","nis","jkl","agama","status","keterangan" ]},
+              {"bSortable" : false, "aTargets" : [ "agama","status","keterangan" ]} 
             ],
         });
         $('#tablecariabsensi').dataTable({
@@ -379,14 +379,14 @@
             "bAutoWidth": false,
             "aoColumns" : [
               { sWidth: '10%' }, //nis
-              { sWidth: '20%' }, //nama
+              { sWidth: '30%' }, //nama
               { sWidth: '15%' }, //jkl
-              { sWidth: '15%' }, //kelas
-              { sWidth: '8%' }, //sakit
-              { sWidth: '8%' }, //izin
-              { sWidth: '8%' }, //alpa
-              { sWidth: '8%' }, //total
-              { sWidth: '8%' }, //info
+              // { sWidth: '15%' }, //kelas
+              { sWidth: '9%' }, //sakit
+              { sWidth: '9%' }, //izin
+              { sWidth: '9%' }, //alpa
+              { sWidth: '9%' }, //total
+              { sWidth: '9%' }, //info
             ],
             // "rowCallback": function( row, data, index ) {
             //   if ( data[1] == "AHOK" ) {
@@ -421,15 +421,15 @@
                 sLoadingRecords: "Loading...",
                 sProcessing: "Processing...",
                 sSearch: "Cari:",
-                sSearchPlaceholder: "NIS / Nama Siswa",
+                sSearchPlaceholder: "Nama Siswa",
                 sUrl: "",
                 sZeroRecords: "Data tidak ditemukan"
                 },
 
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "jkl","kelas","sakit","izin","alpa","infoa" ]},
-              {"bSortable" : false, "aTargets" : [ "jkl","kelas" ]} 
+              {"bSearchable" : false, "aTargets" : [ "nis","jkl","kelas","sakit","izin","alpa","infoa" ]},
+              {"bSortable" : false, "aTargets" : [ "kelas" ]} 
             ],
         });
         $('#tablerekap').dataTable({
@@ -446,13 +446,13 @@
             "bAutoWidth": false,
             "aoColumns" : [
               { sWidth: '10%' }, //nis
-              { sWidth: '25%' }, //nama
+              { sWidth: '35%' }, //nama
               { sWidth: '15%' }, //jkl
-              { sWidth: '15%' }, //kelas
-              { sWidth: '8%' }, //sakit
-              { sWidth: '8%' }, //izin
-              { sWidth: '8%' }, //alpa
-              { sWidth: '11%' }, //total
+              // { sWidth: '15%' }, //kelas
+              { sWidth: '9%' }, //sakit
+              { sWidth: '9%' }, //izin
+              { sWidth: '9%' }, //alpa
+              { sWidth: '13%' }, //total
             ],            
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
             "oLanguage": {
@@ -467,15 +467,15 @@
                 sLoadingRecords: "Loading...",
                 sProcessing: "Processing...",
                 sSearch: "Cari:",
-                sSearchPlaceholder: "NIS / Nama Siswa",
+                sSearchPlaceholder: "Nama Siswa",
                 sUrl: "",
                 sZeroRecords: "Data tidak ditemukan"
                 },
 
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "jkl","kelas","sakit","izin","alpa" ]},
-              {"bSortable" : false, "aTargets" : [ "jkl","kelas" ]}
+              {"bSearchable" : false, "aTargets" : [ "nis","jkl","kelas","sakit","izin","alpa","total" ]},
+              {"bSortable" : false, "aTargets" : [ "kelas" ]}
             ],
         });
         $('#tablesemester').dataTable({

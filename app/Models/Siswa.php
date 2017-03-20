@@ -180,7 +180,7 @@ class Siswa extends \BaseModel
         
         return null;
 	}
-	// Jumlah Alpa
+	// Total
 	public function getTotalAttribute()
 	{
 	 	if (Input::has('dari_tanggal')) {
@@ -248,6 +248,22 @@ class Siswa extends \BaseModel
 
         return null;
 	}
+
+	// Total
+	public function getTotalbAttribute()
+	{
+		if (Input::has('bulan')) {
+            $input_bulan = Input::get('bulan');
+        } else {
+            $input_bulan = "";
+        }
+
+        if ($input_bulan && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','!=','H')->count();
+        }
+
+        return null;
+	}
 // JUMLAH SAKIT, IZIN, ALPA REKAP BULAN
 
 // JUMLAH SAKIT, IZIN, ALPA REKAP SEMESTER
@@ -285,6 +301,19 @@ class Siswa extends \BaseModel
 
         if ($tgl_awal && $tgl_akhir && Input::has('search_kelas')) {
 		 	return $this->absensi()->whereBetween('date', [$tgl_awal, $tgl_akhir])->where('status','A')->count();
+        }
+
+        return null;
+	}
+
+	// Total
+	public function getTotalsAttribute()
+	{
+		$tgl_awal = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_awal');
+        $tgl_akhir = DB::table('semester')->where('id', Input::get('semester'))->value('tgl_akhir');
+
+        if ($tgl_awal && $tgl_akhir && Input::has('search_kelas')) {
+		 	return $this->absensi()->whereBetween('date', [$tgl_awal, $tgl_akhir])->where('status','!=','H')->count();
         }
 
         return null;

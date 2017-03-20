@@ -56,7 +56,7 @@
             <thead>
                 <tr>
                     <th class="no"><center>No</center></th>
-                    <th><center>NIS</center></th>
+                    <th class="nis"><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th class="jkl"><center>Jenis Kelamin</center></th>
                     <th class="agama"><center>Agama</center></th>

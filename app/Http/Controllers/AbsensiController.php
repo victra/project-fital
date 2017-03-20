@@ -159,7 +159,7 @@ class AbsensiController extends Controller
         } else {
             $dari_tanggal = "";
             $sampai_tanggal = "";
-            \Session::flash('info_rekap','Masukkan tanggal mulai rekap.');
+            \Session::flash('info_rekap','Silahkan masukkan tanggal mulai rekap.');
         }
 
         $kelas = Kelas::get();
@@ -177,6 +177,8 @@ class AbsensiController extends Controller
     //rekap absensi per bulan
     public function rekapabsensibulan()
     {
+        \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
+
         $siswa = Siswa::orderby('nis', 'ASC');
 
         $input_kelas = '';
@@ -192,6 +194,7 @@ class AbsensiController extends Controller
             $input_bulan = Input::get('bulan');
         } else {
             $input_bulan = "";
+            \Session::flash('info_rekap','Silahkan pilih bulan untuk rekap.');
         }
 
         $bulan = array(
@@ -221,6 +224,8 @@ class AbsensiController extends Controller
     //rekap absensi per semester
     public function rekapabsensisemester()
     {
+        \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
+
         $siswa = Siswa::orderby('nis', 'ASC');
 
         $input_kelas = '';
@@ -237,6 +242,7 @@ class AbsensiController extends Controller
             $input_semester = Input::get('semester');
         } else {
             $semesters = "";
+            \Session::flash('info_rekap','Silahkan pilih semester untuk rekap.');
         }
 
         $semester = Semester::get();

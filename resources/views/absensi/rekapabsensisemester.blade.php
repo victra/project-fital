@@ -14,6 +14,15 @@
 
 @section('main-content')
 
+<!-- pesan peringatan berhasil -->
+@if(Session::has('info_message'))
+    <div id="infoMessage" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_message') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+@endif
+
+@if(Session::has('info_rekap'))
+    <div id="infoRekap" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_rekap') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+@endif
+
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Rekap Absensi Per Semester</h3>            
@@ -31,7 +40,7 @@
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Semester :</label> -->
                 <!-- array dari tabel semester -->
                 <form style="margin-right:20px; margin-top:0px" class="pull-right">
-                    <select class="form-control input-sm" name="semester" onchange="location = '?search_kelas={{$content['input_kelas']}}&semester='+this.value;">
+                    <select id="semesterku" class="form-control input-sm" name="semester" onchange="location = '?search_kelas={{$content['input_kelas']}}&semester='+this.value;">
                         <option value="">-Pilih Semester-</option>
                         @foreach($content['semester'] as $value)
                         <?php $selected = $content['input_semester']==$value['id'] ? 'selected' : '' ?>
@@ -43,7 +52,7 @@
 
                 <!-- Pilih Kelas -->
                 <form style="margin-right:50px; margin-top:0px" class="pull-right">
-                    <select class="form-control input-sm" onchange="location = this.value+'&semester={{$content['sem']}}';">
+                    <select id="kelasku" class="form-control input-sm" onchange="location = this.value+'&semester={{$content['sem']}}';">
                         <option value="?search_kelas=">-Pilih Kelas-</option>
                             @foreach($content['kelas'] as $value)
                             <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
@@ -63,10 +72,10 @@
             <thead>
                 <tr>
                     {{--<th><center>No</center></th>--}}
-                    <th><center>NIS</center></th>
+                    <th class="nis"><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th class="jkl"><center>Jenis Kelamin</center></th>
-                    <th class="kelas"><center>Kelas</center></th>
+                    {{--<th class="kelas"><center>Kelas</center></th>--}}
                     <th class="sakit"><center>Sakit</center></th>
                     <th class="izin"><center>Izin</center></th>
                     <th class="alpa"><center>Alpa</center></th>
@@ -79,14 +88,14 @@
                 @foreach($content['absensis'] as $item)
                 <tr>
                     {{--<td><center>{{$no++}}</center></td>--}}
-                    <td>{{$item->nis}}</td>
+                    <td><center>{{$item->nis}}</center></td>
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
-                    <td><center>{{$item->kelas->nama_kelas}}</center></td>
+                    {{--<td><center>{{$item->kelas->nama_kelas}}</center></td>--}}
                     <td><center>{{$item->sakits}}</center></td>
                     <td><center>{{$item->izins}}</center></td>
                     <td><center>{{$item->alpas}}</center></td>
-                    <td><center>{{$item->sakits + $item->izins + $item->alpas}}</center></td>
+                    <td><center>{{$item->totals}}</center></td>
                 </tr>                                    
                 @endforeach
             </tbody>                       
@@ -112,4 +121,85 @@
                 <!-- <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari :</label> -->
     </div>
 </div>
+@endsection
+
+@section('modals')
+<!-- Modal Ubah Password -->
+<div class="modal fade" id="ModalUbahPassword" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ubah Password</h4>
+            </div>
+            <form class="form-horizontal" method="post" action="ubahpasswordpakaimodal" id="UbahPassword">
+                <div class="modal-body">
+                    <label class="control-label col-sm-4">Password Lama</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="password" name="current_password" class="form-control" placeholder="Password Lama">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Password Baru</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="password" name="new_password" class="form-control" placeholder="Password Baru">
+                        </div>  
+                    </div>
+                    <label class="control-label col-sm-4">Password Konfirmasi</label>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="password" name="password_confirmation" class="form-control" placeholder="Password Konfirmasi">
+                        </div>  
+                    </div>                                      
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-xs-5 col-xs-offset-3">
+                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                            <button type="submit" value="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>      
+    </div>
+</div>
+<!-- Modal Ubah Password -->
+@endsection
+
+@section('scripts-tambahan')
+<!-- Hide/Show Datatable Rekap Absensi -->
+<script type="text/javascript">
+    $(document).ready(function (){
+        validate();
+        $('#kelasku').change(validate);
+    });
+
+    function validate(){
+        if ($('#kelasku').val()   !=   "?search_kelas=" && $('#semesterku').val()   !=   "" ) {
+            $('#tablerekap').parents('div.dataTables_wrapper').first().show();
+            document.getElementById("infoMessage").style.display = "none";
+            document.getElementById("infoRekap").style.display = "none";
+
+        }
+        else if ($('#kelasku').val()   !=   "?search_kelas=") {
+            $('#tablerekap').parents('div.dataTables_wrapper').first().show();
+            document.getElementById("infoMessage").style.display = "none";
+
+        }
+        else if ($('#semesterku').val()   !=   "" ) {
+            $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
+            document.getElementById("infoRekap").style.display = "none";
+
+        }
+        else {
+            $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
+            document.getElementById("infoRekap").style.display = "none";
+        }
+    }        
+</script>
+<!-- Hide/Show Datatable Rekap Absensi -->
 @endsection
