@@ -54,6 +54,15 @@
                                 </div>
                             </li> -->
                             <li class="divider"></li>
+                            <li><a onclick="showModalProfil(this)" 
+                            data-id="{{Auth::user()->id}}"
+                            data-nip="{{Auth::user()->nip}}"
+                            data-nama="{{Auth::user()->name}}"
+                            data-username="{{Auth::user()->email}}"
+                            data-jenis-kelamin="{{Auth::user()->jkl}}"
+                            data-agama="{{Auth::user()->agama}}"
+                            data-tlp="{{Auth::user()->tlp}}"><i class="fa fa-key"></i> Ubah Profil</a></li>
+                            <li class="divider"></li>
                             <!-- <li><a href="{{ url('/ubahpassword') }}"><i class="fa fa-key"></i> Ganti Password</a></li>
                             <li class="divider"></li> -->
                             <li><a data-toggle="modal" data-target="#ModalUbahPassword"><i class="fa fa-key"></i> Ganti Password</a></li>

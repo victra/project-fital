@@ -58,6 +58,7 @@
 <script type="text/javascript" src="js/siswa.js"></script>
 <script type="text/javascript" src="js/infosiswa.js"></script>
 <script type="text/javascript" src="js/semester.js"></script>
+<script type="text/javascript" src="js/profil.js"></script>
 
 <!-- PERCOBAAN INFO DETAIL SISWA -->
 <!-- <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript"></script>

@@ -277,6 +277,22 @@ class GuruController extends Controller
         // return back ();      
     }
 
+     public function updateprofil(Request $request, $id)
+    {
+        
+    $guru = ['id' => $request->id
+        ,'nip' => $request->nip
+        ,'name' => $request->nama
+        ,'email' => $request->username
+        ,'jkl' => $request->jkl
+        ,'agama' => $request->agama
+        ,'tlp'=> $request->tlp];
+
+    DB::table('users')->where('id', $request->id)->update($guru);
+
+    return back ();      
+    }
+
     public function tampilubahpassword(Request $request)
     {
 
