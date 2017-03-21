@@ -5,7 +5,8 @@
 <!-- Bootstrap 3.3.2 JS -->
 <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script> -->
+<script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
 <!-- <script type="text/javascript">
     $(document).ready(function () {
@@ -358,6 +359,51 @@
               {"bSortable" : false, "aTargets" : [ "jkl","keterangan" ]} 
             ],
         });
+        $('#tablerekaphari').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '15%' }, //nama kelas
+              { sWidth: '8%' }, //sakit
+              { sWidth: '8%' }, //izin
+              { sWidth: '8%' }, //alpa
+              { sWidth: '8%' }, //total
+              { sWidth: '48%' }, //keterangan
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Kelas",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","sakit","izin","alpa","total","ket" ]},
+              {"bSortable" : false, "aTargets" : [ "ket" ]} 
+            ],
+        });
         $('#tablerekapminggu').dataTable({
             "scrollY": 400,
             "scrollCollapse": true,
@@ -421,7 +467,7 @@
 
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "nis","jkl","kelas","sakit","izin","alpa","infoa" ]},
+              {"bSearchable" : false, "aTargets" : [ "nis","jkl","kelas","sakit","izin","alpa","total","infoa" ]},
               {"bSortable" : false, "aTargets" : [ "kelas" ]} 
             ],
         });
@@ -621,7 +667,7 @@
 
     });
 </script>
-<<!-- CARI ABSENSI BERDASAR TANGGAL -->
+<!-- CARI ABSENSI BERDASAR TANGGAL -->
 
 <!-- TOMBOL RESET CARI TANGGAL -->
 <script type="text/javascript">

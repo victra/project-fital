@@ -30,28 +30,12 @@ class Kelas extends \BaseModel
 	public $forceEntityHydrationFromInput = true; // Also for Update
 	public static $passwordAttributes  = array('');
 	public $autoHashPasswordAttributes = true;
-	public static $rules = array(
-		'nama_kelas' => 'required|max:15|unique',
-		'jurusan' => 'required',
-		'wali_kelas_id' => 'required'
-		);
-	public static $customMessages = array(
-    	'nama_kelas' => array(
-	        'required' => 'Nama Kelas harus diisi',
-	        'max' => 'Maksimal 15 karakter',
-	        'unique' => 'Nama Kelas sudah ada'
-    	),
-    	'jurusan' => array(
-	        'required' => 'Jurusan harus diisi'
-    	),
-    	'wali_kelas_id' => array(
-	        'required' => 'Wali Kelas harus diisi'
-    	)
-	);
+	public static $rules;
+	public static $customMessages;
 	public static $relationsData = array(
 		'waliKelas' 	=> array(self::BELONGS_TO, 'App\User'),
-		// 'Semester'		=> array(self::BELONGS_TO, 'Model\Semester'),
 		'siswa'	=> array(self::HAS_MANY, 'Model\Siswa'),
+		'absensi'	=> array(self::HAS_MANY, 'Model\Absensi'),
 	);
 
 	/*
@@ -97,7 +81,6 @@ class Kelas extends \BaseModel
 	*/
 	protected $appends = array(
 		'walikelas',
-		// 'semester',
 	);
 
 
@@ -124,25 +107,88 @@ class Kelas extends \BaseModel
 	 	return $this->waliKelas()->first();
 	 }
 
-	 // public function getSemesterAttribute()
-	 // {
-	 // 	return $this->Semester()->first();
-	 // }
+	 public function getAbsensiNonPermanentAttribute()
+	 {
+		return $this->absensi()->get();
+        return null;
+	 }
 
-	 // jumlah siswa per kelas
-	//  public function getJumlahSiswaAttribute()
-	// {
-	// 	 $idkelass = DB::table('kelas')->pluck('id');
-	// 	foreach ($idkelass as $idkelas) {
-	// 		// $new = DB::table('kelas')->value('id');
- //                // $idkelask = DB::table('kelas')->value('id');
-	// 	 	// return $this->siswa()->where('kelas_id', $idkelas)->get();
-	// 	 	return $this->siswa()->where('kelas_id', $idkelas)->get();
- //        }
+	 public function getAbsAttribute()
+	 {
+		if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
 
-	//  	// $idkelas = DB::table('kelas')->value('id');
-	//  	// // return $this->siswa()->where('kelas_id', $idkelas)->get();
-	//  	// return $this->siswa()->where('kelas_id', $idkelas)->count();
- //        return null;
-	// }
+        if ($tanggal) {
+		 	return $this->absensi()->where('date', $tanggal)->where('status','!=','H')->pluck('siswa_id');
+        }
+
+        return null;
+	 }
+
+	 // Jumlah Sakit
+	 public function getSakithAttribute()
+	 {
+	 	if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+
+        if ($tanggal) {
+		 	return $this->absensi()->where('date', $tanggal)->where('status','S')->count();
+        }
+
+        return null;
+	 }
+
+	 // Jumlah Izin
+	 public function getIzinhAttribute()
+	 {
+	 	if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+
+        if ($tanggal) {
+		 	return $this->absensi()->where('date', $tanggal)->where('status','I')->count();
+        }
+
+        return null;
+	 }
+
+	 // Jumlah Alpa
+	 public function getAlpahAttribute()
+	 {
+	 	if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+
+        if ($tanggal) {
+		 	return $this->absensi()->where('date', $tanggal)->where('status','A')->count();
+        }
+
+        return null;
+	 }
+
+	 // Total
+	 public function getTotalhAttribute()
+	 {
+	 	if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+
+        if ($tanggal) {
+		 	return $this->absensi()->where('date', $tanggal)->where('status','!=','H')->count();
+        }
+
+        return null;
+	 }
 }

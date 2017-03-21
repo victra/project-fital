@@ -42,16 +42,19 @@
             <li class="{{ (Request::is('semester')) ? 'active':'' }}"><a href="{{ url('semester') }}"><i class='fa fa-calendar-o'></i> <span> Data Semester </span></a></li>
             <li class="{{ (Request::is('absensisiswa')) ? 'active':'' }}"><a href="{{ url('absensisiswa') }}"><i class='fa fa-table'></i> <span> Absensi Siswa </span></a></li>
             <li class="{{ (Request::is('cariabsensi')) ? 'active':'' }}"><a href="{{ url('cariabsensi') }}"><i class='fa fa-search'></i> <span> Cari Absensi </span></a></li>
-            <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
+            <!-- <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
             <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Bulan) </span></a></li>
-            <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Semester) </span></a></li>
-            <<!-- li class="treeview">
+            <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Semester) </span></a></li> -->
+
+            <li class="treeview {{ (Request::is('rekap*')) ? 'active':'' }}">
                 <a href="#"><i class='fa fa-file-o'></i> <span>Rekap Absensi</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('rekapperbulan') }}"><i class='fa fa-circle-o'></i>Per Bulan</a></li>
-                    <li><a href="{{ url('rekappersemester') }}"><i class='fa fa-circle-o'></i>Per Semester</a></li>
+                     <li class="{{ (Request::is('rekapperhari')) ? 'active':'' }}"><a href="{{ url('rekapperhari') }}"><i class='fa fa-circle-o'></i> <span> Per Hari </span></a></li>
+                    <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-circle-o'></i> <span> Per Minggu </span></a></li>
+                    <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-circle-o'></i> <span> Per Bulan </span></a></li>
+                    <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-circle-o'></i> <span> Per Semester </span></a></li>
                 </ul>
-            </li> -->
+            </li>
             <!-- <li class="{{ (Request::is('*#*')) ? 'active':'' }}"><a href="{{ url('coba') }}"><i class='fa fa-table'></i> <span> Rekap Absensi </span></a></li>
 
             <li class="treeview">
@@ -72,9 +75,18 @@
             <li class="{{ (Request::is('semester')) ? 'active':'' }}"><a href="{{ url('semester') }}"><i class='fa fa-calendar-o'></i> <span> Data Semester </span></a></li>            
             <li class="{{ (Request::is('absensisiswa')) ? 'active':'' }}"><a href="{{ url('absensisiswa') }}"><i class='fa fa-table'></i> <span> Absensi Siswa </span></a></li>
             <li class="{{ (Request::is('cariabsensi')) ? 'active':'' }}"><a href="{{ url('cariabsensi') }}"><i class='fa fa-search'></i> <span> Cari Absensi </span></a></li>
-            <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
+            <!-- <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Minggu) </span></a></li>
             <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Bulan) </span></a></li>
-            <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Semester) </span></a></li>
+            <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-file-o'></i> <span> Rekap Absensi (Semester) </span></a></li> -->
+
+            <li class="treeview">
+                <a href="#"><i class='fa fa-file-o'></i> <span>Rekap Absensi</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-circle-o'></i> <span> Per Minggu </span></a></li>
+                    <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-circle-o'></i> <span> Per Bulan </span></a></li>
+                    <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-circle-o'></i> <span> Per Semester </span></a></li>
+                </ul>
+            </li>
         </ul>
         @else
         <ul class="sidebar-menu">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Rekap Absensi (Semester)
+    Rekap Absensi (Minggu)
 @endsection
 
 @section('contentheader_title')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('contentheader_description')
-    Rekap perSemester
+    Rekap perBulan
 @endsection
 
 @section('main-content')
@@ -25,101 +25,55 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Rekap Absensi Per Semester</h3>            
-            <div style="margin-right:0px; margin-top:30px" class="form-group pull-right">
-                <!-- Pilih Semester -->
-                <!-- array manual -->
-                <!-- <form style="margin-right:20px; margin-top:0px" class="pull-right">
-                    <select class="form-control input-sm" name="semester">
-                        <option value="">-Pilih Semester-</option>
-                        @foreach($content['semester'] as $key => $value)
-                            <option value="{{$key}}">{{$value}}</option>
-                        @endforeach
-                    </select>
-                </form>
-                <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Semester :</label> -->
-                <!-- array dari tabel semester -->
-                <form style="margin-right:20px; margin-top:0px" class="pull-right">
-                    <select id="semesterku" class="form-control input-sm" name="semester" onchange="location = '?search_kelas={{$content['input_kelas']}}&semester='+this.value;">
-                        <option value="">-Pilih Semester-</option>
-                        @foreach($content['semester'] as $value)
-                        <?php $selected = $content['input_semester']==$value['id'] ? 'selected' : '' ?>
-                            <option {{$selected}} value="{{$value['id']}}">{{$value['semester']}}</option>
-                        @endforeach
-                    </select>
-                </form>
-                <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Semester :</label>
-
-                <!-- Pilih Kelas -->
-                <form style="margin-right:50px; margin-top:0px" class="pull-right">
-                    <select id="kelasku" class="form-control input-sm" onchange="location = this.value+'&semester={{$content['sem']}}';">
-                        <option value="?search_kelas=">-Pilih Kelas-</option>
-                            @foreach($content['kelas'] as $value)
-                            <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
-                        <option {{$selected}} value="?search_kelas={{$value['id']}}">{{$value['nama_kelas']}}</option>
-                        @endforeach
-                    </select>
-                </form>
-                <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Kelas :</label>
-                
-
+        <h3 class="box-title">Rekap Absensi Per Hari</h3>            
+            <div style="margin-right:0px; margin-top:-20px" class="form-group pull-right">
+                <!-- Tombol Rekap -->
+                {{--<div class="pull-right">
+                <a class="btn btn-success btn-sm">Rekap</a>
+                </div>--}}
+                <!-- Rekap Harian -->
+                <div class="col-lg-2 pull-right">
+                    <div class="input-group date" id="datetimePicker">
+                        <input type="text" class="form-control tanggal input-sm dari" onchange="location = '?tanggal='+this.value;" value="{{$content['tanggal']}}" placeholder="Tanggal">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
                 </div>
+                <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Tanggal :</label>
+            </div>
     </div><!-- /.box-header -->
 
-    <div class="box-body table-responsive">
-        <table id="tablerekap" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekap_info">
+    <div class="box-body">
+        <table id="tablerekaphari" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekaphari_info">
 
             <thead>
                 <tr>
-                    {{--<th><center>No</center></th>--}}
-                    <th class="nis"><center>NIS</center></th>
-                    <th><center>Nama Siswa</center></th>
-                    <th class="jkl"><center>Jenis Kelamin</center></th>
-                    {{--<th class="kelas"><center>Kelas</center></th>--}}
+                    <th class="no"><center>No</center></th>
+                    <th><center>Nama Kelas</center></th>
                     <th class="sakit"><center>Sakit</center></th>
                     <th class="izin"><center>Izin</center></th>
                     <th class="alpa"><center>Alpa</center></th>
                     <th class="total"><center>Total</center></th>
+                    <th class="ket"><center>Keterangan</center></th>
                 </tr>
             </thead>
 
             <tbody>
                 <?php $no=1; ?>
-                @foreach($content['absensis'] as $item)
+                @foreach($content['kelass'] as $item)
                 <tr>
-                    {{--<td><center>{{$no++}}</center></td>--}}
-                    <td><center>{{$item->nis}}</center></td>
-                    <td>{{$item->nama}}</td>
-                    <td><center>{{$item->jkl}}</center></td>
-                    {{--<td><center>{{$item->kelas->nama_kelas}}</center></td>--}}
-                    <td><center>{{$item->sakits}}</center></td>
-                    <td><center>{{$item->izins}}</center></td>
-                    <td><center>{{$item->alpas}}</center></td>
-                    <td><center>{{$item->totals}}</center></td>
+                    <td>{{$no++}}</td>
+                    <td>{{$item->nama_kelas}}</td>                   
+                    <td><center>{{$item->sakith}}</center></td>
+                    <td><center>{{$item->izinh}}</center></td>
+                    <td><center>{{$item->alpah}}</center></td>
+                    <td><center>{{$item->totalh}}</center></td>
+                    <td><center>{{$item->abs}}</center></td>
                 </tr>                                    
                 @endforeach
             </tbody>                       
-        </table>                
-                
+        </table>
     </div><!-- /.box-body -->
 
-    <div class="box-foot">
-                <div class="col-lg-2 pull-right">
-                    {{--<div class="input-group date" id="datetimePicker">--}}
-                        <input type="hidden" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai" value="{{$content['tgl_akhir']}}" placeholder="Tanggal Akhir">
-                        {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>--}}
-                </div>
-                <!-- <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">sampai </label> -->
-
-                <div class="col-lg-2 pull-right">
-                    {{--<div class="input-group date" id="datetimePicker1">--}}
-                        <input type="hidden" disabled id="datetimePicker1" class="form-control tanggal input-sm dari" value="{{$content['tgl_awal']}}" placeholder="Tanggal Awal">
-                        {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>--}}
-                </div>
-                <!-- <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari :</label> -->
-    </div>
 </div>
 @endsection
 
@@ -252,34 +206,34 @@
 
 @section('scripts-tambahan')
 <!-- Hide/Show Datatable Rekap Absensi -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).ready(function (){
         validate();
         $('#kelasku').change(validate);
     });
 
     function validate(){
-        if ($('#kelasku').val()   !=   "?search_kelas=" && $('#semesterku').val()   !=   "" ) {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().show();
+        if ($('#kelasku').val()   !=   "?search_kelas=" && $('#datetimePicker').val()   !=   "" ) {
+            $('#tablerekaphari').parents('div.dataTables_wrapper').first().show();
             document.getElementById("infoMessage").style.display = "none";
             document.getElementById("infoRekap").style.display = "none";
 
         }
         else if ($('#kelasku').val()   !=   "?search_kelas=") {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().show();
+            $('#tablerekaphari').parents('div.dataTables_wrapper').first().show();
             document.getElementById("infoMessage").style.display = "none";
 
         }
-        else if ($('#semesterku').val()   !=   "" ) {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
+        else if ($('#datetimePicker').val()   !=   "" ) {
+            $('#tablerekaphari').parents('div.dataTables_wrapper').first().hide();
             document.getElementById("infoRekap").style.display = "none";
 
         }
         else {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
+            $('#tablerekaphari').parents('div.dataTables_wrapper').first().hide();
             document.getElementById("infoRekap").style.display = "none";
         }
     }        
-</script>
+</script> -->
 <!-- Hide/Show Datatable Rekap Absensi -->
 @endsection

@@ -138,6 +138,32 @@ class AbsensiController extends Controller
         return back ();   
     }
 
+    //rekap absensi per hari
+    public function rekapabsensihari()
+    {
+        // \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
+
+        $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
+
+        foreach ($kelas as $kelass) {
+                $kelass->addAppends('absensi_non_permanent');
+            }
+        // dd($kelas->toArray());
+
+        if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+            // \Session::flash('info_rekap','Silahkan masukkan tanggal mulai rekap.');
+        }
+
+        $content['kelass'] = $kelas;
+        $content['tanggal'] = $tanggal;
+
+        return View::make('absensi.rekapabsensihari')
+                    ->with('content', $content);
+    }
+
     //rekap absensi per minggu
     public function rekapabsensiminggu()
     {
