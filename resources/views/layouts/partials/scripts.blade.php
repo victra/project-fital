@@ -1,4 +1,4 @@
-REQUIRED JS SCRIPTS -->
+<!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.1.4 -->
 <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
@@ -979,25 +979,27 @@ $('#ModalTambahSiswa').modal('hide');
     }
   })
   // tambah feedback icon pada tab modal
-  // .on('status.field.bv', function(e, data) {
-  //           var $form     = $(e.target),
-  //               validator = data.bv,
-  //               $tabPane  = data.element.parents('.tab-pane'),
-  //               tabId     = $tabPane.attr('id');
+  .on('status.field.bv', function(e, data) {
+            var $form     = $(e.target),
+                validator = data.bv,
+                $tabPane  = data.element.parents('.tab-pane'),
+                tabId     = $tabPane.attr('id');
             
-  //           if (tabId) {
-  //               var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
+            if (tabId) {
+                var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
 
-  //               // Add custom class to tab containing the field
-  //               if (data.status == validator.STATUS_INVALID) {
-  //                   $icon.removeClass('fa-check').addClass('fa-times');
-  //               } else if (data.status == validator.STATUS_VALID) {
-  //                   var isValidTab = validator.isValidContainer($tabPane);
-  //                   $icon.removeClass('fa-check fa-times')
-  //                        .addClass(isValidTab ? 'fa-check' : 'fa-times');
-  //               }
-  //           }
-  //       })
+                // Add custom class to tab containing the field
+                if (data.status == validator.STATUS_INVALID) {
+                    $icon.removeClass('fa-check').addClass('fa-times');
+                } else if (data.status == validator.STATUS_VALID) {
+                    var isValidTab = validator.isValidContainer($tabPane);
+                    $icon.removeClass('fa-check fa-times')
+                         .addClass(isValidTab ? 'fa-check' : 'fa-times');
+                } else {
+                    $icon.removeClass('fa-check fa-times');                  
+                }
+            }
+        })
 
   // hilangkan feedback icon pada field yang kosong
   .on('keyup', '[name="jkl"]', function () {
@@ -1209,6 +1211,29 @@ $('#ModalUbahSiswa').modal('hide');
 
     }
   })
+  // tambah feedback icon pada tab modal
+  .on('status.field.bv', function(e, data) {
+            var $form     = $(e.target),
+                validator = data.bv,
+                $tabPane  = data.element.parents('.tab-pane'),
+                tabId     = $tabPane.attr('id');
+            
+            if (tabId) {
+                var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
+
+                // Add custom class to tab containing the field
+                if (data.status == validator.STATUS_INVALID) {
+                    $icon.removeClass('fa-check').addClass('fa-times');
+                } else if (data.status == validator.STATUS_VALID) {
+                    var isValidTab = validator.isValidContainer($tabPane);
+                    $icon.removeClass('fa-check fa-times')
+                         .addClass(isValidTab ? 'fa-check' : 'fa-times');
+                } else {
+                    $icon.removeClass('fa-check fa-times');                  
+                }
+            }
+        })
+
   .on('keyup', '[name="jkl"]', function () {
       var isEmpty = $(this).val() == '';
       $('#UbahSiswa')

@@ -607,5 +607,5 @@
         </div>      
     </div>
 </div>
-<!-- Modal Form Ubah Data Guru -->
+<!-- Modal Form Ubah Profil-->
 @endsection
