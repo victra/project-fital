@@ -146,16 +146,24 @@ class AbsensiController extends Controller
         $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
         foreach ($kelas as $kelass) {
-                $kelass->addAppends('absensi_non_permanent');
+                $kelass->addAppends('abs');
             }
         // dd($kelas->toArray());
 
         if (Input::has('tanggal')) {
             $tanggal = Input::get('tanggal');
+            for ($i=0; $i < count($kelas); $i++) { 
+                $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
+            }
         } else {
             $tanggal = date("Y-m-d");
+            for ($i=0; $i < count($kelas); $i++) { 
+                $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
+            }
             // \Session::flash('info_rekap','Silahkan masukkan tanggal mulai rekap.');
         }
+
+        // dd($kelas->toArray());
 
         $content['kelass'] = $kelas;
         $content['tanggal'] = $tanggal;
