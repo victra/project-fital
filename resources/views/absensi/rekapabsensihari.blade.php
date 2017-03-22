@@ -67,7 +67,7 @@
                     <td><center>{{$item->izinh}}</center></td>
                     <td><center>{{$item->alpah}}</center></td>
                     <td><center>{{$item->totalh}}</center></td>
-                    <td><center>{{$item->absensikelas</center></td>
+                    <td><center>{{$item->absensikelas}}</center></td>
                 </tr>                                    
                 @endforeach
             </tbody>                       
