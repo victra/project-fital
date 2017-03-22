@@ -32,7 +32,7 @@
                             <!-- The user image in the navbar-->
                             <!-- <img src="{{asset('/img/user2-160x160.jpg')}}" class="user-image" alt="User Image"/> -->
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{{ Auth::user()->name }}  <i class="fa fa-chevron-down"></i></span>
+                            <span class="hidden-xs">{{ Auth::user()->name }}  ({{ Auth::user()->role }}) <i class="fa fa-chevron-down"></i></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->

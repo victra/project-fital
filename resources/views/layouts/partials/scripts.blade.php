@@ -890,8 +890,8 @@ $('#ModalTambahSiswa').modal('hide');
             message: "NIS harus diisi"
           },          
           stringLength: {
-            min: 4,
-            message: "NIS minimal 4 karakter"
+            max: 10,
+            message: "NIS maksimal 10 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIS') }}",
@@ -1124,8 +1124,8 @@ $('#ModalUbahSiswa').modal('hide');
             message: "NIS harus diisi"
           },          
           stringLength: {
-            min: 4,
-            message: "NIS minimal 4 karakter"
+            max: 10,
+            message: "NIS maksimal 10 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNISUbah') }}",
@@ -1355,8 +1355,8 @@ $('#ModalTambahGuru').modal('hide');
             message: "NIP harus diisi"
           },
           stringLength: {
-            min: 4,
-            message: "NIP minimal 4 karakter"
+            max: 25,
+            message: "NIP maksimal 25 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIP') }}",
@@ -1388,8 +1388,8 @@ $('#ModalTambahGuru').modal('hide');
             message: "Username harus diisi"
           },
           stringLength: {
-            min: 6,
-            message: "Username minimal 6 karakter"
+            min: 5,
+            message: "Username minimal 5 karakter"
           },
           regexp: {
                     regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -1414,8 +1414,8 @@ $('#ModalTambahGuru').modal('hide');
             message: "Password harus diisi"
           },
           stringLength: {
-            min: 6,
-            message: "Password minimal 6 karakter"
+            min: 5,
+            message: "Password minimal 5 karakter"
           },
           different: {
             field: "username",
@@ -1510,8 +1510,8 @@ $('#ModalUbahGuru').modal('hide');
             message: "NIP harus diisi"
           },
           stringLength: {
-            min: 4,
-            message: "NIP minimal 4 karakter"
+            max: 25,
+            message: "NIP maksimal 25 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIPUbah') }}",
@@ -1544,8 +1544,8 @@ $('#ModalUbahGuru').modal('hide');
             message: "Username harus diisi"
           },
           stringLength: {
-            min: 6,
-            message: "Username minimal 6 karakter"
+            min: 5,
+            message: "Username minimal 5 karakter"
           },
           regexp: {
                     regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -1567,8 +1567,8 @@ $('#ModalUbahGuru').modal('hide');
       password: {
         validators: {
           stringLength: {
-            min: 6,
-            message: "Password minimal 6 karakter"
+            min: 5,
+            message: "Password minimal 5 karakter"
           },
           different: {
             field: "username",
@@ -1825,8 +1825,8 @@ $('#ModalUbahProfil').modal('hide');
             message: "NIP harus diisi"
           },
           stringLength: {
-            min: 4,
-            message: "NIP minimal 4 karakter"
+            max: 25,
+            message: "NIP maksimal 25 karakter"
           },
           remote: {
             url: "{{ URL::to('/checkNIPUbah') }}",
@@ -1860,8 +1860,8 @@ $('#ModalUbahProfil').modal('hide');
             message: "Username harus diisi"
           },
           stringLength: {
-            min: 6,
-            message: "Username minimal 6 karakter"
+            min: 5,
+            message: "Username minimal 5 karakter"
           },
           regexp: {
                     regexp: /^[a-zA-Z0-9_\.]+$/,

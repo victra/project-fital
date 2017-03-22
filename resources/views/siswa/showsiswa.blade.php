@@ -75,7 +75,7 @@
                     <td>{{$item->tlp_ortu}}</td>
                     <td>{{$item->alamat_ortu}}</td> 
                     <td>
-                        <center>                                    
+                        <center>
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
                             <a class="btn btn-info btn-xs" title="Info" onclick="showModalInfoSiswa(this)" 
                             data-id="{{$item->id}}"
@@ -91,6 +91,7 @@
                             data-tlp-ortu="{{$item->tlp_ortu}}"
                             data-alamat-ortu="{{$item->alamat_ortu}}">
                             <span class="fa fa-eye"></span></a>
+                            @if (Auth::user()->id == $item->kelas->wali_kelas_id or Auth::user()->role == 'guru piket')
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalSiswa(this)" 
                             data-id="{{$item->id}}"
                             data-nis="{{$item->nis}}"
@@ -108,6 +109,7 @@
                             <!-- <a onclick="return confirm('Are you sure?')" href='deletesiswa&{{$item->id}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a> -->
                             <a data-href="deletesiswa&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
                             <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
+                            @endif
                         </center>
                     </td>
                 </tr>                                    
