@@ -91,7 +91,7 @@
                             data-tlp-ortu="{{$item->tlp_ortu}}"
                             data-alamat-ortu="{{$item->alamat_ortu}}">
                             <span class="fa fa-eye"></span></a>
-                            @if (Auth::user()->id == $item->kelas->wali_kelas_id or Auth::user()->role == 'guru piket')
+                            @if (Auth::user()->id == $item->kelas->wali_kelas_id or Auth::user()->role == 'guru piket' or Auth::user()->role == 'administrator')
                             <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalSiswa(this)" 
                             data-id="{{$item->id}}"
                             data-nis="{{$item->nis}}"

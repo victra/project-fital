@@ -26,13 +26,13 @@
                     <li><a href="{{ url('/login') }}">{{ trans('adminlte_lang::message.login') }}</a></li>
                 @else
                     <!-- User Account Menu -->
-                    <li class="dropdown user user-menu">
+                    <li class="dropdown">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
                             <!-- <img src="{{asset('/img/user2-160x160.jpg')}}" class="user-image" alt="User Image"/> -->
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{{ Auth::user()->name }}  ({{ Auth::user()->role }}) <i class="fa fa-chevron-down"></i></span>
+                            <span class="hidden-xs">{{ Auth::user()->name }}  ({{ Auth::user()->role }}) <i class="fa fa-caret-down"></i></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -53,7 +53,7 @@
                                     <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.signout') }}</a>
                                 </div>
                             </li> -->
-                            <li class="divider"></li>
+                            <!-- <li class="divider"></li> -->
                             <li><a onclick="showModalProfil(this)" 
                             data-id="{{Auth::user()->id}}"
                             data-nip="{{Auth::user()->nip}}"
@@ -68,7 +68,7 @@
                             <li><a data-toggle="modal" data-target="#ModalUbahPassword"><i class="fa fa-key"></i> Ganti Password</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                            <li class="divider"></li>
+                            <!-- <li class="divider"></li> -->
                         </ul>
                     </li>
                 @endif
