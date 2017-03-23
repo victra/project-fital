@@ -374,11 +374,12 @@
             "aoColumns" : [
               { sWidth: '5%' }, //no
               { sWidth: '15%' }, //nama kelas
+              { sWidth: '8%' }, //jumlah siswa
               { sWidth: '8%' }, //sakit
               { sWidth: '8%' }, //izin
               { sWidth: '8%' }, //alpa
               { sWidth: '8%' }, //total
-              { sWidth: '48%' }, //keterangan
+              { sWidth: '40%' }, //keterangan
             ],
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
             "oLanguage": {

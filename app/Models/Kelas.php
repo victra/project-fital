@@ -107,27 +107,6 @@ class Kelas extends \BaseModel
 	 	return $this->waliKelas()->first();
 	 }
 
-	 public function getAbsensiNonPermanentAttribute()
-	 {
-		return $this->absensi()->get();
-        return null;
-	 }
-
-	 public function getAbsAttribute()
-	 {
-		if (Input::has('tanggal')) {
-            $tanggal = Input::get('tanggal');
-        } else {
-            $tanggal = date("Y-m-d");
-        }
-
-        if ($tanggal) {
-		 	return $this->absensi()->where('date', $tanggal)->where('status','!=','H')->pluck('siswa_id');
-        }
-
-        return null;
-	 }
-
 	 // Jumlah Sakit
 	 public function getSakithAttribute()
 	 {

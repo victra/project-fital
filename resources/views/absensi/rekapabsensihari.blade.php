@@ -14,15 +14,6 @@
 
 @section('main-content')
 
-<!-- pesan peringatan berhasil -->
-@if(Session::has('info_message'))
-    <div id="infoMessage" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_message') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
-@endif
-
-@if(Session::has('info_rekap'))
-    <div id="infoRekap" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_rekap') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
-@endif
-
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Rekap Absensi Per Hari</h3>            
@@ -49,6 +40,7 @@
                 <tr>
                     <th class="no"><center>No</center></th>
                     <th><center>Nama Kelas</center></th>
+                    <th><center>Siswa</center></th>
                     <th class="sakit"><center>Sakit</center></th>
                     <th class="izin"><center>Izin</center></th>
                     <th class="alpa"><center>Alpa</center></th>
@@ -61,8 +53,9 @@
                 <?php $no=1; ?>
                 @foreach($content['kelass'] as $item)
                 <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$item->nama_kelas}}</td>                   
+                    <td><center>{{$no++}}<center></td>
+                    <td>{{$item->nama_kelas}}</td>
+                    <td><center>{{$item->jumlah}}</center></td>                   
                     <td><center>{{$item->sakith}}</center></td>
                     <td><center>{{$item->izinh}}</center></td>
                     <td><center>{{$item->alpah}}</center></td>
@@ -202,38 +195,4 @@
     </div>
 </div>
 <!-- Modal Form Ubah Profil-->
-@endsection
-
-@section('scripts-tambahan')
-<!-- Hide/Show Datatable Rekap Absensi -->
-<!-- <script type="text/javascript">
-    $(document).ready(function (){
-        validate();
-        $('#kelasku').change(validate);
-    });
-
-    function validate(){
-        if ($('#kelasku').val()   !=   "?search_kelas=" && $('#datetimePicker').val()   !=   "" ) {
-            $('#tablerekaphari').parents('div.dataTables_wrapper').first().show();
-            document.getElementById("infoMessage").style.display = "none";
-            document.getElementById("infoRekap").style.display = "none";
-
-        }
-        else if ($('#kelasku').val()   !=   "?search_kelas=") {
-            $('#tablerekaphari').parents('div.dataTables_wrapper').first().show();
-            document.getElementById("infoMessage").style.display = "none";
-
-        }
-        else if ($('#datetimePicker').val()   !=   "" ) {
-            $('#tablerekaphari').parents('div.dataTables_wrapper').first().hide();
-            document.getElementById("infoRekap").style.display = "none";
-
-        }
-        else {
-            $('#tablerekaphari').parents('div.dataTables_wrapper').first().hide();
-            document.getElementById("infoRekap").style.display = "none";
-        }
-    }        
-</script> -->
-<!-- Hide/Show Datatable Rekap Absensi -->
 @endsection

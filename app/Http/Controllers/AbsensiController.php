@@ -141,13 +141,13 @@ class AbsensiController extends Controller
     //rekap absensi per hari
     public function rekapabsensihari()
     {
-        // \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
-
         $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
-        foreach ($kelas as $kelass) {
-                $kelass->addAppends('abs');
-            }
+        // total siswa
+        for ($i=0; $i < count($kelas); $i++) { 
+            $kelas[$i]['jumlah'] = Siswa::where('kelas_id', $kelas[$i]['id'])->get()->count();
+        }
+
         // dd($kelas->toArray());
 
         if (Input::has('tanggal')) {
@@ -160,7 +160,6 @@ class AbsensiController extends Controller
             for ($i=0; $i < count($kelas); $i++) { 
                 $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
             }
-            // \Session::flash('info_rekap','Silahkan masukkan tanggal mulai rekap.');
         }
 
         // dd($kelas->toArray());
