@@ -85,11 +85,12 @@
             </li>
         </ul>
 
-        @elseif (Auth::user()->role == 'wali kelas')
+        @elseif (Auth::user()->role == 'guru')
         <ul class="sidebar-menu">
             <li class="{{ (Request::is('/')) ? 'active':'' }}"><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
             <li class="{{ (Request::is('kelas')) ? 'active':'' }}"><a href="{{ url('kelas') }}"><i class='fa fa-building'></i> <span> Data Kelas </span></a></li>
             <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-users'></i> <span> Data Siswa </span></a></li>
+            <li class="{{ (Request::is('semester')) ? 'active':'' }}"><a href="{{ url('semester') }}"><i class='fa fa-calendar-o'></i> <span> Data Semester </span></a></li>            
             <li class="{{ (Request::is('cariabsensi')) ? 'active':'' }}"><a href="{{ url('cariabsensi') }}"><i class='fa fa-search'></i> <span> Cari Absensi </span></a></li>
             <li class="treeview {{ (Request::is('rekap*')) ? 'active':'' }}">
                 <a href="#"><i class='fa fa-file-o'></i> <span>Rekap Absensi</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -102,7 +103,7 @@
             </li>
         </ul>
 
-        @elseif (Auth::user()->role == 'guest')
+        @elseif (Auth::user()->role == 'tamu')
         <ul class="sidebar-menu">
             <li class="{{ (Request::is('/')) ? 'active':'' }}"><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
             <li class="{{ (Request::is('kelas')) ? 'active':'' }}"><a href="{{ url('kelas') }}"><i class='fa fa-building'></i> <span> Data Kelas </span></a></li>
@@ -112,9 +113,9 @@
                 <a href="#"><i class='fa fa-file-o'></i> <span>Rekap Absensi</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                      <li class="{{ (Request::is('rekapperhari')) ? 'active':'' }}"><a href="{{ url('rekapperhari') }}"><i class='fa fa-circle-o'></i> <span> Per Hari </span></a></li>
-                    <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-circle-o'></i> <span> Per Minggu </span></a></li>
+                    <!-- <li class="{{ (Request::is('rekapperminggu')) ? 'active':'' }}"><a href="{{ url('rekapperminggu') }}"><i class='fa fa-circle-o'></i> <span> Per Minggu </span></a></li>
                     <li class="{{ (Request::is('rekapperbulan')) ? 'active':'' }}"><a href="{{ url('rekapperbulan') }}"><i class='fa fa-circle-o'></i> <span> Per Bulan </span></a></li>
-                    <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-circle-o'></i> <span> Per Semester </span></a></li>
+                    <li class="{{ (Request::is('rekappersemester')) ? 'active':'' }}"><a href="{{ url('rekappersemester') }}"><i class='fa fa-circle-o'></i> <span> Per Semester </span></a></li> -->
                 </ul>
             </li>
         </ul>

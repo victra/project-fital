@@ -168,28 +168,26 @@ class GuruController extends Controller
         \Session::flash('flash_message','Data user berhasil disimpan.');
         return redirect('home');
     }
+
     public function showguru()
     {
         if (Auth::user()->role == 'administrator') {
             $guru = User::orderby('created_at', 'DESC');
 
-            //$input_kelas = '';
-            //if(Input::has('search_kelas')){
-               // $siswa = $siswa->where('kelas', Input::get('search_kelas'));
-               // $input_kelas = Input::get('search_kelas');
-            //}
             $role = array(
                 'administrator' => 'Administrator',
-                'guest' => 'Guest',
                 'guru' => 'Guru',
                 'guru piket' => 'Guru Piket',
                 'karyawan' => 'Karyawan',
-                'wali kelas' => 'Wali Kelas',
+                'tamu' => 'Tamu',
+                // 'wali kelas' => 'Wali Kelas',
             );
+
             $jenis_kelamin = array(
                 'Laki-laki' => 'Laki-laki',
                 'Perempuan' => 'Perempuan',
             );
+
             $agama = array(
                 'Islam' => 'Islam',
                 'Katolik' => 'Katolik',
@@ -202,7 +200,7 @@ class GuruController extends Controller
             $content['role'] = $role;
             $content['jenis_kelamin'] = $jenis_kelamin;
             $content['agama'] = $agama;
-            //$content['input_kelas'] = $input_kelas;
+
             return View::make('guru.showguru')
                         ->with('content', $content);
         }
@@ -217,7 +215,6 @@ class GuruController extends Controller
         \Session::flash('flash_message','Data user berhasil dihapus.');
         return back ();
     }
-
     
     public function updateguru(Request $request, $id)
     {
@@ -277,7 +274,7 @@ class GuruController extends Controller
         // return back ();      
     }
 
-     public function updateprofil(Request $request, $id)
+    public function updateprofil(Request $request, $id)
     {
         
     $guru = ['id' => $request->id
@@ -298,31 +295,6 @@ class GuruController extends Controller
 
         return View::make('guru.ubahpasswordguru');
     }
-
-    // public function ubahpassword(Request $request)
-    // {
-    //     $user = Auth::user();
-
-    //     $current_password = $request->input('current_password');
-
-    //     $new_password = $request->input('new_password');
-
-    //     if (Hash::check($current_password, $user->password)) {
-
-    //         $user->fill([
-
-    //                 // This should be $request->password, not `$request->newPassword`
-
-    //                 'new_password' => Hash::make($request->newPassword)
-
-    //             ])->save();
-
-    //     } else {
-    //         return ('Please enter the correct password');
-    //     }
-
-    //     return back();
-    // }
 
     public function ubahpassworduser(Request $request){
         $rules = [

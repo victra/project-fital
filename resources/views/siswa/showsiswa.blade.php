@@ -20,12 +20,12 @@
 @endif
 
 <div class="box">
-    <div class="box-header">
-    @if (Auth::user()->role == 'administrator' or 'guru piket')
+    <div class="box-header">        
         <h3 class="box-title">Data Siswa</h3>
+        @if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket')
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahSiswa"> <i class="fa fa-plus"></i> Tambah Siswa</a>
         @endif
-            <form style="margin-right:125px; margin-top:0px" class="pull-right">
+            <form style="margin-right:300px; margin-top:0px" class="pull-right">
                 <select class="form-control input-sm" onchange="location = this.value;">
                     <option value="?search_kelas=">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
@@ -476,7 +476,7 @@
                         <div class="col-xs-5 col-xs-offset-3">
                             <!-- <input type="hidden" name="_token" value="{{{ csrf_token() }}}" /> -->
                             <!-- <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button> -->
-                            <button type="button" style="margin-right:-150px" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" style="margin-right:-180px" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
