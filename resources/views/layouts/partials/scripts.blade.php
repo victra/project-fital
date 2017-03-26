@@ -61,7 +61,7 @@
 <script type="text/javascript" src="js/semester.js"></script>
 <script type="text/javascript" src="js/profil.js"></script>
 
-<!-- PERCOBAAN INFO DETAIL SISWA -->
+<!-- PERCOBAAN INFO DETAIL TELEK -->
 <!-- <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
