@@ -268,6 +268,52 @@
               {"bSortable" : false, "aTargets" : [ "thn_ajaran","walikelas","no-export" ]} 
             ],
         });
+        $('#tableguestkelas').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '20%' }, //nama kelas
+              { sWidth: '25%' }, //jurusan
+              // { sWidth: '15%' }, //tahun ajaran
+              { sWidth: '30%' }, //wali kelas
+              { sWidth: '5%' }, //laki
+              { sWidth: '5%' }, //perempuan
+              { sWidth: '10%' }, //total
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Kelas",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jurusan","thn_ajaran","walikelas","laki","perempuan","total" ]},
+              {"bSortable" : false, "aTargets" : [ "thn_ajaran","walikelas","no-export" ]} 
+            ],
+        });
         $('#tableabsensi').dataTable({
             "scrollY": 350,
             "scrollCollapse": true,
@@ -534,6 +580,23 @@
               { sWidth: '25%' }, //tgl awal
               { sWidth: '25%' }, //tgl akhir
               { sWidth: '5%' }, //action
+            ],
+        });
+        $('#tableguestsemester').dataTable({
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '45%' }, //semester
+              { sWidth: '25%' }, //tgl awal
+              { sWidth: '25%' }, //tgl akhir
             ],
         });
         $('#examplee').dataTable({

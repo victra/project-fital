@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 class KelasController extends Controller
 {
@@ -114,8 +115,14 @@ class KelasController extends Controller
         $content['kelasku'] = $kelas;
         $content['jurusan'] = $jurusan;
         $content['walikelas'] = $walikelas;
-        return View::make('kelas.showkelas')
-                    ->with('content', $content);
+        
+        if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket') {
+            return View::make('kelas.showkelas')
+                        ->with('content', $content);
+        } else {
+            return View::make('guest.guestkelas')
+                        ->with('content', $content);
+        }
     }
     
     public function deletekelas($id)

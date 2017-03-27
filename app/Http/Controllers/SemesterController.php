@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 class SemesterController extends Controller
 {
@@ -16,8 +17,14 @@ class SemesterController extends Controller
         $semester = Semester::orderby('id', 'ASC');
        
         $content['semesters'] = $semester->get();
-        return View::make('semester.showsemester')
-                    ->with('content', $content);
+        
+        if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket') {
+            return View::make('semester.showsemester')
+                        ->with('content', $content);
+        } else {
+            return View::make('guest.guestsemester')
+                        ->with('content', $content);   
+        }
     }
 
     public function updatesemester(Request $request, $id)

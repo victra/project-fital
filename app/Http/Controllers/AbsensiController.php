@@ -332,8 +332,4 @@ class AbsensiController extends Controller
         return View::make('absensi.cariabsensi')
                     ->with('content', $content);
     }
-    else 
-    {
-        return view('errors.404');
-    }
 }
