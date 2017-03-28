@@ -808,6 +808,15 @@ $(window).on('resize', centerModals);
 });
 </script> -->
 
+<!-- JADWAL PIKET -->
+<script type="text/javascript">
+  document.getElementById('role').addEventListener('change', function () {
+      var style = this.value == 'guru piket' ? 'block' : 'none';
+      document.getElementById('hidden_div').style.display = style;
+  });
+</script>
+<!-- JADWAL PIKET -->
+
 <!-- RESET FORM MODAL -->
 <script type="text/javascript">
     $('[data-dismiss=modal]').on('click', function (e) {
@@ -827,6 +836,8 @@ $(window).on('resize', centerModals);
     .find("input[type=hidden]")
        .val('{{{ csrf_token() }}}')
        .end();;
+  // tambahan jadwal piket
+  document.getElementById('hidden_div').style.display = 'none';
 })
 </script>
 <!-- RESET FORM MODAL -->

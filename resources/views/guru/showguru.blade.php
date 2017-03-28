@@ -142,13 +142,29 @@
                     <label class="control-label col-sm-4">Role</label>
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <select class="form-control" name="role">
+                            <select id="role" class="form-control" name="role">
                                 <option value="">-Role-</option>
                                 @foreach($content['role'] as $key => $value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <div id="hidden_div" style="display: none;">
+                    	<label class="control-label col-sm-4">Jadwal Piket</label>
+	                    <div class="form-group">
+	                        <div class="col-sm-4">
+	                            <select class="form-control" name="jadwal">
+	                                <option value="">-Hari-</option>
+	                                <option value="Senin">Senin</option>
+	                                <option value="Selasa">Selasa</option>
+	                                <option value="Rabu">Rabu</option>
+	                                <option value="Kamis">Kamis</option>
+	                                <option value="Jumat">Jumat</option>
+	                                <option value="Sabtu">Sabtu</option>
+	                            </select>
+	                        </div>
+	                    </div>
                     </div>
                     <label class="control-label col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">

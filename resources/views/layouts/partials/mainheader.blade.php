@@ -55,7 +55,7 @@
                             </li> -->
                             <!-- <li class="divider"></li> -->
                             @if (Auth::user()->role != 'tamu')
-                            <li><a onclick="showModalProfil(this)" 
+                            <li><a href data-toggle="modal" onclick="showModalProfil(this)" 
                             data-id="{{Auth::user()->id}}"
                             data-nip="{{Auth::user()->nip}}"
                             data-nama="{{Auth::user()->name}}"
@@ -66,7 +66,7 @@
                             <li class="divider"></li>
                             <!-- <li><a href="{{ url('/ubahpassword') }}"><i class="fa fa-key"></i> Ganti Password</a></li>
                             <li class="divider"></li> -->
-                            <li><a data-toggle="modal" data-target="#ModalUbahPassword"><i class="fa fa-key"></i> Ganti Password</a></li>
+                            <li><a href data-toggle="modal" data-target="#ModalUbahPassword"><i class="fa fa-key"></i> Ganti Password</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                             <!-- <li class="divider"></li> -->
