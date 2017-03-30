@@ -160,6 +160,7 @@ class GuruController extends Controller
             $guru->jkl = $request->jkl;
             $guru->agama = $request->agama;
             $guru->tlp = $request->tlp;
+            $guru->jadwal = $request->jadwal;
             $guru->save();
             \Session::flash('flash_message','Data user berhasil disimpan.');
             return redirect('user');
@@ -195,11 +196,21 @@ class GuruController extends Controller
                 'Hindu' => 'Hindu',
                 'Budha' => 'Budha',
             );
+
+            $jadwal = array(
+                'Senin' => 'Senin',
+                'Selasa' => 'Selasa',
+                'Rabu' => 'Rabu',
+                'Kamis' => 'Kamis',
+                'Jumat' => 'Jumat',
+                'Sabtu' => 'Sabtu',
+            );
            
             $content['gurupkt'] = $guru->get();
             $content['role'] = $role;
             $content['jenis_kelamin'] = $jenis_kelamin;
             $content['agama'] = $agama;
+            $content['jadwal'] = $jadwal;
 
             return View::make('guru.showguru')
                         ->with('content', $content);
@@ -253,7 +264,8 @@ class GuruController extends Controller
                 ,'role' => $request->role
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
-                ,'tlp'=> $request->tlp];
+                ,'tlp' => $request->tlp
+                ,'jadwal' => $request->jadwal];
             DB::table('users')->where('id',$request->id)->update($guru);
          
         }else{
@@ -265,7 +277,8 @@ class GuruController extends Controller
                 ,'role' => $request->role
                 ,'jkl' => $request->jkl
                 ,'agama' => $request->agama
-                ,'tlp'=> $request->tlp];
+                ,'tlp' => $request->tlp
+                ,'jadwal' => $request->jadwal];
             DB::table('users')->where('id',$request->id)->update($guru);      
         
         } 
@@ -336,5 +349,80 @@ class GuruController extends Controller
         // return redirect('user')->with('status','Password ya ya');
         \Session::flash('flash_message','Password berhasil diubah.');
         return back ();           
+    }
+
+    public function showjadwalpiket()
+    {
+        if (Auth::user()->role == 'administrator') {
+            $guru = User::orderby('created_at', 'DESC')->where('role', 'guru piket');
+
+            $jenis_kelamin = array(
+                'Laki-laki' => 'Laki-laki',
+                'Perempuan' => 'Perempuan',
+            );
+
+            $agama = array(
+                'Islam' => 'Islam',
+                'Katolik' => 'Katolik',
+                'Kristen' => 'Kristen',
+                'Hindu' => 'Hindu',
+                'Budha' => 'Budha',
+            );
+
+            $jadwal = array(
+                'Senin' => 'Senin',
+                'Selasa' => 'Selasa',
+                'Rabu' => 'Rabu',
+                'Kamis' => 'Kamis',
+                'Jumat' => 'Jumat',
+                'Sabtu' => 'Sabtu',
+            );
+           
+            $content['gurupkt'] = $guru->get();
+            $content['jenis_kelamin'] = $jenis_kelamin;
+            $content['agama'] = $agama;
+            $content['jadwal'] = $jadwal;
+
+            return View::make('guru.jadwalpiket')
+                        ->with('content', $content);
+        }
+        else{
+            return view('errors.404');
+        }
+    }
+
+    public function updatepiket(Request $request, $id)
+    {
+        if ($request['password'] == ''){
+            $guru = ['id' => $request->id
+                ,'nip' => $request->nip
+                ,'name' => $request->nama
+                ,'jkl' => $request->jkl
+                ,'agama' => $request->agama
+                ,'tlp' => $request->tlp
+                ,'jadwal' => $request->jadwal];
+            DB::table('users')->where('id',$request->id)->update($guru);
+         
+        }else{
+            $guru = ['id' => $request->id
+                ,'nip' => $request->nip
+                ,'name' => $request->nama
+                ,'jkl' => $request->jkl
+                ,'agama' => $request->agama
+                ,'tlp' => $request->tlp
+                ,'jadwal' => $request->jadwal];
+            DB::table('users')->where('id',$request->id)->update($guru);      
+        
+        } 
+        \Session::flash('flash_message','Data guru piket berhasil diubah.');
+        // return redirect('jadwalpiket');
+        return back ();      
+    }
+
+    public function deletepiket($id)
+    {
+        DB::table('users')->where('id',$id)->delete();
+        \Session::flash('flash_message','Data guru piket berhasil dihapus.');
+        return back ();
     }
 }

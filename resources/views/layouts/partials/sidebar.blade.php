@@ -37,6 +37,7 @@
             <li class="{{ (Request::is('/')) ? 'active':'' }}"><a href="{{ url('/') }}"><i class='fa fa-home'></i> <span>Beranda</span></a></li>
             <!-- <li class="{{ (Request::is('*show*')) ? 'active':'' }}"><a href="{{ url('show') }}"><i class='fa fa-user'></i> <span> Data Siswa </span></a></li> -->
             <li class="{{ (Request::is('user')) ? 'active':'' }}"><a href="{{ url('user') }}"><i class='fa fa-user'></i> <span> Data User </span></a></li>
+            <li class="{{ (Request::is('jadwalpiket')) ? 'active':'' }}"><a href="{{ url('jadwalpiket') }}"><i class='fa fa-user'></i> <span> Guru Piket </span></a></li>
             <li class="{{ (Request::is('kelas')) ? 'active':'' }}"><a href="{{ url('kelas') }}"><i class='fa fa-building'></i> <span> Data Kelas </span></a></li>
             <li class="{{ (Request::is('siswa')) ? 'active':'' }}"><a href="{{ url('siswa') }}"><i class='fa fa-users'></i> <span> Data Siswa </span></a></li>
             <li class="{{ (Request::is('semester')) ? 'active':'' }}"><a href="{{ url('semester') }}"><i class='fa fa-calendar-o'></i> <span> Data Semester </span></a></li>

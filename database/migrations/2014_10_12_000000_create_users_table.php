@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('jkl');
             $table->string('agama');
             $table->string('tlp');
+            $table->string('jadwal');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

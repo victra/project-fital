@@ -44,6 +44,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/updateguru&{id}', 'GuruController@updateguru');
     Route::post('/updateprofil&{id}', 'GuruController@updateprofil');
 
+    Route::get('jadwalpiket', 'GuruController@showjadwalpiket');
+    Route::post('/updatepiket&{id}', 'GuruController@updatepiket');
+    Route::get('/deletepiket&{id}', 'GuruController@deletepiket');
+
     //absensi siswa
     Route::get('absensisiswa', 'AbsensiController@showabsensi');    
     Route::post('store', 'AbsensiController@storeabsensi');

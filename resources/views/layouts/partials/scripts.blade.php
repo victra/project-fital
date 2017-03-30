@@ -60,6 +60,7 @@
 <script type="text/javascript" src="js/infosiswa.js"></script>
 <script type="text/javascript" src="js/semester.js"></script>
 <script type="text/javascript" src="js/profil.js"></script>
+<script type="text/javascript" src="js/piket.js"></script>
 
 <!-- PERCOBAAN INFO DETAIL TELEK -->
 <!-- <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -218,6 +219,51 @@
             // kolom dengan class "iii" tidak ada fitur sorting
             "aoColumnDefs" : [ 
               {"bSearchable" : false, "aTargets" : [ "no","nip","jkl","agama","role","none" ]},
+              {"bSortable" : false, "aTargets" : [ "agama","action" ]} 
+            ],
+        });
+        $('#tablegurupiket').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '10%' }, //hari
+              { sWidth: '20%' }, //nip
+              { sWidth: '25%' }, //nama
+              { sWidth: '15%' }, //jenis kelamin
+              { sWidth: '10%' }, //agama
+              { sWidth: '10%' }, //telepon
+              { sWidth: '5%' }, //action
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama User",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","hari","nip","jkl","agama","none" ]},
               {"bSortable" : false, "aTargets" : [ "agama","action" ]} 
             ],
         });
@@ -815,6 +861,13 @@ $(window).on('resize', centerModals);
       document.getElementById('hidden_div').style.display = style;
   });
 </script>
+
+<script type="text/javascript">
+  document.getElementById('role_ubah').addEventListener('change', function () {
+      var style = this.value == 'guru piket' ? 'block' : 'none';
+      document.getElementById('hidden_div_ubah').style.display = style;
+  });
+</script>
 <!-- JADWAL PIKET -->
 
 <!-- RESET FORM MODAL -->
@@ -838,6 +891,7 @@ $(window).on('resize', centerModals);
        .end();;
   // tambahan jadwal piket
   document.getElementById('hidden_div').style.display = 'none';
+  document.getElementById('hidden_div_ubah').style.display = 'none';
 })
 </script>
 <!-- RESET FORM MODAL -->
@@ -1507,6 +1561,14 @@ $('#ModalTambahGuru').modal('hide');
         }
       },
 
+      jadwal: {
+        validators: {
+          notEmpty: {
+            message: "Jadwal harus diisi"
+          }
+        }
+      },
+
       jkl: {
         enabled: false,
         validators: {
@@ -1539,29 +1601,29 @@ $('#ModalTambahGuru').modal('hide');
   })
   .on('keyup', '[name="jkl"]', function () {
       var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
+      $('#TambahGuru')
              .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
       // Revalidate the field when user start typing in the Phone field
       if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'jkl')
+          $('#TambahGuru').bootstrapValidator('validateField', 'jkl')
       }
   })
   .on('keyup', '[name="agama"]', function () {
       var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
+      $('#TambahGuru')
              .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
       // Revalidate the field when user start typing in the Phone field
       if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'agama')
+          $('#TambahGuru').bootstrapValidator('validateField', 'agama')
       }
   })
   .on('keyup', '[name="tlp"]', function () {
       var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
+      $('#TambahGuru')
              .bootstrapValidator('enableFieldValidators', 'tlp', !isEmpty);
       // Revalidate the field when user start typing in the Phone field
       if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'tlp')
+          $('#TambahGuru').bootstrapValidator('validateField', 'tlp')
       }
   })
 });
@@ -1640,6 +1702,7 @@ $('#ModalUbahGuru').modal('hide');
       },
 
       password: {
+        enabled: false,
         validators: {
           stringLength: {
             min: 5,
@@ -1656,6 +1719,184 @@ $('#ModalUbahGuru').modal('hide');
         validators: {
           notEmpty: {
             message: "Role harus diisi"
+          }
+        }
+      },
+
+      jadwal: {
+        validators: {
+          notEmpty: {
+            message: "Jadwal harus diisi"
+          }
+        }
+      },
+
+      jkl: {
+        enabled: false,
+        validators: {
+          notEmpty: {
+            message: "Jenis kelamin harus diisi"
+          }
+        }
+      },
+
+      agama: {
+        enabled: false,
+        validators: {
+          notEmpty: {
+            message: "Agama harus diisi"
+          }
+        }
+      },
+
+      tlp: {
+        enabled: false,
+        validators: {
+          regexp: {
+            regexp: /^[+0-9]*$/,
+            message: 'Masukkan hanya berupa angka'
+          }
+        }
+      }
+      
+    }
+  })
+  .on('keyup', '[name="password"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahGuru')
+             .bootstrapValidator('enableFieldValidators', 'password', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahGuru').bootstrapValidator('validateField', 'password')
+      }
+  })
+  .on('keyup', '[name="jkl"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahGuru')
+             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahGuru').bootstrapValidator('validateField', 'jkl')
+      }
+  })
+  .on('keyup', '[name="agama"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahGuru')
+             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahGuru').bootstrapValidator('validateField', 'agama')
+      }
+  })
+  .on('keyup', '[name="tlp"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahGuru')
+             .bootstrapValidator('enableFieldValidators', 'tlp', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahGuru').bootstrapValidator('validateField', 'tlp')
+      }
+  })
+});
+</script>
+<!-- VALIDASI FORM UBAH GURU -->
+
+<!-- VALIDASI FORM UBAH GURU PIKET -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalUbahPiket').modal('hide');
+  var validator = $('#UbahPiket').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nip: {
+        validators: {
+          notEmpty: {
+            message: "NIP harus diisi"
+          },
+          stringLength: {
+            max: 25,
+            message: "NIP maksimal 25 karakter"
+          },
+          remote: {
+            url: "{{ URL::to('/checkNIPUbah') }}",
+              data: function(validator) {
+                return {
+                    nis: validator.getFieldElements('nip').val(),
+                    id: validator.getFieldElements('id').val()
+                };
+            },
+            message: 'NIP sudah ada'
+          }
+        }
+      },
+
+      nama: {
+        validators: {
+          notEmpty: {
+            message: "Nama harus diisi"
+          },
+          stringLength: {
+            max: 50,
+            message: "Nama maksimal 50 karakter"
+          }
+        }
+      },
+
+      // username: {
+      //   validators: {
+      //     notEmpty: {
+      //       message: "Username harus diisi"
+      //     },
+      //     stringLength: {
+      //       min: 5,
+      //       message: "Username minimal 5 karakter"
+      //     },
+      //     regexp: {
+      //               regexp: /^[a-zA-Z0-9_\.]+$/,
+      //               message: 'Hanya boleh memakai huruf, nomor dan garis bawah'
+      //     },
+      //     remote: {
+      //       url: "{{ URL::to('/checkUsernameUbah') }}",
+      //         data: function(validator) {
+      //           return {
+      //               username: validator.getFieldElements('username').val(),
+      //               id: validator.getFieldElements('id').val()
+      //           };
+      //       },
+      //       message: 'Username sudah ada'
+      //     }
+      //   }
+      // },
+
+      // password: {
+      //   validators: {
+      //     stringLength: {
+      //       min: 5,
+      //       message: "Password minimal 5 karakter"
+      //     },
+      //     different: {
+      //       field: "username",
+      //       message: "Username dan password tidak boleh sama"
+      //     }
+      //   }
+      // },
+
+      // role: {
+      //   validators: {
+      //     notEmpty: {
+      //       message: "Role harus diisi"
+      //     }
+      //   }
+      // },
+
+      jadwal: {
+        validators: {
+          notEmpty: {
+            message: "Jadwal harus diisi"
           }
         }
       },
@@ -1692,34 +1933,34 @@ $('#ModalUbahGuru').modal('hide');
   })
   .on('keyup', '[name="jkl"]', function () {
       var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
+      $('#UbahPiket')
              .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
       // Revalidate the field when user start typing in the Phone field
       if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'jkl')
+          $('#UbahPiket').bootstrapValidator('validateField', 'jkl')
       }
   })
   .on('keyup', '[name="agama"]', function () {
       var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
+      $('#UbahPiket')
              .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
       // Revalidate the field when user start typing in the Phone field
       if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'agama')
+          $('#UbahPiket').bootstrapValidator('validateField', 'agama')
       }
   })
   .on('keyup', '[name="tlp"]', function () {
       var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
+      $('#UbahPiket')
              .bootstrapValidator('enableFieldValidators', 'tlp', !isEmpty);
       // Revalidate the field when user start typing in the Phone field
       if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'tlp')
+          $('#UbahPiket').bootstrapValidator('validateField', 'tlp')
       }
   })
 });
 </script>
-<!-- VALIDASI FORM UBAH GURU -->
+<!-- VALIDASI FORM UBAH GURU PIKET -->
 
 <!-- VALIDASI FORM TAMBAH KELAS -->
 <script type="text/javascript">
