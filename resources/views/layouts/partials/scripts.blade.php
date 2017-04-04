@@ -257,7 +257,7 @@
                 sLoadingRecords: "Loading...",
                 sProcessing: "Processing...",
                 sSearch: "Cari:",
-                sSearchPlaceholder: "Nama User",
+                sSearchPlaceholder: "Nama Guru Piket",
                 sUrl: "",
                 sZeroRecords: "Data tidak ditemukan"
                 },
@@ -615,7 +615,7 @@
             "bLengthChange": true,
             "bFilter": false,
             "bSort": true,
-            "bInfo": true,
+            "bInfo": false,
             "responsive": true,
             // "bAutoWidth": true,
             // pengaturan lebar kolom

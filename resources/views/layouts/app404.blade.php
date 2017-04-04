@@ -34,11 +34,8 @@ desired effect
 
     @include('layouts.partials.mainheader404')
 
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
-        @include('layouts.partials.contentheader')
 
         <!-- Main content -->
         <section class="content">

@@ -80,22 +80,22 @@
                             <input type="hidden" name="id" class="form-control">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-4">Nama Semester</label>
+                    <label class="control-label col-sm-5">Nama Semester</label>
                     <div class="form-group">
                         <div class="col-sm-4">
                             <input type="text" readonly="" name="nama_semester" class="form-control" placeholder="Nama Semester">
                         </div>  
                     </div>
-                    <label class="control-label col-sm-4">Tanggal Awal</label>
+                    <label class="control-label col-sm-5">Tanggal Awal</label>
                     <div class="form-group">
                         <div class="col-sm-4" >
-                            <input id="datetimePicker" type="text" name="tgl_awal" class="form-control" placeholder="Tanggal Awal">
+                            <input id="datetimePicker" type="text" name="tgl_awal" class="form-control" placeholder="YYYY-MM-DD">
                         </div>
                     </div>
-                    <label class="control-label col-sm-4">Tanggal Akhir</label>
+                    <label class="control-label col-sm-5">Tanggal Akhir</label>
                     <div class="form-group">
                         <div class="col-sm-4" >
-                            <input id="datetimePicker1" type="text" name="tgl_akhir" class="form-control" placeholder="Tanggal Akhir">
+                            <input id="datetimePicker1" type="text" name="tgl_akhir" class="form-control" placeholder="YYYY-MM-DD">
                         </div>
                     </div>
 
