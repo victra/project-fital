@@ -26,7 +26,7 @@
     </div><!-- /.box-header -->
 
     <div class="box-body">
-        <table id="tablegurupiket" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablegurupiket_info" cellspacing="0" width="100%">
+        <table id="tablegurupiketguest" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablegurupiketguest_info" cellspacing="0" width="100%">
 
             <thead>
                 <tr>
@@ -37,7 +37,6 @@
                     <th class="jkl"><center>Jenis Kelamin</center></th>
                     <th class="agama"><center>Agama</center></th>
                     <th class="tlp">Telepon</th>
-                    <th class="action"><center>Action</center></th>
                 </tr>
             </thead>
 
@@ -51,26 +50,7 @@
                     <td>{{$item->name}}</td>
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->agama}}</center></td>
-                    <td>{{$item->tlp}}</td>  
-                    <td>
-                        <center>
-                            @if (Auth::user()->id == $item->id)
-                                <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalPiket(this)" 
-                                data-id="{{$item->id}}"
-                                data-nip="{{$item->nip}}"
-                                data-nama="{{$item->name}}"                            
-                                data-jenis-kelamin="{{$item->jkl}}"
-                                data-agama="{{$item->agama}}"
-                                data-tlp="{{$item->tlp}}"
-                                data-jadwal="{{$item->jadwal}}">
-                                <span class="fa fa-edit"></span></a>
-                            @endif
-
-                            @if (Auth::user()->role == 'administrator')
-                                <a data-href="deletepiket&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
-                            @endif
-                        </center>
-                    </td>
+                    <td>{{$item->tlp}}</td>
                 </tr>                                    
                 @endforeach
             </tbody>                               
@@ -99,91 +79,6 @@
     </div>
 </div>
 <!-- Modal Konfirmasi Hapus -->
-
-<!-- Modal Form Ubah Data Guru Piket -->
-<div class="modal fade" id="ModalUbahPiket" role="dialog">
-    <div class="modal-dialog">
-    <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Ubah Data Guru Piket</h4>
-            </div>
-            <form class="form-horizontal" method="post" action="updateguru" id="UbahPiket">          
-                <div class="modal-body">
-                    <div class="form-group">
-                        <div class="col-sm-6">
-                            <input type="hidden" name="id" class="form-control">
-                        </div>  
-                    </div>
-                    <label class="control-label col-sm-4">NIP/NIK</label>
-                    <div class="form-group">
-                        <div class="col-sm-6">
-                            <input type="text" name="nip" class="form-control" placeholder="NIP/NIK">
-                        </div>  
-                    </div>
-                    <label class="control-label col-sm-4">Nama</label>
-                    <div class="form-group">
-                        <div class="col-sm-6">
-                            <input type="text" name="nama" class="form-control" placeholder="Nama">
-                        </div>  
-                    </div>                    
-                    <div>
-                        <label class="control-label col-sm-4">Jadwal Piket</label>
-                        <div class="form-group">
-                            <div class="col-sm-4">
-                                <select class="form-control" name="jadwal">
-                                    <option value="">-Jadwal Piket-</option>
-                                    @foreach($content['jadwal'] as $key => $value)
-                                        <option value="{{$key}}">{{$value}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <label class="control-label col-sm-4">Jenis Kelamin</label>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <select class="form-control" name="jkl">
-                                <option value="">-Jenis Kelamin-</option>
-                                @foreach($content['jenis_kelamin'] as $key => $value)
-                                    <option value="{{$key}}">{{$value}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <label class="control-label col-sm-4">Agama</label>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <select class="form-control" name="agama">
-                                <option value="">-Agama-</option>
-                                @foreach($content['agama'] as $key => $value)
-                                    <option value="{{$key}}">{{$value}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <label class="control-label col-sm-4">Telepon</label>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <input type="text" name="tlp" class="form-control" placeholder="Telepon">
-                        </div>  
-                    </div>                  
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group">
-                        <div class="col-xs-5 col-xs-offset-3">
-                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                            <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>      
-    </div>
-</div>
-<!-- Modal Form Ubah Data Guru Piket -->
 
 <!-- Modal Ubah Password -->
 <div class="modal fade" id="ModalUbahPassword" role="dialog">

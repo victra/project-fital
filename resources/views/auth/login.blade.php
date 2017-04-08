@@ -33,13 +33,15 @@
     @endif
 
     <div class="login-box-body">
-    <p class="login-box-msg"> Silahkan login terlebih dahulu. </p>
+    <p class="login-box-msg"><b> Silahkan login terlebih dahulu. </b></p>
     <form id="formLogin" action="{{ url('/login') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <!-- <label>Username</label> -->
         <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Masukan username" name="email"/>
+            <input type="text" autofocus="autofocus" class="form-control" placeholder="Masukan username" name="email"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
+        <!-- <label>Password</label> -->
         <div class="form-group has-feedback">
             <input type="password" class="form-control" placeholder="Masukan password" name="password"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -53,7 +55,7 @@
                 </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-sign-in"></i>  Log In</button>
+                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in"></i>     Log In</button>
             </div><!-- /.col -->
         </div>
     </form>

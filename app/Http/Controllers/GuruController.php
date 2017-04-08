@@ -353,42 +353,44 @@ class GuruController extends Controller
 
     public function showjadwalpiket()
     {
-        if (Auth::user()->role == 'administrator') {
-            $guru = User::orderby('created_at', 'DESC')->where('role', 'guru piket');
+       
+        $guru = User::orderby('created_at', 'DESC')->where('role', 'guru piket');
 
-            $jenis_kelamin = array(
-                'Laki-laki' => 'Laki-laki',
-                'Perempuan' => 'Perempuan',
-            );
+        $jenis_kelamin = array(
+            'Laki-laki' => 'Laki-laki',
+            'Perempuan' => 'Perempuan',
+        );
 
-            $agama = array(
-                'Islam' => 'Islam',
-                'Katolik' => 'Katolik',
-                'Kristen' => 'Kristen',
-                'Hindu' => 'Hindu',
-                'Budha' => 'Budha',
-            );
+        $agama = array(
+            'Islam' => 'Islam',
+            'Katolik' => 'Katolik',
+            'Kristen' => 'Kristen',
+            'Hindu' => 'Hindu',
+            'Budha' => 'Budha',
+        );
 
-            $jadwal = array(
-                'Senin' => 'Senin',
-                'Selasa' => 'Selasa',
-                'Rabu' => 'Rabu',
-                'Kamis' => 'Kamis',
-                'Jumat' => 'Jumat',
-                'Sabtu' => 'Sabtu',
-            );
-           
-            $content['gurupkt'] = $guru->get();
-            $content['jenis_kelamin'] = $jenis_kelamin;
-            $content['agama'] = $agama;
-            $content['jadwal'] = $jadwal;
+        $jadwal = array(
+            'Senin' => 'Senin',
+            'Selasa' => 'Selasa',
+            'Rabu' => 'Rabu',
+            'Kamis' => 'Kamis',
+            'Jumat' => 'Jumat',
+            'Sabtu' => 'Sabtu',
+        );
+       
+        $content['gurupkt'] = $guru->get();
+        $content['jenis_kelamin'] = $jenis_kelamin;
+        $content['agama'] = $agama;
+        $content['jadwal'] = $jadwal;
 
+        if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket') {
             return View::make('guru.jadwalpiket')
                         ->with('content', $content);
+        } else {
+            return View::make('guest.guestjadwalpiket')
+                        ->with('content', $content);
         }
-        else{
-            return view('errors.404');
-        }
+        
     }
 
     public function updatepiket(Request $request, $id)
