@@ -2240,6 +2240,14 @@ $('#ModalUbahProfil').modal('hide');
         }
       },
 
+      jadwal: {
+        validators: {
+          notEmpty: {
+            message: "Jadwal piket harus diisi"
+          }
+        }
+      },
+
       jkl: {
         enabled: false,
         validators: {

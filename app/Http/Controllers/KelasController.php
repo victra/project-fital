@@ -20,24 +20,24 @@ class KelasController extends Controller
     
     public function checkKelasAvailability() {
 
-    $kelas = DB::table('kelas')->where('nama_kelas', Input::get('nama_kelas'))->count();
+        $kelas = DB::table('kelas')->where('nama_kelas', Input::get('nama_kelas'))->count();
 
-    if($kelas > 0) {
-        $isAvailable = FALSE;
-    } else {
-        $isAvailable = TRUE;
-    }
+        if($kelas > 0) {
+            $isAvailable = FALSE;
+        } else {
+            $isAvailable = TRUE;
+        }
 
-    echo json_encode(
-            array(
-                'valid' => $isAvailable
-            ));
+        echo json_encode(
+                array(
+                    'valid' => $isAvailable
+                ));
     }
 
     public function checkKelasAvailabilityUbah() {
 
-    $kelas = DB::table('kelas')->where('id', Input::get('id'))->value('nama_kelas');
-    // dd($users);
+        $kelas = DB::table('kelas')->where('id', Input::get('id'))->value('nama_kelas');
+        // dd($users);
 
         if ($kelas == Input::get('nama_kelas')){
                 
@@ -77,6 +77,7 @@ class KelasController extends Controller
         \Session::flash('flash_message','Data kelas berhasil disimpan.');
         return back ();
     }
+    
     public function showkelas()
     {
         $kelas = Kelas::orderby('created_at', 'DESC')->get();
@@ -110,11 +111,21 @@ class KelasController extends Controller
             'Farmasi' => 'Farmasi',
         );
 
+        $jadwal = array(
+            'Senin' => 'Senin',
+            'Selasa' => 'Selasa',
+            'Rabu' => 'Rabu',
+            'Kamis' => 'Kamis',
+            'Jumat' => 'Jumat',
+            'Sabtu' => 'Sabtu',
+        );
+
         $walikelas = User::get();
        
         $content['kelasku'] = $kelas;
         $content['jurusan'] = $jurusan;
         $content['walikelas'] = $walikelas;
+        $content['jadwal'] = $jadwal;
         
         if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket') {
             return View::make('kelas.showkelas')

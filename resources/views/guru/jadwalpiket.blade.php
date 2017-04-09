@@ -54,21 +54,16 @@
                     <td>{{$item->tlp}}</td>  
                     <td>
                         <center>
-                            @if (Auth::user()->id == $item->id)
-                                <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalPiket(this)" 
-                                data-id="{{$item->id}}"
-                                data-nip="{{$item->nip}}"
-                                data-nama="{{$item->name}}"                            
-                                data-jenis-kelamin="{{$item->jkl}}"
-                                data-agama="{{$item->agama}}"
-                                data-tlp="{{$item->tlp}}"
-                                data-jadwal="{{$item->jadwal}}">
-                                <span class="fa fa-edit"></span></a>
-                            @endif
-
-                            @if (Auth::user()->role == 'administrator')
-                                <a data-href="deletepiket&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
-                            @endif
+                            <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalPiket(this)" 
+                            data-id="{{$item->id}}"
+                            data-nip="{{$item->nip}}"
+                            data-nama="{{$item->name}}"                            
+                            data-jenis-kelamin="{{$item->jkl}}"
+                            data-agama="{{$item->agama}}"
+                            data-tlp="{{$item->tlp}}"
+                            data-jadwal="{{$item->jadwal}}">
+                            <span class="fa fa-edit"></span></a>
+                            <a data-href="deletepiket&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
                         </center>
                     </td>
                 </tr>                                    
@@ -265,6 +260,19 @@
                             <!-- <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true"> -->
                         </div>  
                     </div>
+                    @if (Auth::user()->role == 'guru piket')
+                        <label class="control-label col-sm-4">Jadwal Piket</label>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <select class="form-control" name="jadwal">
+                                    <option value="">-Jadwal Piket-</option>
+                                    @foreach($content['jadwal'] as $key => $value)
+                                        <option value="{{$key}}">{{$value}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    @endif
                     <label class="control-label col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">
                         <div class="col-sm-4">

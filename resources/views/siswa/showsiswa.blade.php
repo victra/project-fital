@@ -566,6 +566,19 @@
                             <!-- <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true"> -->
                         </div>  
                     </div>
+                    @if (Auth::user()->role == 'guru piket')
+                        <label class="control-label col-sm-4">Jadwal Piket</label>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <select class="form-control" name="jadwal">
+                                    <option value="">-Jadwal Piket-</option>
+                                    @foreach($content['jadwal'] as $key => $value)
+                                        <option value="{{$key}}">{{$value}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    @endif
                     <label class="control-label col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">
                         <div class="col-sm-4">

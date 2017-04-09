@@ -62,7 +62,8 @@
                             data-username="{{Auth::user()->email}}"
                             data-jenis-kelamin="{{Auth::user()->jkl}}"
                             data-agama="{{Auth::user()->agama}}"
-                            data-tlp="{{Auth::user()->tlp}}"><i class="fa fa-edit"></i> Ubah Profil</a></li>
+                            data-tlp="{{Auth::user()->tlp}}"
+                            data-jadwal="{{Auth::user()->jadwal}}"><i class="fa fa-edit"></i> Ubah Profil</a></li>
                             <li class="divider"></li>
                             <!-- <li><a href="{{ url('/ubahpassword') }}"><i class="fa fa-key"></i> Ganti Password</a></li>
                             <li class="divider"></li> -->
@@ -167,6 +168,22 @@
                             <!-- <input type="text" name="username" class="form-control" placeholder="Username" readonly data-bv-excluded="true"> -->
                         </div>  
                     </div>
+                    @if (Auth::user()->role == 'guru piket')
+                        <label class="control-label col-sm-4">Jadwal Piket</label>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <select class="form-control" name="jadwal">
+                                    <option value="">-Jadwal Piket-</option>
+                                    <option value="Senin">Senin</option>
+                                    <option value="Selasa">Selasa</option>
+                                    <option value="Rabu">Rabu</option>
+                                    <option value="Kamis">Kamis</option>
+                                    <option value="Jumat">Jumat</option>
+                                    <option value="Sabtu">Sabtu</option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
                     <label class="control-label col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">
                         <div class="col-sm-4">

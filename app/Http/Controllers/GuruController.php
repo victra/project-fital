@@ -21,18 +21,18 @@ class GuruController extends Controller
 //guru disini berarti user
 
     public function checkPassword() {
-// if (Hash::check($request->current_password, Auth::user()->password)){
-    $password = DB::table('users')->where('id', '=' ,'Auth::user()->id')->value('password');
-     // dd($password);
-    // $user = new User;
-    //             $user->where('id', '=' ,Auth::user()->id)
-    //             ->update(['password' => Hash::make($request->new_password)]);
-    // $test = Hash::make('password');
-    // dd($test);
-    // $data = User::find($id);
-    if (Hash::check( Input::get('current_password') , Auth::user()->password) ){
+        // if (Hash::check($request->current_password, Auth::user()->password)){
+        $password = DB::table('users')->where('id', '=' ,'Auth::user()->id')->value('password');
+         // dd($password);
+        // $user = new User;
+        //             $user->where('id', '=' ,Auth::user()->id)
+        //             ->update(['password' => Hash::make($request->new_password)]);
+        // $test = Hash::make('password');
+        // dd($test);
+        // $data = User::find($id);
+        if (Hash::check( Input::get('current_password') , Auth::user()->password) ){
 
-    //     if ($password == Hash::check(Input::get('current_password'))){
+        // if ($password == Hash::check(Input::get('current_password'))){
         // if (Hash::check(Input::get('current')) == $password) {
                 
             $isAvailable = TRUE;
@@ -55,24 +55,24 @@ class GuruController extends Controller
 
     public function checkNIPAvailability() {
 
-    $user = DB::table('users')->where('nip', Input::get('nip'))->count();
+        $user = DB::table('users')->where('nip', Input::get('nip'))->count();
 
-    if($user > 0) {
-        $isAvailable = FALSE;
-    } else {
-        $isAvailable = TRUE;
-    }
+        if($user > 0) {
+            $isAvailable = FALSE;
+        } else {
+            $isAvailable = TRUE;
+        }
 
-    echo json_encode(
-            array(
-                'valid' => $isAvailable
-            ));
+        echo json_encode(
+                array(
+                    'valid' => $isAvailable
+                ));
     }
 
     public function checkNIPAvailabilityUbah() {
 
-    $users = DB::table('users')->where('id', Input::get('id'))->value('nip');
-     // dd($users);
+        $users = DB::table('users')->where('id', Input::get('id'))->value('nip');
+        // dd($users);
 
         if ($users == Input::get('nip')){
                 
@@ -102,24 +102,24 @@ class GuruController extends Controller
 
     public function checkUsernameAvailability() {
 
-    $user = DB::table('users')->where('email', Input::get('username'))->count();
+        $user = DB::table('users')->where('email', Input::get('username'))->count();
 
-    if($user > 0) {
-        $isAvailable = FALSE;
-    } else {
-        $isAvailable = TRUE;
-    }
+        if($user > 0) {
+            $isAvailable = FALSE;
+        } else {
+            $isAvailable = TRUE;
+        }
 
-    echo json_encode(
-            array(
-                'valid' => $isAvailable
-            ));
+        echo json_encode(
+                array(
+                    'valid' => $isAvailable
+                ));
     }
 
     public function checkUsernameAvailabilityUbah() {
 
-    $users = DB::table('users')->where('id', Input::get('id'))->value('email');
-    // dd($users);
+        $users = DB::table('users')->where('id', Input::get('id'))->value('email');
+        // dd($users);
 
         if ($users == Input::get('username')){
                 
@@ -288,19 +288,19 @@ class GuruController extends Controller
     }
 
     public function updateprofil(Request $request, $id)
-    {
-        
-    $guru = ['id' => $request->id
-        ,'nip' => $request->nip
-        ,'name' => $request->nama
-        ,'email' => $request->username
-        ,'jkl' => $request->jkl
-        ,'agama' => $request->agama
-        ,'tlp'=> $request->tlp];
+    {        
+        $guru = ['id' => $request->id
+                ,'nip' => $request->nip
+                ,'name' => $request->nama
+                ,'email' => $request->username
+                ,'jkl' => $request->jkl
+                ,'agama' => $request->agama
+                ,'tlp'=> $request->tlp
+                ,'jadwal'=> $request->jadwal];
 
-    DB::table('users')->where('id', $request->id)->update($guru);
+        DB::table('users')->where('id', $request->id)->update($guru);
 
-    return back ();      
+        return back ();      
     }
 
     public function tampilubahpassword(Request $request)
@@ -383,7 +383,7 @@ class GuruController extends Controller
         $content['agama'] = $agama;
         $content['jadwal'] = $jadwal;
 
-        if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket') {
+        if (Auth::user()->role == 'administrator') {
             return View::make('guru.jadwalpiket')
                         ->with('content', $content);
         } else {

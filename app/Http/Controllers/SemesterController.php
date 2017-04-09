@@ -15,8 +15,18 @@ class SemesterController extends Controller
     public function showsemester()
     {
         $semester = Semester::orderby('id', 'ASC');
+
+        $jadwal = array(
+            'Senin' => 'Senin',
+            'Selasa' => 'Selasa',
+            'Rabu' => 'Rabu',
+            'Kamis' => 'Kamis',
+            'Jumat' => 'Jumat',
+            'Sabtu' => 'Sabtu',
+        );
        
         $content['semesters'] = $semester->get();
+        $content['jadwal'] = $jadwal;
         
         if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket') {
             return View::make('semester.showsemester')

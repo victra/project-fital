@@ -18,7 +18,8 @@ class SiswaController extends Controller
     //}
     public function checkNISAvailability() {
 
-    $nis = DB::table('siswa')->where('nis', Input::get('nis'))->count();
+        $nis = DB::table('siswa')->where('nis', Input::get('nis'))->count();
+
         if($nis > 0) {
             $isAvailable = FALSE;
         } else {
@@ -33,8 +34,7 @@ class SiswaController extends Controller
 
     public function checkNISAvailabilityUbah() {
 
-    $nis = DB::table('siswa')->where('id', Input::get('id'))->value('nis');
-    // dd($nis);
+        $nis = DB::table('siswa')->where('id', Input::get('id'))->value('nis');
 
         if ($nis == Input::get('nis')){
                 
@@ -81,6 +81,7 @@ class SiswaController extends Controller
         \Session::flash('flash_message','Data siswa berhasil disimpan.');
         return back ();
     }
+    
     public function showsiswa()
     {
         $siswa = Siswa::orderby('created_at', 'DESC');
@@ -110,6 +111,16 @@ class SiswaController extends Controller
             // 'Hindu' => 'Hindu',
             // 'Budha' => 'Budha',
         );
+
+        $jadwal = array(
+            'Senin' => 'Senin',
+            'Selasa' => 'Selasa',
+            'Rabu' => 'Rabu',
+            'Kamis' => 'Kamis',
+            'Jumat' => 'Jumat',
+            'Sabtu' => 'Sabtu',
+        );
+
         $kelas = Kelas::get();
        
         $content['siswas'] = $siswa->get();
@@ -117,6 +128,8 @@ class SiswaController extends Controller
         $content['agama'] = $agama;
         $content['kelas'] = $kelas;
         $content['input_kelas'] = $input_kelas;
+        $content['jadwal'] = $jadwal;
+
         return View::make('siswa.showsiswa')
                     ->with('content', $content);
     }

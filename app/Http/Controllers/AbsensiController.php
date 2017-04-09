@@ -67,6 +67,15 @@ class AbsensiController extends Controller
                 'A' => 'Alpa',
             );
 
+            $jadwal = array(
+                'Senin' => 'Senin',
+                'Selasa' => 'Selasa',
+                'Rabu' => 'Rabu',
+                'Kamis' => 'Kamis',
+                'Jumat' => 'Jumat',
+                'Sabtu' => 'Sabtu',
+            );
+
             //cara manual
             // if ($tanggal && Input::has('search_kelas') && $siswas) {
             //     for ($i=0; $i < count($siswas) ; $i++) { 
@@ -88,6 +97,7 @@ class AbsensiController extends Controller
             $content['input_kelas'] = $input_kelas;
             $content['status'] = $status;
             $content['tanggal'] = $tanggal;
+            $content['jadwal'] = $jadwal;
 
             return View::make('absensi.showabsensi')
                         ->with('content', $content);
@@ -137,6 +147,15 @@ class AbsensiController extends Controller
     {
         $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
+        $jadwal = array(
+            'Senin' => 'Senin',
+            'Selasa' => 'Selasa',
+            'Rabu' => 'Rabu',
+            'Kamis' => 'Kamis',
+            'Jumat' => 'Jumat',
+            'Sabtu' => 'Sabtu',
+        );
+
         // total siswa
         for ($i=0; $i < count($kelas); $i++) { 
             $kelas[$i]['jumlah'] = Siswa::where('kelas_id', $kelas[$i]['id'])->get()->count();
@@ -160,6 +179,7 @@ class AbsensiController extends Controller
 
         $content['kelass'] = $kelas;
         $content['tanggal'] = $tanggal;
+        $content['jadwal'] = $jadwal;
 
         return View::make('absensi.rekapabsensihari')
                     ->with('content', $content);
@@ -172,6 +192,15 @@ class AbsensiController extends Controller
             \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
 
             $siswa = Siswa::orderby('nis', 'ASC')->get();
+
+            $jadwal = array(
+                'Senin' => 'Senin',
+                'Selasa' => 'Selasa',
+                'Rabu' => 'Rabu',
+                'Kamis' => 'Kamis',
+                'Jumat' => 'Jumat',
+                'Sabtu' => 'Sabtu',
+            );
 
             $input_kelas = '';
             if(Input::has('search_kelas')){
@@ -197,6 +226,7 @@ class AbsensiController extends Controller
             $content['input_kelas'] = $input_kelas;
             $content['dari_tanggal'] = $dari_tanggal;
             $content['sampai_tanggal'] = $sampai_tanggal;
+            $content['jadwal'] = $jadwal;
 
             return View::make('absensi.rekapabsensiminggu')
                         ->with('content', $content);
@@ -214,6 +244,15 @@ class AbsensiController extends Controller
             \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
 
             $siswa = Siswa::orderby('nis', 'ASC');
+
+            $jadwal = array(
+                'Senin' => 'Senin',
+                'Selasa' => 'Selasa',
+                'Rabu' => 'Rabu',
+                'Kamis' => 'Kamis',
+                'Jumat' => 'Jumat',
+                'Sabtu' => 'Sabtu',
+            );
 
             $input_kelas = '';
             if(Input::has('search_kelas')){
@@ -251,6 +290,8 @@ class AbsensiController extends Controller
             $content['input_kelas'] = $input_kelas;
             $content['bulan'] = $bulan;
             $content['input_bulan'] = $input_bulan;
+            $content['jadwal'] = $jadwal;
+
             return View::make('absensi.rekapabsensibulan')
                         ->with('content', $content);
         }
@@ -267,6 +308,15 @@ class AbsensiController extends Controller
             \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
 
             $siswa = Siswa::orderby('nis', 'ASC');
+
+            $jadwal = array(
+                'Senin' => 'Senin',
+                'Selasa' => 'Selasa',
+                'Rabu' => 'Rabu',
+                'Kamis' => 'Kamis',
+                'Jumat' => 'Jumat',
+                'Sabtu' => 'Sabtu',
+            );
 
             $input_kelas = '';
             if(Input::has('search_kelas')){
@@ -303,6 +353,8 @@ class AbsensiController extends Controller
             $content['tgl_awal'] = $tgl_awal;
             $content['tgl_akhir'] = $tgl_akhir;
             $content['input_semester'] = $input_semester;
+            $content['jadwal'] = $jadwal;
+
             return View::make('absensi.rekapabsensisemester')
                         ->with('content', $content);
         }
@@ -314,7 +366,14 @@ class AbsensiController extends Controller
 
     public function cariabsensi()
     {
-        
+        $jadwal = array(
+            'Senin' => 'Senin',
+            'Selasa' => 'Selasa',
+            'Rabu' => 'Rabu',
+            'Kamis' => 'Kamis',
+            'Jumat' => 'Jumat',
+            'Sabtu' => 'Sabtu',
+        );
 
         // relasi manual
         // $absensi = Absensi::orderby('created_at', 'DESC')->get();
@@ -328,6 +387,7 @@ class AbsensiController extends Controller
         $absensi = Absensi::orderby('created_at', 'DESC');
 
         $content['absensis'] = $absensi->where('status','!=', 'H')->get();
+        $content['jadwal'] = $jadwal;
         
         return View::make('absensi.cariabsensi')
                     ->with('content', $content);
