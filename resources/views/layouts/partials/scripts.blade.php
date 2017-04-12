@@ -8,6 +8,7 @@
 <!-- <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script> -->
 <script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+
 <!-- <script type="text/javascript">
     $(document).ready(function () {
       $('#datetimePicker').datepicker();
@@ -2307,4 +2308,4 @@ $('#ModalUbahProfil').modal('hide');
   })
 });
 </script>
-<!-- VALIDASI FORM UBAH PROFIL
+<!-- VALIDASI FORM UBAH PROFIL -->
