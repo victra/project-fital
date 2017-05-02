@@ -124,12 +124,12 @@
                             </select>
                         </div>
                     </div>
-                    <label class="control-label col-sm-4">Tahun Ajaran</label>
+                    <!-- <label class="control-label col-sm-4">Tahun Ajaran</label>
                     <div class="form-group">
                         <div class="col-sm-4">
                             <input type="text" name="thn_ajaran" class="form-control" placeholder="20xx/20xx">
                         </div>  
-                    </div>                    
+                    </div>   -->                  
                     <label class="control-label col-sm-4">Wali Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-5">
@@ -190,12 +190,12 @@
                             </select>
                         </div>
                     </div>
-                    <label class="control-label col-sm-4">Tahun Ajaran</label>
+                    <!-- <label class="control-label col-sm-4">Tahun Ajaran</label>
                     <div class="form-group">
                         <div class="col-sm-4">
                             <input type="text" name="thn_ajaran" class="form-control" placeholder="20xx/20xx">
                         </div>  
-                    </div>
+                    </div> -->
                     <label class="control-label col-sm-4">Wali Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-5">

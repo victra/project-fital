@@ -204,6 +204,9 @@ class Siswa extends \BaseModel
 	// Jumlah Sakit
 	public function getSakitbAttribute()
 	{
+		$awal_semester = Semester::where('semester','Semester Gasal')->value('tgl_awal');
+        $akhir_semester = Semester::where('semester','Semester Genap')->value('tgl_akhir');
+
 		if (Input::has('bulan')) {
             $input_bulan = Input::get('bulan');
         } else {
@@ -211,7 +214,7 @@ class Siswa extends \BaseModel
         }
 
         if ($input_bulan && Input::has('search_kelas')) {
-		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','S')->count();
+		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','S')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
         }
 
         return null;
@@ -220,6 +223,9 @@ class Siswa extends \BaseModel
 	// Jumlah Izin
 	public function getIzinbAttribute()
 	{
+		$awal_semester = Semester::where('semester','Semester Gasal')->value('tgl_awal');
+        $akhir_semester = Semester::where('semester','Semester Genap')->value('tgl_akhir');
+
 		if (Input::has('bulan')) {
             $input_bulan = Input::get('bulan');
         } else {
@@ -227,7 +233,7 @@ class Siswa extends \BaseModel
         }
 
         if ($input_bulan && Input::has('search_kelas')) {
-		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','I')->count();
+		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','I')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
         }
 
         return null;
@@ -236,6 +242,9 @@ class Siswa extends \BaseModel
 	// Jumlah Alpa
 	public function getAlpabAttribute()
 	{
+		$awal_semester = Semester::where('semester','Semester Gasal')->value('tgl_awal');
+        $akhir_semester = Semester::where('semester','Semester Genap')->value('tgl_akhir');
+
 		if (Input::has('bulan')) {
             $input_bulan = Input::get('bulan');
         } else {
@@ -243,7 +252,7 @@ class Siswa extends \BaseModel
         }
 
         if ($input_bulan && Input::has('search_kelas')) {
-		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','A')->count();
+		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','A')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
         }
 
         return null;
@@ -252,6 +261,9 @@ class Siswa extends \BaseModel
 	// Total
 	public function getTotalbAttribute()
 	{
+		$awal_semester = Semester::where('semester','Semester Gasal')->value('tgl_awal');
+        $akhir_semester = Semester::where('semester','Semester Genap')->value('tgl_akhir');
+        
 		if (Input::has('bulan')) {
             $input_bulan = Input::get('bulan');
         } else {
@@ -259,7 +271,7 @@ class Siswa extends \BaseModel
         }
 
         if ($input_bulan && Input::has('search_kelas')) {
-		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','!=','H')->count();
+		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','!=','H')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
         }
 
         return null;
