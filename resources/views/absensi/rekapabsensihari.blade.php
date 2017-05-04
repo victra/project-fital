@@ -60,7 +60,7 @@
                     <td><center>{{$item->izinh}}</center></td>
                     <td><center>{{$item->alpah}}</center></td>
                     <td><center>{{$item->totalh}}</center></td>                    
-                    <td>@foreach ($item->absensikelas as $absen) <b> {{$absen->siswa->nama}} ({{$absen->status}}), </b>@endforeach</td>                    
+                    <td>@foreach ($item->absensikelas as $absen) {{$absen->siswa->nama}} <b> ({{$absen->status}}),</b><br>@endforeach</td>                    
                 </tr>                                    
                 @endforeach
             </tbody>                       
