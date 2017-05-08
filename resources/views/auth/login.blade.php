@@ -38,7 +38,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <!-- <label>Username</label> -->
         <div class="form-group has-feedback">
-            <input type="text" autofocus="autofocus" class="form-control" placeholder="Masukan username" name="email"/>
+            <input type="text" autofocus="autofocus" class="form-control" placeholder="Masukan username" value="{{ old('email') }}" name="email"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <!-- <label>Password</label> -->
