@@ -9,7 +9,7 @@
 @endsection
 
 @section('contentheader_description')
-    Rekap perBulan
+    Rekap perMinggu
 @endsection
 
 @section('main-content')

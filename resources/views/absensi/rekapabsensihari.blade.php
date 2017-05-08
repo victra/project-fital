@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Rekap Absensi (Minggu)
+    Rekap Absensi (Hari)
 @endsection
 
 @section('contentheader_title')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('contentheader_description')
-    Rekap perBulan
+    Rekap perHari
 @endsection
 
 @section('main-content')
@@ -17,7 +17,7 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Rekap Absensi Per Hari</h3>            
-            <div style="margin-right:-15px; margin-top:30px" class="form-group">
+            <div style="margin-right:0px; margin-top:-20px" class="form-group">
                 <!-- Tombol Rekap -->
                 {{--<div class="pull-right">
                 <a class="btn btn-success btn-sm">Rekap</a>
