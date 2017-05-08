@@ -26,7 +26,7 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Rekap Absensi Per Bulan</h3>            
-            <div style="margin-right:0px; margin-top:30px" class="form-group pull-right">
+            <div style="margin-right:-15px; margin-top:-20px" class="form-group">
                 <!-- Pilih Bulan -->
                 <form style="margin-right:20px; margin-top:0px" class="pull-right">
                     <select id="bulanku" class="form-control input-sm" name="bulan" onchange="location = '?search_kelas={{$content['input_kelas']}}&bulan='+this.value;">

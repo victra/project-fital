@@ -26,7 +26,7 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Rekap Absensi Per Semester</h3>            
-            <div style="margin-right:0px; margin-top:30px" class="form-group pull-right">
+            <div style="margin-right:-15px; margin-top:-20px" class="form-group">
                 <!-- Pilih Semester -->
                 <!-- array manual -->
                 <!-- <form style="margin-right:20px; margin-top:0px" class="pull-right">

@@ -472,6 +472,7 @@
               { sWidth: '10%' }, //total
               { sWidth: '30%' }, //keterangan
             ],
+            // "iDisplayLength": 25,
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
             "oLanguage": {
                 sEmptyTable: "Belum ada data dalam tabel ini",
@@ -495,6 +496,24 @@
               {"bSearchable" : false, "aTargets" : [ "no","sakit","izin","alpa","total","ket" ]},
               {"bSortable" : false, "aTargets" : [ "ket" ]} 
             ],
+            // EXPORT EXCEL
+            "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+            // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "oTableTools": {
+            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            "aButtons": [
+                    {
+                      "sExtends": "xls",
+                      "sButtonText": "Save as Excel",
+                      "sFileName": "Document.xls",
+                      "oSelectorOpts": { page: "current" },
+                      "mColumns": function (settings) {
+                         var api = new $.fn.dataTable.Api( settings );
+                         return api.columns(":not(.no-export)").indexes().toArray();
+                      }
+                    }
+                ]
+            },
         });
         $('#tablerekapminggu').dataTable({
             "scrollY": 400,
@@ -562,6 +581,24 @@
               {"bSearchable" : false, "aTargets" : [ "nis","jkl","kelas","sakit","izin","alpa","total","infoa" ]},
               {"bSortable" : false, "aTargets" : [ "kelas" ]} 
             ],
+            // EXPORT EXCEL
+            "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+            // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "oTableTools": {
+            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            "aButtons": [
+                    {
+                      "sExtends": "xls",
+                      "sButtonText": "Save as Excel",
+                      "sFileName": "Document.xls",
+                      "oSelectorOpts": { page: "current" },
+                      "mColumns": function (settings) {
+                         var api = new $.fn.dataTable.Api( settings );
+                         return api.columns(":not(.no-export)").indexes().toArray();
+                      }
+                    }
+                ]
+            },
         });
         $('#tablerekap').dataTable({
             "scrollY": 400,
@@ -608,6 +645,24 @@
               {"bSearchable" : false, "aTargets" : [ "nis","jkl","kelas","sakit","izin","alpa","total" ]},
               {"bSortable" : false, "aTargets" : [ "kelas" ]}
             ],
+            // EXPORT EXCEL
+            "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+            // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "oTableTools": {
+            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            "aButtons": [
+                    {
+                      "sExtends": "xls",
+                      "sButtonText": "Save as Excel",
+                      "sFileName": "Document.xls",
+                      "oSelectorOpts": { page: "current" },
+                      "mColumns": function (settings) {
+                         var api = new $.fn.dataTable.Api( settings );
+                         return api.columns(":not(.no-export)").indexes().toArray();
+                      }
+                    }
+                ]
+            },
         });
         $('#tablesemester').dataTable({
             "bPaginate": false,
