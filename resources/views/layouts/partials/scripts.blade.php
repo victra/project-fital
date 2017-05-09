@@ -98,6 +98,10 @@
 <script src="{{ asset('/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js') }}" type="text/javascript"></script>
 
+<script type="text/javascript" src="js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="js/jszip.min.js"></script>
+<script type="text/javascript" src="js/buttons.html5.min.js"></script>
+
 <!-- Responsive Table -->
 <script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
@@ -497,23 +501,61 @@
               {"bSortable" : false, "aTargets" : [ "ket" ]} 
             ],
             // EXPORT EXCEL
-            "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-            // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-            "oTableTools": {
-            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
-            "aButtons": [
-                    {
-                      "sExtends": "xls",
-                      "sButtonText": "Save as Excel",
-                      "sFileName": "Document.xls",
-                      "oSelectorOpts": { page: "current" },
-                      "mColumns": function (settings) {
-                         var api = new $.fn.dataTable.Api( settings );
-                         return api.columns(":not(.no-export)").indexes().toArray();
-                      }
-                    }
-                ]
-            },
+            // "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+            // // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            // "oTableTools": {
+            // "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            // "aButtons": [
+            //         {
+            //           "sExtends": "xls",
+            //           "sButtonText": "Save as Excel",
+            //           "sFileName": "Document.xls",
+            //           "oSelectorOpts": { page: "current" },
+            //           "mColumns": function (settings) {
+            //              var api = new $.fn.dataTable.Api( settings );
+            //              return api.columns(":not(.no-export)").indexes().toArray();
+            //           }
+            //         }
+            //     ]
+            // },
+            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "buttons": [ {
+                "extend": 'excelHtml5',
+                "text": 'Export Excel',
+                "title": 'Document',
+                "exportOptions": {
+                    // columns: [ 0, 1, 2 ],
+                    columns: ':visible',
+                    // columns: ':not(.no-print)',
+                    // rows: ':visible',
+                    modifier: {
+                        page: 'current'
+                    },
+                },
+            customize: function( xlsx ) {
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                // $('row c[r^="C"]', sheet).attr( 's', '2' );
+
+                // border
+                $('row c[r^="A"]', sheet).attr( 's', '25' );
+                $('row c[r^="B"]', sheet).attr( 's', '25' );
+                $('row c[r^="C"]', sheet).attr( 's', '25' );
+                $('row c[r^="D"]', sheet).attr( 's', '25' );
+                $('row c[r^="E"]', sheet).attr( 's', '25' );
+                $('row c[r^="F"]', sheet).attr( 's', '25' );
+                $('row c[r^="G"]', sheet).attr( 's', '25' );
+                $('row c[r^="H"]', sheet).attr( 's', '25' );
+
+                // untuk rekap minggu
+                // $('row c[r^="G"]', sheet).each( function () {
+                //                //   alert( $(this).text())
+                //                     var toto=$(this);
+                //                     if ( $(this).text()> 0) {
+                //                         $(this).attr( 's', '12' );                                 
+                //                     }
+                //                 }); 
+            }
+        } ],
         });
         $('#tablerekapminggu').dataTable({
             "scrollY": 400,

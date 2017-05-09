@@ -36,6 +36,8 @@
     <link href="{{ asset('/plugins/datatables/extensions/TableTools/css/dataTables.TableTools.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/plugins/datatables/extensions/TableTools/css/dataTables.TableTools.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('/css/buttons.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    
     <!-- Responsive Table -->
     <link href="{{ asset('/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" />
     <!-- <link href="{{ asset('/plugins/datatables/extensions/Responsive/css/dataTables.responsive.min.css') }}" rel="stylesheet" type="text/css" /> -->
