@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image:url('{{ asset('img/.png') }}'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed; border-radius: 5px;position:relative">
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ url('/login') }}"><b>SIAbsensi</b></a>

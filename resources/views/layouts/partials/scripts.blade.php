@@ -532,30 +532,21 @@
                         page: 'current'
                     },
                 },
-            customize: function( xlsx ) {
-                var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                // $('row c[r^="C"]', sheet).attr( 's', '2' );
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    // $('row c[r^="C"]', sheet).attr( 's', '2' );
 
-                // border
-                $('row c[r^="A"]', sheet).attr( 's', '25' );
-                $('row c[r^="B"]', sheet).attr( 's', '25' );
-                $('row c[r^="C"]', sheet).attr( 's', '25' );
-                $('row c[r^="D"]', sheet).attr( 's', '25' );
-                $('row c[r^="E"]', sheet).attr( 's', '25' );
-                $('row c[r^="F"]', sheet).attr( 's', '25' );
-                $('row c[r^="G"]', sheet).attr( 's', '25' );
-                $('row c[r^="H"]', sheet).attr( 's', '25' );
-
-                // untuk rekap minggu
-                // $('row c[r^="G"]', sheet).each( function () {
-                //                //   alert( $(this).text())
-                //                     var toto=$(this);
-                //                     if ( $(this).text()> 0) {
-                //                         $(this).attr( 's', '12' );                                 
-                //                     }
-                //                 }); 
-            }
-        } ],
+                    // border
+                    // $('row c[r^="A"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="B"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="C"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="D"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="E"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="F"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="G"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="H"]', sheet).attr( 's', '25' );
+                }
+            } ],
         });
         $('#tablerekapminggu').dataTable({
             "scrollY": 400,
@@ -570,15 +561,15 @@
             // pengaturan lebar kolom
             "bAutoWidth": false,
             "aoColumns" : [
-              { sWidth: '10%' }, //nis
+              { sWidth: '8%' }, //nis
               { sWidth: '30%' }, //nama
               { sWidth: '15%' }, //jkl
-              // { sWidth: '15%' }, //kelas
-              { sWidth: '9%' }, //sakit
-              { sWidth: '9%' }, //izin
-              { sWidth: '9%' }, //alpa
-              { sWidth: '9%' }, //total
-              { sWidth: '9%' }, //info
+              { sWidth: '15%' }, //kelas
+              { sWidth: '8%' }, //sakit
+              { sWidth: '8%' }, //izin
+              { sWidth: '8%' }, //alpa
+              { sWidth: '8%' }, //total
+              // { sWidth: '9%' }, //info
             ],
             // "rowCallback": function( row, data, index ) {
             //   if ( data[1] == "AHOK" ) {
@@ -624,23 +615,62 @@
               {"bSortable" : false, "aTargets" : [ "kelas" ]} 
             ],
             // EXPORT EXCEL
-            "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-            // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-            "oTableTools": {
-            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
-            "aButtons": [
-                    {
-                      "sExtends": "xls",
-                      "sButtonText": "Save as Excel",
-                      "sFileName": "Document.xls",
-                      "oSelectorOpts": { page: "current" },
-                      "mColumns": function (settings) {
-                         var api = new $.fn.dataTable.Api( settings );
-                         return api.columns(":not(.no-export)").indexes().toArray();
-                      }
-                    }
-                ]
-            },
+            // "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+            // // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            // "oTableTools": {
+            // "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            // "aButtons": [
+            //         {
+            //           "sExtends": "xls",
+            //           "sButtonText": "Save as Excel",
+            //           "sFileName": "Document.xls",
+            //           "oSelectorOpts": { page: "current" },
+            //           "mColumns": function (settings) {
+            //              var api = new $.fn.dataTable.Api( settings );
+            //              return api.columns(":not(.no-export)").indexes().toArray();
+            //           }
+            //         }
+            //     ]
+            // },
+            
+            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "buttons": [ {
+                "extend": 'excelHtml5',
+                "text": 'Export Excel',
+                "title": 'Document',
+                "exportOptions": {
+                    // columns: [ 0, 1, 2 ],
+                    columns: ':visible',
+                    // columns: ':not(.no-print)',
+                    // rows: ':visible',
+                    modifier: {
+                        page: 'current'
+                    },
+                },
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    // $('row c[r^="C"]', sheet).attr( 's', '2' );
+
+                    // border
+                    // $('row c[r^="A"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="B"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="C"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="D"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="E"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="F"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="G"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="H"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="I"]', sheet).attr( 's', '25' );
+
+                    $('row c[r^="I"]', sheet).each( function () {
+                        alert( $(this).text())
+                        var toto=$(this);
+                        if ( $(this).text()> 1) {
+                            $(this).attr( 's', '12' );                                 
+                        }
+                    }); 
+                }
+           } ],
         });
         $('#tablerekap').dataTable({
             "scrollY": 400,
@@ -655,14 +685,14 @@
             // pengaturan lebar kolom
             "bAutoWidth": false,
             "aoColumns" : [
-              { sWidth: '10%' }, //nis
-              { sWidth: '35%' }, //nama
+              { sWidth: '8%' }, //nis
+              { sWidth: '30%' }, //nama
               { sWidth: '15%' }, //jkl
-              // { sWidth: '15%' }, //kelas
-              { sWidth: '9%' }, //sakit
-              { sWidth: '9%' }, //izin
-              { sWidth: '9%' }, //alpa
-              { sWidth: '13%' }, //total
+              { sWidth: '15%' }, //kelas
+              { sWidth: '8%' }, //sakit
+              { sWidth: '8%' }, //izin
+              { sWidth: '8%' }, //alpa
+              { sWidth: '8%' }, //total
             ],            
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
             "oLanguage": {
@@ -688,23 +718,54 @@
               {"bSortable" : false, "aTargets" : [ "kelas" ]}
             ],
             // EXPORT EXCEL
-            "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-            // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-            "oTableTools": {
-            "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
-            "aButtons": [
-                    {
-                      "sExtends": "xls",
-                      "sButtonText": "Save as Excel",
-                      "sFileName": "Document.xls",
-                      "oSelectorOpts": { page: "current" },
-                      "mColumns": function (settings) {
-                         var api = new $.fn.dataTable.Api( settings );
-                         return api.columns(":not(.no-export)").indexes().toArray();
-                      }
-                    }
-                ]
-            },
+            // "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+            // // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            // "oTableTools": {
+            // "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            // "aButtons": [
+            //         {
+            //           "sExtends": "xls",
+            //           "sButtonText": "Save as Excel",
+            //           "sFileName": "Document.xls",
+            //           "oSelectorOpts": { page: "current" },
+            //           "mColumns": function (settings) {
+            //              var api = new $.fn.dataTable.Api( settings );
+            //              return api.columns(":not(.no-export)").indexes().toArray();
+            //           }
+            //         }
+            //     ]
+            // },
+
+            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "buttons": [ {
+                "extend": 'excelHtml5',
+                "text": 'Export Excel',
+                "title": 'Document',
+                "exportOptions": {
+                    // columns: [ 0, 1, 2 ],
+                    columns: ':visible',
+                    // columns: ':not(.no-print)',
+                    // rows: ':visible',
+                    modifier: {
+                        page: 'current'
+                    },
+                },
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    // $('row c[r^="C"]', sheet).attr( 's', '2' );
+
+                    // border
+                    // $('row c[r^="A"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="B"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="C"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="D"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="E"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="F"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="G"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="H"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="I"]', sheet).attr( 's', '25' );
+                }
+           } ],
         });
         $('#tablesemester').dataTable({
             "bPaginate": false,

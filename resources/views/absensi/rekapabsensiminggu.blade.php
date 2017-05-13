@@ -70,12 +70,12 @@
                     <th class="nis"><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th class="jkl"><center>Jenis Kelamin</center></th>
-                    {{--<th class="kelas"><center>Kelas</center></th>--}}
+                    <th class="kelas"><center>Kelas</center></th>
                     <th class="sakit"><center>Sakit</center></th>
                     <th class="izin"><center>Izin</center></th>
                     <th class="alpa"><center>Alpa</center></th>
                     <th class="total"><center>Total</center></th>
-                    <th class="infoa"><center>Info</center></th>
+                    <!-- <th class="infoa"><center>Info</center></th> -->
                 </tr>
             </thead>
 
@@ -97,22 +97,22 @@
                         <td bgcolor="red"><center>{{$item->nis}}</center></td>
                         <td bgcolor="red">{{$item->nama}}</td>
                         <td bgcolor="red"><center>{{$item->jkl}}</center></td>
-                        {{--<td bgcolor="red"><center>{{$item->kelas->nama_kelas}}</center></td>--}}
+                        <td bgcolor="red"><center>{{$item->kelas->nama_kelas}}</center></td>
                         <td bgcolor="red"><center>{{$item->sakit}}</center></td>
                         <td bgcolor="red"><center>{{$item->izin}}</center></td>
                         <td bgcolor="red"><center>{{$item->alpa}}</center></td>
                         <td bgcolor="red"><center>{{$item->total}}</center></td>
-                        <td bgcolor="red"><center></center></td>
+                        <!-- <td bgcolor="red"><center></center></td> -->
                     @else
                         <td><center>{{$item->nis}}</center></td>
                         <td>{{$item->nama}}</td>
                         <td><center>{{$item->jkl}}</center></td>
-                        {{--<td><center>{{$item->kelas->nama_kelas}}</center></td>--}}
+                        <td><center>{{$item->kelas->nama_kelas}}</center></td>
                         <td><center>{{$item->sakit}}</center></td>
                         <td><center>{{$item->izin}}</center></td>
                         <td><center>{{$item->alpa}}</center></td>
                         <td><center>{{$item->total}}</center></td>
-                        <td><center></center></td>
+                        <!-- <td><center></center></td> -->
                     @endif
                 </tr>                                    
                 @endforeach

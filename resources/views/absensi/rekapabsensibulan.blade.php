@@ -63,7 +63,7 @@
                     <th class="nis"><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th class="jkl"><center>Jenis Kelamin</center></th>
-                    {{--<th class="kelas"><center>Kelas</center></th>--}}
+                    <th class="kelas"><center>Kelas</center></th>
                     <th class="sakit"><center>Sakit</center></th>
                     <th class="izin"><center>Izin</center></th>
                     <th class="alpa"><center>Alpa</center></th>
@@ -79,7 +79,7 @@
                     <td><center>{{$item->nis}}</center></td>
                     <td>{{$item->nama}}</td>
                     <td><center>{{$item->jkl}}</center></td>
-                    {{--<td><center>{{$item->kelas->nama_kelas}}</center></td>--}}
+                    <td><center>{{$item->kelas->nama_kelas}}</center></td>
                     <td><center>{{$item->sakitb}}</center></td>
                     <td><center>{{$item->izinb}}</center></td>
                     <td><center>{{$item->alpab}}</center></td>
