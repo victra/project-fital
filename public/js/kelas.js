@@ -7,7 +7,7 @@ function showModalKelas(button){
 	var wali_kelas = $(button).data('wali_kelas');
 	
 	// Show Modal
-	modal.find('h4').html('Ubaha Data Kelas');
+	modal.find('h4').html('Ubah Data Kelas');
 	modal.find('input[name=id]').val(id);
 	modal.find('input[name=nama_kelas]').val(nama_kelas);
 	modal.find('select[name=jurusan]').val(jurusan);

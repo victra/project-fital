@@ -9,7 +9,7 @@ function showModalPiket(button){
 	var jadwal = $(button).data('jadwal');
 	
 	// Show Modal
-	modal.find('h4').html('Ubaha Data Guru Piket');
+	modal.find('h4').html('Ubah Data Guru Piket');
 	modal.find('input[name=id]').val(id);
 	modal.find('input[name=nip]').val(nip);
 	modal.find('input[name=nama]').val(nama);

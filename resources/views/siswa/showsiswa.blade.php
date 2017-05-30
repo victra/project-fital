@@ -48,12 +48,12 @@
                     <th class="jkl"><center>Jenis Kelamin</center></th>
                     <th class="agama"><center>Agama</center></th>
                     <th class="kelas"><center>Kelas</center></th>
-                    <th class="none">Telepon Siswa</th>
+                    <!-- <th class="none">Telepon Siswa</th>
                     <th class="none">Alamat Siswa</th>
                     <th class="none">Nama Ayah</th>
                     <th class="none">Nama Ibu</th>
                     <th class="none">Telepon Orang Tua</th>
-                    <th class="none">Alamat Orang Tua</th>
+                    <th class="none">Alamat Orang Tua</th> -->
                     <th class="no-expor"><center>Action</center></th>
                 </tr>
             </thead>
@@ -68,12 +68,12 @@
                     <td><center>{{$item->jkl}}</center></td>
                     <td><center>{{$item->agama}}</center></td>
                     <td><center>{{$item->kelas->nama_kelas}}</center></td>
-                    <td>{{$item->tlp_siswa}}</td>
+                    <!-- <td>{{$item->tlp_siswa}}</td>
                     <td>{{$item->alamat_siswa}}</td>
                     <td>{{$item->nama_ayah}}</td> 
                     <td>{{$item->nama_ibu}}</td>
                     <td>{{$item->tlp_ortu}}</td>
-                    <td>{{$item->alamat_ortu}}</td> 
+                    <td>{{$item->alamat_ortu}}</td>  -->
                     <td>
                         <center>
                             {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}

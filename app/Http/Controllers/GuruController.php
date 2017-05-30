@@ -179,7 +179,7 @@ class GuruController extends Controller
                 'administrator' => 'Administrator',
                 'guru' => 'Guru',
                 'guru piket' => 'Guru Piket',
-                'karyawan' => 'Karyawan',
+                // 'karyawan' => 'Karyawan',
                 'tamu' => 'Tamu',
                 // 'wali kelas' => 'Wali Kelas',
             );

@@ -134,12 +134,12 @@
               { sWidth: '10%' }, //agama
               { sWidth: '15%' }, //kelas
               { sWidth: '13%' }, //action
-              { sWidth: '0%' },
-              { sWidth: '0%' },
-              { sWidth: '0%' },
-              { sWidth: '0%' },
-              { sWidth: '0%' },
-              { sWidth: '0%' },
+              // { sWidth: '0%' },
+              // { sWidth: '0%' },
+              // { sWidth: '0%' },
+              // { sWidth: '0%' },
+              // { sWidth: '0%' },
+              // { sWidth: '0%' },
             ],
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
             "oLanguage": {
