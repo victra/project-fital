@@ -88,14 +88,20 @@
                     </div>
                     <label class="control-label col-sm-5">Tanggal Awal</label>
                     <div class="form-group">
-                        <div class="col-sm-4" >
-                            <input id="datetimePicker" type="text" name="tgl_awal" class="form-control" placeholder="YYYY-MM-DD">
+                        <div class="col-sm-5">
+                            <div class="input-group date" id="datetimePicker">
+                                <input type="text" name="tgl_awal" class="form-control" placeholder="YYYY-MM-DD">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
                         </div>
                     </div>
                     <label class="control-label col-sm-5">Tanggal Akhir</label>
                     <div class="form-group">
-                        <div class="col-sm-4" >
-                            <input id="datetimePicker1" type="text" name="tgl_akhir" class="form-control" placeholder="YYYY-MM-DD">
+                        <div class="col-sm-5">
+                            <div class="input-group date" id="datetimePicker1">
+                                <input type="text" name="tgl_akhir" class="form-control" placeholder="YYYY-MM-DD">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
                         </div>
                     </div>
 

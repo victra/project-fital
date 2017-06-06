@@ -125,9 +125,10 @@
         <input type="hidden" name="tanggal" value="{{$content['tanggal']}}">
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
         <button id="simpan" type="submit" name="simpan" class="btn btn-info pull-right">Simpan Absensi</button>
-        @if(isset($item['absensi_non_permanent']))
+        <!-- tombol hapus dengan if atau tidak -->
+        {{--@if(isset($item['absensi_non_permanent']))--}}
         <button id="hapus" data-href='deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}' data-toggle="modal" data-target="#confirm-delete" type="button" style="margin-right:15px"; name="hapus" class="btn btn-danger pull-right">Hapus Absensi</button>
-        @endif
+        {{--@endif--}}
         <!-- <a href="deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}" style="margin-right:15px"; class="btn btn-danger pull-right" title="Hapus"> Hapus Absensi</a> -->
     </div>
     </form> 

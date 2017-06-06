@@ -1183,7 +1183,9 @@ $(document).ready(function() {
 <!-- VALIDASI FORM UBAH SEMESTER -->
 <script type="text/javascript">
 $(document).ready(function() {
-  var validator = $('#UbahSemester').bootstrapValidator({
+  $('#datetimePicker').datepicker();
+  $('#UbahSemester').bootstrapValidator({
+  // var validator = $('#UbahSemester').bootstrapValidator({
     feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -1191,22 +1193,64 @@ $(document).ready(function() {
         },
     fields: {
       tgl_awal: {
+        trigger: 'change keyup',
         validators: {
           notEmpty: {
             message: "Tanggal awal harus diisi"
-          }
+          },
+          date: {
+            format: 'YYYY-MM-DD',
+            max: 'tgl_akhir',
+            message: 'Tanggal awal tidak valid',            
+          },
         }
       },
 
       tgl_akhir: {
+        trigger: 'change keyup',
         validators: {
           notEmpty: {
             message: "Tanggal akhir harus diisi"
-          }
+          },
+          date: {
+            format: 'YYYY-MM-DD',
+            min: 'tgl_awal',
+            message: 'Tanggal akhir tidak valid',            
+          },
         }
       },
     }
+  })
+  .on('success.field.bv', function(e, data) {
+      if (data.field === 'tgl_awal' && !data.bv.isValidField('tgl_akhir')) {
+          // We need to revalidate the end date
+          data.bv.revalidateField('tgl_akhir');
+      }
+
+      if (data.field === 'tgl_akhir' && !data.bv.isValidField('tgl_awal')) {
+          // We need to revalidate the start date
+          data.bv.revalidateField('tgl_awal');
+      }
   });
+  // $('#datetimePicker')
+  //       .on('dp.change dp.show', function(e) {
+  //           // Validate the date when user change it
+  //           $('#UbahSemester').data('bootstrapValidator').revalidateField('tgl_awal');
+  //           // You also can call it as following:
+  //           // $('#defaultForm').bootstrapValidator('revalidateField', 'datetimePicker');
+  //       });
+  // $('#datetimePicker').on('changeDate show', function(e) {
+  //          $('#UbahSemester').data('bootstrapValidator').revalidateField('tgl_awal');
+  //        })
+  // .on('keyup', '[name="tgl_awal"]', function () {
+  //     var isEmpty = $(this).val() == '';
+  //     $('#UbahSemester')
+  //            .bootstrapValidator('validateField', 'tgl_awal');
+  //     // Revalidate the field when user start typing in the Phone field
+  //     if ($(this).val().length == 1) {
+  //         $('#TambahSiswa').bootstrapValidator('validateField', 'tgl_awal')
+  //     }
+  // });
 });
 </script>
 <!-- VALIDASI FORM UBAH SEMESTER -->
