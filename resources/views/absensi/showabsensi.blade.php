@@ -50,6 +50,7 @@
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Kelas :</label>
                 </div>
     </div><!-- /.box-header -->
+    @if(Session::has('info_absensi'))
     <form class="form-horizontal" method="post" action="store">
     <div class="box-body">
         <table id="tableabsensi" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tableabsensi_info">
@@ -120,6 +121,7 @@
                 
     </div><!-- /.box-body -->
 
+
     <div class="box-footer">
         <input id="kelasku" type="hidden" name="kelas" value="{{$content['input_kelas']}}">
         <input type="hidden" name="tanggal" value="{{$content['tanggal']}}">
@@ -131,7 +133,8 @@
         {{--@endif--}}
         <!-- <a href="deleteabsensi/{{$content['tanggal']}}/{{$content['input_kelas']}}" style="margin-right:15px"; class="btn btn-danger pull-right" title="Hapus"> Hapus Absensi</a> -->
     </div>
-    </form> 
+    </form>
+    @endif 
 </div>
 @endsection
 

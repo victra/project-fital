@@ -52,7 +52,7 @@
 
                 <!-- Pilih Kelas -->
                 <form style="margin-right:50px; margin-top:0px" class="pull-right">
-                    <select id="kelasku" class="form-control input-sm" onchange="location = this.value+'&semester={{$content['sem']}}';">
+                    <select class="form-control input-sm" onchange="location = this.value+'&semester={{$content['input_semester']}}';">
                         <option value="?search_kelas=">-Pilih Kelas-</option>
                             @foreach($content['kelas'] as $value)
                             <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
@@ -65,8 +65,8 @@
 
                 </div>
     </div><!-- /.box-header -->
-
-    <div class="box-body table-responsive">
+    @if(Session::has('info_rekap'))
+    <div class="box-body">
         <table id="tablerekap" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekap_info">
 
             <thead>
@@ -104,22 +104,25 @@
     </div><!-- /.box-body -->
 
     <div class="box-foot">
-                <div class="col-lg-2 pull-right">
-                    {{--<div class="input-group date" id="datetimePicker">--}}
-                        <input type="hidden" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai" value="{{$content['tgl_akhir']}}" placeholder="Tanggal Akhir">
-                        {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>--}}
-                </div>
-                <!-- <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">sampai </label> -->
+        <div class="col-lg-2 pull-right">
+            {{--<div class="input-group date" id="datetimePicker">--}}
+                <input type="hidden" disabled id="datetimePicker" name="dapat" class="form-control tanggal input-sm sampai" value="{{$content['tgl_akhir']}}" placeholder="Tanggal Akhir">
+                {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>--}}
+        </div>
+        <!-- <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">sampai </label> -->
 
-                <div class="col-lg-2 pull-right">
-                    {{--<div class="input-group date" id="datetimePicker1">--}}
-                        <input type="hidden" disabled id="datetimePicker1" class="form-control tanggal input-sm dari" value="{{$content['tgl_awal']}}" placeholder="Tanggal Awal">
-                        {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>--}}
-                </div>
-                <!-- <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari :</label> -->
+        <div class="col-lg-2 pull-right">
+            {{--<div class="input-group date" id="datetimePicker1">--}}
+                <input type="hidden" disabled id="datetimePicker1" class="form-control tanggal input-sm dari" value="{{$content['tgl_awal']}}" placeholder="Tanggal Awal">
+                {{--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>--}}
+        </div>
+        <!-- <label style="margin-right:-5px; margin-top:5px"  class="control-label pull-right">Dari :</label> -->
     </div>
+    @endif
+
+        <input id="kelasku" type="text" name="kelas" value="{{$content['input_kelas']}}">     
 </div>
 @endsection
 
@@ -272,24 +275,14 @@
     });
 
     function validate(){
-        if ($('#kelasku').val()   !=   "?search_kelas=" && $('#semesterku').val()   !=   "" ) {
+        if ($('#kelasku').val()   !=   '') {
             $('#tablerekap').parents('div.dataTables_wrapper').first().show();
+             // var div = document.getElementById("infoMessage");
             document.getElementById("infoMessage").style.display = "none";
-            document.getElementById("infoRekap").style.display = "none";
-
-        }
-        else if ($('#kelasku').val()   !=   "?search_kelas=") {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().show();
-            document.getElementById("infoMessage").style.display = "none";
-
-        }
-        else if ($('#semesterku').val()   !=   "" ) {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
-            document.getElementById("infoRekap").style.display = "none";
-
         }
         else {
             $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
+             // var div = document.getElementById("infoMessage");
             document.getElementById("infoRekap").style.display = "none";
         }
     }        

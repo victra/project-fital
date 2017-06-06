@@ -50,7 +50,7 @@
 
                 <!-- Pilih Kelas -->
                 <form style="margin-right:50px; margin-top:0px" class="pull-right">
-                    <select id="kelasku" class="form-control input-sm" onchange="location = this.value+'&dari_tanggal={{$content['dari_tanggal']}}';">
+                    <select class="form-control input-sm" onchange="location = this.value+'&dari_tanggal={{$content['dari_tanggal']}}';">
                         <option value="?search_kelas=">-Pilih Kelas-</option>
                             @foreach($content['kelas'] as $value)
                             <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
@@ -61,7 +61,7 @@
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Kelas :</label>
             </div>
     </div><!-- /.box-header -->
-
+    @if(Session::has('info_rekap'))
     <div class="box-body">
         <table id="tablerekapminggu" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekapminggu_info">
 
@@ -119,7 +119,8 @@
             </tbody>                       
         </table>
     </div><!-- /.box-body -->
-
+    @endif
+    <input id="kelasku" type="hidden" name="kelas" value="{{$content['input_kelas']}}">
 </div>
 @endsection
 
@@ -272,30 +273,16 @@
     });
 
     function validate(){
-        if ($('#kelasku').val()   !=   "?search_kelas=" && $('#datetimePicker1').val()   !=   "" ) {
+        if ($('#kelasku').val()   !=   '') {
             $('#tablerekapminggu').parents('div.dataTables_wrapper').first().show();
              // var div = document.getElementById("infoMessage");
             document.getElementById("infoMessage").style.display = "none";
-            document.getElementById("infoRekap").style.display = "none";
-
-        }
-        else if ($('#kelasku').val()   !=   "?search_kelas=") {
-            $('#tablerekapminggu').parents('div.dataTables_wrapper').first().show();
-             // var div = document.getElementById("infoMessage");
-            document.getElementById("infoMessage").style.display = "none";
-
-        }
-        else if ($('#datetimePicker1').val()   !=   "" ) {
-            $('#tablerekapminggu').parents('div.dataTables_wrapper').first().hide();
-             // var div = document.getElementById("infoMessage");
-            document.getElementById("infoRekap").style.display = "none";
-
         }
         else {
             $('#tablerekapminggu').parents('div.dataTables_wrapper').first().hide();
+             // var div = document.getElementById("infoMessage");
             document.getElementById("infoRekap").style.display = "none";
-            // document.getElementById('datetimePicker1').disabled = true;
-        }
+        }        
     }        
 </script>
 <!-- Hide/Show Datatable Rekap Absensi -->

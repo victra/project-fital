@@ -41,7 +41,7 @@
 
                 <!-- Pilih Kelas -->
                 <form style="margin-right:50px; margin-top:0px" class="pull-right">
-                    <select id="kelasku" class="form-control input-sm" onchange="location = this.value+'&bulan={{$content['input_bulan']}}';">
+                    <select class="form-control input-sm" onchange="location = this.value+'&bulan={{$content['input_bulan']}}';">
                         <option value="?search_kelas=">-Pilih Kelas-</option>
                             @foreach($content['kelas'] as $value)
                             <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
@@ -53,8 +53,8 @@
 
             </div>
     </div><!-- /.box-header -->
-
-    <div class="box-body table-responsive">
+    @if(Session::has('info_rekap'))
+    <div class="box-body">
         <table id="tablerekap" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekap_info">
 
             <thead>
@@ -90,13 +90,13 @@
         </table>                
                 
     </div><!-- /.box-body -->
-
+    @endif
     <div class="box-foot">
         <div class="col-lg-2 pull-right">
             <input type="hidden" disabled class="form-control" value="{{$content['input_bulan']}}">
         </div>
     </div>
-
+            <input id="kelasku" type="hidden" name="kelas" value="{{$content['input_kelas']}}">     
 </div>
 @endsection
 
@@ -249,24 +249,14 @@
     });
 
     function validate(){
-        if ($('#kelasku').val()   !=   "?search_kelas=" && $('#bulanku').val()   !=   "" ) {
+        if ($('#kelasku').val()   !=   '') {
             $('#tablerekap').parents('div.dataTables_wrapper').first().show();
+             // var div = document.getElementById("infoMessage");
             document.getElementById("infoMessage").style.display = "none";
-            document.getElementById("infoRekap").style.display = "none";
-
-        }
-        else if ($('#kelasku').val()   !=   "?search_kelas=") {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().show();
-            document.getElementById("infoMessage").style.display = "none";
-
-        }
-        else if ($('#bulanku').val()   !=   "" ) {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
-            document.getElementById("infoRekap").style.display = "none";
-
         }
         else {
             $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
+             // var div = document.getElementById("infoMessage");
             document.getElementById("infoRekap").style.display = "none";
         }
     }        
