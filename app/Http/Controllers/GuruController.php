@@ -300,6 +300,7 @@ class GuruController extends Controller
 
         DB::table('users')->where('id', $request->id)->update($guru);
 
+        \Session::flash('flash_message','Data profil berhasil diubah.');
         return back ();      
     }
 

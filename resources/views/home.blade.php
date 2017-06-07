@@ -14,6 +14,11 @@
 
 @section('main-content')
 
+<!-- pesan peringatan berhasil -->
+@if(Session::has('flash_message'))
+    <div id="successMessage" class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
+@endif
+
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Absensi Hari Ini</h3>            

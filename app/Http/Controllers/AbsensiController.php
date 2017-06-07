@@ -147,6 +147,7 @@ class AbsensiController extends Controller
     //rekap absensi per hari
     public function rekapabsensihari()
     {
+        \Session::flash('info_message','Silahkan pilih atau ubah tanggal rekap.');
         $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
         $jadwal = array(

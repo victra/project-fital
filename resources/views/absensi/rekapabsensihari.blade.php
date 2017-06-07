@@ -14,6 +14,15 @@
 
 @section('main-content')
 
+<!-- pesan peringatan berhasil -->
+@if(Session::has('flash_message'))
+    <div id="successMessage" class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
+@endif
+
+@if(Session::has('info_message'))
+    <div id="infoMessage" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_message') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+@endif
+
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Rekap Absensi Per Hari</h3>            

@@ -1001,6 +1001,24 @@
               {"bSearchable" : false, "aTargets" : [ "no","nis","jkl","agama","kelas","status","keterangan" ]},
               {"bSortable" : false, "aTargets" : [ "jkl","keterangan" ]} 
             ],
+            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "buttons": [ {
+                "extend": 'excelHtml5',
+                "text": 'Export Excel',
+                "title": 'Document',
+                "exportOptions": {
+                    // columns: [ 0, 1, 2 ],
+                    columns: ':visible',
+                    // columns: ':not(.no-print)',
+                    // rows: ':visible',
+                    modifier: {
+                        page: 'current'
+                    },
+                },
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                }
+            } ],
         });        
     });            
 </script>
