@@ -170,4 +170,20 @@ class Kelas extends \BaseModel
 
         return null;
 	 }
+
+	 // Cek Absen
+	 public function getCekabsenAttribute()
+	 {
+	 	if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+
+        if ($tanggal) {
+		 	return $this->absensi()->where('date', $tanggal)->where('status','!=','')->count();
+        }
+
+        return null;
+	 }
 }

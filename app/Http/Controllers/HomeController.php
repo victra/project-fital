@@ -7,9 +7,13 @@
 
 namespace App\Http\Controllers;
 
+use Model\Siswa;
 use Model\Absensi;
+use Model\Kelas;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Input;
 use DB;
 
 /**
@@ -66,5 +70,47 @@ class HomeController extends Controller
             ->with('sakit',json_encode($sakit,JSON_NUMERIC_CHECK))
             ->with('izin',json_encode($izin,JSON_NUMERIC_CHECK))
             ->with('alpa',json_encode($alpa,JSON_NUMERIC_CHECK));
+    }
+
+    public function beranda()
+    {
+        $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
+
+        $jadwal = array(
+            'Senin' => 'Senin',
+            'Selasa' => 'Selasa',
+            'Rabu' => 'Rabu',
+            'Kamis' => 'Kamis',
+            'Jumat' => 'Jumat',
+            'Sabtu' => 'Sabtu',
+        );
+
+        // total siswa
+        for ($i=0; $i < count($kelas); $i++) { 
+            $kelas[$i]['jumlah'] = Siswa::where('kelas_id', $kelas[$i]['id'])->get()->count();
+        }
+
+        // dd($kelas->toArray());
+
+        if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+            for ($i=0; $i < count($kelas); $i++) { 
+                $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
+            }
+        } else {
+            $tanggal = date("Y-m-d");
+            for ($i=0; $i < count($kelas); $i++) { 
+                $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
+            }
+        }
+
+        // dd($kelas->toArray());
+
+        $content['kelass'] = $kelas;
+        $content['tanggal'] = $tanggal;
+        $content['jadwal'] = $jadwal;
+
+        return View::make('home')
+                    ->with('content', $content);
     }
 }

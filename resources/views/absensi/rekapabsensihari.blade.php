@@ -60,10 +60,12 @@
                     <td><center>{{$item->izinh}}</center></td>
                     <td><center>{{$item->alpah}}</center></td>
                     <td><center>{{$item->totalh}}</center></td>
-                    @if ($item->totalh == 0)
+                    @if ($item->cekabsen == 0)
+                    <td><center>BELUM DIABSEN</center></td>
+                    @elseif ($item->totalh == 0)
                     <td><center>NIHIL</center></td>
                     @else                  
-                    <td>@foreach ($item->absensikelas as $absen) {{$absen->siswa->nama}} <b> ({{$absen->status}}),</b><br>@endforeach</td>
+                    <td><center>@foreach ($item->absensikelas as $absen) {{$absen->siswa->nama}} <b> ({{$absen->status}}),</b><br>@endforeach</center></td>
                     @endif                    
                 </tr>                                    
                 @endforeach

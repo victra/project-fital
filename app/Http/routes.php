@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Route::get('/home', 'HomeController@index');
     // Route::get('/', 'HomeController@index');
-    Route::get('/', 'HomeController@highchart');
+    Route::get('/', 'HomeController@beranda');
 
     
     //Route::get('insert', 'SiswaController@index');
