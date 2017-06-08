@@ -120,7 +120,7 @@ class KelasController extends Controller
             'Sabtu' => 'Sabtu',
         );
 
-        $walikelas = User::get();
+        $walikelas = User::orderby('name', 'ASC')->where('role','guru')->get();
        
         $content['kelasku'] = $kelas;
         $content['jurusan'] = $jurusan;

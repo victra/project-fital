@@ -255,3 +255,33 @@
 </div>
 <!-- Modal Form Ubah Profil-->
 @endsection
+
+@section('scripts-tambahan')
+<script type="text/javascript">
+    $(function() {
+        $('#tableguestsemester').dataTable({
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '45%' }, //semester
+              { sWidth: '25%' }, //tgl awal
+              { sWidth: '25%' }, //tgl akhir
+            ],
+        });
+        var table = $('#tableguestsemester').DataTable();
+        $('.dataTables_filter input').unbind().bind('keyup', function() {
+           var searchTerm = this.value.toLowerCase(),
+               regex = '\\b' + searchTerm + '\\b';
+           table.rows().search(regex, true, false).draw();
+        });
+    });
+</script>
+@endsection

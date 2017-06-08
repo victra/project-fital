@@ -186,4 +186,20 @@ class Kelas extends \BaseModel
 
         return null;
 	 }
+
+	 // Total
+	 public function getHadirAttribute()
+	 {
+	 	if (Input::has('tanggal')) {
+            $tanggal = Input::get('tanggal');
+        } else {
+            $tanggal = date("Y-m-d");
+        }
+
+        if ($tanggal) {
+		 	return $this->absensi()->where('date', $tanggal)->where('status','H')->count();
+        }
+
+        return null;
+	 }
 }

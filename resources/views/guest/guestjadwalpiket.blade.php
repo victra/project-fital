@@ -217,3 +217,60 @@
 </div>
 <!-- Modal Form Ubah Profil-->
 @endsection
+
+@section('scripts-tambahan')
+<script type="text/javascript">
+    $(function() {
+        $('#tablegurupiketguest').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '10%' }, //hari
+              { sWidth: '20%' }, //nip
+              { sWidth: '25%' }, //nama
+              { sWidth: '15%' }, //jenis kelamin
+              { sWidth: '10%' }, //agama
+              { sWidth: '15%' }, //telepon
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Guru Piket",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","hari","nip","jkl","agama","tlp" ]},
+              {"bSortable" : false, "aTargets" : [ "agama","action" ]} 
+            ],
+        });
+        var table = $('#tablegurupiketguest').DataTable();
+        $('.dataTables_filter input').unbind().bind('keyup', function() {
+           var searchTerm = this.value.toLowerCase(),
+               regex = '\\b' + searchTerm + '\\b';
+           table.rows().search(regex, true, false).draw();
+        });
+    });
+</script>
+@endsection

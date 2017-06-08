@@ -346,3 +346,62 @@
 </div>
 <!-- Modal Form Ubah Profil-->
 @endsection
+
+@section('scripts-tambahan')
+<script type="text/javascript">
+    $(function() {
+        $('#tableguestkelas').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '20%' }, //nama kelas
+              { sWidth: '25%' }, //jurusan
+              // { sWidth: '15%' }, //tahun ajaran
+              { sWidth: '30%' }, //wali kelas
+              { sWidth: '5%' }, //laki
+              { sWidth: '5%' }, //perempuan
+              { sWidth: '10%' }, //total
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Kelas",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","jurusan","thn_ajaran","walikelas","laki","perempuan","total" ]},
+              {"bSortable" : false, "aTargets" : [ "thn_ajaran","walikelas","no-export" ]} 
+            ],
+        });
+        var table = $('#tableguestkelas').DataTable();
+        $('.dataTables_filter input').unbind().bind('keyup', function() {
+           var searchTerm = this.value.toLowerCase(),
+               regex = '\\b' + searchTerm + '\\b';
+           table.rows().search(regex, true, false).draw();
+        });
+    });
+</script>
+@endsection

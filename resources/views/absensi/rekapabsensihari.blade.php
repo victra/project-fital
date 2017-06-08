@@ -50,6 +50,7 @@
                     <th class="no"><center>No</center></th>
                     <th><center>Nama Kelas</center></th>
                     <th><center>Siswa</center></th>
+                    <th><center>Hadir</center></th>
                     <th class="sakit"><center>Sakit</center></th>
                     <th class="izin"><center>Izin</center></th>
                     <th class="alpa"><center>Alpa</center></th>
@@ -64,17 +65,22 @@
                 <tr>
                     <td><center>{{$no++}}<center></td>
                     <td>{{$item->nama_kelas}}</td>
-                    <td><center>{{$item->jumlah}}</center></td>                   
+                    <td><center>{{$item->jumlah}}</center></td>
+                    @if ($item->totalh != 0)
+                    <td><center>{{$item->jumlah - $item->totalh}}</center></td>
+                    @else  
+                    <td><center>{{$item->hadir}}</center></td>
+                    @endif
                     <td><center>{{$item->sakith}}</center></td>
                     <td><center>{{$item->izinh}}</center></td>
                     <td><center>{{$item->alpah}}</center></td>
                     <td><center>{{$item->totalh}}</center></td>
                     @if ($item->cekabsen == 0)
-                    <td><center>BELUM DIABSEN</center></td>
+                    <td><center><font color="red">BELUM DIABSEN</font></center></td>
                     @elseif ($item->totalh == 0)
-                    <td><center>NIHIL</center></td>
+                    <td><center><font color="green"><b>NIHIL</b></font></center></td>
                     @else                  
-                    <td><center>@foreach ($item->absensikelas as $absen) {{$absen->siswa->nama}} <b> ({{$absen->status}}),</b><br>@endforeach</center></td>
+                    <td>@foreach ($item->absensikelas as $absen) {{$absen->siswa->nama}} <b> ({{$absen->status}}),</b><br>@endforeach</td>
                     @endif                    
                 </tr>                                    
                 @endforeach
@@ -223,4 +229,112 @@
     </div>
 </div>
 <!-- Modal Form Ubah Profil-->
+@endsection
+
+@section('scripts-tambahan')
+<script type="text/javascript">
+    $(function() {
+        $('#tablerekaphari').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '17%' }, //nama kelas
+              { sWidth: '8%' }, //jumlah siswa
+              { sWidth: '8%' }, //hadir
+              { sWidth: '8%' }, //sakit
+              { sWidth: '8%' }, //izin
+              { sWidth: '8%' }, //alpa
+              { sWidth: '8%' }, //total
+              { sWidth: '30%' }, //keterangan
+            ],
+            // "iDisplayLength": 25,
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Kelas",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","sakit","izin","alpa","total","ket" ]},
+              {"bSortable" : false, "aTargets" : [ "ket" ]} 
+            ],
+            // EXPORT EXCEL
+            // "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+            // // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            // "oTableTools": {
+            // "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+            // "aButtons": [
+            //         {
+            //           "sExtends": "xls",
+            //           "sButtonText": "Save as Excel",
+            //           "sFileName": "Document.xls",
+            //           "oSelectorOpts": { page: "current" },
+            //           "mColumns": function (settings) {
+            //              var api = new $.fn.dataTable.Api( settings );
+            //              return api.columns(":not(.no-export)").indexes().toArray();
+            //           }
+            //         }
+            //     ]
+            // },
+            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "buttons": [ {
+                "extend": 'excelHtml5',
+                "text": 'Export Excel',
+                "title": 'Document',
+                "exportOptions": {
+                    // columns: [ 0, 1, 2 ],
+                    columns: ':visible',
+                    // columns: ':not(.no-print)',
+                    // rows: ':visible',
+                    modifier: {
+                        page: 'current'
+                    },
+                },
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    // $('row c[r^="C"]', sheet).attr( 's', '2' );
+
+                    // border
+                    // $('row c[r^="A"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="B"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="C"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="D"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="E"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="F"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="G"]', sheet).attr( 's', '25' );
+                    // $('row c[r^="H"]', sheet).attr( 's', '25' );
+                }
+            } ],
+        });
+        var table = $('#tablerekaphari').DataTable();
+        $('.dataTables_filter input').unbind().bind('keyup', function() {
+           var searchTerm = this.value.toLowerCase(),
+               regex = '\\b' + searchTerm + '\\b';
+           table.rows().search(regex, true, false).draw();
+        });
+    });
+</script>
 @endsection

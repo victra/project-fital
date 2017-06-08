@@ -219,3 +219,114 @@
 </div>
 <!-- Modal Form Ubah Profil-->
 @endsection
+
+@section('scripts-tambahan')
+<script type="text/javascript">
+    $(function() {
+        $('#tablecariabsensi').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              // { sWidth: '5%' }, //no
+              { sWidth: '10%' }, //tanggal
+              { sWidth: '5%' }, //no
+              { sWidth: '25%' }, //nama siswa
+              { sWidth: '15%' }, //jenis kelamin
+              { sWidth: '11%' }, //kelas
+              { sWidth: '9%' }, //status
+              { sWidth: '25%' }, //keterangan
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Siswa",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","nis","jkl","agama","kelas","status","keterangan" ]},
+              {"bSortable" : false, "aTargets" : [ "jkl","keterangan" ]} 
+            ],
+            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "buttons": [ {
+                "extend": 'excelHtml5',
+                "text": 'Export Excel',
+                "title": 'Document',
+                "exportOptions": {
+                    // columns: [ 0, 1, 2 ],
+                    columns: ':visible',
+                    // columns: ':not(.no-print)',
+                    // rows: ':visible',
+                    modifier: {
+                        page: 'current'
+                    },
+                },
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                }
+            } ],
+        });
+        var table = $('#tablecariabsensi').DataTable();
+        $('.dataTables_filter input').unbind().bind('keyup', function() {
+           var searchTerm = this.value.toLowerCase(),
+               regex = '\\b' + searchTerm + '\\b';
+           table.rows().search(regex, true, false).draw();
+        });
+    });
+</script>
+
+<!-- CARI ABSENSI BERDASAR TANGGAL -->
+<script type="text/javascript">
+    $(document).ready(function (){
+    var table = $('#tablecariabsensi').DataTable();
+
+    $("#tanggal").on("change",function(){
+        
+     var _val = $(this).val();
+     var i = $("#caritanggal").val();     
+     if(i != ''){  
+            table
+            .columns(0)
+            .search(_val, true, false)
+            .draw();
+      }else{  
+            table
+            .columns(0)
+            .search('', true, false)
+            .draw();
+      }
+    });
+
+    });
+</script>
+<!-- CARI ABSENSI BERDASAR TANGGAL -->
+
+<!-- TOMBOL RESET CARI TANGGAL -->
+<script type="text/javascript">
+    $("#reset").click(function(){
+    $('#datetimePicker').data('datepicker').setDate(null);
+});
+</script>
+<!-- TOMBOL RESET CARI TANGGAL -->
+@endsection

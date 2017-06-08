@@ -317,3 +317,224 @@
 </div>
 <!-- Modal Form Ubah Profil-->
 @endsection
+
+@section('scripts-tambahan')
+<script type="text/javascript">
+    $(function() {
+        $('#tablegurupiket').dataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "responsive": true,
+            // "bAutoWidth": true,
+            // pengaturan lebar kolom
+            "bAutoWidth": false,
+            "aoColumns" : [
+              { sWidth: '5%' }, //no
+              { sWidth: '7%' }, //hari
+              { sWidth: '20%' }, //nip
+              { sWidth: '25%' }, //nama
+              { sWidth: '15%' }, //jenis kelamin
+              { sWidth: '10%' }, //agama
+              { sWidth: '13%' }, //telepon
+              { sWidth: '5%' }, //action
+            ],
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Guru Piket",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },
+            // kolom dengan class "iii" tidak ada fitur sorting
+            "aoColumnDefs" : [ 
+              {"bSearchable" : false, "aTargets" : [ "no","hari","nip","jkl","agama","tlp" ]},
+              {"bSortable" : false, "aTargets" : [ "agama","action" ]} 
+            ],
+        });
+        var table = $('#tablegurupiket').DataTable();
+        $('.dataTables_filter input').unbind().bind('keyup', function() {
+           var searchTerm = this.value.toLowerCase(),
+               regex = '\\b' + searchTerm + '\\b';
+           table.rows().search(regex, true, false).draw();
+        });
+    });
+</script>
+
+<script type="text/javascript" src="js/piket.js"></script>
+
+<!-- VALIDASI FORM UBAH GURU PIKET -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('#ModalUbahPiket').modal('hide');
+  var validator = $('#UbahPiket').bootstrapValidator({
+    feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+    fields: {
+      nip: {
+        validators: {
+          notEmpty: {
+            message: "NIP harus diisi"
+          },
+          stringLength: {
+            max: 25,
+            message: "NIP maksimal 25 karakter"
+          },
+          remote: {
+            url: "{{ URL::to('/checkNIPUbah') }}",
+              data: function(validator) {
+                return {
+                    nis: validator.getFieldElements('nip').val(),
+                    id: validator.getFieldElements('id').val()
+                };
+            },
+            message: 'NIP sudah ada'
+          }
+        }
+      },
+
+      nama: {
+        validators: {
+          notEmpty: {
+            message: "Nama harus diisi"
+          },
+          stringLength: {
+            max: 50,
+            message: "Nama maksimal 50 karakter"
+          }
+        }
+      },
+
+      // username: {
+      //   validators: {
+      //     notEmpty: {
+      //       message: "Username harus diisi"
+      //     },
+      //     stringLength: {
+      //       min: 5,
+      //       message: "Username minimal 5 karakter"
+      //     },
+      //     regexp: {
+      //               regexp: /^[a-zA-Z0-9_\.]+$/,
+      //               message: 'Hanya boleh memakai huruf, nomor dan garis bawah'
+      //     },
+      //     remote: {
+      //       url: "{{ URL::to('/checkUsernameUbah') }}",
+      //         data: function(validator) {
+      //           return {
+      //               username: validator.getFieldElements('username').val(),
+      //               id: validator.getFieldElements('id').val()
+      //           };
+      //       },
+      //       message: 'Username sudah ada'
+      //     }
+      //   }
+      // },
+
+      // password: {
+      //   validators: {
+      //     stringLength: {
+      //       min: 5,
+      //       message: "Password minimal 5 karakter"
+      //     },
+      //     different: {
+      //       field: "username",
+      //       message: "Username dan password tidak boleh sama"
+      //     }
+      //   }
+      // },
+
+      // role: {
+      //   validators: {
+      //     notEmpty: {
+      //       message: "Role harus diisi"
+      //     }
+      //   }
+      // },
+
+      jadwal: {
+        validators: {
+          notEmpty: {
+            message: "Jadwal harus diisi"
+          }
+        }
+      },
+
+      jkl: {
+        enabled: false,
+        validators: {
+          notEmpty: {
+            message: "Jenis kelamin harus diisi"
+          }
+        }
+      },
+
+      agama: {
+        enabled: false,
+        validators: {
+          notEmpty: {
+            message: "Agama harus diisi"
+          }
+        }
+      },
+
+      tlp: {
+        enabled: false,
+        validators: {
+          regexp: {
+            regexp: /^[+0-9]*$/,
+            message: 'Masukkan hanya berupa angka'
+          }
+        }
+      }
+      
+    }
+  })
+  .on('keyup', '[name="jkl"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahPiket')
+             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahPiket').bootstrapValidator('validateField', 'jkl')
+      }
+  })
+  .on('keyup', '[name="agama"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahPiket')
+             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahPiket').bootstrapValidator('validateField', 'agama')
+      }
+  })
+  .on('keyup', '[name="tlp"]', function () {
+      var isEmpty = $(this).val() == '';
+      $('#UbahPiket')
+             .bootstrapValidator('enableFieldValidators', 'tlp', !isEmpty);
+      // Revalidate the field when user start typing in the Phone field
+      if ($(this).val().length == 1) {
+          $('#UbahPiket').bootstrapValidator('validateField', 'tlp')
+      }
+  })
+});
+</script>
+<!-- VALIDASI FORM UBAH GURU PIKET -->
+@endsection
