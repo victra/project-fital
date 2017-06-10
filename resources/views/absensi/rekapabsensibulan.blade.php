@@ -31,8 +31,21 @@
     <div class="box-header">
         <h3 class="box-title">Rekap Absensi Per Bulan</h3>            
             <div style="margin-right:-15px; margin-top:-20px" class="form-group">
+                <!-- Pilih Tahun -->
+                <!-- <form style="margin-right:20px; margin-top:0px" class="pull-right">
+                    <select class="form-control input-sm" name="tahun" onchange="location = '?search_kelas={{$content['input_kelas']}}&bulan={{$content['input_bulan']}}&tahun='+this.value;">
+                        <option value="">-Pilih Tahun-</option>
+                        @foreach($content['tahun'] as $key => $value)
+                        <?php $selected = $content['input_tahun']==$key ? 'selected' : '' ?>
+                            <option {{$selected}} value="{{$key}}">{{$value}}</option>
+                        @endforeach
+                    </select>
+                </form>
+                <label style="margin-right:10px; margin-top:5px" class="control-label pull-right">Tahun :</label> -->
+
                 <!-- Pilih Bulan -->
                 <form style="margin-right:20px; margin-top:0px" class="pull-right">
+                    <!-- <select id="bulanku" class="form-control input-sm" name="bulan" onchange="location = '?search_kelas={{$content['input_kelas']}}&bulan='+this.value+'&tahun={{$content['input_tahun']}}';"> -->
                     <select id="bulanku" class="form-control input-sm" name="bulan" onchange="location = '?search_kelas={{$content['input_kelas']}}&bulan='+this.value;">
                         <option value="">-Pilih Bulan-</option>
                         @foreach($content['bulan'] as $key => $value)
@@ -45,6 +58,7 @@
 
                 <!-- Pilih Kelas -->
                 <form style="margin-right:50px; margin-top:0px" class="pull-right">
+                    <!-- <select class="form-control input-sm" onchange="location = this.value+'&bulan={{$content['input_bulan']}}&tahun={{$content['input_tahun']}}';"> -->
                     <select class="form-control input-sm" onchange="location = this.value+'&bulan={{$content['input_bulan']}}';">
                         <option value="?search_kelas=">-Pilih Kelas-</option>
                             @foreach($content['kelas'] as $value)

@@ -121,7 +121,7 @@ class SiswaController extends Controller
             'Sabtu' => 'Sabtu',
         );
 
-        $kelas = Kelas::get();
+        $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
        
         $content['siswas'] = $siswa->get();
         $content['jenis_kelamin'] = $jenis_kelamin;

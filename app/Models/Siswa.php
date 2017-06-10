@@ -213,9 +213,19 @@ class Siswa extends \BaseModel
             $input_bulan = "";
         }
 
+    //     if (Input::has('tahun')) {
+    //         $input_tahun = Input::get('tahun');
+    //     } else {
+    //         $input_tahun = "";
+    //     }
+
+    //     if ($input_bulan && $input_tahun && Input::has('search_kelas')) {
+		 	// return $this->absensi()->whereYear('date', '=', $input_tahun)->whereMonth('date', '=', $input_bulan)->where('status','S')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
+    //     }
+
         if ($input_bulan && Input::has('search_kelas')) {
 		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','S')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
-        }
+        }        
 
         return null;
 	}
@@ -231,6 +241,16 @@ class Siswa extends \BaseModel
         } else {
             $input_bulan = "";
         }
+
+    //     if (Input::has('tahun')) {
+    //         $input_tahun = Input::get('tahun');
+    //     } else {
+    //         $input_tahun = "";
+    //     }
+
+    //     if ($input_bulan && $input_tahun && Input::has('search_kelas')) {
+		 	// return $this->absensi()->whereYear('date', '=', $input_tahun)->whereMonth('date', '=', $input_bulan)->where('status','I')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
+    //     }
 
         if ($input_bulan && Input::has('search_kelas')) {
 		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','I')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
@@ -251,6 +271,16 @@ class Siswa extends \BaseModel
             $input_bulan = "";
         }
 
+    //     if (Input::has('tahun')) {
+    //         $input_tahun = Input::get('tahun');
+    //     } else {
+    //         $input_tahun = "";
+    //     }
+
+    //     if ($input_bulan && $input_tahun && Input::has('search_kelas')) {
+		 	// return $this->absensi()->whereYear('date', '=', $input_tahun)->whereMonth('date', '=', $input_bulan)->where('status','A')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
+    //     }
+
         if ($input_bulan && Input::has('search_kelas')) {
 		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','A')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
         }
@@ -269,6 +299,16 @@ class Siswa extends \BaseModel
         } else {
             $input_bulan = "";
         }
+
+    //     if (Input::has('tahun')) {
+    //         $input_tahun = Input::get('tahun');
+    //     } else {
+    //         $input_tahun = "";
+    //     }
+
+    //     if ($input_bulan && $input_tahun && Input::has('search_kelas')) {
+		 	// return $this->absensi()->whereYear('date', '=', $input_tahun)->whereMonth('date', '=', $input_bulan)->where('status','!=','H')->whereBetween('date', [$awal_semester, $akhir_semester])->count();
+    //     }
 
         if ($input_bulan && Input::has('search_kelas')) {
 		 	return $this->absensi()->whereMonth('date', '=', $input_bulan)->where('status','!=','H')->whereBetween('date', [$awal_semester, $akhir_semester])->count();

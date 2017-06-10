@@ -70,7 +70,7 @@ class KelasController extends Controller
         $kelas = new Kelas;
         $kelas->nama_kelas = $request->nama_kelas;
         $kelas->jurusan = $request->jurusan;
-        $kelas->thn_ajaran = $request->thn_ajaran;
+        // $kelas->thn_ajaran = $request->thn_ajaran;
         $kelas->wali_kelas_id = $request->wali_kelas;
         $kelas->save();
         //return redirect('show');

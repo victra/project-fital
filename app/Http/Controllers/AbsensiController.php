@@ -59,7 +59,7 @@ class AbsensiController extends Controller
                 'Budha' => 'Budha',
             );
 
-            $kelas = Kelas::get();
+            $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
             $status = array(
                 '' => '-',
@@ -229,7 +229,7 @@ class AbsensiController extends Controller
                 \Session::flash('info_rekap','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
             }
 
-            $kelas = Kelas::get();
+            $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
             $content['absensis'] = $siswa;
             $content['kelas'] = $kelas;
@@ -272,7 +272,7 @@ class AbsensiController extends Controller
                 \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');                
             }
 
-            $kelas = Kelas::get();
+            $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
             $input_bulan = '';
             if (Input::has('bulan') && Input::get('bulan') != '') {
@@ -297,12 +297,30 @@ class AbsensiController extends Controller
                 '11' => 'November',
                 '12' => 'Desember',
             );
+
+            $input_tahun = '';
+            if(Input::has('tahun') && Input::get('tahun') != ''){
+                $input_tahun = Input::get('tahun');
+            } else if(Input::get('search_kelas') != '' && Input::get('bulan') != '' && Input::get('tahun') == ''){ 
+                $input_tahun = '';
+                // \Session::flash('info_rekap','Silahkan pilih tahun atau pilih bulan untuk rekap atau pilih kelas yang lain.');         
+            }
+
+            $tahun = array(
+                '2016' => '2016',
+                '2017' => '2017',
+                '2018' => '2018',
+                '2019' => '2019',
+                '2020' => '2020',
+            );
            
             $content['absensis'] = $siswa->get();
             $content['kelas'] = $kelas;
             $content['input_kelas'] = $input_kelas;
             $content['bulan'] = $bulan;
             $content['input_bulan'] = $input_bulan;
+            $content['tahun'] = $tahun;
+            $content['input_tahun'] = $input_tahun;
             $content['jadwal'] = $jadwal;
 
             return View::make('absensi.rekapabsensibulan')
@@ -339,7 +357,7 @@ class AbsensiController extends Controller
                 \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');                
             }
 
-            $kelas = Kelas::get();
+            $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
             $input_semester = '';
             if (Input::has('semester') && Input::get('semester') != '') {
