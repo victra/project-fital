@@ -3,7 +3,7 @@
     <title> Sistem Informasi Absensi Siswa - @yield('htmlheader_title', 'Your title here') </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
-    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" /> -->
     <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.css" rel="stylesheet" type="text/css" /> -->
@@ -21,7 +21,7 @@
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" /> -->
 
     <link href="{{ asset('/css/skins/skin-blue.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/css/skins/skin-green.css') }}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ asset('/css/skins/skin-green.css') }}" rel="stylesheet" type="text/css" /> -->
     <!-- iCheck -->
     <link href="{{ asset('/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
 

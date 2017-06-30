@@ -58,7 +58,7 @@
 
 <!-- Responsive Table -->
 <script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script> -->
 
 <!-- AUTOFOCUS INPUTAN DI FORM MODAL -->
 <script type="text/javascript">

@@ -91,7 +91,7 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea style="width:222px" name="absensi[{{$item->id}}][description]" class="form-control"></textarea>
+                                        <textarea style="width:222px" maxlength="100" name="absensi[{{$item->id}}][description]" class="form-control"></textarea>
                                     </div>
                                 </center>
                             </td>                    
@@ -109,7 +109,7 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea style="width:222px" name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi_non_permanent']['description']}}</textarea>
+                                        <textarea style="width:222px" maxlength="100" name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi_non_permanent']['description']}}</textarea>
                                     </div>
                                 </center>
                             </td>                   

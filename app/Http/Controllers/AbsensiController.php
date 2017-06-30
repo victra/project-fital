@@ -35,7 +35,7 @@ class AbsensiController extends Controller
             if(Input::has('search_kelas') && Input::get('search_kelas') != ''){
                 $siswas = Siswa::orderby('nis', 'ASC')->where('kelas_id', Input::get('search_kelas'))->get();
                 $input_kelas = Input::get('search_kelas');
-                \Session::flash('info_absensi','Isi kolom "Status" untuk siswa yang berhalangan hadir saja.');
+                \Session::flash('info_absensi','Isi kolom "Status" untuk siswa yang berhalangan hadir saja | Jika tidak ada siswa yang berhalangan langsung klik tombol "Simpan Absensi".');
             } else {
                 \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
             }

@@ -287,12 +287,12 @@
                 }
             } ],
         });
-        var table = $('#tablecariabsensi').DataTable();
-        $('.dataTables_filter input').unbind().bind('keyup', function() {
-           var searchTerm = this.value.toLowerCase(),
-               regex = '\\b' + searchTerm + '\\b';
-           table.rows().search(regex, true, false).draw();
-        });
+        // var table = $('#tablecariabsensi').DataTable();
+        // $('.dataTables_filter input').unbind().bind('keyup', function() {
+        //    var searchTerm = this.value.toLowerCase(),
+        //        regex = '\\b' + searchTerm + '\\b';
+        //    table.rows().search(regex, true, false).draw();
+        // });
     });
 </script>
 
