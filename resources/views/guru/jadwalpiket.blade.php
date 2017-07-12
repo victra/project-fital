@@ -336,12 +336,12 @@
             "aoColumns" : [
               { sWidth: '5%' }, //no
               { sWidth: '7%' }, //hari
-              { sWidth: '20%' }, //nip
+              { sWidth: '19%' }, //nip
               { sWidth: '25%' }, //nama
-              { sWidth: '15%' }, //jenis kelamin
-              { sWidth: '10%' }, //agama
+              { sWidth: '14%' }, //jenis kelamin
+              { sWidth: '9%' }, //agama
               { sWidth: '13%' }, //telepon
-              { sWidth: '5%' }, //action
+              { sWidth: '8%' }, //action
             ],
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
             "oLanguage": {

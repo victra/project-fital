@@ -463,11 +463,11 @@
               { sWidth: '20%' }, //nip
               { sWidth: '30%' }, //nama
               { sWidth: '0%' },
-              { sWidth: '15%' }, //role
+              { sWidth: '12%' }, //role
               { sWidth: '15%' }, //jenis kelamin
               { sWidth: '10%' }, //agama           
               { sWidth: '0%' },              
-              { sWidth: '5%' }, //action
+              { sWidth: '8%' }, //action
             ],
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
             "oLanguage": {
