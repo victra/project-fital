@@ -47,7 +47,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 4,
 				'nama_kelas' => XFARMASI,
-				'jurusan' => RPL,
+				'jurusan' => FMS,
 				'thn_ajaran' => '2016/2017',
 				'wali_kelas_id' => '4',
 				'created_at' => '2017-01-07 12:00:00',
@@ -97,7 +97,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 9,
 				'nama_kelas' => XIFARMASI,
-				'jurusan' => RPL,
+				'jurusan' => FMS,
 				'thn_ajaran' => '2016/2017',
 				'wali_kelas_id' => '9',
 				'created_at' => '2017-01-07 12:00:00',
@@ -147,7 +147,7 @@ class KelasTableSeeder extends Seeder {
 			array (
 				'id' => 14,
 				'nama_kelas' => XIIFARMASI,
-				'jurusan' => RPL,
+				'jurusan' => FMS,
 				'thn_ajaran' => '2016/2017',
 				'wali_kelas_id' => '14',
 				'created_at' => '2017-01-07 12:00:00',

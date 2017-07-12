@@ -274,89 +274,15 @@
 
 @section('scripts-tambahan')
 <script type="text/javascript">
-    $(function() {
-        $('#tablesemester').dataTable({
-            "bPaginate": false,
-            "bLengthChange": true,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": false,
-            "responsive": true,
-            // "bAutoWidth": true,
-            // pengaturan lebar kolom
-            "bAutoWidth": false,
-            "aoColumns" : [
-              { sWidth: '5%' }, //no
-              { sWidth: '40%' }, //semester
-              { sWidth: '25%' }, //tgl awal
-              { sWidth: '25%' }, //tgl akhir
-              { sWidth: '5%' }, //action
-            ],
-        });
-        var table = $('#tablesemester').DataTable();
-        $('.dataTables_filter input').unbind().bind('keyup', function() {
-           var searchTerm = this.value.toLowerCase(),
-               regex = '\\b' + searchTerm + '\\b';
-           table.rows().search(regex, true, false).draw();
-        });
-    });
+    $(function(){$("#tablesemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!1,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"40%"},{sWidth:"25%"},{sWidth:"25%"},{sWidth:"5%"}]});var t=$("#tablesemester").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";t.rows().search(e,!0,!1).draw()})});
 </script>
 
-<script type="text/javascript" src="js/semester.js"></script>
+<!-- <script type="text/javascript" src="js/semester.js"></script> -->
+<script type="text/javascript" src="js/modal.js"></script>
 
 <!-- VALIDASI FORM UBAH SEMESTER -->
 <script type="text/javascript">
-$(document).ready(function() {
-  $('#datetimePicker').datepicker();
-  $('#UbahSemester').bootstrapValidator({
-  // var validator = $('#UbahSemester').bootstrapValidator({
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      tgl_awal: {
-        trigger: 'change keyup',
-        validators: {
-          notEmpty: {
-            message: "Tanggal awal harus diisi"
-          },
-          date: {
-            format: 'YYYY-MM-DD',
-            max: 'tgl_akhir',
-            message: 'Tanggal awal tidak valid',            
-          },
-        }
-      },
-
-      tgl_akhir: {
-        trigger: 'change keyup',
-        validators: {
-          notEmpty: {
-            message: "Tanggal akhir harus diisi"
-          },
-          date: {
-            format: 'YYYY-MM-DD',
-            min: 'tgl_awal',
-            message: 'Tanggal akhir tidak valid',            
-          },
-        }
-      },
-    }
-  })
-  .on('success.field.bv', function(e, data) {
-      if (data.field === 'tgl_awal' && !data.bv.isValidField('tgl_akhir')) {
-          // We need to revalidate the end date
-          data.bv.revalidateField('tgl_akhir');
-      }
-
-      if (data.field === 'tgl_akhir' && !data.bv.isValidField('tgl_awal')) {
-          // We need to revalidate the start date
-          data.bv.revalidateField('tgl_awal');
-      }
-  });
-});
+$(document).ready(function(){$("#datetimePicker").datepicker(),$("#UbahSemester").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{tgl_awal:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal awal harus diisi"},date:{format:"YYYY-MM-DD",max:"tgl_akhir",message:"Tanggal awal tidak valid"}}},tgl_akhir:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal akhir harus diisi"},date:{format:"YYYY-MM-DD",min:"tgl_awal",message:"Tanggal akhir tidak valid"}}}}}).on("success.field.bv",function(a,i){"tgl_awal"!==i.field||i.bv.isValidField("tgl_akhir")||i.bv.revalidateField("tgl_akhir"),"tgl_akhir"!==i.field||i.bv.isValidField("tgl_awal")||i.bv.revalidateField("tgl_awal")})});
 </script>
 <!-- VALIDASI FORM UBAH SEMESTER -->
 @endsection

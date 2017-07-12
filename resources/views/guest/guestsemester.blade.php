@@ -258,30 +258,6 @@
 
 @section('scripts-tambahan')
 <script type="text/javascript">
-    $(function() {
-        $('#tableguestsemester').dataTable({
-            "bPaginate": false,
-            "bLengthChange": true,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": true,
-            "responsive": true,
-            // "bAutoWidth": true,
-            // pengaturan lebar kolom
-            "bAutoWidth": false,
-            "aoColumns" : [
-              { sWidth: '5%' }, //no
-              { sWidth: '45%' }, //semester
-              { sWidth: '25%' }, //tgl awal
-              { sWidth: '25%' }, //tgl akhir
-            ],
-        });
-        var table = $('#tableguestsemester').DataTable();
-        $('.dataTables_filter input').unbind().bind('keyup', function() {
-           var searchTerm = this.value.toLowerCase(),
-               regex = '\\b' + searchTerm + '\\b';
-           table.rows().search(regex, true, false).draw();
-        });
-    });
+    $(function(){$("#tableguestsemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"45%"},{sWidth:"25%"},{sWidth:"25%"}]});var e=$("#tableguestsemester").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var t="\\b"+this.value.toLowerCase()+"\\b";e.rows().search(t,!0,!1).draw()})});
 </script>
 @endsection

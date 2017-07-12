@@ -260,130 +260,14 @@
 
 @section('scripts-tambahan')
 <script type="text/javascript">
-    $(function() {
-        $('#tablerekap').dataTable({
-            "scrollY": 400,
-            "scrollCollapse": true,
-            "bPaginate": true,
-            "bLengthChange": true,
-            "bFilter": true,
-            "bSort": true,
-            "bInfo": true,
-            "responsive": true,
-            // "bAutoWidth": true,
-            // pengaturan lebar kolom
-            "bAutoWidth": false,
-            "aoColumns" : [
-              { sWidth: '8%' }, //nis
-              { sWidth: '30%' }, //nama
-              { sWidth: '15%' }, //jkl
-              { sWidth: '15%' }, //kelas
-              { sWidth: '8%' }, //sakit
-              { sWidth: '8%' }, //izin
-              { sWidth: '8%' }, //alpa
-              { sWidth: '8%' }, //total
-            ],            
-            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
-            "oLanguage": {
-                sEmptyTable: "Belum ada data dalam tabel ini",
-                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
-                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-                sInfoFiltered: "",
-                sInfoPostFix: "",
-                sDecimal: "",
-                sThousands: ",",
-                sLengthMenu: "Tampilkan _MENU_ data",
-                sLoadingRecords: "Loading...",
-                sProcessing: "Processing...",
-                sSearch: "Cari:",
-                sSearchPlaceholder: "Nama Siswa",
-                sUrl: "",
-                sZeroRecords: "Data tidak ditemukan"
-                },
-
-            // kolom dengan class "iii" tidak ada fitur sorting
-            "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "nis","jkl","kelas","sakit","izin","alpa","total" ]},
-              {"bSortable" : false, "aTargets" : [ "kelas" ]}
-            ],
-            // EXPORT EXCEL
-            // "sDom": "T<'row'><'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-            // // "sDom": "<'row'<'col-md-5'l><'col-md-2'T><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-            // "oTableTools": {
-            // "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
-            // "aButtons": [
-            //         {
-            //           "sExtends": "xls",
-            //           "sButtonText": "Save as Excel",
-            //           "sFileName": "Document.xls",
-            //           "oSelectorOpts": { page: "current" },
-            //           "mColumns": function (settings) {
-            //              var api = new $.fn.dataTable.Api( settings );
-            //              return api.columns(":not(.no-export)").indexes().toArray();
-            //           }
-            //         }
-            //     ]
-            // },
-
-            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-            "buttons": [ {
-                "extend": 'excelHtml5',
-                "text": 'Export Excel',
-                "title": 'Document',
-                "exportOptions": {
-                    // columns: [ 0, 1, 2 ],
-                    columns: ':visible',
-                    // columns: ':not(.no-print)',
-                    // rows: ':visible',
-                    modifier: {
-                        page: 'current'
-                    },
-                },
-                customize: function( xlsx ) {
-                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                    // $('row c[r^="C"]', sheet).attr( 's', '2' );
-
-                    // border
-                    // $('row c[r^="A"]', sheet).attr( 's', '25' );
-                    // $('row c[r^="B"]', sheet).attr( 's', '25' );
-                    // $('row c[r^="C"]', sheet).attr( 's', '25' );
-                    // $('row c[r^="D"]', sheet).attr( 's', '25' );
-                    // $('row c[r^="E"]', sheet).attr( 's', '25' );
-                    // $('row c[r^="F"]', sheet).attr( 's', '25' );
-                    // $('row c[r^="G"]', sheet).attr( 's', '25' );
-                    // $('row c[r^="H"]', sheet).attr( 's', '25' );
-                    // $('row c[r^="I"]', sheet).attr( 's', '25' );
-                }
-           } ],
-        });
-        var table = $('#tablerekap').DataTable();
-        $('.dataTables_filter input').unbind().bind('keyup', function() {
-           var searchTerm = this.value.toLowerCase(),
-               regex = '\\b' + searchTerm + '\\b';
-           table.rows().search(regex, true, false).draw();
-        });
-    });
+    $(function(){$("#tablerekap").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"8%"},{sWidth:"30%"},{sWidth:"15%"},{sWidth:"15%"},{sWidth:"8%"},{sWidth:"8%"},{sWidth:"8%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["nis","jkl","kelas","sakit","izin","alpa","total"]},{bSortable:!1,aTargets:["kelas"]}],dom:"<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",buttons:[{extend:"excelHtml5",text:"Export Excel",title:"Document",exportOptions:{columns:":visible",modifier:{page:"current"}},customize:function(a){a.xl.worksheets["sheet1.xml"]}}]});var a=$("#tablerekap").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
 </script>
+
+<script type="text/javascript" src="js/modal.js"></script>
 
 <!-- Hide/Show Datatable Rekap Absensi -->
 <script type="text/javascript">
-    $(document).ready(function (){
-        validate();
-        $('#kelasku').change(validate);
-    });
-
-    function validate(){
-        if ($('#kelasku').val()   !=   '') {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().show();
-             // var div = document.getElementById("infoMessage");
-            document.getElementById("infoMessage").style.display = "none";
-        }
-        else {
-            $('#tablerekap').parents('div.dataTables_wrapper').first().hide();
-             // var div = document.getElementById("infoMessage");
-            document.getElementById("infoRekap").style.display = "none";
-        }
-    }        
+    function validate(){""!=$("#kelasku").val()?($("#tablerekap").parents("div.dataTables_wrapper").first().show(),document.getElementById("infoMessage").style.display="none"):($("#tablerekap").parents("div.dataTables_wrapper").first().hide(),document.getElementById("infoRekap").style.display="none")}$(document).ready(function(){validate(),$("#kelasku").change(validate)});        
 </script>
 <!-- Hide/Show Datatable Rekap Absensi -->
 @endsection

@@ -299,60 +299,10 @@
 
 @section('scripts-tambahan')
 <script type="text/javascript">
-    $(function() {
-        $('#tableabsensi').dataTable({
-            "scrollY": 350,
-            "scrollCollapse": true,
-            "bPaginate": false,
-            "bLengthChange": false,
-            "bFilter": true,
-            "bSort": true,
-            "bInfo": true,
-            "responsive": true,
-            // "bAutoWidth": true,
-            // pengaturan lebar kolom
-            "bAutoWidth": false,
-            "aoColumns" : [
-              { sWidth: '5%' }, //no
-              { sWidth: '5%' }, //nis
-              { sWidth: '30%' }, //nama siswa
-              { sWidth: '15%' }, //jenis kelamin
-              { sWidth: '10%' }, //agama
-              { sWidth: '10%' }, //status
-              { sWidth: '25%' }, //keterangan
-            ],
-            "aLengthMenu": [[-1], ["Semua"]],
-            "oLanguage": {
-                sEmptyTable: "Belum ada data dalam tabel ini",
-                sInfo: "Jumlah Siswa : _TOTAL_ siswa",
-                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-                sInfoFiltered: "",
-                sInfoPostFix: "",
-                sDecimal: "",
-                sThousands: ",",
-                sLengthMenu: "Tampilkan _MENU_ data",
-                sLoadingRecords: "Loading...",
-                sProcessing: "Processing...",
-                sSearch: "Cari:",
-                sSearchPlaceholder: "Nama Siswa",
-                sUrl: "",
-                sZeroRecords: "Data tidak ditemukan"
-                },
-
-            // kolom dengan class "iii" tidak ada fitur sorting
-            "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","nis","jkl","agama","status","keterangan" ]},
-              {"bSortable" : false, "aTargets" : [ "agama","status","keterangan" ]} 
-            ],
-        });
-        var table = $('#tableabsensi').DataTable();
-        $('.dataTables_filter input').unbind().bind('keyup', function() {
-           var searchTerm = this.value.toLowerCase(),
-               regex = '\\b' + searchTerm + '\\b';
-           table.rows().search(regex, true, false).draw();
-        });
-    });
+    $(function(){$("#tableabsensi").dataTable({scrollY:350,scrollCollapse:!0,bPaginate:!1,bLengthChange:!1,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"5%"},{sWidth:"30%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"10%"},{sWidth:"25%"}],aLengthMenu:[[-1],["Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Jumlah Siswa : _TOTAL_ siswa",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","status","keterangan"]},{bSortable:!1,aTargets:["agama","status","keterangan"]}]});var a=$("#tableabsensi").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
 </script>
+
+<script type="text/javascript" src="js/modal.js"></script>
 
 <!-- Enable/Disable Tombol Absensi -->
 <script type="text/javascript">
@@ -369,25 +319,7 @@
 
 <!-- Hide/Show Tombol Absensi -->
 <script type="text/javascript">
-    $(document).ready(function (){
-        validate();
-        $('#kelasku').change(validate);
-    });
-
-    function validate(){
-        if ($('#kelasku').val()   >   0 ) {
-            $('#simpan, #hapus').show();
-            $('#tableabsensi').parents('div.dataTables_wrapper').first().show();
-             // var div = document.getElementById("infoMessage");
-            document.getElementById("infoMessage").style.display = "none";
-
-        }
-        else {
-            $('#simpan, #hapus').hide();
-            $('#tableabsensi').parents('div.dataTables_wrapper').first().hide();
-            document.getElementById("infoAbsensi").style.display = "none";
-        }
-    }        
+    function validate(){$("#kelasku").val()>0?($("#simpan, #hapus").show(),$("#tableabsensi").parents("div.dataTables_wrapper").first().show(),document.getElementById("infoMessage").style.display="none"):($("#simpan, #hapus").hide(),$("#tableabsensi").parents("div.dataTables_wrapper").first().hide(),document.getElementById("infoAbsensi").style.display="none")}$(document).ready(function(){validate(),$("#kelasku").change(validate)});      
 </script>
 <!-- Hide/Show Tombol Absensi -->
 @endsection

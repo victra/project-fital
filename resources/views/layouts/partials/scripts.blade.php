@@ -9,45 +9,26 @@
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.2/js/app.min.js" type="text/javascript"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" type="text/javascript"></script>
 
 <!-- Datetimepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#datetimePicker, #datetimePicker1').datepicker({
-          format: "yyyy-mm-dd",
-          autoclose: true
-        });
-    });
 
-    function masuk()
-    {
-      console.log('asdasd');
-    }
+<script type="text/javascript">
+    function masuk(){console.log("asdasd")}$(document).ready(function(){$("#datetimePicker, #datetimePicker1").datepicker({format:"yyyy-mm-dd",autoclose:!0})});
 </script>
 
 <script type="text/javascript">
-    $(function() {
-    $('#datetimePicker').datepicker({
-          format: "yyyy-mm-dd",
-          autoclose: true
-        });
-    // $('#tanggal').datepicker();
-    $('#tanggal').on("change",function(){
-        var selected = $(this).val();
-        document.getElementById("caritanggal").value = selected;
-    });
-});
+    $(function(){$("#datetimePicker").datepicker({format:"yyyy-mm-dd",autoclose:!0}),$("#tanggal").on("change",function(){var a=$(this).val();document.getElementById("caritanggal").value=a})});
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
       fixed layout. -->
 
-<script type="text/javascript" src="js/profil.js"></script>
+<!-- <script type="text/javascript" src="js/profil.js"></script> -->
 
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -132,236 +113,25 @@ $('#confirm-delete').on('show.bs.modal', function(e) {
 
 <!-- VALIDASI FORM UBAH PASSWORD-->
 <script type="text/javascript">
-$(document).ready(function() {
-  var validator = $('#UbahPassword').bootstrapValidator({
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      current_password: {
-        validators: {
-          notEmpty: {
-            message: "Password lama harus diisi"
-          },
-          remote: {
-            url: "{{ URL::to('/checkPassword') }}",
-              data: function(validator) {
-                return {
-                    current_password: validator.getFieldElements('current_password').val()
-                };
-            },
-            message: 'Password yang anda masukkan salah'
-          }
-        }
-      },
-
-      new_password: {
-        validators: {
-          notEmpty: {
-            message: "Password baru harus diisi"
-          },          
-          stringLength: {
-            min: 6,
-            max: 50,
-            message: "Password baru antara 6-50 karakter"
-          },
-        }
-      },
-
-      password_confirmation: {
-        validators: {
-          notEmpty: {
-            message: "Password konfirmasi harus diisi"
-          },
-          identical: {
-            field: "new_password",
-            message: "Password konfirmasi tidak sama dengan password baru"
-          }
-        }
-      }
-    }
-  });
-});
+$(document).ready(function(){$("#UbahPassword").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{current_password:{validators:{notEmpty:{message:"Password lama harus diisi"},remote:{url:"{{ URL::to('/checkPassword') }}",data:function(a){return{current_password:a.getFieldElements("current_password").val()}},message:"Password yang anda masukkan salah"}}},new_password:{validators:{notEmpty:{message:"Password baru harus diisi"},stringLength:{min:6,max:50,message:"Password baru antara 6-50 karakter"}}},password_confirmation:{validators:{notEmpty:{message:"Password konfirmasi harus diisi"},identical:{field:"new_password",message:"Password konfirmasi tidak sama dengan password baru"}}}}})});
 </script>
 <!-- VALIDASI FORM UBAH PASSWORD-->
 
 <!-- PENGATURAN PESAN PERINGATAN -->
 <script type="text/javascript">
-$(document).ready(function(){
-                    setTimeout(function() {
-            $('#successMessage, #errorsMessage').fadeOut(1500);
-            }, 3000); //hilang setelah 3 detik
-        });
+$(document).ready(function(){setTimeout(function(){$("#successMessage, #errorsMessage").fadeOut(1500)},3e3)});
 </script>
 <!-- PENGATURAN PESAN PERINGATAN -->
 
 <!-- VALIDASI FORM LOGIN -->
 <script type="text/javascript">
-$(document).ready(function() {
-  var validator = $('#formLogin').bootstrapValidator({
-    fields: {
-      email: {
-        validators: {
-          notEmpty: {
-            message: "Masukkan username terlebih dahulu"
-          }
-        }
-      },
-
-      password: {
-        validators: {
-          notEmpty: {
-            message: "Masukkan password terlebih dahulu"
-          }
-        }
-      }
-      
-    }
-  });
-});
+$(document).ready(function(){$("#formLogin").bootstrapValidator({fields:{email:{validators:{notEmpty:{message:"Masukkan username terlebih dahulu"}}},password:{validators:{notEmpty:{message:"Masukkan password terlebih dahulu"}}}}})});
 </script>
 <!-- VALIDASI FORM LOGIN -->
 
 <!-- VALIDASI FORM UBAH PROFIL -->
 <script type="text/javascript">
-$(document).ready(function() {
-$('#ModalUbahProfil').modal('hide');
-  var validator = $('#UbahProfil').bootstrapValidator({
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      nip: {
-        validators: {
-          notEmpty: {
-            message: "NIP harus diisi"
-          },
-          stringLength: {
-            max: 25,
-            message: "NIP maksimal 25 karakter"
-          },
-          remote: {
-            url: "{{ URL::to('/checkNIPUbah') }}",
-              data: function(validator) {
-                return {
-                    nis: validator.getFieldElements('nip').val(),
-                    id: validator.getFieldElements('id').val()
-                };
-            },
-            message: 'NIP sudah ada'
-          }
-        }
-      },
-
-      nama: {
-        validators: {
-          notEmpty: {
-            message: "Nama harus diisi"
-          },
-          stringLength: {
-            min: 3,
-            max: 50,
-            message: "Nama antara 3-50 karakter"
-          }
-        }
-      },
-
-      username: {
-        validators: {
-          notEmpty: {
-            message: "Username harus diisi"
-          },
-          stringLength: {
-            min: 5,
-            message: "Username minimal 5 karakter"
-          },
-          regexp: {
-                    regexp: /^[a-zA-Z0-9_\.]+$/,
-                    message: 'Hanya boleh memakai huruf, nomor dan garis bawah'
-          },
-          remote: {
-            url: "{{ URL::to('/checkUsernameUbah') }}",
-              data: function(validator) {
-                return {
-                    username: validator.getFieldElements('username').val(),
-                    id: validator.getFieldElements('id').val()
-                };
-            },
-            message: 'Username sudah ada'
-          }
-        }
-      },
-
-      jadwal: {
-        validators: {
-          notEmpty: {
-            message: "Jadwal piket harus diisi"
-          }
-        }
-      },
-
-      jkl: {
-        enabled: false,
-        validators: {
-          notEmpty: {
-            message: "Jenis kelamin harus diisi"
-          }
-        }
-      },
-
-      agama: {
-        enabled: false,
-        validators: {
-          notEmpty: {
-            message: "Agama harus diisi"
-          }
-        }
-      },
-
-      tlp: {
-        enabled: false,
-        validators: {
-          regexp: {
-            regexp: /^[+0-9]*$/,
-            message: 'Masukkan hanya berupa angka'
-          }
-        }
-      }
-      
-    }
-  })
-  .on('keyup', '[name="jkl"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
-             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'jkl')
-      }
-  })
-  .on('keyup', '[name="agama"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
-             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'agama')
-      }
-  })
-  .on('keyup', '[name="tlp"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahProfil')
-             .bootstrapValidator('enableFieldValidators', 'tlp', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahProfil').bootstrapValidator('validateField', 'tlp')
-      }
-  })
-});
+$(document).ready(function(){$("#ModalUbahProfil").modal("hide");$("#UbahProfil").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{nip:{validators:{notEmpty:{message:"NIP harus diisi"},stringLength:{max:25,message:"NIP maksimal 25 karakter"},remote:{url:"{{ URL::to('/checkNIPUbah') }}",data:function(a){return{nis:a.getFieldElements("nip").val(),id:a.getFieldElements("id").val()}},message:"NIP sudah ada"}}},nama:{validators:{notEmpty:{message:"Nama harus diisi"},stringLength:{min:3,max:50,message:"Nama antara 3-50 karakter"}}},username:{validators:{notEmpty:{message:"Username harus diisi"},stringLength:{min:5,message:"Username minimal 5 karakter"},regexp:{regexp:/^[a-zA-Z0-9_\.]+$/,message:"Hanya boleh memakai huruf, nomor dan garis bawah"},remote:{url:"{{ URL::to('/checkUsernameUbah') }}",data:function(a){return{username:a.getFieldElements("username").val(),id:a.getFieldElements("id").val()}},message:"Username sudah ada"}}},jadwal:{validators:{notEmpty:{message:"Jadwal piket harus diisi"}}},jkl:{enabled:!1,validators:{notEmpty:{message:"Jenis kelamin harus diisi"}}},agama:{enabled:!1,validators:{notEmpty:{message:"Agama harus diisi"}}},tlp:{enabled:!1,validators:{regexp:{regexp:/^[+0-9]*$/,message:"Masukkan hanya berupa angka"}}}}}).on("keyup",'[name="jkl"]',function(){var a=""==$(this).val();$("#UbahProfil").bootstrapValidator("enableFieldValidators","jkl",!a),1==$(this).val().length&&$("#UbahProfil").bootstrapValidator("validateField","jkl")}).on("keyup",'[name="agama"]',function(){var a=""==$(this).val();$("#UbahProfil").bootstrapValidator("enableFieldValidators","agama",!a),1==$(this).val().length&&$("#UbahProfil").bootstrapValidator("validateField","agama")}).on("keyup",'[name="tlp"]',function(){var a=""==$(this).val();$("#UbahProfil").bootstrapValidator("enableFieldValidators","tlp",!a),1==$(this).val().length&&$("#UbahProfil").bootstrapValidator("validateField","tlp")})});
 </script>
 <!-- VALIDASI FORM UBAH PROFIL -->
 

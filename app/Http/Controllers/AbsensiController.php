@@ -418,7 +418,7 @@ class AbsensiController extends Controller
         // }
         // dd($absensi->toArray());
 
-        $absensi = Absensi::orderby('created_at', 'DESC');
+        $absensi = Absensi::orderby('created_at', 'ASC');
 
         $content['absensis'] = $absensi->where('status','!=', 'H')->get();
         $content['jadwal'] = $jadwal;

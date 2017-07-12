@@ -407,67 +407,67 @@
                     <label class="col-sm-4">NIS</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="nis">: </label>
+                            <label style="font-weight: normal;" for="nis">: </label>
                         </div>  
                     </div>
                     <label class="col-sm-4">Nama</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="nama">: </label>
+                            <label style="font-weight: normal;" for="nama">: </label>
                         </div>  
                     </div>
                     <label class="col-sm-4">Jenis Kelamin</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="jkl"></label>
+                            <label style="font-weight: normal;" for="jkl"></label>
                         </div>
                     </div>
                     <label class="col-sm-4">Agama</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="agama"></label>
+                            <label style="font-weight: normal;" for="agama"></label>
                         </div>
                     </div>
                     <label class="col-sm-4">Kelas</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="kelas"></label>
+                            <label style="font-weight: normal;" for="kelas"></label>
                         </div>
                     </div>
                     <label class="col-sm-4">Telepon Siswa</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="tlp_siswa"></label>
+                            <label style="font-weight: normal;" for="tlp_siswa"></label>
                         </div>  
                     </div> 
                     <label class="col-sm-4">Alamat Siswa</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="alamat_siswa"></label>
+                            <label style="font-weight: normal;" for="alamat_siswa"></label>
                         </div>  
                     </div>
                     <label class="col-sm-4">Nama Ayah</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="nama_ayah"></label>
+                            <label style="font-weight: normal;" for="nama_ayah"></label>
                         </div>  
                     </div>
                     <label class="col-sm-4">Nama Ibu</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="nama_ibu"></label>
+                            <label style="font-weight: normal;" for="nama_ibu"></label>
                         </div>  
                     </div>
                     <label class="col-sm-4">Telepon Orang Tua</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="tlp_ortu"></label>
+                            <label style="font-weight: normal;" for="tlp_ortu"></label>
                         </div>  
                     </div>
                     <label class="col-sm-4">Alamat Orang Tua</label>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <label for="alamat_ortu"></label>
+                            <label style="font-weight: normal;" for="alamat_ortu"></label>
                         </div>  
                     </div>                   
                 </div>
@@ -627,550 +627,22 @@
 
 @section('scripts-tambahan')
 <script type="text/javascript">
-    $(function() {
-        // $("#example1").dataTable();
-        $('#tablesiswa').dataTable({
-            "scrollY": 400,
-            "scrollCollapse": true,
-            "bPaginate": true,
-            "bLengthChange": true,
-            "bFilter": true,
-            "bSort": true,
-            "bInfo": true,
-            "responsive": true,
-            // "bAutoWidth": true,
-            // pengaturan lebar kolom
-            "bAutoWidth": false,
-            "aoColumns" : [
-              { sWidth: '5%' }, //no
-              { sWidth: '10%' }, //nis
-              { sWidth: '32%' }, //nama
-              { sWidth: '15%' }, //jenis kelamin
-              { sWidth: '10%' }, //agama
-              { sWidth: '15%' }, //kelas
-              { sWidth: '13%' }, //action
-              // { sWidth: '0%' },
-              // { sWidth: '0%' },
-              // { sWidth: '0%' },
-              // { sWidth: '0%' },
-              // { sWidth: '0%' },
-              // { sWidth: '0%' },
-            ],
-            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
-            "oLanguage": {
-                sEmptyTable: "Belum ada data dalam tabel ini",
-                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
-                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-                sInfoFiltered: "",
-                sInfoPostFix: "",
-                sDecimal: "",
-                sThousands: ",",
-                sLengthMenu: "Tampilkan _MENU_ data",
-                sLoadingRecords: "Loading...",
-                sProcessing: "Processing...",
-                sSearch: "Cari:",
-                sSearchPlaceholder: "Nama Siswa",
-                sUrl: "",
-                sZeroRecords: "Data tidak ditemukan"
-                },
-
-            // kolom dengan class "iii" tidak ada fitur sorting
-            "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","nis","agama","jkl","kelas","none" ]},
-              {"bSortable" : false, "aTargets" : [ "no-expor" ]} 
-            ],
-            // "sDom": 'T<"clear">lfrtip',
-            // "oTableTools": {
-            // "sSwfPath": "{{ asset('/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}",
-            // "aButtons": [
-            //         {
-            //           "sExtends": "xls",
-            //           "sButtonText": "Save as Excel",
-            //           "sFileName": "file.xls",
-            //           "mColumns": function (settings) {
-            //              var api = new $.fn.dataTable.Api( settings );
-            //              return api.columns(":not(.no-export)").indexes().toArray();
-            //           }
-            //         }
-            //     ]
-            // }
-
-        });
-        var table = $('#tablesiswa').DataTable();
-        $('.dataTables_filter input').unbind().bind('keyup', function() {
-           var searchTerm = this.value.toLowerCase(),
-               regex = '\\b' + searchTerm + '\\b';
-           table.rows().search(regex, true, false).draw();
-        });
-    });
+    $(function(){$("#tablesiswa").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"10%"},{sWidth:"32%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"15%"},{sWidth:"13%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","agama","jkl","kelas","none"]},{bSortable:!1,aTargets:["no-expor"]}]});var a=$("#tablesiswa").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
 </script>
 
-<script type="text/javascript" src="js/siswa.js"></script>
-<script type="text/javascript" src="js/infosiswa.js"></script>
+<!-- <script type="text/javascript" src="js/siswa.js"></script>
+<script type="text/javascript" src="js/infosiswa.js"></script> -->
+<script type="text/javascript" src="js/modal.js"></script>
 
 <!-- VALIDASI FORM TAMBAH SISWA -->
 <script type="text/javascript">
-$(document).ready(function() {
-$('#ModalTambahSiswa').modal('hide');
-  var validator = $('#TambahSiswa').bootstrapValidator({
-    excluded: [':disabled'],
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      nis: {
-        validators: {
-          notEmpty: {
-            message: "NIS harus diisi"
-          },          
-          stringLength: {
-            max: 10,
-            message: "NIS maksimal 10 karakter"
-          },
-          remote: {
-            url: "{{ URL::to('/checkNIS') }}",
-              data: function(validator) {
-                return {
-                    nis: validator.getFieldElements('nis').val()
-                };
-            },
-            message: 'NIS sudah ada'
-          }
-        }
-      },
-
-      nama: {
-        validators: {
-          notEmpty: {
-            message: "Nama harus diisi"
-          },          
-          stringLength: {
-            max: 50,
-            message: "Nama maksimal 50 karakter"
-          },       
-        }
-      },
-
-      jkl: {
-        enabled: false,
-        validators: {
-          notEmpty: {
-            message: "Jenis kelamin harus diisi"
-          }
-        }
-      },
-
-      agama: {
-        enabled: false,
-        validators: {
-          notEmpty: {
-            message: "Agama harus diisi"
-          }
-        }
-      },
-
-      kelas: {
-        validators: {
-          notEmpty: {
-            message: "Kelas harus diisi"
-          }
-        }
-      },
-
-      tlp_siswa: {
-        enabled: false,
-        validators: {
-          // notEmpty: {
-          //   message: "Telepon is required"
-          // },
-          regexp: {
-            regexp: /^[+0-9]*$/,
-            message: 'Masukkan hanya berupa angka'
-          }
-        }
-      },
-
-      alamat_siswa: {
-        enabled: false,
-        validators: {
-          // notEmpty: {
-          //   message: "Nama harus diisi"
-          // },          
-          stringLength: {
-            max: 70,
-            message: "Alamat maksimal 70 karakter"
-          },       
-        }
-      },
-
-      nama_ayah: {
-        validators: {
-          notEmpty: {
-            message: "Nama Ayah harus diisi"
-          },          
-          stringLength: {
-            min: 3,
-            max: 50,
-            message: "Nama Ayah antara 3-50 karakter"
-          },       
-        }
-      },
-
-      nama_ibu: {
-        validators: {
-          notEmpty: {
-            message: "Nama Ibu harus diisi"
-          },          
-          stringLength: {
-            min: 3,
-            max: 50,
-            message: "Nama Ibu antara 3-50 karakter"
-          },       
-        }
-      },
-
-      tlp_ortu: {
-        enabled: false,
-        validators: {
-          // notEmpty: {
-          //   message: "Telepon is required"
-          // },
-          regexp: {
-            regexp: /^[+0-9]*$/,
-            message: 'Masukkan hanya berupa angka'
-          }
-        }
-      },
-
-      alamat_ortu: {
-        enabled: false,
-        validators: {
-          // notEmpty: {
-          //   message: "Nama harus diisi"
-          // },          
-          stringLength: {
-            max: 70,
-            message: "Alamat maksimal 70 karakter"
-          },       
-        }
-      },
-
-
-    }
-  })
-  // tambah feedback icon pada tab modal
-  .on('status.field.bv', function(e, data) {
-            var $form     = $(e.target),
-                validator = data.bv,
-                $tabPane  = data.element.parents('.tab-pane'),
-                tabId     = $tabPane.attr('id');
-            
-            if (tabId) {
-                var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
-
-                // Add custom class to tab containing the field
-                if (data.status == validator.STATUS_INVALID) {
-                    $icon.removeClass('fa-check').addClass('fa-times');
-                } else if (data.status == validator.STATUS_VALID) {
-                    var isValidTab = validator.isValidContainer($tabPane);
-                    $icon.removeClass('fa-check fa-times')
-                         .addClass(isValidTab ? 'fa-check' : 'fa-times');
-                } else {
-                    $icon.removeClass('fa-check fa-times');                  
-                }
-            }
-        })
-
-  // hilangkan feedback icon pada field yang kosong
-  .on('keyup', '[name="jkl"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahSiswa').bootstrapValidator('validateField', 'jkl')
-      }
-  })
-  .on('keyup', '[name="agama"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahSiswa').bootstrapValidator('validateField', 'agama')
-      }
-  })
-  .on('keyup', '[name="tlp_siswa"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#TambahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'tlp_siswa', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#TambahSiswa').bootstrapValidator('validateField', 'tlp_siswa')
-      }
-  })
-  .on('keyup', '[name="alamat_siswa"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#TambahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'alamat_siswa', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#TambahSiswa').bootstrapValidator('validateField', 'alamat_siswa')
-      }
-  })
-  .on('keyup', '[name="tlp_ortu"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#TambahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'tlp_ortu', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#TambahSiswa').bootstrapValidator('validateField', 'tlp_ortu')
-      }
-  })
-  .on('keyup', '[name="alamat_ortu"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#TambahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'alamat_ortu', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#TambahSiswa').bootstrapValidator('validateField', 'alamat_ortu')
-      }
-  });
-});
+$(document).ready(function(){$("#ModalTambahSiswa").modal("hide");$("#TambahSiswa").bootstrapValidator({excluded:[":disabled"],feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{nis:{validators:{notEmpty:{message:"NIS harus diisi"},stringLength:{max:10,message:"NIS maksimal 10 karakter"},remote:{url:"{{ URL::to('/checkNIS') }}",data:function(a){return{nis:a.getFieldElements("nis").val()}},message:"NIS sudah ada"}}},nama:{validators:{notEmpty:{message:"Nama harus diisi"},stringLength:{max:50,message:"Nama maksimal 50 karakter"}}},jkl:{enabled:!1,validators:{notEmpty:{message:"Jenis kelamin harus diisi"}}},agama:{enabled:!1,validators:{notEmpty:{message:"Agama harus diisi"}}},kelas:{validators:{notEmpty:{message:"Kelas harus diisi"}}},tlp_siswa:{enabled:!1,validators:{regexp:{regexp:/^[+0-9]*$/,message:"Masukkan hanya berupa angka"}}},alamat_siswa:{enabled:!1,validators:{stringLength:{max:70,message:"Alamat maksimal 70 karakter"}}},nama_ayah:{validators:{notEmpty:{message:"Nama Ayah harus diisi"},stringLength:{min:3,max:50,message:"Nama Ayah antara 3-50 karakter"}}},nama_ibu:{validators:{notEmpty:{message:"Nama Ibu harus diisi"},stringLength:{min:3,max:50,message:"Nama Ibu antara 3-50 karakter"}}},tlp_ortu:{enabled:!1,validators:{regexp:{regexp:/^[+0-9]*$/,message:"Masukkan hanya berupa angka"}}},alamat_ortu:{enabled:!1,validators:{stringLength:{max:70,message:"Alamat maksimal 70 karakter"}}}}}).on("status.field.bv",function(a,t){$(a.target);var e=t.bv,s=t.element.parents(".tab-pane"),i=s.attr("id");if(i){var l=$('a[href="#'+i+'"][data-toggle="tab"]').parent().find("i");if(t.status==e.STATUS_INVALID)l.removeClass("fa-check").addClass("fa-times");else if(t.status==e.STATUS_VALID){var r=e.isValidContainer(s);l.removeClass("fa-check fa-times").addClass(r?"fa-check":"fa-times")}else l.removeClass("fa-check fa-times")}}).on("keyup",'[name="jkl"]',function(){var a=""==$(this).val();$("#UbahSiswa").bootstrapValidator("enableFieldValidators","jkl",!a),1==$(this).val().length&&$("#UbahSiswa").bootstrapValidator("validateField","jkl")}).on("keyup",'[name="agama"]',function(){var a=""==$(this).val();$("#UbahSiswa").bootstrapValidator("enableFieldValidators","agama",!a),1==$(this).val().length&&$("#UbahSiswa").bootstrapValidator("validateField","agama")}).on("keyup",'[name="tlp_siswa"]',function(){var a=""==$(this).val();$("#TambahSiswa").bootstrapValidator("enableFieldValidators","tlp_siswa",!a),1==$(this).val().length&&$("#TambahSiswa").bootstrapValidator("validateField","tlp_siswa")}).on("keyup",'[name="alamat_siswa"]',function(){var a=""==$(this).val();$("#TambahSiswa").bootstrapValidator("enableFieldValidators","alamat_siswa",!a),1==$(this).val().length&&$("#TambahSiswa").bootstrapValidator("validateField","alamat_siswa")}).on("keyup",'[name="tlp_ortu"]',function(){var a=""==$(this).val();$("#TambahSiswa").bootstrapValidator("enableFieldValidators","tlp_ortu",!a),1==$(this).val().length&&$("#TambahSiswa").bootstrapValidator("validateField","tlp_ortu")}).on("keyup",'[name="alamat_ortu"]',function(){var a=""==$(this).val();$("#TambahSiswa").bootstrapValidator("enableFieldValidators","alamat_ortu",!a),1==$(this).val().length&&$("#TambahSiswa").bootstrapValidator("validateField","alamat_ortu")})});
 </script>
 <!-- VALIDASI FORM TAMBAH SISWA -->
 
 <!-- VALIDASI FORM UBAH SISWA -->
 <script type="text/javascript">
-$(document).ready(function() {
-$('#ModalUbahSiswa').modal('hide');
-  var validator = $('#UbahSiswa').bootstrapValidator({
-    excluded: [':disabled'],
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      nis: {
-        validators: {
-          notEmpty: {
-            message: "NIS harus diisi"
-          },          
-          stringLength: {
-            max: 10,
-            message: "NIS maksimal 10 karakter"
-          },
-          remote: {
-            url: "{{ URL::to('/checkNISUbah') }}",
-              data: function(validator) {
-                return {
-                    nis: validator.getFieldElements('nis').val(),
-                    id: validator.getFieldElements('id').val()
-                };
-            },
-            message: 'NIS sudah ada'
-          }
-        }
-      },
-
-      nama: {
-        validators: {
-          notEmpty: {
-            message: "Nama harus diisi"
-          },          
-          stringLength: {
-            max: 50,
-            message: "Nama maksimal 50 karakter"
-          },       
-        }
-      },
-
-      jkl: {
-        enabled: false,
-        validators: {
-          notEmpty: {
-            message: "Jenis kelamin harus diisi"
-          }
-        }
-      },
-
-      agama: {
-        enabled: false,
-        validators: {
-          notEmpty: {
-            message: "Agama hraus diisi"
-          }
-        }
-      },
-
-      kelas: {
-        validators: {
-          notEmpty: {
-            message: "Kelas harus diisi"
-          }
-        }
-      },
-
-      tlp_siswa: {
-        enabled: false,
-        validators: {
-          // notEmpty: {
-          //   message: "Telepon is required"
-          // },
-          regexp: {
-            regexp: /^[+0-9]*$/,
-            message: 'Masukkan hanya berupa angka'
-          }
-        }
-      },
-
-      alamat_siswa: {
-        enabled: false,
-        validators: {
-          // notEmpty: {
-          //   message: "Nama harus diisi"
-          // },          
-          stringLength: {
-            max: 70,
-            message: "Alamat maksimal 70 karakter"
-          },       
-        }
-      },
-
-      nama_ayah: {
-        validators: {
-          notEmpty: {
-            message: "Nama Ayah harus diisi"
-          },          
-          stringLength: {
-            max: 50,
-            message: "Nama Ayah maksimal 50 karakter"
-          },       
-        }
-      },
-
-      nama_ibu: {
-        validators: {
-          notEmpty: {
-            message: "Nama Ibu harus diisi"
-          },          
-          stringLength: {
-            max: 50,
-            message: "Nama Ibu maksimal 50 karakter"
-          },       
-        }
-      },
-
-      tlp_ortu: {
-        enabled: false,
-        validators: {
-          // notEmpty: {
-          //   message: "Telepon is required"
-          // },
-          regexp: {
-            regexp: /^[+0-9]*$/,
-            message: 'Masukkan hanya berupa angka'
-          }
-        }
-      },
-
-      alamat_ortu: {
-        enabled: false,
-        validators: {
-          // notEmpty: {
-          //   message: "Nama harus diisi"
-          // },          
-          stringLength: {
-            max: 70,
-            message: "Alamat maksimal 70 karakter"
-          },       
-        }
-      },
-
-
-    }
-  })
-  // tambah feedback icon pada tab modal
-  .on('status.field.bv', function(e, data) {
-            var $form     = $(e.target),
-                validator = data.bv,
-                $tabPane  = data.element.parents('.tab-pane'),
-                tabId     = $tabPane.attr('id');
-            
-            if (tabId) {
-                var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
-
-                // Add custom class to tab containing the field
-                if (data.status == validator.STATUS_INVALID) {
-                    $icon.removeClass('fa-check').addClass('fa-times');
-                } else if (data.status == validator.STATUS_VALID) {
-                    var isValidTab = validator.isValidContainer($tabPane);
-                    $icon.removeClass('fa-check fa-times')
-                         .addClass(isValidTab ? 'fa-check' : 'fa-times');
-                } else {
-                    $icon.removeClass('fa-check fa-times');                  
-                }
-            }
-        })
-
-  .on('keyup', '[name="jkl"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'jkl', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahSiswa').bootstrapValidator('validateField', 'jkl')
-      }
-  })
-  .on('keyup', '[name="agama"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'agama', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahSiswa').bootstrapValidator('validateField', 'agama')
-      }
-  })
-  .on('keyup', '[name="tlp_siswa"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'tlp_siswa', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahSiswa').bootstrapValidator('validateField', 'tlp_siswa')
-      }
-  })
-  .on('keyup', '[name="alamat_siswa"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'alamat_siswa', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahSiswa').bootstrapValidator('validateField', 'alamat_siswa')
-      }
-  })
-  .on('keyup', '[name="tlp_ortu"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'tlp_ortu', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahSiswa').bootstrapValidator('validateField', 'tlp_ortu')
-      }
-  })
-  .on('keyup', '[name="alamat_ortu"]', function () {
-      var isEmpty = $(this).val() == '';
-      $('#UbahSiswa')
-             .bootstrapValidator('enableFieldValidators', 'alamat_ortu', !isEmpty);
-      // Revalidate the field when user start typing in the Phone field
-      if ($(this).val().length == 1) {
-          $('#UbahSiswa').bootstrapValidator('validateField', 'alamat_ortu')
-      }
-  });
-});
+$(document).ready(function(){$("#ModalUbahSiswa").modal("hide");$("#UbahSiswa").bootstrapValidator({excluded:[":disabled"],feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{nis:{validators:{notEmpty:{message:"NIS harus diisi"},stringLength:{max:10,message:"NIS maksimal 10 karakter"},remote:{url:"{{ URL::to('/checkNISUbah') }}",data:function(a){return{nis:a.getFieldElements("nis").val(),id:a.getFieldElements("id").val()}},message:"NIS sudah ada"}}},nama:{validators:{notEmpty:{message:"Nama harus diisi"},stringLength:{max:50,message:"Nama maksimal 50 karakter"}}},jkl:{enabled:!1,validators:{notEmpty:{message:"Jenis kelamin harus diisi"}}},agama:{enabled:!1,validators:{notEmpty:{message:"Agama hraus diisi"}}},kelas:{validators:{notEmpty:{message:"Kelas harus diisi"}}},tlp_siswa:{enabled:!1,validators:{regexp:{regexp:/^[+0-9]*$/,message:"Masukkan hanya berupa angka"}}},alamat_siswa:{enabled:!1,validators:{stringLength:{max:70,message:"Alamat maksimal 70 karakter"}}},nama_ayah:{validators:{notEmpty:{message:"Nama Ayah harus diisi"},stringLength:{max:50,message:"Nama Ayah maksimal 50 karakter"}}},nama_ibu:{validators:{notEmpty:{message:"Nama Ibu harus diisi"},stringLength:{max:50,message:"Nama Ibu maksimal 50 karakter"}}},tlp_ortu:{enabled:!1,validators:{regexp:{regexp:/^[+0-9]*$/,message:"Masukkan hanya berupa angka"}}},alamat_ortu:{enabled:!1,validators:{stringLength:{max:70,message:"Alamat maksimal 70 karakter"}}}}}).on("status.field.bv",function(a,t){$(a.target);var e=t.bv,s=t.element.parents(".tab-pane"),i=s.attr("id");if(i){var l=$('a[href="#'+i+'"][data-toggle="tab"]').parent().find("i");if(t.status==e.STATUS_INVALID)l.removeClass("fa-check").addClass("fa-times");else if(t.status==e.STATUS_VALID){var r=e.isValidContainer(s);l.removeClass("fa-check fa-times").addClass(r?"fa-check":"fa-times")}else l.removeClass("fa-check fa-times")}}).on("keyup",'[name="jkl"]',function(){var a=""==$(this).val();$("#UbahSiswa").bootstrapValidator("enableFieldValidators","jkl",!a),1==$(this).val().length&&$("#UbahSiswa").bootstrapValidator("validateField","jkl")}).on("keyup",'[name="agama"]',function(){var a=""==$(this).val();$("#UbahSiswa").bootstrapValidator("enableFieldValidators","agama",!a),1==$(this).val().length&&$("#UbahSiswa").bootstrapValidator("validateField","agama")}).on("keyup",'[name="tlp_siswa"]',function(){var a=""==$(this).val();$("#UbahSiswa").bootstrapValidator("enableFieldValidators","tlp_siswa",!a),1==$(this).val().length&&$("#UbahSiswa").bootstrapValidator("validateField","tlp_siswa")}).on("keyup",'[name="alamat_siswa"]',function(){var a=""==$(this).val();$("#UbahSiswa").bootstrapValidator("enableFieldValidators","alamat_siswa",!a),1==$(this).val().length&&$("#UbahSiswa").bootstrapValidator("validateField","alamat_siswa")}).on("keyup",'[name="tlp_ortu"]',function(){var a=""==$(this).val();$("#UbahSiswa").bootstrapValidator("enableFieldValidators","tlp_ortu",!a),1==$(this).val().length&&$("#UbahSiswa").bootstrapValidator("validateField","tlp_ortu")}).on("keyup",'[name="alamat_ortu"]',function(){var a=""==$(this).val();$("#UbahSiswa").bootstrapValidator("enableFieldValidators","alamat_ortu",!a),1==$(this).val().length&&$("#UbahSiswa").bootstrapValidator("validateField","alamat_ortu")})});
 </script>
 <!-- VALIDASI FORM UBAH SISWA -->
 @endsection

@@ -364,187 +364,21 @@
 
 @section('scripts-tambahan')
 <script type="text/javascript">
-    $(function() {
-        $('#tablekelas').dataTable({
-            "scrollY": 400,
-            "scrollCollapse": true,
-            "bPaginate": true,
-            "bLengthChange": true,
-            "bFilter": true,
-            "bSort": true,
-            "bInfo": true,
-            "responsive": true,
-            // "bAutoWidth": true,
-            // pengaturan lebar kolom
-            "bAutoWidth": false,
-            "aoColumns" : [
-              { sWidth: '5%' }, //no
-              { sWidth: '15%' }, //nama kelas
-              { sWidth: '25%' }, //jurusan
-              // { sWidth: '15%' }, //tahun ajaran
-              { sWidth: '30%' }, //wali kelas
-              { sWidth: '5%' }, //laki
-              { sWidth: '5%' }, //perempuan
-              { sWidth: '10%' }, //total
-              { sWidth: '5%' }, //action
-            ],
-            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
-            "oLanguage": {
-                sEmptyTable: "Belum ada data dalam tabel ini",
-                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
-                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-                sInfoFiltered: "",
-                sInfoPostFix: "",
-                sDecimal: "",
-                sThousands: ",",
-                sLengthMenu: "Tampilkan _MENU_ data",
-                sLoadingRecords: "Loading...",
-                sProcessing: "Processing...",
-                sSearch: "Cari:",
-                sSearchPlaceholder: "Nama Kelas",
-                sUrl: "",
-                sZeroRecords: "Data tidak ditemukan"
-                },
-
-            // kolom dengan class "iii" tidak ada fitur sorting
-            "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","jurusan","thn_ajaran","walikelas","laki","perempuan","total" ]},
-              {"bSortable" : false, "aTargets" : [ "thn_ajaran","walikelas","no-export" ]} 
-            ],
-        });
-        var table = $('#tablekelas').DataTable();
-        $('.dataTables_filter input').unbind().bind('keyup', function() {
-           var searchTerm = this.value.toLowerCase(),
-               regex = '\\b' + searchTerm + '\\b';
-           table.rows().search(regex, true, false).draw();
-        });
-    });
+    $(function(){$("#tablekelas").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"15%"},{sWidth:"20%"},{sWidth:"30%"},{sWidth:"5%"},{sWidth:"5%"},{sWidth:"8%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Kelas",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","jurusan","thn_ajaran","walikelas","laki","perempuan","total"]},{bSortable:!1,aTargets:["thn_ajaran","walikelas","no-export"]}]});var a=$("#tablekelas").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
 </script>
 
-<script type="text/javascript" src="js/kelas.js"></script>
+<!-- <script type="text/javascript" src="js/kelas.js"></script> -->
+<script type="text/javascript" src="js/modal.js"></script>
 
 <!-- VALIDASI FORM TAMBAH KELAS -->
 <script type="text/javascript">
-$(document).ready(function() {
-$('#ModalTambahKelas').modal('hide');
-  var validator = $('#TambahKelas').bootstrapValidator({
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      nama_kelas: {
-        validators: {
-          notEmpty: {
-            message: "Nama kelas harus diisi"
-          },
-          remote: {
-            url: "{{ URL::to('/checkKelas') }}",
-              data: function(validator) {
-                return {
-                    nama_kelas: validator.getFieldElements('nama_kelas').val()
-                };
-            },
-            message: 'Nama kelas sudah ada'
-          }
-        }
-      },
-
-      jurusan: {
-        validators: {
-          notEmpty: {
-            message: "Jurusan harus diisi"
-          }
-        }
-      },
-
-      thn_ajaran: {
-        validators: {
-          notEmpty: {
-            message: "Tahun ajaran harus diisi"
-          },
-          stringLength: {
-            min: 9,
-            message: "Tahun ajaran minimal 9 karakter"
-          }
-        }
-      },
-
-      wali_kelas: {
-        validators: {
-          notEmpty: {
-            message: "Wali kelas harus diisi"
-          }
-        }
-      }
-      
-    }
-  });
-});
+$(document).ready(function(){$("#ModalTambahKelas").modal("hide");$("#TambahKelas").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{nama_kelas:{validators:{notEmpty:{message:"Nama kelas harus diisi"},remote:{url:"{{ URL::to('/checkKelas') }}",data:function(a){return{nama_kelas:a.getFieldElements("nama_kelas").val()}},message:"Nama kelas sudah ada"}}},jurusan:{validators:{notEmpty:{message:"Jurusan harus diisi"}}},thn_ajaran:{validators:{notEmpty:{message:"Tahun ajaran harus diisi"},stringLength:{min:9,message:"Tahun ajaran minimal 9 karakter"}}},wali_kelas:{validators:{notEmpty:{message:"Wali kelas harus diisi"}}}}})});
 </script>
 <!-- VALIDASI FORM TAMBAH KELAS -->
 
 <!-- VALIDASI FORM UBAH KELAS -->
 <script type="text/javascript">
-$(document).ready(function() {
-$('#ModalUbahKelas').modal('hide');
-  var validator = $('#UbahKelas').bootstrapValidator({
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-    fields: {
-      nama_kelas: {
-        validators: {
-          notEmpty: {
-            message: "Nama kelas harus diisi"
-          },
-          remote: {
-            url: "{{ URL::to('/checkKelasUbah') }}",
-              data: function(validator) {
-                return {
-                    nama_kelas: validator.getFieldElements('nama_kelas').val(),
-                    id : validator.getFieldElements('id').val()
-                };
-            },
-            message: 'Nama kelas sudah ada'
-          }
-        }
-      },
-
-      jurusan: {
-        validators: {
-          notEmpty: {
-            message: "Jurusan harus diisi"
-          }
-        }
-      },
-
-      thn_ajaran: {
-        validators: {
-          notEmpty: {
-            message: "Tahun ajaran harus diisi"
-          },
-          stringLength: {
-            min: 9,
-            message: "Tahun ajaran minimal 9 karakter"
-          }
-        }
-      },
-
-      wali_kelas: {
-        validators: {
-          notEmpty: {
-            message: "Wali kelas harus diisi"
-          }
-        }
-      }
-      
-    }
-  });
-});
+$(document).ready(function(){$("#ModalUbahKelas").modal("hide");$("#UbahKelas").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{nama_kelas:{validators:{notEmpty:{message:"Nama kelas harus diisi"},remote:{url:"{{ URL::to('/checkKelasUbah') }}",data:function(a){return{nama_kelas:a.getFieldElements("nama_kelas").val(),id:a.getFieldElements("id").val()}},message:"Nama kelas sudah ada"}}},jurusan:{validators:{notEmpty:{message:"Jurusan harus diisi"}}},thn_ajaran:{validators:{notEmpty:{message:"Tahun ajaran harus diisi"},stringLength:{min:9,message:"Tahun ajaran minimal 9 karakter"}}},wali_kelas:{validators:{notEmpty:{message:"Wali kelas harus diisi"}}}}})});
 </script>
 <!-- VALIDASI FORM UBAH KELAS -->
 @endsection

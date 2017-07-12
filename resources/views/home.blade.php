@@ -229,61 +229,8 @@
 
 @section('scripts-tambahan')
 <script type="text/javascript">
-    $(function() {
-        $('#tableabsensihariini').dataTable({
-            "scrollY": 400,
-            "scrollCollapse": true,
-            "bPaginate": true,
-            "bLengthChange": true,
-            "bFilter": true,
-            "bSort": true,
-            "bInfo": true,
-            "responsive": true,
-            // "bAutoWidth": true,
-            // pengaturan lebar kolom
-            "bAutoWidth": false,
-            "aoColumns" : [
-              { sWidth: '5%' }, //no
-              { sWidth: '17%' }, //nama kelas
-              { sWidth: '8%' }, //jumlah siswa
-              { sWidth: '8%' }, //hadir
-              { sWidth: '8%' }, //sakit
-              { sWidth: '8%' }, //izin
-              { sWidth: '8%' }, //alpa
-              { sWidth: '8%' }, //total              
-              { sWidth: '30%' }, //keterangan
-            ],
-            // "iDisplayLength": 25,
-            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
-            "oLanguage": {
-                sEmptyTable: "Belum ada data dalam tabel ini",
-                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
-                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-                sInfoFiltered: "",
-                sInfoPostFix: "",
-                sDecimal: "",
-                sThousands: ",",
-                sLengthMenu: "Tampilkan _MENU_ data",
-                sLoadingRecords: "Loading...",
-                sProcessing: "Processing...",
-                sSearch: "Cari:",
-                sSearchPlaceholder: "Nama Kelas",
-                sUrl: "",
-                sZeroRecords: "Data tidak ditemukan"
-                },
-
-            // kolom dengan class "iii" tidak ada fitur sorting
-            "aoColumnDefs" : [ 
-              {"bSearchable" : false, "aTargets" : [ "no","sakit","izin","alpa","total","ket" ]},
-              {"bSortable" : false, "aTargets" : [ "ket" ]} 
-            ],
-        });
-        var table = $('#tableabsensihariini').DataTable();
-        $('.dataTables_filter input').unbind().bind('keyup', function() {
-           var searchTerm = this.value.toLowerCase(),
-               regex = '\\b' + searchTerm + '\\b';
-           table.rows().search(regex, true, false).draw();
-        });
-    });
+    $(function(){$("#tableabsensihariini").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"17%"},{sWidth:"8%"},{sWidth:"8%"},{sWidth:"8%"},{sWidth:"8%"},{sWidth:"8%"},{sWidth:"8%"},{sWidth:"30%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Kelas",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","sakit","izin","alpa","total","ket"]},{bSortable:!1,aTargets:["ket"]}]});var a=$("#tableabsensihariini").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
 </script>
+
+<script type="text/javascript" src="js/modal.js"></script>
 @endsection
