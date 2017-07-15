@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('css-tambahan')
+    <link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />   
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/css/datepicker3.css" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('htmlheader_title')
     Data Semester
 @endsection
@@ -273,12 +279,29 @@
 @endsection
 
 @section('scripts-tambahan')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    function masuk(){console.log("asdasd")}$(document).ready(function(){$("#datetimePicker, #datetimePicker1").datepicker({format:"yyyy-mm-dd",autoclose:!0})});
+</script>
+
+<script type="text/javascript">
+    $(function(){$("#datetimePicker").datepicker({format:"yyyy-mm-dd",autoclose:!0}),$("#tanggal").on("change",function(){var a=$(this).val();document.getElementById("caritanggal").value=a})});
+</script>
+
+<!-- Datatables -->
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Responsive Table -->
+<script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(function(){$("#tablesemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!1,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"40%"},{sWidth:"25%"},{sWidth:"25%"},{sWidth:"5%"}]});var t=$("#tablesemester").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";t.rows().search(e,!0,!1).draw()})});
 </script>
 
 <!-- <script type="text/javascript" src="js/semester.js"></script> -->
-<script type="text/javascript" src="js/modal.js"></script>
+<!-- <script type="text/javascript" src="js/modal.js"></script> -->
 
 <!-- VALIDASI FORM UBAH SEMESTER -->
 <script type="text/javascript">

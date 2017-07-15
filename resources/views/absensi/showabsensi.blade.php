@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('css-tambahan')
+    <link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />   
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/bootstrap.datepicker-fork/1.3.0/css/datepicker3.css" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('htmlheader_title')
     Absensi Siswa
 @endsection
@@ -119,10 +125,10 @@
             </tbody>                       
         </table>                
                 
-    </div><!-- /.box-body -->
+    <!-- </div> -->
 
 
-    <div class="box-footer">
+    <!-- <div class="box-footer"> -->
         <input id="kelasku" type="hidden" name="kelas" value="{{$content['input_kelas']}}">
         <input type="hidden" name="tanggal" value="{{$content['tanggal']}}">
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
@@ -298,11 +304,28 @@
 @endsection
 
 @section('scripts-tambahan')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    function masuk(){console.log("asdasd")}$(document).ready(function(){$("#datetimePicker, #datetimePicker1").datepicker({format:"yyyy-mm-dd",autoclose:!0})});
+</script>
+
+<script type="text/javascript">
+    $(function(){$("#datetimePicker").datepicker({format:"yyyy-mm-dd",autoclose:!0}),$("#tanggal").on("change",function(){var a=$(this).val();document.getElementById("caritanggal").value=a})});
+</script>
+
+<!-- Datatables -->
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Responsive Table -->
+<script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(function(){$("#tableabsensi").dataTable({scrollY:350,scrollCollapse:!0,bPaginate:!1,bLengthChange:!1,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"5%"},{sWidth:"30%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"10%"},{sWidth:"25%"}],aLengthMenu:[[-1],["Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Jumlah Siswa : _TOTAL_ siswa",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","status","keterangan"]},{bSortable:!1,aTargets:["agama","status","keterangan"]}]});var a=$("#tableabsensi").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
 </script>
 
-<script type="text/javascript" src="js/modal.js"></script>
+<!-- <script type="text/javascript" src="js/modal.js"></script> -->
 
 <!-- Enable/Disable Tombol Absensi -->
 <script type="text/javascript">

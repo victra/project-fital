@@ -71,7 +71,7 @@
 
     @include('layouts.partials.scripts_auth')
 
-    <script>
+    <!-- <script>
         $(function () {
             $('input').iCheck({
                 checkboxClass: 'icheckbox_square-blue',
@@ -79,7 +79,7 @@
                 increaseArea: '20%' // optional
             });
         });
-    </script>
+    </script> -->
 </body>
 
 @endsection

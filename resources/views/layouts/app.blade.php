@@ -9,6 +9,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('layouts.partials.htmlheader')
 @show
 
+@section('css-tambahan')
+@show
+
 <!--
 BODY TAG OPTIONS:
 =================

@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('css-tambahan')
+    <link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />   
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('htmlheader_title')
     Data Guru Piket
 @endsection
@@ -319,12 +324,19 @@
 @endsection
 
 @section('scripts-tambahan')
+<!-- Datatables -->
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Responsive Table -->
+<script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(function(){$("#tablegurupiket").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"7%"},{sWidth:"19%"},{sWidth:"25%"},{sWidth:"14%"},{sWidth:"9%"},{sWidth:"13%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Guru Piket",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","hari","nip","jkl","agama","tlp"]},{bSortable:!1,aTargets:["agama","action"]}]});var a=$("#tablegurupiket").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
 </script>
 
 <!-- <script type="text/javascript" src="js/piket.js"></script> -->
-<script type="text/javascript" src="js/modal.js"></script>
+<!-- <script type="text/javascript" src="js/modal.js"></script> -->
 
 <!-- VALIDASI FORM UBAH GURU PIKET -->
 <script type="text/javascript">
