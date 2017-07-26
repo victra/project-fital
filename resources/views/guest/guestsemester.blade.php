@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('css-tambahan')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />   
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('htmlheader_title')
     Data Semester
 @endsection
@@ -257,6 +262,13 @@
 @endsection
 
 @section('scripts-tambahan')
+<!-- Datatables -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+
+<!-- Responsive Table -->
+<script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(function(){$("#tableguestsemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"45%"},{sWidth:"25%"},{sWidth:"25%"}]});var e=$("#tableguestsemester").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var t="\\b"+this.value.toLowerCase()+"\\b";e.rows().search(t,!0,!1).draw()})});
 </script>
