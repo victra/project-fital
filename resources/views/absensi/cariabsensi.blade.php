@@ -64,22 +64,7 @@
                     <th class="keterangan">Keterangan</th>
                 </tr>
             </thead>
-
-            <tbody>
-                <?php $no=1; ?>
-                @foreach($content['absensis'] as $item)
-                <tr>
-                    <!-- <td><center>{{$no++}}</center></td> -->
-                    <td>{{$item->date}}</td>
-                    <td><center>{{$item->siswa->nis}}</center></td>
-                    <td>{{$item->siswa->nama}}</td>
-                    <td><center>{{$item->siswa->jkl}}</center></td>
-                    <td>{{$item->siswa->kelas->nama_kelas}}</td> 
-                    <td><center>{{$item->status}}</center></td>
-                    <td>{{$item->description}}</td>                
-                </tr>                                    
-                @endforeach
-            </tbody>                       
+                                  
         </table>                
                 
     </div><!-- /.box-body -->
@@ -246,7 +231,62 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(function(){$("#tablecariabsensi").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"10%"},{sWidth:"5%"},{sWidth:"25%"},{sWidth:"15%"},{sWidth:"11%"},{sWidth:"9%"},{sWidth:"25%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","kelas","status","keterangan"]},{bSortable:!1,aTargets:["jkl","keterangan"]}],dom:"<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",buttons:[{extend:"excelHtml5",text:"Export Excel",title:"Document",exportOptions:{columns:":visible",modifier:{page:"current"}},customize:function(a){a.xl.worksheets["sheet1.xml"]}}]})});
+    $(document).ready(function() {
+    oTable = $('#tablecariabsensi').DataTable({
+        "scrollY": 400,
+        "scrollCollapse": true,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{{ route('cariabsensi.data') }}",
+        "columns": [
+          { data: 'date' , name: 'absensi.date' , sWidth: '10%' },
+          { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false },
+          { data: 'nama' , name: 'siswa.nama' , sWidth: '25%' },
+          { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' },
+          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '11%' ,  className: "text-center" , orderable: false , searchable: false },
+          { data: 'status' , name: 'absensi.status' , sWidth: '9%' , searchable: false },
+          { data: 'description' , name: 'absensi.description' , sWidth: '25%' , orderable: false , searchable: false }
+        ],
+        "responsive": true,
+        "bAutoWidth": false,
+        "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+        "oLanguage": {
+            sEmptyTable: "Belum ada data dalam tabel ini",
+            sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+            sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+            sInfoFiltered: "",
+            sInfoPostFix: "",
+            sDecimal: "",
+            sThousands: ",",
+            sLengthMenu: "Tampilkan _MENU_ data",
+            sLoadingRecords: "Loading...",
+            sProcessing: "Processing...",
+            sSearch: "Cari:",
+            sSearchPlaceholder: "Nama Siswa",
+            sUrl: "",
+            sZeroRecords: "Data tidak ditemukan"
+            },
+            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "buttons": [ {
+                "extend": 'excelHtml5',
+                "text": 'Export Excel',
+                "title": 'Document',
+                "exportOptions": {
+                    // columns: [ 0, 1, 2 ],
+                    columns: ':visible',
+                    // columns: ':not(.no-print)',
+                    // rows: ':visible',
+                    modifier: {
+                        page: 'current'
+                    },
+                },
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                }
+            } ],
+        });
+    });
+    // $(function(){$("#tablecariabsensi").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"10%"},{sWidth:"5%"},{sWidth:"25%"},{sWidth:"15%"},{sWidth:"11%"},{sWidth:"9%"},{sWidth:"25%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","kelas","status","keterangan"]},{bSortable:!1,aTargets:["jkl","keterangan"]}],dom:"<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",buttons:[{extend:"excelHtml5",text:"Export Excel",title:"Document",exportOptions:{columns:":visible",modifier:{page:"current"}},customize:function(a){a.xl.worksheets["sheet1.xml"]}}]})});
 </script>
 
 <!-- Export Excel -->

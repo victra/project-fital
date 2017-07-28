@@ -6,6 +6,7 @@ use Model\Kelas;
 use Model\Semester;
 use App\User;
 use Illuminate\Http\Request;
+use Datatables;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -425,5 +426,13 @@ class AbsensiController extends Controller
         
         return View::make('absensi.cariabsensi')
                     ->with('content', $content);
+    }
+
+    public function data()
+    {
+        $data = DB::table('absensi')->join('siswa', 'absensi.siswa_id', '=', 'siswa.id')->join('kelas', 'absensi.kelas_id', '=', 'kelas.id')
+            ->select(['absensi.date', 'siswa.nis', 'siswa.nama', 'siswa.jkl', 'kelas.nama_kelas', 'absensi.status', 'absensi.description'])->where('status','!=', 'H');
+
+        return Datatables::of($data)->make(true);
     }
 }

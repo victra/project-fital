@@ -77,4 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
     // semester
     Route::get('semester', 'SemesterController@showsemester');
     Route::post('/updatesemester&{id}', 'SemesterController@updatesemester');
+
+    // ajax tampil data
+    Route::get('cariabsensi/data', ['as'=>'cariabsensi.data','uses'=>'AbsensiController@data']);
 });
