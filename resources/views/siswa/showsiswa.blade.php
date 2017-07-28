@@ -27,15 +27,16 @@
 <div class="box">
     <div class="box-header">        
         <h3 class="box-title">Data Siswa</h3>
+        <input id="carikelas" type="hidden" />
         @if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket')
         <a style="margin-right:5px" class="pull-right btn btn-primary btn-sm" title="Tambah Siswa" data-toggle="modal" data-target="#ModalTambahSiswa"> <i class="fa fa-plus"></i> Tambah Siswa</a>
         @endif
             <form style="margin-right:300px; margin-top:0px" class="pull-right">
-                <select class="form-control input-sm" onchange="location = this.value;">
-                    <option value="?search_kelas=">Semua Kelas</option>
+                <select id="kelasq" class="form-control input-sm">
+                    <option value="">Semua Kelas</option>
                         @foreach($content['kelas'] as $value)
                         <?php $selected = $content['input_kelas']==$value['id'] ? 'selected' : '' ?>
-                    <option {{$selected}} value="?search_kelas={{$value['id']}}">{{$value['nama_kelas']}}</option>
+                    <option {{$selected}} value="{{$value['id']}}">{{$value['nama_kelas']}}</option>
                         @endforeach
                 </select>
             </form>
@@ -575,6 +576,14 @@
 @endsection
 
 @section('scripts-tambahan')
+<script type="text/javascript">
+    $(function() {
+    $('#kelasq').on("change",function(){
+        var selected = $(this).val();
+        document.getElementById("carikelas").value = selected;
+    });
+});
+</script>
 <!-- Datatables -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
@@ -591,13 +600,13 @@
             "ajax": "{{ route('siswa.data') }}",
             "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
             "columns": [
-              {data: null, orderable: false, sWidth: '5%' , orderable: false ,searchable: false ,  className: "text-center" },
-              { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' ,  className: "text-center" , searchable: false },
-              { data: 'nama' , name: 'siswa.nama' , sWidth: '30%' },
-              { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' ,  className: "text-center" },
-              { data: 'agama' , name: 'siswa.agama' , sWidth: '15%' ,  className: "text-center" },
-              { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '15%' ,  className: "text-center" , orderable: false , searchable: false },
-              { data: 'action' , name: 'action' , sWidth: '15%' , searchable: false ,  className: "text-center" }
+              { data: null, sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
+              { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false ,  className: "text-center" },
+              { data: 'nama' , name: 'siswa.nama' , sWidth: '35%' },
+              { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' , orderable: false , searchable: false ,  className: "text-center" },
+              { data: 'agama' , name: 'siswa.agama' , sWidth: '10%' , orderable: false , searchable: false ,  className: "text-center" },
+              { data: 'nama_kelas' , name: 'siswa.kelas_id' , sWidth: '15%' , orderable: false ,  className: "text-center" },
+              { data: 'action' , name: 'action' , sWidth: '15%' , orderable: false , searchable: false ,  className: "text-center" }
             ],            
             "responsive": true,
             "bAutoWidth": false,
@@ -630,6 +639,31 @@
 <!-- <script type="text/javascript" src="js/siswa.js"></script>
 <script type="text/javascript" src="js/infosiswa.js"></script> -->
 <!-- <script type="text/javascript" src="js/modal.js"></script> -->
+
+<script type="text/javascript">
+    $(document).ready(function (){
+    var table = $('#tablesiswa').DataTable();
+
+    $("#kelasq").on("change",function(){
+        
+     var _val = $(this).val();
+     var i = $("#carikelas").val();  
+     regex = '\\b' + _val + '\\b';   
+     if(i != ''){  
+            table
+            .columns(5)
+            .search(regex, true, false)
+            .draw();
+      }else{  
+            table
+            .columns(5)
+            .search('', true, false)
+            .draw();
+      }
+    });
+
+    });
+</script>
 
 <!-- VALIDASI FORM TAMBAH SISWA -->
 <script type="text/javascript">
