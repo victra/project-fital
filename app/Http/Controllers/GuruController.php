@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Http\Request;
+use Datatables;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -218,6 +219,44 @@ class GuruController extends Controller
         else{
             return view('errors.404');
         }
+    }
+
+    public function data()
+    {
+        $data = DB::table('users')
+            ->select(['id', 'nip', 'name', 'email', 'role' , 'jkl' , 'agama' , 'tlp' , 'jadwal']);
+
+        return Datatables::of($data)
+            ->addColumn('action', function ($guru) {
+                if (Auth::user()->id != $guru->id) {
+                return '<a class="btn btn-success btn-xs" title="Ubah" onclick="showModalGuru(this)" 
+                            data-id="'.$guru->id.'"
+                            data-nip="'.$guru->nip.'"
+                            data-nama="'.$guru->name.'"
+                            data-username="'.$guru->email.'"
+                            data-role="'.$guru->role.'"
+                            data-jenis-kelamin="'.$guru->jkl.'"
+                            data-agama="'.$guru->agama.'"
+                            data-tlp="'.$guru->tlp.'"
+                            data-jadwal="'.$guru->jadwal.'">
+                            <span class="fa fa-edit"></span></a>,
+                        <a data-href="deletesiswa&'.$guru->id.'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>';
+                    }
+                else {
+                return '<a class="btn btn-success btn-xs" title="Ubah" onclick="showModalGuru(this)" 
+                            data-id="'.$guru->id.'"
+                            data-nip="'.$guru->nip.'"
+                            data-nama="'.$guru->name.'"
+                            data-username="'.$guru->email.'"
+                            data-role="'.$guru->role.'"
+                            data-jenis-kelamin="'.$guru->jkl.'"
+                            data-agama="'.$guru->agama.'"
+                            data-tlp="'.$guru->tlp.'"
+                            data-jadwal="'.$guru->jadwal.'">
+                            <span class="fa fa-edit"></span></a>';
+                    }
+            })
+            ->make(true);
     }
     
     public function deleteguru($id)

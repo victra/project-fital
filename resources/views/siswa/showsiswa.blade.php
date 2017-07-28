@@ -421,15 +421,15 @@
                         </div>  
                     </div>                   
                 </div>
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
                     <div class="form-group">
-                        <div class="col-xs-5 col-xs-offset-3">
+                        <div class="col-xs-5 col-xs-offset-3"> -->
                             <!-- <input type="hidden" name="_token" value="{{{ csrf_token() }}}" /> -->
                             <!-- <button type="submit" style="margin-right:50px" class="btn btn-default col-sm-5">Simpan</button> -->
-                            <button type="button" style="margin-right:-180px" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <!-- <button type="button" style="margin-right:-180px" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </form>
         </div>      
     </div>

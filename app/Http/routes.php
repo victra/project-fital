@@ -81,4 +81,5 @@ Route::group(['middleware' => 'auth'], function () {
     // ajax tampil data
     Route::get('cariabsensi/data', ['as'=>'cariabsensi.data','uses'=>'AbsensiController@data']);
     Route::get('siswa/data', ['as'=>'siswa.data','uses'=>'SiswaController@data']);
+    Route::get('user/data', ['as'=>'user.data','uses'=>'GuruController@data']);
 });

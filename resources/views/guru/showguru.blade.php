@@ -38,52 +38,13 @@
                     <th class="no"><center>No</center></th>
                     <th class="nip"><center>NIP/NIK</center></th>
                     <th><center>Nama User</center></th>
-                    <th class="none">Username</th>
                     <th class="role"><center>Role</center></th>
                     <th class="jkl"><center>Jenis Kelamin</center></th>
                     <th class="agama"><center>Agama</center></th>
-                    <th class="none">Telepon</th>
                     <th class="action"><center>Action</center></th>
                 </tr>
             </thead>
-
-            <tbody>
-                <?php $no=1; ?>
-                @foreach($content['gurupkt'] as $item)
-                <tr>
-                    <td><center>{{$no++}}</center></td>
-                    <td><center>{{$item->nip}}</center></td>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->email}}</td>
-                    <td><center>{{$item->role}}</center></td>
-                    <td><center>{{$item->jkl}}</center></td>
-                    <td><center>{{$item->agama}}</center></td>
-                    <td>{{$item->tlp}}</td>  
-                    <td>
-                        <center>                                    
-                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
-                            <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalGuru(this)" 
-                            data-id="{{$item->id}}"
-                            data-nip="{{$item->nip}}"
-                            data-nama="{{$item->name}}"
-                            data-username="{{$item->email}}"                            
-                            data-role="{{$item->role}}"
-                            data-jenis-kelamin="{{$item->jkl}}"
-                            data-agama="{{$item->agama}}"
-                            data-tlp="{{$item->tlp}}"
-                            data-jadwal="{{$item->jadwal}}">
-                            <!-- data-password="{{$item->password}}" -->
-                            
-                            <span class="fa fa-edit"></span></a>
-                            <!-- <a onclick="return confirm('Are you sure?')" href="deleteguru&{{$item->id}}" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a> -->
-                            @if (Auth::user()->id != $item->id)
-                            <a data-href="deleteguru&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
-                            @endif
-                        </center>
-                    </td>
-                </tr>                                    
-                @endforeach
-            </tbody>                               
+            
         </table>                
                 
     </div><!-- /.box-body -->
@@ -457,7 +418,51 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(function(){$("#tableuser").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"20%"},{sWidth:"30%"},{sWidth:"0%"},{sWidth:"12%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"0%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama User",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nip","jkl","agama","role","none"]},{bSortable:!1,aTargets:["agama","action"]}]});var a=$("#tableuser").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
+    var t = $('#tableuser').DataTable({
+        "scrollY": 400,
+        "scrollCollapse": true,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{{ route('user.data') }}",
+        "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
+        "columns": [
+          { data: null, sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'nip' , name: 'nip' , sWidth: '20%' , searchable: false ,  className: "text-center" },
+          { data: 'name' , name: 'name' , sWidth: '30%' },
+          { data: 'role' , name: 'role' , sWidth: '12%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'jkl' , name: 'jkl' , sWidth: '15%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'agama' , name: 'agama' , sWidth: '10%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'action' , name: 'action' , sWidth: '8%' , orderable: false , searchable: false ,  className: "text-center" }
+        ],        
+        "responsive": true,
+        // "bAutoWidth": true,
+        // pengaturan lebar kolom
+        "bAutoWidth": false,
+        "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+        "oLanguage": {
+            sEmptyTable: "Belum ada data dalam tabel ini",
+            sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+            sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+            sInfoFiltered: "",
+            sInfoPostFix: "",
+            sDecimal: "",
+            sThousands: ",",
+            sLengthMenu: "Tampilkan _MENU_ data",
+            sLoadingRecords: "Loading...",
+            sProcessing: "Processing...",
+            sSearch: "Cari:",
+            sSearchPlaceholder: "Nama User",
+            sUrl: "",
+            sZeroRecords: "Data tidak ditemukan"
+            },
+    });
+    t.on( 'order.dt search.dt', function () {
+        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+    
+    // $(function(){$("#tableuser").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"20%"},{sWidth:"30%"},{sWidth:"0%"},{sWidth:"12%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"0%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama User",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nip","jkl","agama","role","none"]},{bSortable:!1,aTargets:["agama","action"]}]});var a=$("#tableuser").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
 </script>
 
 <!-- <script type="text/javascript" src="js/guru.js"></script> -->

@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 class SiswaController extends Controller
 {
@@ -142,6 +143,7 @@ class SiswaController extends Controller
 
         return Datatables::of($data)
             ->addColumn('action', function ($siswa) {
+                if (Auth::user()->role == 'guru piket' or Auth::user()->role == 'administrator') {
                 return '<a class="btn btn-info btn-xs" title="Info" onclick="showModalInfoSiswa(this)" 
                             data-id="'.$siswa->id.'"
                             data-nis="'.$siswa->nis.'"
@@ -171,8 +173,25 @@ class SiswaController extends Controller
                             data-alamat-ortu="'.$siswa->alamat_ortu.'">
                             <span class="fa fa-edit"></span></a>,
                         <a data-href="deletesiswa&'.$siswa->id.'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>';
+                    }
+                else {
+                return '<a class="btn btn-info btn-xs" title="Info" onclick="showModalInfoSiswa(this)" 
+                            data-id="'.$siswa->id.'"
+                            data-nis="'.$siswa->nis.'"
+                            data-nama="'.$siswa->nama.'"
+                            data-jenis-kelamin="'.$siswa->jkl.'"
+                            data-agama="'.$siswa->agama.'"
+                            data-kelas="'.$siswa->nama_kelas.'"
+                            data-tlp-siswa="'.$siswa->tlp_siswa.'"
+                            data-alamat-siswa="'.$siswa->alamat_siswa.'"
+                            data-nama-ayah="'.$siswa->nama_ayah.'"
+                            data-nama-ibu="'.$siswa->nama_ibu.'"
+                            data-tlp-ortu="'.$siswa->tlp_ortu.'"
+                            data-alamat-ortu="'.$siswa->alamat_ortu.'">
+                            <span class="fa fa-eye"></span></a>';
+                    }
             })
-                ->make(true);
+            ->make(true);
     }
     
     public function deletesiswa($id)
