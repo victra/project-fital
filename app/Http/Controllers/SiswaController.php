@@ -4,6 +4,7 @@ use Model\Siswa;
 use Model\Kelas;
 use App\User;
 use Illuminate\Http\Request;
+use Datatables;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -132,6 +133,46 @@ class SiswaController extends Controller
 
         return View::make('siswa.showsiswa')
                     ->with('content', $content);
+    }
+
+    public function data()
+    {
+        $data = DB::table('siswa')->join('kelas', 'siswa.kelas_id', '=', 'kelas.id')
+            ->select(['siswa.id', 'siswa.nis', 'siswa.nama', 'siswa.jkl', 'siswa.agama' , 'kelas.nama_kelas' , 'siswa.tlp_siswa' , 'siswa.alamat_siswa' , 'siswa.nama_ayah' , 'siswa.nama_ibu' , 'siswa.tlp_ortu' , 'siswa.alamat_ortu' , 'siswa.kelas_id']);
+
+        return Datatables::of($data)
+            ->addColumn('action', function ($siswa) {
+                return '<a class="btn btn-info btn-xs" title="Info" onclick="showModalInfoSiswa(this)" 
+                            data-id="'.$siswa->id.'"
+                            data-nis="'.$siswa->nis.'"
+                            data-nama="'.$siswa->nama.'"
+                            data-jenis-kelamin="'.$siswa->jkl.'"
+                            data-agama="'.$siswa->agama.'"
+                            data-kelas="'.$siswa->nama_kelas.'"
+                            data-tlp-siswa="'.$siswa->tlp_siswa.'"
+                            data-alamat-siswa="'.$siswa->alamat_siswa.'"
+                            data-nama-ayah="'.$siswa->nama_ayah.'"
+                            data-nama-ibu="'.$siswa->nama_ibu.'"
+                            data-tlp-ortu="'.$siswa->tlp_ortu.'"
+                            data-alamat-ortu="'.$siswa->alamat_ortu.'">
+                            <span class="fa fa-eye"></span></a>,
+                        <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalSiswa(this)" 
+                            data-id="'.$siswa->id.'"
+                            data-nis="'.$siswa->nis.'"
+                            data-nama="'.$siswa->nama.'"
+                            data-jenis-kelamin="'.$siswa->jkl.'"
+                            data-agama="'.$siswa->agama.'"
+                            data-kelas="'.$siswa->kelas_id.'"
+                            data-tlp-siswa="'.$siswa->tlp_siswa.'"
+                            data-alamat-siswa="'.$siswa->alamat_siswa.'"
+                            data-nama-ayah="'.$siswa->nama_ayah.'"
+                            data-nama-ibu="'.$siswa->nama_ibu.'"
+                            data-tlp-ortu="'.$siswa->tlp_ortu.'"
+                            data-alamat-ortu="'.$siswa->alamat_ortu.'">
+                            <span class="fa fa-edit"></span></a>,
+                        <a data-href="deletesiswa&'.$siswa->id.'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>';
+            })
+                ->make(true);
     }
     
     public function deletesiswa($id)

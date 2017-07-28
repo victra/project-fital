@@ -63,63 +63,7 @@
                 </tr>
             </thead>
 
-            <tbody>
-                <?php $no=1; ?>
-                @foreach($content['siswas'] as $item)
-                <tr>
-                    <td><center>{{$no++}}</center></td>
-                    <td><center>{{$item->nis}}</center></td>
-                    <td>{{$item->nama}}</td>
-                    <td><center>{{$item->jkl}}</center></td>
-                    <td><center>{{$item->agama}}</center></td>
-                    <td><center>{{$item->kelas->nama_kelas}}</center></td>
-                    <!-- <td>{{$item->tlp_siswa}}</td>
-                    <td>{{$item->alamat_siswa}}</td>
-                    <td>{{$item->nama_ayah}}</td> 
-                    <td>{{$item->nama_ibu}}</td>
-                    <td>{{$item->tlp_ortu}}</td>
-                    <td>{{$item->alamat_ortu}}</td>  -->
-                    <td>
-                        <center>
-                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
-                            <a class="btn btn-info btn-xs" title="Info" onclick="showModalInfoSiswa(this)" 
-                            data-id="{{$item->id}}"
-                            data-nis="{{$item->nis}}"
-                            data-nama="{{$item->nama}}"
-                            data-jenis-kelamin="{{$item->jkl}}"
-                            data-agama="{{$item->agama}}"
-                            data-kelas="{{$item->kelas->nama_kelas}}"
-                            data-tlp-siswa="{{$item->tlp_siswa}}"
-                            data-alamat-siswa="{{$item->alamat_siswa}}"
-                            data-nama-ayah="{{$item->nama_ayah}}"
-                            data-nama-ibu="{{$item->nama_ibu}}"
-                            data-tlp-ortu="{{$item->tlp_ortu}}"
-                            data-alamat-ortu="{{$item->alamat_ortu}}">
-                            <span class="fa fa-eye"></span></a>
-                            @if (Auth::user()->id == $item->kelas->wali_kelas_id or Auth::user()->role == 'guru piket' or Auth::user()->role == 'administrator')
-                            <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalSiswa(this)" 
-                            data-id="{{$item->id}}"
-                            data-nis="{{$item->nis}}"
-                            data-nama="{{$item->nama}}"
-                            data-jenis-kelamin="{{$item->jkl}}"
-                            data-agama="{{$item->agama}}"
-                            data-kelas="{{$item->kelas_id}}"
-                            data-tlp-siswa="{{$item->tlp_siswa}}"
-                            data-alamat-siswa="{{$item->alamat_siswa}}"
-                            data-nama-ayah="{{$item->nama_ayah}}"
-                            data-nama-ibu="{{$item->nama_ibu}}"
-                            data-tlp-ortu="{{$item->tlp_ortu}}"
-                            data-alamat-ortu="{{$item->alamat_ortu}}">
-                            <span class="fa fa-edit"></span></a>
-                            <!-- <a onclick="return confirm('Are you sure?')" href='deletesiswa&{{$item->id}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a> -->
-                            <a data-href="deletesiswa&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
-                            <!-- <button id="ico" href='delete&{{$item->nis}}' class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span> Hapus</button> -->
-                            @endif
-                        </center>
-                    </td>
-                </tr>                                    
-                @endforeach
-            </tbody>                       
+                                 
         </table>                
                 
     </div><!-- /.box-body -->
@@ -639,7 +583,48 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(function(){$("#tablesiswa").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"10%"},{sWidth:"32%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"15%"},{sWidth:"13%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","agama","jkl","kelas","none"]},{bSortable:!1,aTargets:["no-expor"]}]});var a=$("#tablesiswa").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
+    var t = $('#tablesiswa').DataTable({
+            "scrollY": 400,
+            "scrollCollapse": true,
+            "processing": true,
+            "serverSide": true,
+            "ajax": "{{ route('siswa.data') }}",
+            "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
+            "columns": [
+              {data: null, orderable: false, sWidth: '5%' , orderable: false ,searchable: false ,  className: "text-center" },
+              { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' ,  className: "text-center" , searchable: false },
+              { data: 'nama' , name: 'siswa.nama' , sWidth: '30%' },
+              { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' ,  className: "text-center" },
+              { data: 'agama' , name: 'siswa.agama' , sWidth: '15%' ,  className: "text-center" },
+              { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '15%' ,  className: "text-center" , orderable: false , searchable: false },
+              { data: 'action' , name: 'action' , sWidth: '15%' , searchable: false ,  className: "text-center" }
+            ],            
+            "responsive": true,
+            "bAutoWidth": false,
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+            "oLanguage": {
+                sEmptyTable: "Belum ada data dalam tabel ini",
+                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+                sInfoFiltered: "",
+                sInfoPostFix: "",
+                sDecimal: "",
+                sThousands: ",",
+                sLengthMenu: "Tampilkan _MENU_ data",
+                sLoadingRecords: "Loading...",
+                sProcessing: "Processing...",
+                sSearch: "Cari:",
+                sSearchPlaceholder: "Nama Siswa",
+                sUrl: "",
+                sZeroRecords: "Data tidak ditemukan"
+                },            
+        });
+            t.on( 'order.dt search.dt', function () {
+                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                    cell.innerHTML = i+1;
+                } );
+            } ).draw();
+    // $(function(){$("#tablesiswa").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"10%"},{sWidth:"32%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"15%"},{sWidth:"13%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","agama","jkl","kelas","none"]},{bSortable:!1,aTargets:["no-expor"]}]});var a=$("#tablesiswa").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
 </script>
 
 <!-- <script type="text/javascript" src="js/siswa.js"></script>
