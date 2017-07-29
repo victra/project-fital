@@ -138,8 +138,10 @@ class SiswaController extends Controller
 
     public function data()
     {
-        $data = DB::table('siswa')->join('kelas', 'siswa.kelas_id', '=', 'kelas.id')
-            ->select(['siswa.id', 'siswa.nis', 'siswa.nama', 'siswa.jkl', 'siswa.agama' , 'kelas.nama_kelas' , 'siswa.tlp_siswa' , 'siswa.alamat_siswa' , 'siswa.nama_ayah' , 'siswa.nama_ibu' , 'siswa.tlp_ortu' , 'siswa.alamat_ortu' , 'siswa.kelas_id']);
+        $data = DB::table('siswa')
+            ->join('kelas', 'siswa.kelas_id', '=', 'kelas.id')
+            ->select(['siswa.id', 'siswa.nis', 'siswa.nama', 'siswa.jkl', 'siswa.agama' , 'kelas.nama_kelas' , 'siswa.tlp_siswa' , 'siswa.alamat_siswa' , 'siswa.nama_ayah' , 'siswa.nama_ibu' , 'siswa.tlp_ortu' , 'siswa.alamat_ortu' , 'siswa.kelas_id'])
+            ->orderby('siswa.created_at','DESC');
 
         return Datatables::of($data)
             ->addColumn('action', function ($siswa) {

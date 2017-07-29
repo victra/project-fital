@@ -139,7 +139,9 @@ class KelasController extends Controller
 
     public function data()
     {
-        $data = DB::table('kelas')->join('users', 'kelas.wali_kelas_id', '=', 'users.id')->join('siswa', 'kelas.id', '=', 'siswa.kelas_id')
+        $data = DB::table('kelas')
+            ->join('users', 'kelas.wali_kelas_id', '=', 'users.id')
+            ->leftjoin('siswa', 'kelas.id', '=', 'siswa.kelas_id')
             ->select(['kelas.nama_kelas', 
                     'kelas.jurusan', 
                     'kelas.thn_ajaran',
@@ -148,7 +150,11 @@ class KelasController extends Controller
                     'kelas.id',
                     'siswa.kelas_id',
                     'siswa.jkl',
-                    \DB::raw('count(siswa.jkl) as total'),])->groupBy('kelas.id');
+                    \DB::raw('sum(case siswa.jkl when "Laki-laki" then 1 else 0 end) as totall'),
+                    \DB::raw('sum(case siswa.jkl when "Perempuan" then 1 else 0 end) as totalp'),
+                    \DB::raw('count(siswa.jkl) as total')])
+            ->orderBy('kelas.created_at','DESC')
+            ->groupBy('kelas.id');
 
         return Datatables::of($data)
             ->addColumn('action', function ($kelas) {

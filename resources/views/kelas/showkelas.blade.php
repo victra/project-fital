@@ -355,14 +355,14 @@
         "ajax": "{{ route('kelas.data') }}",
         "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
         "columns": [
-          { data: null, sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
-          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '15%' , searchable: false },
-          { data: 'jurusan' , name: 'kelas.jurusan' , sWidth: '20%' },
+          { data: null, sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
+          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '15%' },
+          { data: 'jurusan' , name: 'kelas.jurusan' , sWidth: '20%' , searchable: false , className: "text-center" },
           { data: 'name' , name: 'users.name' , sWidth: '30%' , orderable: false , searchable: false },
-          { data: null , sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
-          { data: null , sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
-          { data: 'total' , name: 'total' , sWidth: '8%' , orderable: false , searchable: false ,  className: "text-center" },
-          { data: 'action' , name: 'action' , sWidth: '8%' , orderable: false , searchable: false ,  className: "text-center" }
+          { data: 'totall' , name: 'totall' , sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
+          { data: 'totalp' , name: 'totalp' , sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
+          { data: 'total' , name: 'total' , sWidth: '8%' , orderable: false , searchable: false , className: "text-center" },
+          { data: 'action' , name: 'action' , sWidth: '8%' , orderable: false , searchable: false , className: "text-center" }
         ],        
         "responsive": true,
         "bAutoWidth": false,
