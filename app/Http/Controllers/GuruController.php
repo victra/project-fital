@@ -240,7 +240,7 @@ class GuruController extends Controller
                             data-tlp="'.$guru->tlp.'"
                             data-jadwal="'.$guru->jadwal.'">
                             <span class="fa fa-edit"></span></a>,
-                        <a data-href="deletesiswa&'.$guru->id.'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>';
+                        <a data-href="deleteguru&'.$guru->id.'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>';
                     }
                 else {
                 return '<a class="btn btn-success btn-xs" title="Ubah" onclick="showModalGuru(this)" 
@@ -431,6 +431,27 @@ class GuruController extends Controller
                         ->with('content', $content);
         }
         
+    }
+
+    public function datapiket()
+    {
+        $data = DB::table('users')
+            ->select(['id', 'nip', 'name', 'email', 'role' , 'jkl' , 'agama' , 'tlp' , 'jadwal'])->where('role', 'guru piket');
+
+        return Datatables::of($data)            
+            ->addColumn('action', function ($guru) {
+                return '<a class="btn btn-success btn-xs" title="Ubah" onclick="showModalPiket(this)" 
+                            data-id="'.$guru->id.'"
+                            data-nip="'.$guru->nip.'"
+                            data-nama="'.$guru->name.'"
+                            data-jenis-kelamin="'.$guru->jkl.'"
+                            data-agama="'.$guru->agama.'"
+                            data-tlp="'.$guru->tlp.'"
+                            data-jadwal="'.$guru->jadwal.'">
+                            <span class="fa fa-edit"></span></a>,
+                        <a data-href="deletepiket&'.$guru->id.'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>';
+            })
+            ->make(true);
     }
 
     public function updatepiket(Request $request, $id)

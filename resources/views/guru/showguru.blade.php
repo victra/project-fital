@@ -35,13 +35,13 @@
 
             <thead>
                 <tr>
-                    <th class="no"><center>No</center></th>
-                    <th class="nip"><center>NIP/NIK</center></th>
+                    <th><center>No</center></th>
+                    <th><center>NIP/NIK</center></th>
                     <th><center>Nama User</center></th>
-                    <th class="role"><center>Role</center></th>
-                    <th class="jkl"><center>Jenis Kelamin</center></th>
-                    <th class="agama"><center>Agama</center></th>
-                    <th class="action"><center>Action</center></th>
+                    <th><center>Role</center></th>
+                    <th><center>Jenis Kelamin</center></th>
+                    <th><center>Agama</center></th>
+                    <th><center>Action</center></th>
                 </tr>
             </thead>
             
@@ -435,8 +435,6 @@
           { data: 'action' , name: 'action' , sWidth: '8%' , orderable: false , searchable: false ,  className: "text-center" }
         ],        
         "responsive": true,
-        // "bAutoWidth": true,
-        // pengaturan lebar kolom
         "bAutoWidth": false,
         "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
         "oLanguage": {

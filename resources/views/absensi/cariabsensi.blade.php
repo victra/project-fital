@@ -54,14 +54,14 @@
 
             <thead>
                 <tr>
-                    <!-- <th class="no"><center>No</center></th> -->
-                    <th class="tanggal">Tanggal</th>
-                    <th class="nis">NIS</th>
-                    <th>Nama Siswa</th>
-                    <th class="jkl">Jenis Kelamin</th>
-                    <th class="kelas">Kelas</th>
-                    <th class="status">Status</th>
-                    <th class="keterangan">Keterangan</th>
+                    <th><center>No</center></th>
+                    <th><center>Tanggal</center></th>
+                    <th><center>NIS</center></th>
+                    <th><center>Nama Siswa</center></th>
+                    <th><center>Jenis Kelamin</center></th>
+                    <th><center>Kelas</center></th>
+                    <th><center>Status</center></th>
+                    <th><center>Keterangan</center></th>
                 </tr>
             </thead>
                                   
@@ -232,20 +232,22 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-    oTable = $('#tablecariabsensi').DataTable({
+    var t = $('#tablecariabsensi').DataTable({
         "scrollY": 400,
         "scrollCollapse": true,
         "processing": true,
         "serverSide": true,
         "ajax": "{{ route('cariabsensi.data') }}",
+        "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
         "columns": [
-          { data: 'date' , name: 'absensi.date' , sWidth: '10%' },
-          { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false },
+          { data: null, sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'date' , name: 'absensi.date' , sWidth: '10%' ,  className: "text-center" },
+          { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false ,  className: "text-center" },
           { data: 'nama' , name: 'siswa.nama' , sWidth: '25%' },
-          { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' },
-          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '11%' ,  className: "text-center" , orderable: false , searchable: false },
-          { data: 'status' , name: 'absensi.status' , sWidth: '9%' , searchable: false },
-          { data: 'description' , name: 'absensi.description' , sWidth: '25%' , orderable: false , searchable: false }
+          { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '11%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'status' , name: 'absensi.status' , sWidth: '9%' , searchable: false ,  className: "text-center" },
+          { data: 'description' , name: 'absensi.description' , sWidth: '20%' , orderable: false , searchable: false }
         ],
         "responsive": true,
         "bAutoWidth": false,
@@ -266,25 +268,30 @@
             sUrl: "",
             sZeroRecords: "Data tidak ditemukan"
             },
-            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-            "buttons": [ {
-                "extend": 'excelHtml5',
-                "text": 'Export Excel',
-                "title": 'Document',
-                "exportOptions": {
-                    // columns: [ 0, 1, 2 ],
-                    columns: ':visible',
-                    // columns: ':not(.no-print)',
-                    // rows: ':visible',
-                    modifier: {
-                        page: 'current'
-                    },
+        "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+        "buttons": [ {
+            "extend": 'excelHtml5',
+            "text": 'Export Excel',
+            "title": 'Document',
+            "exportOptions": {
+                // columns: [ 0, 1, 2 ],
+                columns: ':visible',
+                // columns: ':not(.no-print)',
+                // rows: ':visible',
+                modifier: {
+                    page: 'current'
                 },
-                customize: function( xlsx ) {
-                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                }
-            } ],
+            },
+            customize: function( xlsx ) {
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+            }
+        } ],
         });
+    t.on( 'order.dt search.dt', function () {
+        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
     });
     // $(function(){$("#tablecariabsensi").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"10%"},{sWidth:"5%"},{sWidth:"25%"},{sWidth:"15%"},{sWidth:"11%"},{sWidth:"9%"},{sWidth:"25%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","kelas","status","keterangan"]},{bSortable:!1,aTargets:["jkl","keterangan"]}],dom:"<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",buttons:[{extend:"excelHtml5",text:"Export Excel",title:"Document",exportOptions:{columns:":visible",modifier:{page:"current"}},customize:function(a){a.xl.worksheets["sheet1.xml"]}}]})});
 </script>
@@ -298,7 +305,7 @@
 
 <!-- CARI ABSENSI BERDASAR TANGGAL -->
 <script type="text/javascript">
-    $(document).ready(function(){var a=$("#tablecariabsensi").DataTable();$("#tanggal").on("change",function(){var n=$(this).val();""!=$("#caritanggal").val()?a.columns(0).search(n,!0,!1).draw():a.columns(0).search("",!0,!1).draw()})});
+    $(document).ready(function(){var a=$("#tablecariabsensi").DataTable();$("#tanggal").on("change",function(){var n=$(this).val();""!=$("#caritanggal").val()?a.columns(1).search(n,!0,!1).draw():a.columns(1).search("",!0,!1).draw()})});
 </script>
 <!-- CARI ABSENSI BERDASAR TANGGAL -->
 

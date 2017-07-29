@@ -48,22 +48,15 @@
 
             <thead>
                 <tr>
-                    <th class="no"><center>No</center></th>
-                    <th class="nis"><center>NIS</center></th>
+                    <th><center>No</center></th>
+                    <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
-                    <th class="jkl"><center>Jenis Kelamin</center></th>
-                    <th class="agama"><center>Agama</center></th>
-                    <th class="kelas"><center>Kelas</center></th>
-                    <!-- <th class="none">Telepon Siswa</th>
-                    <th class="none">Alamat Siswa</th>
-                    <th class="none">Nama Ayah</th>
-                    <th class="none">Nama Ibu</th>
-                    <th class="none">Telepon Orang Tua</th>
-                    <th class="none">Alamat Orang Tua</th> -->
-                    <th class="no-expor"><center>Action</center></th>
+                    <th><center>Jenis Kelamin</center></th>
+                    <th><center>Agama</center></th>
+                    <th><center>Kelas</center></th>
+                    <th><center>Action</center></th>
                 </tr>
             </thead>
-
                                  
         </table>                
                 
