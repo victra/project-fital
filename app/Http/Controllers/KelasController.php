@@ -4,6 +4,7 @@ use Model\Siswa;
 use Model\Kelas;
 use App\User;
 use Illuminate\Http\Request;
+use Datatables;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -134,6 +135,33 @@ class KelasController extends Controller
             return View::make('guest.guestkelas')
                         ->with('content', $content);
         }
+    }
+
+    public function data()
+    {
+        $data = DB::table('kelas')->join('users', 'kelas.wali_kelas_id', '=', 'users.id')->join('siswa', 'kelas.id', '=', 'siswa.kelas_id')
+            ->select(['kelas.nama_kelas', 
+                    'kelas.jurusan', 
+                    'kelas.thn_ajaran',
+                    'kelas.wali_kelas_id', 
+                    'users.name',
+                    'kelas.id',
+                    'siswa.kelas_id',
+                    'siswa.jkl',
+                    \DB::raw('count(siswa.jkl) as total'),])->groupBy('kelas.id');
+
+        return Datatables::of($data)
+            ->addColumn('action', function ($kelas) {
+                return '<a class="btn btn-success btn-xs" title="Ubah" onclick="showModalKelas(this)" 
+                            data-id="'.$kelas->id.'"
+                            data-nama_kelas="'.$kelas->nama_kelas.'"
+                            data-jurusan="'.$kelas->jurusan.'"
+                            data-thn_ajaran="'.$kelas->thn_ajaran.'"
+                            data-wali_kelas="'.$kelas->wali_kelas_id.'">
+                            <span class="fa fa-edit"></span></a>,
+                        <a data-href="deletekelas&'.$kelas->id.'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>';                    
+            })
+            ->make(true);
     }
     
     public function deletekelas($id)

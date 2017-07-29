@@ -35,46 +35,17 @@
 
             <thead>
                 <tr>
-                    <th class="no"><center>No</center></th>
+                    <th><center>No</center></th>
                     <th><center>Nama Kelas</center></th>
-                    <th class="jurusan"><center>Kompetensi Keahlian</center></th>
-                    <!-- <th class="thn_ajaran"><center>Tahun Ajaran</center></th> -->
-                    <th class="walikelas"><center>Wali Kelas</center></th>
-                    <th class="laki"><center>L</center></th>
-                    <th class="perempuan"><center>P</center></th>
-                    <th class="total"><center>Total</center></th>
-                    <th class="no-export"><center>Action</center></th>
+                    <th><center>Kompetensi Keahlian</center></th>
+                    <th><center>Wali Kelas</center></th>
+                    <th><center>L</center></th>
+                    <th><center>P</center></th>
+                    <th><center>Total</center></th>
+                    <th><center>Action</center></th>
                 </tr>
             </thead>
-
-            <tbody>
-                <?php $no=1; ?>
-                @foreach($content['kelasku'] as $item)
-                <tr>
-                    <td><center>{{$no++}}</center></td>
-                    <td>{{$item->nama_kelas}}</td>                    
-                    <td>{{$item->jurusan}}</td>
-                    <!-- <td><center>{{$item->thn_ajaran}}</center></td> -->
-                    <td>{{$item->waliKelas->name}}</td> 
-                    <td><center>{{$item->jumlahlaki}}</center></td>
-                    <td><center>{{$item->jumlahperempuan}}</center></td>
-                    <td><center>{{$item->jumlah}}</center></td>
-                    <td>
-                        <center>                                    
-                            {{-- <a class="btn btn-success btn-xs" title="Ubah" href="edit&{{$item->id}}"><span class="fa fa-edit"></span> Ubah</a> --}}
-                            <a class="btn btn-success btn-xs" title="Ubah" onclick="showModalKelas(this)" 
-                            data-id="{{$item->id}}"
-                            data-nama_kelas="{{$item->nama_kelas}}"
-                            data-jurusan="{{$item->jurusan}}"
-                            data-thn_ajaran="{{$item->thn_ajaran}}"
-                            data-wali_kelas="{{$item->wali_kelas_id}}">
-                            <span class="fa fa-edit"></span></a>
-                            <!-- <a onclick="return confirm('Are you sure?')" href='deletekelas&{{$item->id}}' class="btn btn-danger btn-xs" title="Hapus" ><span class="fa fa-trash"></span></a> -->
-                            <a data-href="deletekelas&{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>
-                    </td>
-                </tr>                                    
-                @endforeach
-            </tbody>                       
+                       
         </table>                
                 
     </div><!-- /.box-body -->
@@ -137,7 +108,7 @@
                     </div>   -->                  
                     <label class="control-label col-sm-4">Wali Kelas</label>
                     <div class="form-group">
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <select class="form-control" name="wali_kelas">
                                 <option value="">-- Wali Kelas --</option>
                                 @foreach($content['walikelas'] as $value)
@@ -203,7 +174,7 @@
                     </div> -->
                     <label class="control-label col-sm-4">Wali Kelas</label>
                     <div class="form-group">
-                        <div class="col-sm-5">
+                        <div class="col-sm-6">
                             <select class="form-control" name="wali_kelas">
                                 <option value="">-- Wali Kelas --</option>
                                 @foreach($content['walikelas'] as $value)
@@ -376,7 +347,49 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(function(){$("#tablekelas").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"15%"},{sWidth:"20%"},{sWidth:"30%"},{sWidth:"5%"},{sWidth:"5%"},{sWidth:"8%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Kelas",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","jurusan","thn_ajaran","walikelas","laki","perempuan","total"]},{bSortable:!1,aTargets:["thn_ajaran","walikelas","no-export"]}]});var a=$("#tablekelas").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
+    var t = $('#tablekelas').DataTable({
+        "scrollY": 400,
+        "scrollCollapse": true,
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{{ route('kelas.data') }}",
+        "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
+        "columns": [
+          { data: null, sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '15%' , searchable: false },
+          { data: 'jurusan' , name: 'kelas.jurusan' , sWidth: '20%' },
+          { data: 'name' , name: 'users.name' , sWidth: '30%' , orderable: false , searchable: false },
+          { data: null , sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: null , sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'total' , name: 'total' , sWidth: '8%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'action' , name: 'action' , sWidth: '8%' , orderable: false , searchable: false ,  className: "text-center" }
+        ],        
+        "responsive": true,
+        "bAutoWidth": false,
+        "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
+        "oLanguage": {
+            sEmptyTable: "Belum ada data dalam tabel ini",
+            sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
+            sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
+            sInfoFiltered: "",
+            sInfoPostFix: "",
+            sDecimal: "",
+            sThousands: ",",
+            sLengthMenu: "Tampilkan _MENU_ data",
+            sLoadingRecords: "Loading...",
+            sProcessing: "Processing...",
+            sSearch: "Cari:",
+            sSearchPlaceholder: "Nama Kelas",
+            sUrl: "",
+            sZeroRecords: "Data tidak ditemukan"
+            },
+    });
+    t.on( 'order.dt search.dt', function () {
+        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+    // $(function(){$("#tablekelas").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"15%"},{sWidth:"20%"},{sWidth:"30%"},{sWidth:"5%"},{sWidth:"5%"},{sWidth:"8%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Kelas",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","jurusan","thn_ajaran","walikelas","laki","perempuan","total"]},{bSortable:!1,aTargets:["thn_ajaran","walikelas","no-export"]}]});var a=$("#tablekelas").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
 </script>
 
 <!-- <script type="text/javascript" src="js/kelas.js"></script> -->
