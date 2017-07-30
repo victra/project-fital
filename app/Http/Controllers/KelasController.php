@@ -121,11 +121,23 @@ class KelasController extends Controller
             'Sabtu' => 'Sabtu',
         );
 
-        $walikelas = User::orderby('name', 'ASC')->where('role','guru')->get();
+        // $walikelas = User::orderby('name', 'ASC')->where('role','guru')->get();
+
+        $walikelas = User::orderby('name', 'ASC')
+                    ->where('role','guru')
+                    ->whereNotIn('id', function($q){
+                        $q->select('wali_kelas_id')->from('kelas');
+                    })
+                    ->get();
+
+        $walikelasubah = User::orderby('name', 'ASC')
+                    ->where('role','guru')
+                    ->get();
        
         $content['kelasku'] = $kelas;
         $content['jurusan'] = $jurusan;
         $content['walikelas'] = $walikelas;
+        $content['walikelasubah'] = $walikelasubah;
         $content['jadwal'] = $jadwal;
         
         if (Auth::user()->role == 'administrator' or Auth::user()->role == 'guru piket') {
@@ -153,7 +165,6 @@ class KelasController extends Controller
                     \DB::raw('sum(case siswa.jkl when "Laki-laki" then 1 else 0 end) as totall'),
                     \DB::raw('sum(case siswa.jkl when "Perempuan" then 1 else 0 end) as totalp'),
                     \DB::raw('count(siswa.jkl) as total')])
-            ->orderBy('kelas.created_at','DESC')
             ->groupBy('kelas.id');
 
         return Datatables::of($data)

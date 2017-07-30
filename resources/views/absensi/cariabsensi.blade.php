@@ -54,7 +54,7 @@
 
             <thead>
                 <tr>
-                    <th><center>No</center></th>
+                    <th class="ket"><center>No</center></th>
                     <th><center>Tanggal</center></th>
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
@@ -243,9 +243,9 @@
           { data: null, sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
           { data: 'date' , name: 'absensi.date' , sWidth: '10%' ,  className: "text-center" },
           { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false ,  className: "text-center" },
-          { data: 'nama' , name: 'siswa.nama' , sWidth: '25%' },
-          { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' , orderable: false , searchable: false ,  className: "text-center" },
-          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '11%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'nama' , name: 'siswa.nama' , sWidth: '27%' },
+          { data: 'jkl' , name: 'siswa.jkl' , sWidth: '13%' , orderable: false , searchable: false ,  className: "text-center" },
+          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '11%' , searchable: false ,  className: "text-center" },
           { data: 'status' , name: 'absensi.status' , sWidth: '9%' , searchable: false ,  className: "text-center" },
           { data: 'description' , name: 'absensi.description' , sWidth: '20%' , orderable: false , searchable: false }
         ],
@@ -275,8 +275,8 @@
             "title": 'Document',
             "exportOptions": {
                 // columns: [ 0, 1, 2 ],
-                columns: ':visible',
-                // columns: ':not(.no-print)',
+                // columns: ':visible',
+                columns: ':not(.ket)',
                 // rows: ':visible',
                 modifier: {
                     page: 'current'
@@ -286,7 +286,7 @@
                 var sheet = xlsx.xl.worksheets['sheet1.xml'];
             }
         } ],
-        });
+    });
     t.on( 'order.dt search.dt', function () {
         t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;

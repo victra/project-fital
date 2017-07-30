@@ -434,8 +434,7 @@ class AbsensiController extends Controller
             ->join('siswa', 'absensi.siswa_id', '=', 'siswa.id')
             ->join('kelas', 'absensi.kelas_id', '=', 'kelas.id')
             ->select(['absensi.date', 'siswa.nis', 'siswa.nama', 'siswa.jkl', 'kelas.nama_kelas', 'absensi.status', 'absensi.description'])
-            ->where('status','!=', 'H')
-            ->orderby('date','DESC');
+            ->where('status','!=', 'H');
 
         return Datatables::of($data)->make(true);
     }

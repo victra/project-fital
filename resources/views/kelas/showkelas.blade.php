@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('css-tambahan')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
@@ -35,14 +36,14 @@
 
             <thead>
                 <tr>
-                    <th><center>No</center></th>
+                    <th class="ket"><center>No</center></th>
                     <th><center>Nama Kelas</center></th>
                     <th><center>Kompetensi Keahlian</center></th>
                     <th><center>Wali Kelas</center></th>
                     <th><center>L</center></th>
                     <th><center>P</center></th>
                     <th><center>Total</center></th>
-                    <th><center>Action</center></th>
+                    <th class="ket"><center>Action</center></th>
                 </tr>
             </thead>
                        
@@ -177,7 +178,7 @@
                         <div class="col-sm-6">
                             <select class="form-control" name="wali_kelas">
                                 <option value="">-- Wali Kelas --</option>
-                                @foreach($content['walikelas'] as $value)
+                                @foreach($content['walikelasubah'] as $value)
                                     <option value="{{$value['id']}}">{{$value['name']}}</option>
                                 @endforeach
                             </select>
@@ -347,6 +348,7 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    $(document).ready(function() {
     var t = $('#tablekelas').DataTable({
         "scrollY": 400,
         "scrollCollapse": true,
@@ -358,7 +360,7 @@
           { data: null, sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
           { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '15%' },
           { data: 'jurusan' , name: 'kelas.jurusan' , sWidth: '20%' , searchable: false , className: "text-center" },
-          { data: 'name' , name: 'users.name' , sWidth: '30%' , orderable: false , searchable: false },
+          { data: 'name' , name: 'users.name' , sWidth: '30%' , searchable: false },
           { data: 'totall' , name: 'totall' , sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
           { data: 'totalp' , name: 'totalp' , sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
           { data: 'total' , name: 'total' , sWidth: '8%' , orderable: false , searchable: false , className: "text-center" },
@@ -382,15 +384,39 @@
             sSearchPlaceholder: "Nama Kelas",
             sUrl: "",
             sZeroRecords: "Data tidak ditemukan"
+        },
+        "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+        "buttons": [ {
+            "extend": 'excelHtml5',
+            "text": 'Export Excel',
+            "title": 'Document',
+            "exportOptions": {
+                // columns: [ 0, 1, 2 ],
+                // columns: ':visible',
+                columns: ':not(.ket)',
+                // rows: ':visible',
+                modifier: {
+                    page: 'current'
+                },
             },
+            customize: function( xlsx ) {
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+            }
+        } ],
     });
     t.on( 'order.dt search.dt', function () {
         t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
         } );
     } ).draw();
+    });
     // $(function(){$("#tablekelas").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"15%"},{sWidth:"20%"},{sWidth:"30%"},{sWidth:"5%"},{sWidth:"5%"},{sWidth:"8%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Kelas",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","jurusan","thn_ajaran","walikelas","laki","perempuan","total"]},{bSortable:!1,aTargets:["thn_ajaran","walikelas","no-export"]}]});var a=$("#tablekelas").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
 </script>
+
+<!-- Export Excel -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 
 <!-- <script type="text/javascript" src="js/kelas.js"></script> -->
 <!-- <script type="text/javascript" src="js/modal.js"></script> -->

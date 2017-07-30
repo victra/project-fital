@@ -224,8 +224,7 @@ class GuruController extends Controller
     public function data()
     {
         $data = DB::table('users')
-            ->select(['id', 'nip', 'name', 'email', 'role' , 'jkl' , 'agama' , 'tlp' , 'jadwal'])
-            ->orderby('created_at','DESC');
+            ->select(['id', 'nip', 'name', 'email', 'role' , 'jkl' , 'agama' , 'tlp' , 'jadwal']);
 
         return Datatables::of($data)
             ->addColumn('action', function ($guru) {
@@ -438,8 +437,7 @@ class GuruController extends Controller
     {
         $data = DB::table('users')
             ->select(['id', 'nip', 'name', 'email', 'role' , 'jkl' , 'agama' , 'tlp' , 'jadwal'])
-            ->where('role', 'guru piket')
-            ->orderby('created_at','DESC');
+            ->where('role', 'guru piket');
 
         return Datatables::of($data)            
             ->addColumn('action', function ($guru) {

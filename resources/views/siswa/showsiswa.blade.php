@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('css-tambahan')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
@@ -48,13 +49,13 @@
 
             <thead>
                 <tr>
-                    <th><center>No</center></th>
+                    <th class="ket"><center>No</center></th>
                     <th><center>NIS</center></th>
                     <th><center>Nama Siswa</center></th>
                     <th><center>Jenis Kelamin</center></th>
                     <th><center>Agama</center></th>
                     <th><center>Kelas</center></th>
-                    <th><center>Action</center></th>
+                    <th class="ket"><center>Action</center></th>
                 </tr>
             </thead>
                                  
@@ -585,6 +586,7 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    $(document).ready(function() {
     var t = $('#tablesiswa').DataTable({
             "scrollY": 400,
             "scrollCollapse": true,
@@ -593,13 +595,13 @@
             "ajax": "{{ route('siswa.data') }}",
             "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
             "columns": [
-              { data: null, sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
-              { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false ,  className: "text-center" },
+              { data: null, sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
+              { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false , className: "text-center" },
               { data: 'nama' , name: 'siswa.nama' , sWidth: '35%' },
-              { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' , orderable: false , searchable: false ,  className: "text-center" },
-              { data: 'agama' , name: 'siswa.agama' , sWidth: '10%' , orderable: false , searchable: false ,  className: "text-center" },
-              { data: 'nama_kelas' , name: 'siswa.kelas_id' , sWidth: '15%' , orderable: false ,  className: "text-center" },
-              { data: 'action' , name: 'action' , sWidth: '15%' , orderable: false , searchable: false ,  className: "text-center" }
+              { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' , orderable: false , searchable: false , className: "text-center" },
+              { data: 'agama' , name: 'siswa.agama' , sWidth: '10%' , orderable: false , searchable: false , className: "text-center" },
+              { data: 'nama_kelas' , name: 'siswa.kelas_id' , sWidth: '15%' , className: "text-center" },
+              { data: 'action' , name: 'action' , sWidth: '15%' , orderable: false , searchable: false , className: "text-center" }
             ],            
             "responsive": true,
             "bAutoWidth": false,
@@ -619,15 +621,39 @@
                 sSearchPlaceholder: "Nama Siswa",
                 sUrl: "",
                 sZeroRecords: "Data tidak ditemukan"
-                },            
-        });
-            t.on( 'order.dt search.dt', function () {
-                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                    cell.innerHTML = i+1;
-                } );
-            } ).draw();
+            },
+            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
+            "buttons": [ {
+                "extend": 'excelHtml5',
+                "text": 'Export Excel',
+                "title": 'Document',
+                "exportOptions": {
+                    // columns: [ 0, 1, 2 ],
+                    // columns: ':visible',
+                    columns: ':not(.ket)',
+                    // rows: ':visible',
+                    modifier: {
+                        page: 'current'
+                    },
+                },
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                }
+            } ],
+    });
+    t.on( 'order.dt search.dt', function () {
+        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+    });
     // $(function(){$("#tablesiswa").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"10%"},{sWidth:"32%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"15%"},{sWidth:"13%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","agama","jkl","kelas","none"]},{bSortable:!1,aTargets:["no-expor"]}]});var a=$("#tablesiswa").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
 </script>
+
+<!-- Export Excel -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 
 <!-- <script type="text/javascript" src="js/siswa.js"></script>
 <script type="text/javascript" src="js/infosiswa.js"></script> -->
