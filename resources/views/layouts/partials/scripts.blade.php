@@ -168,6 +168,16 @@ function showModalSemester(button){
   modal.find('input[name=nama_semester]').val(nama_semester);
   modal.find('input[name=tgl_awal]').val(tgl_awal);
   modal.find('input[name=tgl_akhir]').val(tgl_akhir);
+
+  $('#datetimePicker2').datepicker({
+          format: "yyyy-mm-dd",
+          autoclose: true
+        }).datepicker("setDate", $(button).data('tgl-awal'));
+
+  $('#datetimePicker3').datepicker({
+          format: "yyyy-mm-dd",
+          autoclose: true
+        }).datepicker("setDate", $(button).data('tgl-akhir'));
     
   modal.find('form.form-horizontal').prop('action', 'updatesemester&'+id);
   modal.modal({backdrop: 'static', keyboard: false});

@@ -95,7 +95,7 @@
                     <label class="control-label col-sm-5">Tanggal Awal</label>
                     <div class="form-group">
                         <div class="col-sm-5">
-                            <div class="input-group date" id="datetimePicker">
+                            <div class="input-group date" id="datetimePicker2">
                                 <input type="text" name="tgl_awal" class="form-control" placeholder="YYYY-MM-DD">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
@@ -104,7 +104,7 @@
                     <label class="control-label col-sm-5">Tanggal Akhir</label>
                     <div class="form-group">
                         <div class="col-sm-5">
-                            <div class="input-group date" id="datetimePicker1">
+                            <div class="input-group date" id="datetimePicker3">
                                 <input type="text" name="tgl_akhir" class="form-control" placeholder="YYYY-MM-DD">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
@@ -281,13 +281,13 @@
 @section('scripts-tambahan')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     function masuk(){console.log("asdasd")}$(document).ready(function(){$("#datetimePicker, #datetimePicker1").datepicker({format:"yyyy-mm-dd",autoclose:!0})});
 </script>
 
 <script type="text/javascript">
     $(function(){$("#datetimePicker").datepicker({format:"yyyy-mm-dd",autoclose:!0}),$("#tanggal").on("change",function(){var a=$(this).val();document.getElementById("caritanggal").value=a})});
-</script>
+</script> -->
 
 <!-- Datatables -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -305,7 +305,7 @@
 
 <!-- VALIDASI FORM UBAH SEMESTER -->
 <script type="text/javascript">
-$(document).ready(function(){$("#datetimePicker").datepicker(),$("#UbahSemester").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{tgl_awal:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal awal harus diisi"},date:{format:"YYYY-MM-DD",max:"tgl_akhir",message:"Tanggal awal tidak valid"}}},tgl_akhir:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal akhir harus diisi"},date:{format:"YYYY-MM-DD",min:"tgl_awal",message:"Tanggal akhir tidak valid"}}}}}).on("success.field.bv",function(a,i){"tgl_awal"!==i.field||i.bv.isValidField("tgl_akhir")||i.bv.revalidateField("tgl_akhir"),"tgl_akhir"!==i.field||i.bv.isValidField("tgl_awal")||i.bv.revalidateField("tgl_awal")})});
+$(document).ready(function(){$("#datetimePicker").datepicker(),$("#UbahSemester").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{tgl_awal:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal awal harus diisi"},date:{format:"YYYY-MM-DD",message:"Tanggal awal tidak valid"}}},tgl_akhir:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal akhir harus diisi"},date:{format:"YYYY-MM-DD",message:"Tanggal akhir tidak valid"}}}}}).on("success.field.bv",function(a,i){"tgl_awal"!==i.field||i.bv.isValidField("tgl_akhir")||i.bv.revalidateField("tgl_akhir"),"tgl_akhir"!==i.field||i.bv.isValidField("tgl_awal")||i.bv.revalidateField("tgl_awal")})});
 </script>
 <!-- VALIDASI FORM UBAH SEMESTER -->
 @endsection
