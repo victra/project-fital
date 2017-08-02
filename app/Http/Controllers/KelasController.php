@@ -71,7 +71,6 @@ class KelasController extends Controller
         $kelas = new Kelas;
         $kelas->nama_kelas = $request->nama_kelas;
         $kelas->jurusan = $request->jurusan;
-        // $kelas->thn_ajaran = $request->thn_ajaran;
         $kelas->wali_kelas_id = $request->wali_kelas;
         $kelas->save();
         //return redirect('show');
@@ -155,8 +154,7 @@ class KelasController extends Controller
             ->join('users', 'kelas.wali_kelas_id', '=', 'users.id')
             ->leftjoin('siswa', 'kelas.id', '=', 'siswa.kelas_id')
             ->select(['kelas.nama_kelas', 
-                    'kelas.jurusan', 
-                    'kelas.thn_ajaran',
+                    'kelas.jurusan',
                     'kelas.wali_kelas_id', 
                     'users.name',
                     'kelas.id',
@@ -173,7 +171,6 @@ class KelasController extends Controller
                             data-id="'.$kelas->id.'"
                             data-nama_kelas="'.$kelas->nama_kelas.'"
                             data-jurusan="'.$kelas->jurusan.'"
-                            data-thn_ajaran="'.$kelas->thn_ajaran.'"
                             data-wali_kelas="'.$kelas->wali_kelas_id.'">
                             <span class="fa fa-edit"></span></a>,
                         <a data-href="deletekelas&'.$kelas->id.'" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-xs" title="Hapus"><span class="fa fa-trash"></span></a>';                    
@@ -194,7 +191,6 @@ class KelasController extends Controller
         $kelas = ['id' => $request->id
                 ,'nama_kelas' => $request->nama_kelas
                 ,'jurusan' => $request->jurusan
-                ,'thn_ajaran' => $request->thn_ajaran
                 ,'wali_kelas_id' => $request->wali_kelas];
         DB::table('kelas')->where('id',$request->id)->update($kelas);
         //return redirect('show');

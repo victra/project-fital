@@ -20,17 +20,17 @@
 
 @section('main-content')
 
-<!-- pesan peringatan berhasil -->
-@if(Session::has('flash_message'))
-    <div id="successMessage" class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
-@endif
-
 @if(Session::has('info_message'))
     <div id="infoMessage" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_message') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
 @endif
 
 @if(Session::has('info_absensi'))
     <div id="infoAbsensi" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_absensi') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+@endif
+
+<!-- pesan peringatan berhasil -->
+@if(Session::has('flash_message'))
+    <div id="successMessage" class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
 @endif
 
 <div class="box">

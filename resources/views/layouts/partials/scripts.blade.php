@@ -306,7 +306,7 @@ $(document).ready(function(){$("#UbahPassword").bootstrapValidator({feedbackIcon
 
 <!-- PENGATURAN PESAN PERINGATAN -->
 <script type="text/javascript">
-$(document).ready(function(){setTimeout(function(){$("#successMessage, #errorsMessage").fadeOut(1500)},3e3)});
+$(document).ready(function(){setTimeout(function(){$("#successMessage, #errorsMessage").fadeOut(500)},3e3)});
 </script>
 <!-- PENGATURAN PESAN PERINGATAN -->
 

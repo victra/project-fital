@@ -17,9 +17,7 @@ class CreateTableKelas extends Migration
             $table->integer('id', true);
             $table->string('nama_kelas');
             $table->string('jurusan');
-            $table->string('thn_ajaran');
             $table->integer('wali_kelas_id')->index('kelas_wali_kelas_id')->nullable();
-            // $table->integer('semester_id')->index('kelas_semester_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
