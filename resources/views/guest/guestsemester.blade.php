@@ -35,9 +35,9 @@
             <thead>
                 <tr>
                     <th class="no"><center>No</center></th>
-                    <th><center>Nama Semester</center></th>
-                    <th><center>Tanggal Awal</center></th>
-                    <th><center>Tanggal Akhir</center></th>
+                    <th class="semester"><center>Nama Semester</center></th>
+                    <th class="tgl_awal"><center>Tanggal Awal</center></th>
+                    <th class="tgl_akhir"><center>Tanggal Akhir</center></th>
                 </tr>
             </thead>
 
@@ -270,6 +270,6 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(function(){$("#tableguestsemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"45%"},{sWidth:"25%"},{sWidth:"25%"}]});var e=$("#tableguestsemester").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var t="\\b"+this.value.toLowerCase()+"\\b";e.rows().search(t,!0,!1).draw()})});
+    $("#tableguestsemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"45%"},{sWidth:"25%"},{sWidth:"25%"}],aoColumnDefs:[{bSortable:!1,aTargets:["no","semester","tgl_awal","tgl_akhir"]}]});
 </script>
 @endsection

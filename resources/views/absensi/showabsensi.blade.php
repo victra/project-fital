@@ -64,7 +64,7 @@
                 <tr>
                     <th class="no"><center>No</center></th>
                     <th class="nis"><center>NIS</center></th>
-                    <th><center>Nama Siswa</center></th>
+                    <th class="nama"><center>Nama Siswa</center></th>
                     <th class="jkl"><center>Jenis Kelamin</center></th>
                     <th class="agama"><center>Agama</center></th>
                     <!-- <th><center>Kelas</center></th> -->
@@ -322,21 +322,12 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(function(){$("#tableabsensi").dataTable({scrollY:350,scrollCollapse:!0,bPaginate:!1,bLengthChange:!1,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"5%"},{sWidth:"30%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"10%"},{sWidth:"25%"}],aLengthMenu:[[-1],["Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Jumlah Siswa : _TOTAL_ siswa",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","status","keterangan"]},{bSortable:!1,aTargets:["agama","status","keterangan"]}]});var a=$("#tableabsensi").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
+    $(function(){$("#tableabsensi").dataTable({scrollY:350,scrollCollapse:!0,bPaginate:!1,bLengthChange:!1,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"5%"},{sWidth:"30%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"10%"},{sWidth:"25%"}],aLengthMenu:[[-1],["Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Jumlah Siswa : _TOTAL_ siswa",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","status","keterangan"]},{bSortable:!1,aTargets:["no","nis","nama","jkl","agama","status","keterangan"]}]});var a=$("#tableabsensi").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
 </script>
-
-<!-- <script type="text/javascript" src="js/modal.js"></script> -->
 
 <!-- Enable/Disable Tombol Absensi -->
 <script type="text/javascript">
-    $(function(){
-    var rowCount = $('#tableabsensi tbody tr').length;
-    if(rowCount < 1){
-        $('#simpan, #hapus').attr('disabled','disabled');
-    } else {
-        $('#simpan, #hapus').removeAttr('disabled');
-    }
-});
+    $(function(){$("#tableabsensi tbody tr").length<1?$("#simpan, #hapus").attr("disabled","disabled"):$("#simpan, #hapus").removeAttr("disabled")});
 </script>
 <!-- Enable/Disable Tombol Absensi -->
 
@@ -344,9 +335,5 @@
 <script type="text/javascript">
     function validate(){$("#kelasku").val()>0?($("#simpan, #hapus").show(),$("#tableabsensi").parents("div.dataTables_wrapper").first().show()):($("#simpan, #hapus").hide(),$("#tableabsensi").parents("div.dataTables_wrapper").first().hide())}$(document).ready(function(){validate(),$("#kelasku").change(validate)});
 </script>
-
-<!-- <script type="text/javascript">
-    function validate(){$("#kelasku").val()>0?($("#simpan, #hapus").show(),$("#tableabsensi").parents("div.dataTables_wrapper").first().show(),document.getElementById("infoMessage").style.display="none"):($("#simpan, #hapus").hide(),$("#tableabsensi").parents("div.dataTables_wrapper").first().hide(),document.getElementById("infoAbsensi").style.display="none")}$(document).ready(function(){validate(),$("#kelasku").change(validate)});      
-</script> -->
 <!-- Hide/Show Tombol Absensi -->
 @endsection

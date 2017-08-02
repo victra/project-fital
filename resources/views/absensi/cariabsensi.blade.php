@@ -231,77 +231,13 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-    var t = $('#tablecariabsensi').DataTable({
-        "scrollY": 400,
-        "scrollCollapse": true,
-        "processing": true,
-        "serverSide": true,
-        "ajax": "{{ route('cariabsensi.data') }}",
-        "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
-        "columns": [
-          { data: null, sWidth: '5%' , orderable: false , searchable: false ,  className: "text-center" },
-          { data: 'date' , name: 'absensi.date' , sWidth: '10%' ,  className: "text-center" },
-          { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false ,  className: "text-center" },
-          { data: 'nama' , name: 'siswa.nama' , sWidth: '27%' },
-          { data: 'jkl' , name: 'siswa.jkl' , sWidth: '13%' , orderable: false , searchable: false ,  className: "text-center" },
-          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '11%' , searchable: false ,  className: "text-center" },
-          { data: 'status' , name: 'absensi.status' , sWidth: '9%' , searchable: false ,  className: "text-center" },
-          { data: 'description' , name: 'absensi.description' , sWidth: '20%' , orderable: false , searchable: false }
-        ],
-        "responsive": true,
-        "bAutoWidth": false,
-        "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
-        "oLanguage": {
-            sEmptyTable: "Belum ada data dalam tabel ini",
-            sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
-            sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-            sInfoFiltered: "",
-            sInfoPostFix: "",
-            sDecimal: "",
-            sThousands: ",",
-            sLengthMenu: "Tampilkan _MENU_ data",
-            sLoadingRecords: "Loading...",
-            sProcessing: "Processing...",
-            sSearch: "Cari:",
-            sSearchPlaceholder: "Nama Siswa",
-            sUrl: "",
-            sZeroRecords: "Data tidak ditemukan"
-            },
-        "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-        "buttons": [ {
-            "extend": 'excelHtml5',
-            "text": 'Export Excel',
-            "title": 'Document',
-            "exportOptions": {
-                // columns: [ 0, 1, 2 ],
-                // columns: ':visible',
-                columns: ':not(.ket)',
-                // rows: ':visible',
-                modifier: {
-                    page: 'current'
-                },
-            },
-            customize: function( xlsx ) {
-                var sheet = xlsx.xl.worksheets['sheet1.xml'];
-            }
-        } ],
-    });
-    t.on( 'order.dt search.dt', function () {
-        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
-    });
-    // $(function(){$("#tablecariabsensi").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"10%"},{sWidth:"5%"},{sWidth:"25%"},{sWidth:"15%"},{sWidth:"11%"},{sWidth:"9%"},{sWidth:"25%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","kelas","status","keterangan"]},{bSortable:!1,aTargets:["jkl","keterangan"]}],dom:"<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",buttons:[{extend:"excelHtml5",text:"Export Excel",title:"Document",exportOptions:{columns:":visible",modifier:{page:"current"}},customize:function(a){a.xl.worksheets["sheet1.xml"]}}]})});
+    $(document).ready(function(){var a=$("#tablecariabsensi").DataTable({scrollY:400,scrollCollapse:!0,processing:!0,serverSide:!0,ajax:"{{ route('cariabsensi.data') }}",fnCreatedRow:function(e,s,t){var n=t+1+a.page.info().start;$("td",e).eq(0).html(n)},columns:[{data:null,sWidth:"5%",orderable:!1,searchable:!1,className:"text-center"},{data:"date",name:"absensi.date",sWidth:"10%",className:"text-center"},{data:"nis",name:"siswa.nis",sWidth:"5%",searchable:!1,className:"text-center"},{data:"nama",name:"siswa.nama",sWidth:"27%"},{data:"jkl",name:"siswa.jkl",sWidth:"13%",orderable:!1,searchable:!1,className:"text-center"},{data:"nama_kelas",name:"kelas.nama_kelas",sWidth:"11%",searchable:!1,className:"text-center"},{data:"status",name:"absensi.status",sWidth:"9%",searchable:!1,className:"text-center"},{data:"description",name:"absensi.description",sWidth:"20%",orderable:!1,searchable:!1}],responsive:!0,bAutoWidth:!1,aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},dom:"<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",buttons:[{extend:"excelHtml5",text:"Export Excel",title:"Document",exportOptions:{columns:":not(.ket)",modifier:{page:"current"}},customize:function(a){a.xl.worksheets["sheet1.xml"]}}]});a.on("order.dt search.dt",function(){a.column(0,{search:"applied",order:"applied"}).nodes().each(function(a,e){a.innerHTML=e+1})}).draw()});
 </script>
 
 <!-- Export Excel -->
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-
-<!-- <script type="text/javascript" src="js/modal.js"></script> -->
 
 <!-- CARI ABSENSI BERDASAR TANGGAL -->
 <script type="text/javascript">

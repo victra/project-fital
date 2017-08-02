@@ -571,12 +571,7 @@
 
 @section('scripts-tambahan')
 <script type="text/javascript">
-    $(function() {
-        $('#kelasq').on("change",function(){
-            var selected = $(this).val();
-            document.getElementById("carikelas").value = selected;
-        });
-    });
+    $(function(){$("#kelasq").on("change",function(){var e=$(this).val();document.getElementById("carikelas").value=e})});
 </script>
 <!-- Datatables -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -586,68 +581,7 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-    var t = $('#tablesiswa').DataTable({
-            "scrollY": 400,
-            "scrollCollapse": true,
-            "processing": true,
-            "serverSide": true,
-            "ajax": "{{ route('siswa.data') }}",
-            "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
-            "columns": [
-              { data: null, sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
-              { data: 'nis' , name: 'siswa.nis' , sWidth: '5%' , searchable: false , className: "text-center" },
-              { data: 'nama' , name: 'siswa.nama' , sWidth: '35%' },
-              { data: 'jkl' , name: 'siswa.jkl' , sWidth: '15%' , orderable: false , searchable: false , className: "text-center" },
-              { data: 'agama' , name: 'siswa.agama' , sWidth: '10%' , orderable: false , searchable: false , className: "text-center" },
-              { data: 'nama_kelas' , name: 'siswa.kelas_id' , sWidth: '15%' , className: "text-center" },
-              { data: 'action' , name: 'action' , sWidth: '15%' , orderable: false , searchable: false , className: "text-center" }
-            ],            
-            "responsive": true,
-            "bAutoWidth": false,
-            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
-            "oLanguage": {
-                sEmptyTable: "Belum ada data dalam tabel ini",
-                sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
-                sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-                sInfoFiltered: "",
-                sInfoPostFix: "",
-                sDecimal: "",
-                sThousands: ",",
-                sLengthMenu: "Tampilkan _MENU_ data",
-                sLoadingRecords: "Loading...",
-                sProcessing: "Processing...",
-                sSearch: "Cari:",
-                sSearchPlaceholder: "Nama Siswa",
-                sUrl: "",
-                sZeroRecords: "Data tidak ditemukan"
-            },
-            "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-            "buttons": [ {
-                "extend": 'excelHtml5',
-                "text": 'Export Excel',
-                "title": 'Document',
-                "exportOptions": {
-                    // columns: [ 0, 1, 2 ],
-                    // columns: ':visible',
-                    columns: ':not(.ket)',
-                    // rows: ':visible',
-                    modifier: {
-                        page: 'current'
-                    },
-                },
-                customize: function( xlsx ) {
-                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                }
-            } ],
-    });
-    t.on( 'order.dt search.dt', function () {
-        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
-    });
-    // $(function(){$("#tablesiswa").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"10%"},{sWidth:"32%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"15%"},{sWidth:"13%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","agama","jkl","kelas","none"]},{bSortable:!1,aTargets:["no-expor"]}]});var a=$("#tablesiswa").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
+    $(document).ready(function(){var a=$("#tablesiswa").DataTable({scrollY:400,scrollCollapse:!0,processing:!0,serverSide:!0,ajax:"{{ route('siswa.data') }}",fnCreatedRow:function(e,t,s){var n=s+1+a.page.info().start;$("td",e).eq(0).html(n)},columns:[{data:null,sWidth:"5%",orderable:!1,searchable:!1,className:"text-center"},{data:"nis",name:"siswa.nis",sWidth:"5%",searchable:!1,className:"text-center"},{data:"nama",name:"siswa.nama",sWidth:"35%"},{data:"jkl",name:"siswa.jkl",sWidth:"15%",orderable:!1,searchable:!1,className:"text-center"},{data:"agama",name:"siswa.agama",sWidth:"10%",orderable:!1,searchable:!1,className:"text-center"},{data:"nama_kelas",name:"siswa.kelas_id",sWidth:"15%",className:"text-center"},{data:"action",name:"action",sWidth:"15%",orderable:!1,searchable:!1,className:"text-center"}],responsive:!0,bAutoWidth:!1,aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},dom:"<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",buttons:[{extend:"excelHtml5",text:"Export Excel",title:"Document",exportOptions:{columns:":not(.ket)",modifier:{page:"current"}},customize:function(a){a.xl.worksheets["sheet1.xml"]}}]});a.on("order.dt search.dt",function(){a.column(0,{search:"applied",order:"applied"}).nodes().each(function(a,e){a.innerHTML=e+1})}).draw()});
 </script>
 
 <!-- Export Excel -->
@@ -660,28 +594,7 @@
 <!-- <script type="text/javascript" src="js/modal.js"></script> -->
 
 <script type="text/javascript">
-    $(document).ready(function (){
-    var table = $('#tablesiswa').DataTable();
-
-    $("#kelasq").on("change",function(){
-        
-     var _val = $(this).val();
-     var i = $("#carikelas").val();  
-     regex = '\\b' + _val + '\\b';   
-     if(i != ''){  
-            table
-            .columns(5)
-            .search(regex, true, false)
-            .draw();
-      }else{  
-            table
-            .columns(5)
-            .search('', true, false)
-            .draw();
-      }
-    });
-
-    });
+    $(document).ready(function(){var a=$("#tablesiswa").DataTable();$("#kelasq").on("change",function(){var e=$(this).val(),r=$("#carikelas").val();regex="\\b"+e+"\\b",""!=r?a.columns(5).search(regex,!0,!1).draw():a.columns(5).search("",!0,!1).draw()})});
 </script>
 
 <!-- VALIDASI FORM TAMBAH SISWA -->

@@ -348,69 +348,7 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-    var t = $('#tablekelas').DataTable({
-        "scrollY": 400,
-        "scrollCollapse": true,
-        "processing": true,
-        "serverSide": true,
-        "ajax": "{{ route('kelas.data') }}",
-        "fnCreatedRow": function (row, data, index) { var info = t.page.info(); var value = index+1+info.start; $('td', row).eq(0).html(value); },
-        "columns": [
-          { data: null, sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
-          { data: 'nama_kelas' , name: 'kelas.nama_kelas' , sWidth: '15%' },
-          { data: 'jurusan' , name: 'kelas.jurusan' , sWidth: '20%' , searchable: false , className: "text-center" },
-          { data: 'name' , name: 'users.name' , sWidth: '30%' , searchable: false },
-          { data: 'totall' , name: 'totall' , sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
-          { data: 'totalp' , name: 'totalp' , sWidth: '5%' , orderable: false , searchable: false , className: "text-center" },
-          { data: 'total' , name: 'total' , sWidth: '8%' , orderable: false , searchable: false , className: "text-center" },
-          { data: 'action' , name: 'action' , sWidth: '8%' , orderable: false , searchable: false , className: "text-center" }
-        ],        
-        "responsive": true,
-        "bAutoWidth": false,
-        "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Semua"]],
-        "oLanguage": {
-            sEmptyTable: "Belum ada data dalam tabel ini",
-            sInfo: "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
-            sInfoEmpty: "Menampilkan 0 to 0 of 0 data",
-            sInfoFiltered: "",
-            sInfoPostFix: "",
-            sDecimal: "",
-            sThousands: ",",
-            sLengthMenu: "Tampilkan _MENU_ data",
-            sLoadingRecords: "Loading...",
-            sProcessing: "Processing...",
-            sSearch: "Cari:",
-            sSearchPlaceholder: "Nama Kelas",
-            sUrl: "",
-            sZeroRecords: "Data tidak ditemukan"
-        },
-        "dom": "<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>", 
-        "buttons": [ {
-            "extend": 'excelHtml5',
-            "text": 'Export Excel',
-            "title": 'Document',
-            "exportOptions": {
-                // columns: [ 0, 1, 2 ],
-                // columns: ':visible',
-                columns: ':not(.ket)',
-                // rows: ':visible',
-                modifier: {
-                    page: 'current'
-                },
-            },
-            customize: function( xlsx ) {
-                var sheet = xlsx.xl.worksheets['sheet1.xml'];
-            }
-        } ],
-    });
-    t.on( 'order.dt search.dt', function () {
-        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
-    });
-    // $(function(){$("#tablekelas").dataTable({scrollY:400,scrollCollapse:!0,bPaginate:!0,bLengthChange:!0,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"15%"},{sWidth:"20%"},{sWidth:"30%"},{sWidth:"5%"},{sWidth:"5%"},{sWidth:"8%"},{sWidth:"8%"}],aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Kelas",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","jurusan","thn_ajaran","walikelas","laki","perempuan","total"]},{bSortable:!1,aTargets:["thn_ajaran","walikelas","no-export"]}]});var a=$("#tablekelas").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(e,!0,!1).draw()})});
+    $(document).ready(function(){var a=$("#tablekelas").DataTable({scrollY:400,scrollCollapse:!0,processing:!0,serverSide:!0,ajax:"{{ route('kelas.data') }}",fnCreatedRow:function(e,t,s){var l=s+1+a.page.info().start;$("td",e).eq(0).html(l)},columns:[{data:null,sWidth:"5%",orderable:!1,searchable:!1,className:"text-center"},{data:"nama_kelas",name:"kelas.nama_kelas",sWidth:"15%"},{data:"jurusan",name:"kelas.jurusan",sWidth:"20%",searchable:!1,className:"text-center"},{data:"name",name:"users.name",sWidth:"30%",searchable:!1},{data:"totall",name:"totall",sWidth:"5%",orderable:!1,searchable:!1,className:"text-center"},{data:"totalp",name:"totalp",sWidth:"5%",orderable:!1,searchable:!1,className:"text-center"},{data:"total",name:"total",sWidth:"8%",orderable:!1,searchable:!1,className:"text-center"},{data:"action",name:"action",sWidth:"8%",orderable:!1,searchable:!1,className:"text-center"}],responsive:!0,bAutoWidth:!1,aLengthMenu:[[10,25,50,100,-1],[10,25,50,100,"Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Kelas",sUrl:"",sZeroRecords:"Data tidak ditemukan"},dom:"<'row'<'col-md-5'l><'col-md-2'B><'col-md-5'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",buttons:[{extend:"excelHtml5",text:"Export Excel",title:"Document",exportOptions:{columns:":not(.ket)",modifier:{page:"current"}},customize:function(a){a.xl.worksheets["sheet1.xml"]}}]});a.on("order.dt search.dt",function(){a.column(0,{search:"applied",order:"applied"}).nodes().each(function(a,e){a.innerHTML=e+1})}).draw()});
 </script>
 
 <!-- Export Excel -->
