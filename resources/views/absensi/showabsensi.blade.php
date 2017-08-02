@@ -25,7 +25,7 @@
 @endif
 
 @if(Session::has('info_absensi'))
-    <div id="infoAbsensi" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_absensi') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+    <!-- <div id="infoAbsensi" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_absensi') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div> -->
 @endif
 
 <!-- pesan peringatan berhasil -->
@@ -342,7 +342,11 @@
 
 <!-- Hide/Show Tombol Absensi -->
 <script type="text/javascript">
-    function validate(){$("#kelasku").val()>0?($("#simpan, #hapus").show(),$("#tableabsensi").parents("div.dataTables_wrapper").first().show(),document.getElementById("infoMessage").style.display="none"):($("#simpan, #hapus").hide(),$("#tableabsensi").parents("div.dataTables_wrapper").first().hide(),document.getElementById("infoAbsensi").style.display="none")}$(document).ready(function(){validate(),$("#kelasku").change(validate)});      
+    function validate(){$("#kelasku").val()>0?($("#simpan, #hapus").show(),$("#tableabsensi").parents("div.dataTables_wrapper").first().show()):($("#simpan, #hapus").hide(),$("#tableabsensi").parents("div.dataTables_wrapper").first().hide())}$(document).ready(function(){validate(),$("#kelasku").change(validate)});
 </script>
+
+<!-- <script type="text/javascript">
+    function validate(){$("#kelasku").val()>0?($("#simpan, #hapus").show(),$("#tableabsensi").parents("div.dataTables_wrapper").first().show(),document.getElementById("infoMessage").style.display="none"):($("#simpan, #hapus").hide(),$("#tableabsensi").parents("div.dataTables_wrapper").first().hide(),document.getElementById("infoAbsensi").style.display="none")}$(document).ready(function(){validate(),$("#kelasku").change(validate)});      
+</script> -->
 <!-- Hide/Show Tombol Absensi -->
 @endsection

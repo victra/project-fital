@@ -30,8 +30,8 @@
     <div id="infoMessage" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_message') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
 @endif
 
-@if(Session::has('info_rekap'))
-    <div id="infoRekap" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_rekap') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+@if(Session::has('info_rekapminggu'))
+    <!-- <div id="infoRekap" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><em> {!! session('info_rekapminggu') !!}</em><a class="close" data-dismiss="alert" aria-label="close">&times;</a></div> -->
 @endif
 
 <div class="box">
@@ -72,7 +72,7 @@
                 <label style="margin-right:10px; margin-top:5px"  class="control-label pull-right">Kelas :</label>
             </div>
     </div><!-- /.box-header -->
-    @if(Session::has('info_rekap'))
+    @if(Session::has('info_rekapminggu'))
     <div class="box-body">
         <table id="tablerekapminggu" class="table table-hover table-bordered table-striped dataTable" aria-describedby="tablerekapminggu_info">
 
@@ -306,7 +306,11 @@
 
 <!-- Hide/Show Datatable Rekap Absensi -->
 <script type="text/javascript">
-    function validate(){""!=$("#kelasku").val()?($("#tablerekapminggu").parents("div.dataTables_wrapper").first().show(),document.getElementById("infoMessage").style.display="none"):($("#tablerekapminggu").parents("div.dataTables_wrapper").first().hide(),document.getElementById("infoRekap").style.display="none")}$(document).ready(function(){validate(),$("#kelasku").change(validate)});     
+    function validate(){""!=$("#kelasku").val()?$("#tablerekapminggu").parents("div.dataTables_wrapper").first().show():$("#tablerekapminggu").parents("div.dataTables_wrapper").first().hide()}$(document).ready(function(){validate(),$("#kelasku").change(validate)});        
 </script>
+
+<!-- <script type="text/javascript">
+    function validate(){""!=$("#kelasku").val()?($("#tablerekapminggu").parents("div.dataTables_wrapper").first().show(),document.getElementById("infoMessage").style.display="none"):($("#tablerekapminggu").parents("div.dataTables_wrapper").first().hide(),document.getElementById("infoRekap").style.display="none")}$(document).ready(function(){validate(),$("#kelasku").change(validate)});     
+</script> -->
 <!-- Hide/Show Datatable Rekap Absensi -->
 @endsection

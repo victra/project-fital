@@ -36,6 +36,7 @@ class AbsensiController extends Controller
             if(Input::has('search_kelas') && Input::get('search_kelas') != ''){
                 $siswas = Siswa::orderby('nis', 'ASC')->where('kelas_id', Input::get('search_kelas'))->get();
                 $input_kelas = Input::get('search_kelas');
+                \Session::flash('info_message','Isi kolom "Status" untuk siswa yang berhalangan hadir saja | Jika tidak ada siswa yang berhalangan langsung klik tombol "Simpan Absensi".');
                 \Session::flash('info_absensi','Isi kolom "Status" untuk siswa yang berhalangan hadir saja | Jika tidak ada siswa yang berhalangan langsung klik tombol "Simpan Absensi".');
             } else {
                 \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');
@@ -210,8 +211,8 @@ class AbsensiController extends Controller
             if(Input::has('search_kelas') && Input::get('search_kelas') != ''){
                 $siswa = Siswa::orderby('nis', 'ASC')->where('kelas_id', Input::get('search_kelas'))->get();
                 $input_kelas = Input::get('search_kelas');
-                // \Session::flash('info_rekap','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
-
+                \Session::flash('info_message','Silahkan pilih bulan untuk rekap atau pilih kelas yang lain.');
+                \Session::flash('info_rekapminggu','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
             } else if(Input::get('search_kelas') == ''){
                 \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');                
             }
@@ -222,12 +223,12 @@ class AbsensiController extends Controller
                 $dari_tanggal = Input::get('dari_tanggal');
                 $daystosum = '6';
                 $sampai_tanggal = date('Y-m-d', strtotime($dari_tanggal.' + '.$daystosum.' days'));
-                \Session::flash('info_rekap','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
-                // \Session::flash('info_rekap','Rekap Absensi Per Minggu digunakan untuk memantau siswa yang sering berhalangan hadir dalam satu minggu');
+                // \Session::flash('info_rekapminggu','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
+                // \Session::flash('info_rekapminggu','Rekap Absensi Per Minggu digunakan untuk memantau siswa yang sering berhalangan hadir dalam satu minggu');
             } else if (Input::get('search_kelas') != '' && Input::get('dari_tanggal') == ''){
                 // $dari_tanggal = "";
                 // $sampai_tanggal = "";
-                \Session::flash('info_rekap','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
+                // \Session::flash('info_rekapminggu','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
             }
 
             $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
@@ -269,6 +270,8 @@ class AbsensiController extends Controller
             if(Input::has('search_kelas') && Input::get('search_kelas') != ''){
                 $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
                 $input_kelas = Input::get('search_kelas');
+                \Session::flash('info_message','Silahkan pilih bulan untuk rekap atau pilih kelas yang lain.');
+                \Session::flash('info_rekapbulan','Silahkan pilih bulan untuk rekap atau pilih kelas yang lain.');
             } else if(Input::get('search_kelas') == ''){
                 \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');                
             }
@@ -278,10 +281,10 @@ class AbsensiController extends Controller
             $input_bulan = '';
             if (Input::has('bulan') && Input::get('bulan') != '') {
                 $input_bulan = Input::get('bulan');
-                \Session::flash('info_rekap','Silahkan pilih bulan untuk rekap atau pilih kelas yang lain.');                
+                // \Session::flash('info_rekapbulan','Silahkan pilih bulan untuk rekap atau pilih kelas yang lain.');                
             } else if(Input::get('search_kelas') != '' && Input::get('bulan') == ''){
                 $input_bulan = "";
-                \Session::flash('info_rekap','Silahkan pilih bulan untuk rekap atau pilih kelas yang lain.');
+                // \Session::flash('info_rekapbulan','Silahkan pilih bulan untuk rekap atau pilih kelas yang lain.');
             }
 
             $bulan = array(
@@ -304,7 +307,7 @@ class AbsensiController extends Controller
                 $input_tahun = Input::get('tahun');
             } else if(Input::get('search_kelas') != '' && Input::get('bulan') != '' && Input::get('tahun') == ''){ 
                 $input_tahun = '';
-                // \Session::flash('info_rekap','Silahkan pilih tahun atau pilih bulan untuk rekap atau pilih kelas yang lain.');         
+                // \Session::flash('info_rekapbulan','Silahkan pilih tahun atau pilih bulan untuk rekap atau pilih kelas yang lain.');         
             }
 
             $tahun = array(
@@ -354,6 +357,8 @@ class AbsensiController extends Controller
             if(Input::has('search_kelas') && Input::get('search_kelas') != ''){
                 $siswa = $siswa->where('kelas_id', Input::get('search_kelas'));
                 $input_kelas = Input::get('search_kelas');
+                \Session::flash('info_message','Silahkan pilih semester untuk rekap atau pilih kelas yang lain.');
+                \Session::flash('info_rekapsemester','Silahkan pilih semester untuk rekap atau pilih kelas yang lain.');
             } else if(Input::get('search_kelas') == ''){
                 \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');                
             }
@@ -364,10 +369,10 @@ class AbsensiController extends Controller
             if (Input::has('semester') && Input::get('semester') != '') {
                 $semesters = Input::get('semester');
                 $input_semester = Input::get('semester');
-                \Session::flash('info_rekap','Silahkan pilih semester untuk rekap atau pilih kelas yang lain.');
+                // \Session::flash('info_rekapsemester','Silahkan pilih semester untuk rekap atau pilih kelas yang lain.');
             } else if(Input::get('search_kelas') != '' && Input::get('semester') == '') {
                 $input_semester = "";
-                \Session::flash('info_rekap','Silahkan pilih semester untuk rekap atau pilih kelas yang lain.');
+                // \Session::flash('info_rekapsemester','Silahkan pilih semester untuk rekap atau pilih kelas yang lain.');
             }
 
             $semester = Semester::get();

@@ -572,11 +572,11 @@
 @section('scripts-tambahan')
 <script type="text/javascript">
     $(function() {
-    $('#kelasq').on("change",function(){
-        var selected = $(this).val();
-        document.getElementById("carikelas").value = selected;
+        $('#kelasq').on("change",function(){
+            var selected = $(this).val();
+            document.getElementById("carikelas").value = selected;
+        });
     });
-});
 </script>
 <!-- Datatables -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
