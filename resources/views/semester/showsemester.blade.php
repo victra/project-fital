@@ -70,7 +70,7 @@
 @endsection
 
 @section('modals')
-<!-- Modal Form Ubah Data Semester-->
+<!-- Modal Form Ubah Data Semester -->
 <div class="modal fade" id="ModalUbahSemester" role="dialog">
     <div class="modal-dialog">
     <!-- Modal content-->
@@ -109,20 +109,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- <label class="control-label col-sm-4">Tanggal Awal</label>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <input type="text" name="tgl_awal" class="form-control" placeholder="Tanggal Awal">
-                        </div>  
-                    </div>
-                    <label class="control-label col-sm-4">Tanggal Akhir</label>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                            <input type="text" name="tgl_akhir" class="form-control" placeholder="Tanggal Akhir">
-                        </div>  
-                    </div> -->                        
+                    </div>                       
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">
@@ -137,7 +124,7 @@
         </div>      
     </div>
 </div>
-<!-- Modal Form Ubah Data Kelas -->
+<!-- Modal Form Ubah Data Semester -->
 
 <!-- Modal Ubah Password -->
 <div class="modal fade" id="ModalUbahPassword" role="dialog">
@@ -290,13 +277,11 @@
 
 <script type="text/javascript">
     $("#tablesemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!1,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"40%"},{sWidth:"25%"},{sWidth:"25%"},{sWidth:"5%"}],aoColumnDefs:[{bSortable:!1,aTargets:["no","semester","tgl_awal","tgl_akhir","action"]}]});
-
-    // $(function(){$("#tablesemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!1,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"40%"},{sWidth:"25%"},{sWidth:"25%"},{sWidth:"5%"}]});var t=$("#tablesemester").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var e="\\b"+this.value.toLowerCase()+"\\b";t.rows().search(e,!0,!1).draw()})});
 </script>
 
 <!-- VALIDASI FORM UBAH SEMESTER -->
 <script type="text/javascript">
-$(document).ready(function(){$("#datetimePicker").datepicker(),$("#UbahSemester").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{tgl_awal:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal awal harus diisi"},date:{format:"YYYY-MM-DD",message:"Tanggal awal tidak valid"}}},tgl_akhir:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal akhir harus diisi"},date:{format:"YYYY-MM-DD",message:"Tanggal akhir tidak valid"}}}}}).on("success.field.bv",function(a,i){"tgl_awal"!==i.field||i.bv.isValidField("tgl_akhir")||i.bv.revalidateField("tgl_akhir"),"tgl_akhir"!==i.field||i.bv.isValidField("tgl_awal")||i.bv.revalidateField("tgl_awal")})});
+$(document).ready(function(){$("#ModalUbahSemester").modal("hide"),$("#UbahSemester").bootstrapValidator({feedbackIcons:{valid:"glyphicon glyphicon-ok",invalid:"glyphicon glyphicon-remove",validating:"glyphicon glyphicon-refresh"},fields:{tgl_awal:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal awal harus diisi"},date:{format:"YYYY-MM-DD",message:"Tanggal awal tidak valid"}}},tgl_akhir:{trigger:"change keyup",validators:{notEmpty:{message:"Tanggal akhir harus diisi"},date:{format:"YYYY-MM-DD",message:"Tanggal akhir tidak valid"}}}}})});
 </script>
 <!-- VALIDASI FORM UBAH SEMESTER -->
 @endsection
