@@ -276,7 +276,7 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $("#tablesemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!1,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"40%"},{sWidth:"25%"},{sWidth:"25%"},{sWidth:"5%"}],aoColumnDefs:[{bSortable:!1,aTargets:["no","semester","tgl_awal","tgl_akhir","action"]}]});
+    $("#tablesemester").dataTable({bPaginate:!1,bLengthChange:!0,bFilter:!1,bSort:!0,bInfo:!1,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"40%"},{sWidth:"25%"},{sWidth:"25%"},{sWidth:"5%"}],aoColumnDefs:[{bSortable:!1,aTargets:["no","tgl_awal","tgl_akhir","action"]}],order:[[1,"asc"]]});
 </script>
 
 <!-- VALIDASI FORM UBAH SEMESTER -->
