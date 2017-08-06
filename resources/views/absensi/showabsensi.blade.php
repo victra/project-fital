@@ -66,7 +66,7 @@
                     <th class="nis"><center>NIS</center></th>
                     <th class="nama"><center>Nama Siswa</center></th>
                     <th class="jkl"><center>Jenis Kelamin</center></th>
-                    <th class="agama"><center>Agama</center></th>
+                    <!-- <th class="agama"><center>Agama</center></th> -->
                     <!-- <th><center>Kelas</center></th> -->
                     <th class="status"><center>Status</center></th>
                     <th class="keterangan"><center>Keterangan</center></th>
@@ -80,12 +80,12 @@
                         <td><center>{{$item->nis}}</center></td>
                         <td>{{$item->nama}}</td>
                         <td><center>{{$item->jkl}}</center></td>
-                        <td><center>{{$item->agama}}</center></td>
+                        <!-- <td><center>{{$item->agama}}</center></td> -->
                         <!-- <td><center>{{$item->kelas->nama_kelas}}</center></td>   -->
                         @if(!isset($item['absensi_non_permanent']))
                             <td>
                                 <center>
-                                    <select style="width:78px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
+                                    <select style="width:95;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
                                         <option value="">-</option>
                                         <option value="H">Hadir</option>
                                         <option value="I">Izin</option>
@@ -97,14 +97,14 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea style="width:222px" maxlength="100" name="absensi[{{$item->id}}][description]" class="form-control"></textarea>
+                                        <textarea style="width:255px" maxlength="100" name="absensi[{{$item->id}}][description]" class="form-control"></textarea>
                                     </div>
                                 </center>
                             </td>                    
                         @else
                             <td>
                                 <center>
-                                    <select style="width:78px;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
+                                    <select style="width:95;" class="form-control input-sm" name="absensi[{{$item->id}}][status]">
                                         @foreach($content['status'] as $key => $value)
                                             <?php $selected = $key==$item['absensi_non_permanent']['status'] ? 'selected' : '' ?>
                                             <option {{$selected}} value="{{$key}}">{{$value}}</option>
@@ -115,7 +115,7 @@
                             <td>
                                 <center>
                                     <div class="form-group">
-                                        <textarea style="width:222px" maxlength="100" name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi_non_permanent']['description']}}</textarea>
+                                        <textarea style="width:255px" maxlength="100" name="absensi[{{$item->id}}][description]" class="form-control">{{$item['absensi_non_permanent']['description']}}</textarea>
                                     </div>
                                 </center>
                             </td>                   
@@ -322,7 +322,7 @@
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(function(){$("#tableabsensi").dataTable({scrollY:350,scrollCollapse:!0,bPaginate:!1,bLengthChange:!1,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"5%"},{sWidth:"30%"},{sWidth:"15%"},{sWidth:"10%"},{sWidth:"10%"},{sWidth:"25%"}],aLengthMenu:[[-1],["Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Jumlah Siswa : _TOTAL_ siswa",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","status","keterangan"]},{bSortable:!1,aTargets:["no","nis","jkl","agama","status","keterangan"]}],order:[[2,"asc"]]});var a=$("#tableabsensi").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
+    $(function(){$("#tableabsensi").dataTable({scrollY:350,scrollCollapse:!0,bPaginate:!1,bLengthChange:!1,bFilter:!0,bSort:!0,bInfo:!0,responsive:!0,bAutoWidth:!1,aoColumns:[{sWidth:"5%"},{sWidth:"8%"},{sWidth:"30%"},{sWidth:"15%"},{sWidth:"12%"},{sWidth:"30%"}],aLengthMenu:[[-1],["Semua"]],oLanguage:{sEmptyTable:"Belum ada data dalam tabel ini",sInfo:"Jumlah Siswa : _TOTAL_ siswa",sInfoEmpty:"Menampilkan 0 to 0 of 0 data",sInfoFiltered:"",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Tampilkan _MENU_ data",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Cari:",sSearchPlaceholder:"Nama Siswa",sUrl:"",sZeroRecords:"Data tidak ditemukan"},aoColumnDefs:[{bSearchable:!1,aTargets:["no","nis","jkl","agama","status","keterangan"]},{bSortable:!1,aTargets:["no","jkl","agama","status","keterangan"]}],order:[[1,"asc"]]});var a=$("#tableabsensi").DataTable();$(".dataTables_filter input").unbind().bind("keyup",function(){var s="\\b"+this.value.toLowerCase()+"\\b";a.rows().search(s,!0,!1).draw()})});
 </script>
 
 <!-- Enable/Disable Tombol Absensi -->
