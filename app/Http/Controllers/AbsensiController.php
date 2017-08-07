@@ -149,45 +149,52 @@ class AbsensiController extends Controller
     //rekap absensi per hari
     public function rekapabsensihari()
     {
-        \Session::flash('info_message','Silahkan pilih atau ubah tanggal rekap.');
-        $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
+        if (Auth::user()->role != 'tamu') {
 
-        $jadwal = array(
-            'Senin' => 'Senin',
-            'Selasa' => 'Selasa',
-            'Rabu' => 'Rabu',
-            'Kamis' => 'Kamis',
-            'Jumat' => 'Jumat',
-            'Sabtu' => 'Sabtu',
-        );
+            \Session::flash('info_message','Silahkan pilih atau ubah tanggal rekap.');
+            $kelas = Kelas::orderby('nama_kelas', 'ASC')->get();
 
-        // total siswa
-        for ($i=0; $i < count($kelas); $i++) { 
-            $kelas[$i]['jumlah'] = Siswa::where('kelas_id', $kelas[$i]['id'])->get()->count();
-        }
+            $jadwal = array(
+                'Senin' => 'Senin',
+                'Selasa' => 'Selasa',
+                'Rabu' => 'Rabu',
+                'Kamis' => 'Kamis',
+                'Jumat' => 'Jumat',
+                'Sabtu' => 'Sabtu',
+            );
 
-        // dd($kelas->toArray());
-
-        if (Input::has('tanggal')) {
-            $tanggal = Input::get('tanggal');
+            // total siswa
             for ($i=0; $i < count($kelas); $i++) { 
-                $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
+                $kelas[$i]['jumlah'] = Siswa::where('kelas_id', $kelas[$i]['id'])->get()->count();
             }
-        } else {
-            $tanggal = date("Y-m-d");
-            for ($i=0; $i < count($kelas); $i++) { 
-                $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
+
+            // dd($kelas->toArray());
+
+            if (Input::has('tanggal')) {
+                $tanggal = Input::get('tanggal');
+                for ($i=0; $i < count($kelas); $i++) { 
+                    $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
+                }
+            } else {
+                $tanggal = date("Y-m-d");
+                for ($i=0; $i < count($kelas); $i++) { 
+                    $kelas[$i]['absensikelas'] = Absensi::where('kelas_id', $kelas[$i]['id'])->where('date', $tanggal)->where('status','!=','H')->get();
+                }
             }
+
+            // dd($kelas->toArray());
+
+            $content['kelass'] = $kelas;
+            $content['tanggal'] = $tanggal;
+            $content['jadwal'] = $jadwal;
+
+            return View::make('absensi.rekapabsensihari')
+                        ->with('content', $content);
         }
-
-        // dd($kelas->toArray());
-
-        $content['kelass'] = $kelas;
-        $content['tanggal'] = $tanggal;
-        $content['jadwal'] = $jadwal;
-
-        return View::make('absensi.rekapabsensihari')
-                    ->with('content', $content);
+        else
+        {
+            return view('errors.404');
+        }
     }
 
     //rekap absensi per minggu
@@ -211,7 +218,7 @@ class AbsensiController extends Controller
             if(Input::has('search_kelas') && Input::get('search_kelas') != ''){
                 $siswa = Siswa::orderby('nis', 'ASC')->where('kelas_id', Input::get('search_kelas'))->get();
                 $input_kelas = Input::get('search_kelas');
-                \Session::flash('info_message','Silahkan pilih bulan untuk rekap atau pilih kelas yang lain.');
+                \Session::flash('info_message','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
                 \Session::flash('info_rekapminggu','Silahkan masukkan tanggal mulai rekap atau pilih kelas yang lain.');
             } else if(Input::get('search_kelas') == ''){
                 \Session::flash('info_message','Silahkan pilih kelas terlebih dahulu.');                

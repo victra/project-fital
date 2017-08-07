@@ -32,8 +32,9 @@ class SemesterController extends Controller
             return View::make('semester.showsemester')
                         ->with('content', $content);
         } else {
-            return View::make('guest.guestsemester')
-                        ->with('content', $content);   
+            // return View::make('guest.guestsemester')
+                        // ->with('content', $content);
+            return view('errors.404'); 
         }
     }
 
