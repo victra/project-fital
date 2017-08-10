@@ -248,6 +248,8 @@ function centerModals(){
   top = top > 0 ? top : 0;
   $clone.remove();
   $(this).find('.modal-content').css("margin-top", top);
+  // reset tab modal siswa
+  $(this).find('.nav-tabs a:first').tab('show');
   });
 }
 $('.modal').on('show.bs.modal', centerModals);
